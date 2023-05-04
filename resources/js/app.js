@@ -5,10 +5,11 @@ import {
     Input,
     Dropdown,
     Ripple,
+    Select,
     initTE,
   } from "tw-elements";
   
-  initTE({ Modal, Dropdown, Ripple, Input, Timepicker, Chart });
+  initTE({ Modal, Dropdown, Ripple, Input, Timepicker, Chart, Select });
 
 import './bootstrap';
 

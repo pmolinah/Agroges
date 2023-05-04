@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+
+    Route::get('/dashboard',function(){return view('dashboard');})->name('dashboard');
+    Route::get('/Role', [RoleController::class, 'show']);
+    // Rutas de User
+    Route::get('/Index/User', [UserController::class, 'index'])->name('User.index');
+    Route::get('/Nuevo/User', [UserController::class, 'create'])->name('User.create');
+    
 });
