@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Hash;
+use Alert;
 use App\Models\User;
 
 class UserController extends Controller
@@ -32,7 +33,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Alert::success('Usuario Guardado Correctamente');
+        return back();
     }
 
     /**

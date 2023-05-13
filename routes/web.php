@@ -25,5 +25,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     // Rutas de User
     Route::get('/Index/User', [UserController::class, 'index'])->name('User.index');
     Route::get('/Nuevo/User', [UserController::class, 'create'])->name('User.create');
+    Route::post('/Guardar/User',[UserController::class, 'store'])->name('User.store');
     
 });
