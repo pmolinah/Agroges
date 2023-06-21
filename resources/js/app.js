@@ -19,3 +19,4 @@ window.Alpine = Alpine;
 
 Alpine.plugin(focus);
 Alpine.start();
+// import Swal from 'sweetalert2/dist/sweetalert2.js'

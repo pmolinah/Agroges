@@ -18,7 +18,7 @@
                             <div class="grid grid-cols-12 gap-2">
                                 <!--rut-->
                                 <div class="xs:col-span-10 relative md:col-span-3 mb-6" data-te-input-wrapper-init>
-                                    <input id="rut" maxlength="10" type="text" class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" aria-describedby="emailHelp123" placeholder="First name" />
+                                    <input id="rut" maxlength="10" type="text" required class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" aria-describedby="emailHelp123" placeholder="First name" />
                                     <label for="emailHelp123" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
                                         Rut Ej:12345678-K
                                     </label>
@@ -26,9 +26,7 @@
 
                             <!--nombre input-->
                                 <div class="xs:md:col-start-1 xs:col-span-12 md:col-start-5 md:col-span-8 relative mb-6" data-te-input-wrapper-init>
-                                <input
-                                    type="text"
-                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                <input type="text" required class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                     id="name" name="name"
                                     placeholder="" />
                                 <label
@@ -43,7 +41,7 @@
                              <!--email input-->
                              <div class="relative mb-6" data-te-input-wrapper-init>
                                 <input
-                                    type="email"
+                                    type="email" required
                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                     id="email" name="email"
                                     placeholder="" />
@@ -58,7 +56,7 @@
                             <!--select tipo input-->
                             <div class="grid xs:gri-cols-1 md:grid-cols-12">
                                 <div class="md:col-start-1 md:col-span-5">
-                                    <select data-te-select-init id="tipo" name="tipo">
+                                    <select data-te-select-init id="tipo" required name="tipo">
                                         <option value="">Seleccione un Tipo de Usuario</option>
                                         <option value="1">Administrador</option>
                                         <option value="2">Cliente</option>
@@ -70,7 +68,7 @@
                             <div class="grid xs:gri-cols-1 py-6 md:grid-cols-12">
                                 <div class="md:col-start-1 md:col-span-5">
                                 <div class="relative mb-6" data-te-input-wrapper-init>
-                                    <input
+                                    <input required
                                         type="text"
                                         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                         id="password"
@@ -98,6 +96,17 @@
                         </form>
                     </div>
                     <!-- nuevos usuarios -->
+                    @if(Session::has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: '{{ Session::get('success') }}',
+            timer: 5000,
+            showConfirmButton: false
+        });
+    </script>
+@endif
                 </div>
             </div>
         </div>
