@@ -33,6 +33,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
+        $save=User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+           
+            'password' => Hash::make($request['password']),
+            
+            'Tipo' => $request['Tipo'],
+        ]);
         // return "ok";
         Session::flash('success', 'Usuario Guardado Correctamente');
         

@@ -102,7 +102,7 @@
             icon: 'success',
             title: 'Éxito',
             text: '{{ Session::get('success') }}',
-            timer: 5000,
+            timer: 4000,
             showConfirmButton: false
         });
     </script>
