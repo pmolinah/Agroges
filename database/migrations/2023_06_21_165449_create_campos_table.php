@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('campos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('rut',10);
             $table->BigInteger('empresa_id')->unsigned();
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->string('campo',250);
             $table->string('direccion',250);
-            $table->string('comuna',250);
+           
             $table->BigInteger('adm_id')->unsigned();
             $table->foreign('adm_id')->references('id')->on('users');
             $table->float('superficie');

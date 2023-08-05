@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('direccion',200)->nullable();
-            $table->string('comuna',200)->nullable();
-            $table->integer('tipo')->nullable();
+            // $table->string('comuna',200)->nullable();
+            //$table->integer('tipo')->nullable();
         });
     }
 
@@ -24,9 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('direccion');
-            $table->dropcolumn('tipo');
-            $table->dropColumn('comuna');
+            // $table->dropColumn('direccion');
+            // $table->dropcolumn('tipo');
+            
         });
     }
 };

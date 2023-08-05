@@ -8,12 +8,17 @@ use Spatie\Permission\Models\Role;
 use Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    use HasRoles;
+
+
     public function index()
     {
         $data = User::orderBy('id','DESC')->paginate(5);
@@ -25,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('User.create');
+        $roles=Role::all();
+        return view('User.create',compact('roles'));
     }
 
     /**
@@ -33,16 +39,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
-        $save=User::create([
+     
+        $user=User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-           
             'password' => Hash::make($request['password']),
-            
             'Tipo' => $request['Tipo'],
-        ]);
+        ])->roles()->sync($request->rol);
         // return "ok";
         Session::flash('success', 'Usuario Guardado Correctamente');
         
@@ -60,17 +63,24 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+       
+       $user=User::where('id',$id)->get();
+       $roles=Role::all();
+       
+        return view('User.edit',compact('user','roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        
+        $act=User::where('id',$request->id)->update(['email'=>$request->email,'name'=>$request->name]);
+        Session::flash('success', 'Usuario Actualizado Correctamente');
+        return back();
     }
 
     /**

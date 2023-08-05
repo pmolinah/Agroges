@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nombre',250);
-            $table->string('rut',10);
+            $table->string('rut',10)->unique();
             $table->string('razon_social',250);
             $table->string('direccion',250);
-            $table->string('comuna',250);
+            
             $table->string('email',250)->nullable();
             $table->string('telefono',50)->nullable();
-            $table->integer('tipo')->nullable();
+           
         });
     }
 

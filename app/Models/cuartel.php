@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class cuartel extends Model
 {
     use HasFactory;
+
+    public function campo(){
+        return $this->belongsTo(campo::class);
+    }
 }

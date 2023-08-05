@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+            {{ __('Perfil de Usuario') }}
         </h2>
     </x-slot>
 
@@ -37,7 +37,7 @@
                 <x-section-border />
 
                 <div class="mt-10 sm:mt-0">
-                    @livewire('profile.delete-user-form')
+                    <!-- @livewire('profile.delete-user-form') -->
                 </div>
             @endif
         </div>

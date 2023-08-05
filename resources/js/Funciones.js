@@ -77,11 +77,55 @@ $(document).ready(function(){
 /* fin */
     });
 
-// $('#btn_sv').click(function(){
-//     var rut = ('#rut').val();
-//     var name = ('#name').val();
-//     var email = ('#email').val();
-//     var tipo = ('#password').val();
-//     });
+
  });
-//fin verificacion rut empresa
+
+//  $(document).ready(function(){
+//     function EliminarRole(id)
+//     {
+//       Swal.fire({
+//       title: "Eliminar Rol",
+//       text: "¿ Desea Borrar el Rol y su Perfil ?",
+//       type: 'warning',
+//       showCancelButton: true,
+//       allowOutsideClick: false,
+//       confirmButtonColor: '#3085d6',
+//       cancelButtonColor: '#d33',
+//       confirmButtonText: 'Si, borrar'
+//         }).then((result) => {
+           
+//             if (result.value) {
+//             //         Swal.fire(
+//             //         'Deleted!',
+//             //         'Your file has been deleted.',
+//             //         'success'
+//             //         )
+               
+//             //         // location.reload();
+//             // }
+//             $.get('/api/eliminar/'+id+'/Role/',function(retorno){
+                
+//                 Swal.fire({
+//                 title: 'Rol Borrado',
+//                 text: 'Puede Continuar...',
+//                 type: 'success',
+//                 confirmButtonText: 'Ok',
+//                 showConfirmButton: false,
+//                 timer: 1500,
+                
+//     })
+//                      setTimeout ("location.reload();", 1500); 
+                   
+//             });
+           
+//             } 
+           
+//         })
+//     }
+
+
+//  });
+
+ 
+
+ //eliminar roles 
