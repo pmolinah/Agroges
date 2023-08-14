@@ -9,18 +9,26 @@ class SelectComuna extends Component
 {
     public $selectedId;
     public $comuna_id,$selectedOptionComuna;
+    public $comuna=array();
 
    
    public function SelectComuna(){
         $this->emit('SelectComunaId',$this->selectedOptionComuna);
         
    }
-    
 
- 
+
+
+    
     public function render()
     {
-        $comuna=comuna::all();
-        return view('livewire.campo.select-comuna',compact('comuna'));
+        $this->comuna=comuna::all();
+        $comunas=$this->comuna;
+        return view('livewire.campo.select-comuna',compact('comunas'));
+     
     }
+
+    
+
+       
 }

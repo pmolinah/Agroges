@@ -7,9 +7,10 @@ import {
     Ripple,
     Select,
     initTE,
+    Collapse,
   } from "tw-elements";
   
-  initTE({ Modal, Dropdown, Ripple, Input, Timepicker, Chart, Select });
+  initTE({  Collapse, Modal, Dropdown, Ripple, Input, Timepicker, Chart, Select });
 
 import './bootstrap';
 
@@ -20,3 +21,4 @@ window.Alpine = Alpine;
 Alpine.plugin(focus);
 Alpine.start();
 // import Swal from 'sweetalert2/dist/sweetalert2.js'
+

@@ -205,6 +205,15 @@ class Roleseeder extends Seeder
         $tipousuario=tipousuario::create([
             'tipousuario'=>'Administrador',
         ]);
+        $tipousuario=tipousuario::create([
+            'tipousuario'=>'Capataz',
+        ]);
+        $tipousuario=tipousuario::create([
+            'tipousuario'=>'Supervisor',
+        ]);
+        $tipousuario=tipousuario::create([
+            'tipousuario'=>'Cliente',
+        ]);
 
 
 

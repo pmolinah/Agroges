@@ -46,16 +46,17 @@ class CreateCampoCuartel extends Component
             'empresa_id'=>$this->selectedId,
             'rut'=>$this->rut,
         ]);
-        //$this->reset(['selectedId','direccion','comuna_id','superficie','administrador_id','capataz_id','rut','campo']);
-      
-        Session::flash('success', 'Empresa Guardada Correctamente...');
-        // $this->emit('selectedIdUpdated',$this->selectedId,)
-        // $this->emit('render');
-        // $this->emit('alert');
-       
-        // Session::flash('success', 'Empresa Actualizado Correctamente...');
-        // Session::flash('success', 'Campo Guardado Correctamente');
-   
+        $this->reset(['direccion','superficie','rut','campo']);
+              // $this->comuna_id = "";
+
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Item has been removed.',
+            'icon'=>'success',
+            'iconColor'=>'blue',
+        ]);
+
+        $this->dispatchBrowserEvent('LimpiarComuna');
+        $this->emit('selectedIdUpdated',$this->selectedId);
     }
     
     public function render()

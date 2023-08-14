@@ -19,6 +19,7 @@ return new class extends Migration
             $table->BigInteger('capataz_id')->unsigned();
             $table->foreign('capataz_id')->references('id')->on('users');
             $table->float('superficie',8,2);
+            $table->integer('certificado')->nullable();
             $table->string('observaciones');
         });
     }

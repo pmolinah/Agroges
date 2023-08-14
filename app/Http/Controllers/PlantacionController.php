@@ -4,20 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\empresa;
-use App\Models\comuna;
-use App\Models\User;
-use App\Models\campo;
-use Illuminate\Support\Facades\Session;
 
-class CampoController extends Controller
+class PlantacionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('Plantacion.index');
     }
 
     /**
@@ -25,9 +20,7 @@ class CampoController extends Controller
      */
     public function create()
     {
-        $empresas=empresa::all();
-         
-        return view('Campo.create', compact('empresas'));
+        //
     }
 
     /**
@@ -57,11 +50,9 @@ class CampoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
-        $act=campo::where('id',$request->id)->update(['campo'=>$request->campo,'direccion'=>$request->direccion]);
-        Session::flash('success', 'Campo Actualizado Correctamente');
-        return back();
+        //
     }
 
     /**

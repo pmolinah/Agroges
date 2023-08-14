@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CampoController;
+use App\Http\Controllers\CuartelController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\PlantacionController;
+use App\Http\Controllers\CosechaController;
+
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -21,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::middleware(['web','auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
 
     Route::get('/dashboard',function(){return view('dashboard');})->name('dashboard');
     Route::get('/Role', [RoleController::class, 'show']);
@@ -50,11 +54,24 @@ Route::get('/', function () {
     //Rutas de Campos
     Route::get('/Create/Campos',[CampoController::class, 'create'])->name('Campo.create');
     Route::get('/Edit/{id}/Campos',[CampoController::class, 'edit'])->name('Campo.edit');
+    Route::put('/Update/{id}/Campos',[CampoController::class, 'update'])->name('Campo.update');
 
+    //Rutas de Cuarteles livewire
+    Route::get('/Create/Cuartel', [CuartelController::class, 'create'])->name('Cuartel.create');
+
+    // Rutas de plantación
+    Route::get('/Index/Plantacion',[PlantacionController::class, 'index'])->name('Plantacion.index');
+    
+    // Rutas de cosecha
+    Route::get('/Index/Cosechas',[CosechaController::class, 'index'])->name('Cosecha.index');
+
+    
     //Rutas de Organización
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');
-    Route::get('/Organizacion/Campos/Cuarteles', function () {return view('Organizacion.index');
-  
+    Route::get('/Organizacion/Campos/Cuarteles', function () {
+        
+        return view('Organizacion.index');
+    
     });
     
 
