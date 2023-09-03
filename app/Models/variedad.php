@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class variedad extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'variedad',
+        'observacion',
+       
+    ];
 }

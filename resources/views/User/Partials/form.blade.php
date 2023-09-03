@@ -1,6 +1,6 @@
 <!-- Contenido formulario funcionando -->
 
-@foreach($user as $user)
+                    @foreach($user as $user)
                         {!! Form::model($user, ['route'=>['User.update',$user->id], 'method'=>'PUT']) !!} 
                         
                         @csrf

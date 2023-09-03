@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Models\comuna;
 use App\Models\Tipo;
 use App\Models\tipousuario;
+use App\Models\variedad;
+use App\Models\especie;
+
 class Roleseeder extends Seeder
 {
     /**
@@ -214,6 +217,10 @@ class Roleseeder extends Seeder
         $tipousuario=tipousuario::create([
             'tipousuario'=>'Cliente',
         ]);
+        $tipousuario=tipousuario::create([
+            'tipousuario'=>'Encargado de Bodega',
+        ]);
+
 
 
 
@@ -224,11 +231,18 @@ class Roleseeder extends Seeder
             'tipo_id'=>1,
 
         ])->assignRole('Admin');
+        $user = User::create([
+            'name'=>'Capataz',
+            'email'=>'r@r.cl',
+            'password'=>bcrypt('11111111'),
+            'tipo_id'=>2,
+
+        ])->assignRole('Admin');
 
         Tipo::create(['tipo'=>'Campo']);
         Tipo::create(['tipo'=>'Proveedor']);
         Tipo::create(['tipo'=>'Contratista']);
-        Tipo::create(['tipo'=>'Proveedor']);
+        Tipo::create(['tipo'=>'Exportadora']);
 
         // comunas de Chile
         $comuna1=['Algarrobo (Provincia San Antonio, V Región de Valparaíso)','Alhué (Provincia Melipilla, Región Metropolitana de Santiago)','Alto Bío Bío (Provincia Bío Bío, VIII Región del Biobío)','Alto del Carmen (Provincia Huasco, III Región de Atacama)','Alto Hospicio (Provincia Iquique, I Región de Tarapacá)','Ancud (Provincia Chiloé, X Región de Los Lagos)','Andacollo (Provincia Elqui, IV Región de Coquimbo)','Angol (Provincia Malleco, IX Región de la Araucanía)','Antártica (Provincia Antártica Chilena, XII Región de Magallanes y de la Antártica Chilena)','Antofagasta (Provincia Antofagasta, II Región de Antofagasta)','Antuco (Provincia Bío Bío, VIII Región del Biobío)','Arauco (Provincia Arauco, VIII Región del Biobío)','Arica (Provincia Arica, XV Región de Arica y Parinacota)','Aysén (Provincia Aysén, XI Región Aysén del General Carlos Ibáñez del Campo)','Buin (Provincia Maipo, Región Metropolitana de Santiago)','Bulnes (Provincia Diguillín, XVI Región de Ñuble)','Cabildo (Provincia Petorca, V Región de Valparaíso)','Cabo de Hornos (Provincia Antártica Chilena, XII Región de Magallanes y de la Antártica Chilena)','Cabrero (Provincia Bío Bío, VIII Región del Biobío)','Calama (Provincia El Loa, II Región de Antofagasta)','Calbuco (Provincia Llanquihue, X Región de Los Lagos)','Caldera (Provincia Copiapó, III Región de Atacama)','Calera de Tango (Provincia Maipo, Región Metropolitana de Santiago)','Calle Larga (Provincia Los Andes, V Región de Valparaíso)','Camarones (Provincia Arica, XV Región de Arica y Parinacota)','Camiña (Provincia Tamarugal, I Región de Tarapacá)','Canela (Provincia Choapa, IV Región de Coquimbo)','Cañete (Provincia Arauco, VIII Región del Biobío)','Carahue (Provincia Cautín, IX Región de la Araucanía)','Cartagena (Provincia San Antonio, V Región de Valparaíso)','Casablanca (Provincia Valparaíso, V Región de Valparaíso)','Castro (Provincia Chiloé, X Región de Los Lagos)','Catemu (Provincia San Felipe de Aconcagua, V Región de Valparaíso)','Cauquenes (Provincia Cauquenes, VII Región del Maule)','Cerrillos (Provincia Santiago, Región Metropolitana de Santiago)','Cerro Navia (Provincia Santiago, Región Metropolitana de Santiago)','Chaitén (Provincia Palena, X Región de Los Lagos)','Chanco (Provincia Cauquenes, VII Región del Maule)','Chañaral (Provincia Chañaral, III Región de Atacama)','Chépica (Provincia Colchagua, VI Región del Libertador General Bernardo O’Higgins)','Chiguayante (Provincia Concepción, VIII Región del Biobío)','Chile Chico (Provincia General Carrera, XI Región Aysén del General Carlos Ibáñez del Campo)','Chillán (Provincia Diguillín, XVI Región de Ñuble)','Chillán Viejo (Provincia Diguillín, XVI Región de Ñuble)','Chimbarongo (Provincia Colchagua, VI Región del Libertador General Bernardo O’Higgins)','Chol Chol (Provincia Cautín, IX Región de la Araucanía)','Chonchi (Provincia Chiloé, X Región de Los Lagos)','Cisnes (Provincia Aysén, XI Región Aysén del General Carlos Ibáñez del Campo)','Cobquecura (Provincia Itata, XVI Región de Ñuble)','Cochamó (Provincia Llanquihue, X Región de Los Lagos)','Cochrane (Provincia Capitán Prat, XI Región Aysén del General Carlos Ibáñez del Campo)','Codegua (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)','Coelemu (Provincia Itata, XVI Región de Ñuble)','Coihueco (Provincia Punilla, XVI Región de Ñuble)','Coinco (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)','Colbún (Provincia Linares, VII Región del Maule)','Colchane (Provincia Tamarugal, I Región de Tarapacá)','Colina (Provincia Chacabuco, Región Metropolitana de Santiago)','Collipulli (Provincia Malleco, IX Región de la Araucanía)','Coltauco (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)','Combarbalá (Provincia Limarí, IV Región de Coquimbo)','Concepción (Provincia Concepción, VIII Región del Biobío)','Conchalí (Provincia Santiago, Región Metropolitana de Santiago)','Concón (Provincia Valparaíso, V Región de Valparaíso)','Constitución (Provincia Talca, VII Región del Maule)','Contulmo (Provincia Arauco, VIII Región del Biobío)','Copiapó (Provincia Copiapó, III Región de Atacama)','Coquimbo (Provincia Elqui, IV Región de Coquimbo)','Coronel (Provincia Concepción, VIII Región del Biobío)','Corral (Provincia Valdivia, XIV Región de Los Ríos)','Coyhaique (Provincia Coyhaique, XI Región Aysén del General Carlos Ibáñez del Campo)','Cunco (Provincia Cautín, IX Región de la Araucanía)','Curacautín (Provincia Malleco, IX Región de la Araucanía)','Curacaví (Provincia Melipilla, Región Metropolitana de Santiago)','Curaco de Vélez (Provincia Chiloé, X Región de Los Lagos)','Curanilahue (Provincia Arauco, VIII Región del Biobío)','Curarrehue (Provincia Cautín, IX Región de la Araucanía)','Curepto (Provincia Talca, VII Región del Maule)','Curicó (Provincia Curicó, VII Región del Maule)','Dalcahue (Provincia Chiloé, X Región de Los Lagos)','Diego de Almagro (Provincia Chañaral, III Región de Atacama)','Doñihue (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)','El Bosque (Provincia Santiago, Región Metropolitana de Santiago)','El Carmen (Provincia Diguillín, XVI Región de Ñuble)','El Monte (Provincia Talagante, Región Metropolitana de Santiago)','El Quisco (Provincia San Antonio, V Región de Valparaíso)','El Tabo (Provincia San Antonio, V Región de Valparaíso)','Empedrado (Provincia Talca, VII Región del Maule)','Ercilla (Provincia Malleco, IX Región de la Araucanía)','Estación Central (Provincia Santiago, Región Metropolitana de Santiago)','Florida (Provincia Concepción, VIII Región del Biobío)','Freire (Provincia Cautín, IX Región de la Araucanía)','Freirina (Provincia Huasco, III Región de Atacama)','Fresia (Provincia Llanquihue, X Región de Los Lagos)','Frutillar (Provincia Llanquihue, X Región de Los Lagos)','Futaleufú (Provincia Palena, X Región de Los Lagos)','Futrono (Provincia Ranco, XIV Región de Los Ríos)','Galvarino (Provincia Cautín, IX Región de la Araucanía)','General Lagos (Provincia Parinacota, XV Región de Arica y Parinacota)','Gorbea (Provincia Cautín, IX Región de la Araucanía)','Graneros (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)','Guaitecas (Provincia Aysén, XI Región Aysén del General Carlos Ibáñez del Campo)','Hijuelas (Provincia Quillota, V Región de Valparaíso)','Hualaihué (Provincia Palena, X Región de Los Lagos)','Hualañé (Provincia Curicó, VII Región del Maule)','Hualpén (Provincia Concepción, VIII Región del Biobío)','Hualqui (Provincia Concepción, VIII Región del Biobío)','Huara (Provincia Tamarugal, I Región de Tarapacá)','Huasco (Provincia Huasco, III Región de Atacama)','Huechuraba (Provincia Santiago, Región Metropolitana de Santiago)','Illapel (Provincia Choapa, IV Región de Coquimbo)','Independencia (Provincia Santiago, Región Metropolitana de Santiago)','Iquique (Provincia Iquique, I Región de Tarapacá)','Isla de Maipo (Provincia Talagante, Región Metropolitana de Santiago)','Isla de Pascua (Provincia Isla de Pascua, V Región de Valparaíso)','Juan Fernández (Provincia Valparaíso, V Región de Valparaíso)','La Calera (Provincia Quillota, V Región de Valparaíso)','La Cisterna (Provincia Santiago, Región Metropolitana de Santiago)','La Cruz (Provincia Quillota, V Región de Valparaíso)','La Estrella (Provincia Cardenal Caro, VI Región del Libertador General Bernardo O’Higgins)','La Florida (Provincia Santiago, Región Metropolitana de Santiago)','La Granja (Provincia Santiago, Región Metropolitana de Santiago)','La Higuera (Provincia Elqui, IV Región de Coquimbo)','La Ligua (Provincia Petorca, V Región de Valparaíso)','La Pintana (Provincia Santiago, Región Metropolitana de Santiago)','La Reina (Provincia Santiago, Región Metropolitana de Santiago)','La Serena (Provincia Elqui, IV Región de Coquimbo)','La Unión (Provincia Ranco, XIV Región de Los Ríos)','Lago Ranco (Provincia Ranco, XIV Región de Los Ríos)','Lago Verde (Provincia Coyhaique, XI Región Aysén del General Carlos Ibáñez del Campo)','Laguna Blanca (Provincia Magallanes, XII Región de Magallanes y de la Antártica Chilena)','Laja (Provincia Bío Bío, VIII Región del Biobío)','Lampa (Provincia Chacabuco, Región Metropolitana de Santiago)','Lanco (Provincia Valdivia, XIV Región de Los Ríos)','Las Cabras (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)','Las Condes (Provincia Santiago, Región Metropolitana de Santiago)','Lautaro (Provincia Cautín, IX Región de la Araucanía)','Lebu (Provincia Arauco, VIII Región del Biobío)','Licantén (Provincia Curicó, VII Región del Maule)','Limache (Provincia Marga Marga, V Región de Valparaíso)','Linares (Provincia Linares, VII Región del Maule)','Litueche (Provincia Cardenal Caro, VI Región del Libertador General Bernardo O’Higgins)','Llanquihue (Provincia Llanquihue, X Región de Los Lagos)','Llay Llay (Provincia San Felipe de Aconcagua, V Región de Valparaíso)','Lo Barnechea (Provincia Santiago, Región Metropolitana de Santiago)','Lo Espejo (Provincia Santiago, Región Metropolitana de Santiago)','Lo Prado (Provincia Santiago, Región Metropolitana de Santiago)','Lolol (Provincia Colchagua, VI Región del Libertador General Bernardo O’Higgins)','Loncoche (Provincia Cautín, IX Región de la Araucanía)','Longaví (Provincia Linares, VII Región del Maule)','Lonquimay (Provincia Malleco, IX Región de la Araucanía)','Los Álamos (Provincia Arauco, VIII Región del Biobío)','Los Andes (Provincia Los Andes, V Región de Valparaíso)','Los Ángeles (Provincia Bío Bío, VIII Región del Biobío)','Los Lagos (Provincia Valdivia, XIV Región de Los Ríos)','Los Muermos (Provincia Llanquihue, X Región de Los Lagos)','Los Sauces (Provincia Malleco, IX Región de la Araucanía)','Los Vilos (Provincia Choapa, IV Región de Coquimbo)','Lota (Provincia Concepción, VIII Región del Biobío)','Lumaco (Provincia Malleco, IX Región de la Araucanía)','Machalí (Provincia Cachapoal, VI Región del Libertador General Bernardo O’Higgins)'];
@@ -255,5 +269,20 @@ class Roleseeder extends Seeder
             'comuna'=>$comuna2[$i],
         ]);
         }
+
+        variedad::create([
+            'variedad'=>'Endemica de SAntiago',
+            'observacion'=>'Solo Cosechas',
+        ]);
+
+        especie::create([
+            'especie'=>'Palta Hass',
+            'variedad_id'=>1,
+            'metros2'=>34,
+            'fechaCosecha'=>'2023-06-06',
+            'distanciaPlanta'=>3,
+            'observacion'=>'Plantas de Paltas',
+        ]);
+
     }
 }

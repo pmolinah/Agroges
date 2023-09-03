@@ -72,7 +72,7 @@
                                 class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
                             <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="#" data-te-dropdown-item-ref><i
+                                    href="{{route('Parametros.index')}}" data-te-dropdown-item-ref><i
                                         class="fa-solid fa-sliders"></i>&nbsp;&nbsp;&nbsp;Parametros de Sistema </a>
                             </li>
                         </ul>
@@ -109,9 +109,13 @@
                                 >Perfiles</a
                             >
                             </li> -->
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{ route('Cosecha.planificacion') }}" data-te-dropdown-item-ref><i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp;&nbsp;Planificación de Cosechas</a>
+                            </li>
                             <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="{{ route('User.index') }}" data-te-dropdown-item-ref><i class="fa-solid fa-apple-whole"></i>&nbsp;&nbsp;&nbsp;Cosechas</a>
+                                    href="{{ route('Cosecha.index') }}" data-te-dropdown-item-ref><i class="fa-solid fa-apple-whole"></i>&nbsp;&nbsp;&nbsp;Cosechas</a>
                             </li>
                             {{-- <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"

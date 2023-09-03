@@ -23,29 +23,73 @@
         <script src="{{ asset('js/FuncionaesEmergentes.js') }}"></script>
     @endpush
 
-    <!-- <link href="storage/fontawesome-free-6.4.0-web/css/fontawesome.css" rel="stylesheet">
-        <link href="storage/fontawesome-free-6.4.0-web/css/brands.css" rel="stylesheet">
-        <link href="storage/fontawesome-free-6.4.0-web/css/solid.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/fontawesome.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/brands.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/solid.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
 
 
-    <!-- @vite('resources/css/app.css')
-        @vite('resources/js/app.js') -->
+
+        @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     <!-- Styles -->
     @livewireStyles
     <!-- @include('sweetalert::alert') -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'> -->
+
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
+        $(document).ready(function() {
+            $('#myTable3').DataTable();
+        });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable2').DataTable();
+        });
+    </script>
+    <script>
+        function EliminarSolicitudCliente(id) {
+            //alert(id);
+            $('#fila' + id).remove();
+            var totalkilos = 0
+            var KilosMatriz = [];
+            var valor = $('#valoreskilos').val();
+            $('#valoreskilos').each(function() {
+                KilosMatriz.push($(this).val());
+            });
+            //alert(KilosMatriz);
+
+
+            for (i = 0; i < KilosMatriz.length; i++) {
+                totalkilos = parseFloat(totalkilos) + parseFloat(KilosMatriz[i]);
+            }
+            $('#totadekilos').val(totalkilos);
+            Swal.fire(
+                'Exportadora',
+                'Exportadora Eliminada de la lista!',
+                'success'
+            )
+        }
+
+        function EliminarContratista(id) {
+            //alert(id);
+            $('#filas' + id).remove();
+            Swal.fire(
+                'Contratista',
+                'Contratista Eliminado de la lista!',
+                'success'
+            )
+        }
+    </script>
+
 </head>
 
 <body class="font-sans antialiased">
@@ -94,10 +138,6 @@
     @stack('modals')
 
     @livewireScripts
-
-
-
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 </body>
 
 </html>

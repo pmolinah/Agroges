@@ -35,7 +35,7 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request);
         $empresa=empresa::create($request->all());
         Session::flash('success', 'Empresa Guardada Correctamente...');
         return back();

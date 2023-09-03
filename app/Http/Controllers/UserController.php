@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\tipousuario;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -31,7 +32,8 @@ class UserController extends Controller
     public function create()
     {
         $roles=Role::all();
-        return view('User.create',compact('roles'));
+        $tipos=tipousuario::all();
+        return view('User.create',compact('roles','tipos'));
     }
 
     /**
@@ -44,7 +46,7 @@ class UserController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'Tipo' => $request['Tipo'],
+            'tipo_id' => $request['tipo_id'],
         ])->roles()->sync($request->rol);
         // return "ok";
         Session::flash('success', 'Usuario Guardado Correctamente');

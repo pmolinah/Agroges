@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
+        
     </x-slot>
     <!-- Add Item Ml -->
    
@@ -136,23 +137,3 @@
         </div>
     </div>
 </x-app-layout>
-
-{{-- <x-app-layout> dashboard para ventanas nuevas
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="mx-auto w-3/5 overflow-hidden">
-                    <!-- contenido -->
-                        
-                    <!-- contenido -->
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}

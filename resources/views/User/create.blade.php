@@ -56,10 +56,12 @@
                             <!--select tipo input-->
                             <div class="grid xs:gri-cols-1 md:grid-cols-12">
                                 <div class="md:col-start-1 md:col-span-5">
-                                    <select data-te-select-init id="tipo" required name="tipo">
+                                    <select data-te-select-init id="tipo" required name="tipo_id">
                                         <option value="">Seleccione un Tipo de Usuario</option>
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Cliente</option>
+                                        @foreach ($tipos as $tipo)
+                                        <option value="{{$tipo->id}}">{{$tipo->tipousuario}}</option>
+                                            
+                                        @endforeach
                                         
                                     </select>
                                 </div>

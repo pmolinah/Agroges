@@ -23,6 +23,11 @@ class campo extends Model
         return $this->belongsTo(empresa::class);
     }
 
+    public function adm(){
+        return $this->belongsTo(User::class);
+    }
+
+
     public function cuartel(){
         return $this->hasMany(cuartel::class);
     }

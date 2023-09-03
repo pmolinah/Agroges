@@ -10,6 +10,9 @@ class ListaCamposEdit extends Component
 {
     public $selectedId = '';
     public $open=false;
+    public $campo_id='';
+    public $valor;
+ 
 
     protected $listeners = ['selectedIdUpdated'];
 
@@ -17,7 +20,16 @@ class ListaCamposEdit extends Component
     {
         $this->selectedId = $value;
     }
-    
+
+    public function EnviarCampo_id($valor)
+    {
+        $this->campo_id=$valor;
+        $this->emit('selectedIdCampo',$this->campo_id);
+        
+   
+    }
+
+       
     public function render()
     {
         $campos=campo::with('cuartel')->where('empresa_id',$this->selectedId)->get();

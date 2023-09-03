@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\plantacion;
+use App\Models\User;
+use App\Models\empresa;
+use App\Models\especie;
+use App\Models\variedad;
+use Illuminate\Support\Facades\Session;
 
 class PlantacionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public $pivote;
+
     public function index()
     {
-        return view('Plantacion.index');
+        $plantaciones=plantacion::all();
+        return view('Plantacion.index', compact('plantaciones'));
     }
 
     /**
@@ -20,7 +29,11 @@ class PlantacionController extends Controller
      */
     public function create()
     {
-        //
+        $administrador=User::all();
+        $empresas=empresa::all();
+        $especies=especie::all();
+        $variedades=variedad::all();
+        return view('Plantacion.create',compact('administrador','empresas','especies','variedades'));
     }
 
     /**
@@ -28,7 +41,21 @@ class PlantacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        
+        $this->pivote=$request->empresa_id.$request->campo_id.$request->cuartel_id;
+        //dd($this->pivote);
+        $plantacion=plantacion::where('pivote',$this->pivote)->get();
+        if ($plantacion->count() > 0) {
+            Session::flash('error', 'Cuartel ya se Encuenbtra Plantado...');
+            return back();
+        }
+        $plantacion = plantacion::create($request->all());
+        $plantacion->update(['pivote'=>$this->pivote]);
+
+        Session::flash('success', 'Rol Guardado Correctamente...');
+        return back();
+       
     }
 
     /**

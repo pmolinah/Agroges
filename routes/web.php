@@ -8,6 +8,7 @@ use App\Http\Controllers\CuartelController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PlantacionController;
 use App\Http\Controllers\CosechaController;
+use App\Http\Controllers\ParametrosController;
 
 use App\Models\empresa;
 /*??
@@ -61,9 +62,17 @@ Route::get('/', function () {
 
     // Rutas de plantación
     Route::get('/Index/Plantacion',[PlantacionController::class, 'index'])->name('Plantacion.index');
-    
+    Route::get('/Create/Plantacion',[PlantacionController::class, 'create'])->name('Plantacion.create');
+    Route::post('/Store/Plantacion',[PlantacionController::class, 'store'])->name('Plantacion.store');
     // Rutas de cosecha
     Route::get('/Index/Cosechas',[CosechaController::class, 'index'])->name('Cosecha.index');
+    Route::get('Planificacion/Cosechas',[CosechaController::class, 'planificacion'])->name('Cosecha.planificacion');
+    Route::get('create/Planificacion/Cosechas',[CosechaController::class, 'planificacionCreate'])->name('Cosecha.planificacionCreate');
+    Route::post('/Store/Planificacion',[CosechaController::class, 'planificacionStore'])->name('Planificacion.store');
+    Route::get('Create/Cosechas',[CosechaController::class, 'create'])->name('Cosecha.create');
+
+    //rutas de parametros de sistema
+    Route::get('/Parametros/Index',[ParametrosController::class,'index'])->name('Parametros.index');
 
     
     //Rutas de Organización

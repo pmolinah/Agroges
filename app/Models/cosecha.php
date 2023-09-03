@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class cosecha extends Model
 {
     use HasFactory;
+
+    public function plantacion(){
+        return $this->belongsTo(plantacion::class);
+    }
 }

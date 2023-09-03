@@ -17,11 +17,19 @@ return new class extends Migration
             $table->date('fechai');
             $table->date('fechaf');
             $table->float('kilos')->unsigned();
-            $table->bigInteger('empresa_id')->unsigned();
-            $table->foreign('empresa_id')->references('id')->on('empresas');
-            $table->bigInteger('especie_id')->unsigned();
-            $table->foreign('especie_id')->references('id')->on('especies');
-            $table->float('kilosreales')->unsigned();
+            // $table->bigInteger('empresa_id')->unsigned();
+            // $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->bigInteger('cuartel_id')->unsigned();
+            $table->foreign('cuartel_id')->references('id')->on('cuartels');
+            $table->string('observacion',250)->nullable();
+            $table->bigInteger('envase_id')->unsigned();
+            $table->foreign('envase_id')->references('id')->on('envases');
+            // $table->bigInteger('especie_id')->unsigned();
+            // $table->foreign('especie_id')->references('id')->on('especies');
+            // $table->float('kilosreales')->unsigned();
+
+            // $table->BigInteger('encargado_id')->unsigned();
+            // $table->foreign('encargado_id')->references('id')->on('Users');
             
         });
     }

@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,16 +18,13 @@ return new class extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->string('campo',250);
             $table->string('direccion',250);
-           
             $table->BigInteger('adm_id')->unsigned();
             $table->foreign('adm_id')->references('id')->on('users');
             $table->float('superficie');
             $table->BigInteger('capataz_id')->unsigned();
             $table->foreign('capataz_id')->references('id')->on('users');
-
-        });
-    }
-
+           });
+    }   
     /**
      * Reverse the migrations.
      */

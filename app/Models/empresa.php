@@ -21,5 +21,9 @@ class empresa extends Model
         'tipo_id',
         'email'
     ];
+
+    public function campo(){
+        return $this->hasMany(campo::class);
+    }
 }
 

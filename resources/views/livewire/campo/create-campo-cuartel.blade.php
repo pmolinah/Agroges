@@ -1,11 +1,16 @@
-<div class="grid xs:grid-cols-1 md:grid-cols-5">
+<div class="grid xs:grid-cols-1 md:grid-cols-6">
     <!-- component -->
-    <div>
-        <h2 class="text-center text-2xl font-bold tracking-wide text-seconday-50">Paso 1.- Seleccione Propietario</h2>
-        <p class="text-center text-sm text-gray-500 mt-2">@livewire('campo.select-empresa') </p>
 
-        <div>
-            <div class="pointer-events-auto mx-auto mb-4 hidden w-96 max-w-full rounded-lg bg-primary-100 bg-clip-padding text-sm text-primary-700 shadow-lg shadow-black/5 data-[te-toast-show]:block data-[te-toast-hide]:hidden"
+    <div class="col-span-6">
+        <div class="grid grid-cols-3 gap-4 p-3 bg-neutral-300">
+            <div class="">
+                <h2 class="text-center text-2xl font-bold tracking-wide text-seconday-50">Paso 1.- Seleccione Propietario
+                </h2>
+                <p class="text-center text-sm text-gray-500">@livewire('campo.select-empresa') </p>
+            </div>
+
+
+            <div class=" pointer-events-auto mx-auto mb-4 hidden  rounded-lg bg-primary-100 bg-clip-padding text-sm text-primary-700 shadow-lg shadow-black/5 data-[te-toast-show]:block data-[te-toast-hide]:hidden"
                 id="static-example" role="alert" aria-live="assertive" aria-atomic="true" data-te-autohide="false"
                 data-te-toast-init data-te-toast-show>
                 <div
@@ -36,10 +41,11 @@
                     </div>
                 </div>
                 <div class="break-words rounded-b-lg bg-primary-100 px-4 py-4 text-primary-700">
-                    Seleccione el Propietario, y posterior a ello ingrese los datos del campo en el recuadro azul y presione el boton Añadir Campo...
+                    Seleccione el Propietario, y posterior a ello ingrese los datos del campo en el recuadro azul y
+                    presione el boton Añadir Campo...
                 </div>
             </div>
-            <div class="pointer-events-auto mx-auto mb-4 hidden w-96 max-w-full rounded-lg bg-success-100 bg-clip-padding text-sm text-success-700 shadow-lg shadow-black/5 data-[te-toast-show]:block data-[te-toast-hide]:hidden"
+            <div class="pointer-events-auto mx-auto mb-4 hidden  rounded-lg bg-success-100 bg-clip-padding text-sm text-success-700 shadow-lg shadow-black/5 data-[te-toast-show]:block data-[te-toast-hide]:hidden"
                 id="static-example" role="alert" aria-live="assertive" aria-atomic="true" data-te-autohide="false"
                 data-te-toast-init data-te-toast-show>
                 <div
@@ -70,12 +76,12 @@
                     </div>
                 </div>
                 <div class="break-words rounded-b-lg bg-success-100 px-4 py-4 text-success-700">
-                    Seleccione el Propietario para desplegar todos los campos asociados, en el listado que aparece en el recuadro gris, presione el boton agregar cuartel en el campo correspospondiente.
+                    Seleccione el Propietario para desplegar todos los campos asociados, en el listado que aparece en el
+                    recuadro gris, presione el boton agregar cuartel en el campo correspospondiente.
                 </div>
             </div>
-        </div>
 
-        
+        </div>
     </div>
     <div class="bg-primary-600 col-span-2 mb-10 ml-2 mr-2 mt-8 mx-auto px-16 py-8 rounded-lg shadow-lg">
         <h2 class="text-center text-2xl font-bold tracking-wide text-neutral-50">2.- Datos del Campo</h2>
@@ -90,7 +96,7 @@
                 <label for="name" class="text-warning-300">Rut, Ejemplo 12345678-9</label>
                 <input type="text" wire:model.defer="rut" id="rut"
                     class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                    placeholder="Nombre del Campo o Agrícola">
+                    placeholder="Rut">
             </div>
             <div class="flex flex-col my-4">
                 <label for="email" class="text-warning-300">Dirección</label>
@@ -130,50 +136,14 @@
         <h2 class="text-center text-2xl font-bold tracking-wide text-neutral-50">Lista de Campos del Propietario
             Seleccionado</h2>
         @livewire('campo.lista-campos-edit')
-        {{-- <p class="text-center text-sm text-gray-100 mt-2">@livewire('campo.select-empresa') </p> --}}
-        {{-- <form class="my-8 text-sm">
-            <div class="flex flex-col my-4">
-                <label for="name" class="text-warning-300">Nombre del Campo</label>
-                <input type="text" name="name" id="name"
-                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                    placeholder="Nombre del Campo o Agrícola">
-            </div>
-            <div class="flex flex-col my-4">
-                <label for="email" class="text-warning-300">Dirección</label>
-                <input type="email" name="email" id="email"
-                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                    placeholder="Dirección del Campo o Agrícola">
-            </div>
-            <div class="my-4 flex items-center justify-center space-x-4">
-                <button
-                    class="bg-success-900 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Añadir
-                    Campo a la Empresa Principal</button>
-            </div>
-        </form> --}}
     </div>
-    {{--  <div class="bg-primary-600 mb-10 ml-2 mr-2 mt-8 mx-auto px-16 py-8 rounded-lg shadow-lg">
-        <h2 class="text-center text-2xl font-bold tracking-wide text-neutral-50">Seleccione Empresa Principal</h2>
-        <p class="text-center text-sm text-gray-100 mt-2">@livewire('campo.select-empresa') </p>
-        <form class="my-8 text-sm">
-            <div class="flex flex-col my-4">
-                <label for="name" class="text-warning-300">Nombre del Campo</label>
-                <input type="text" name="name" id="name"
-                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                    placeholder="Nombre del Campo o Agrícola">
-            </div>
-            <div class="flex flex-col my-4">
-                <label for="email" class="text-warning-300">Dirección</label>
-                <input type="email" name="email" id="email"
-                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                    placeholder="Dirección del Campo o Agrícola">
-            </div>
-            <div class="my-4 flex items-center justify-center space-x-4">
-                <button
-                    class="bg-success-900 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Añadir
-                    Campo a la Empresa Principal</button>
-            </div>
-        </form>
-    </div> --}}
+    <div class="col-span-2 bg-warning-800 mb-10 ml-2 mr-2 mt-8 mx-auto px-5 py-8 rounded-lg shadow-lg">
+        <h2 class="text-center text-2xl font-bold tracking-wide text-neutral-50">Lista de Cuarteles del Campo Seleccionado</h2>
+            
+        @livewire('cuartel.crud-cuartel')
+        
+    </div>
+    
 
     @if (Session::has('success'))
         <script>
@@ -198,21 +168,8 @@
         </script>
     @endif
     <script>
-        
         window.addEventListener('swal', function(e) {
-            //Swal.fire({
-            //   title:  e.detail.title,
-            //   icon: e.detail.icon,
-            //   iconColor: e.detail.iconColor,
-            //   timer: 4000,
-            //   toast: true,
-            //   position: 'top-right',
-            //   toast:  true,
-            //   showConfirmButton:  false,
-            //});
-            //document.querySelector('SelectComuna').selectedIndex = 0;
-             //document.querySelector('[wire:model="selectedOptionComuna"]').selectedIndex = 0;
-           // Livewire.find('campo.select-comuna').render();
+            
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito, Campo Guardado...',
@@ -220,10 +177,8 @@
                 timer: 5000,
                 showConfirmButton: false
             });
-            //alert('otro mensaje');
-
-
+          
         });
     </script>
-    
+
 </div>
