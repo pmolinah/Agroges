@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SelectController;
+use App\Http\Controllers\CosechaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +33,7 @@ Route::get('Seleccion/{id}/Especie',[SelectController::class, 'CambioEspecie']);
 Route::get('Seleccion/{id}/EmpresaPlan',[SelectController::class, 'CambioEmpresaPlan']);
 Route::get('Seleccion/{id}/CampoPlan',[SelectController::class, 'CambioCampoPlan']);
 Route::get('Seleccion/{id}/CuartelPlan',[SelectController::class, 'CambioCuartelPlan']);
+Route::get('Eliminar/{id}/PlanificacionCosecha',[CosechaController::class, 'EliminarPlanificacionCosecha']);
 
 
 // Route::get('/btn/{solicitud_id}/zip/','ComprimirDescargar@ComprimirDocumentoSolicitud');

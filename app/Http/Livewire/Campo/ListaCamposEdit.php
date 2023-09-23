@@ -29,6 +29,16 @@ class ListaCamposEdit extends Component
    
     }
 
+    public function EliminarCampo($CampoId){
+        campo::where('id',$CampoId)->delete();
+        $this->dispatchBrowserEvent('Eliminar', [
+            'title' => 'Registro guardado correctamente.',
+            'icon'=>'success',
+            'iconColor'=>'blue',
+        ]);
+
+    }
+
        
     public function render()
     {

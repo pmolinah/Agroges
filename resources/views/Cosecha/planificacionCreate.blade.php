@@ -9,7 +9,7 @@
     <div class="py-5">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                {{-- <div class="mx-auto w-3/5 overflow-hidden"> --}}xz
+                {{-- <div class="mx-auto w-3/5 overflow-hidden"> --}}
                 <!-- contenido -->
                 <!-- component -->
                 <div class="px-1 md:lg:xl:px-5   border-t border-b py-10 bg-opacity-10"
@@ -32,7 +32,7 @@
                                     Datos de la Cosecha
                                 </h3>
                             </div>
-                            <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2">
+                            {{-- <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2">
                                 Seleccione Responsable
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50">
@@ -41,7 +41,7 @@
                                         <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
                                 Seleccione Propietario
@@ -82,6 +82,8 @@
                                 <input type="text"
                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                     id="especie_id" />
+                                    <input type="hidden" id="plantacion_id" name="plantacion_id">
+                                    
                             </div>
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
                                 Variedad
@@ -112,18 +114,18 @@
                                 Fecha Inicio
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
-                                <input type="date"
+                                <input type="date" name="fechai"
                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                    id="exampleFormControlInput1" />
+                                    />
 
                             </div>
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
                                 Fecha Final
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
-                                <input type="date"
+                                <input type="date" name="fechaf"
                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                    id="exampleFormControlInput1" />
+                                   />
 
                             </div>
 
@@ -133,7 +135,7 @@
 
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
                                 <select data-te-select-init data-te-select-filter="true" id="empresa_id"
-                                    name="empresa_id">
+                                    name="envase_id">
                                     <option class="text-secondary">1.- Seleccione Tipo de Envase</option>
                                     @foreach ($envases as $envase)
                                         <option class="text-primary" value="{{ $envase->id }}">
@@ -222,7 +224,7 @@
                             </div>
                             <div class="sm:col-span-1 text-center p-2 md:col-span-3">
                                 <div class="relative mb-3" data-te-input-wrapper-init>
-                                    <input type="number"
+                                    <input type="number" name="totalkilos"
                                         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-800 dark:placeholder:text-neutral-800 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                         id="totadekilos" />
 

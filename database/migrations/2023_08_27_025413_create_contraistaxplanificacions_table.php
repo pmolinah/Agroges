@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('contraistaxplanificacions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->bigInteger('planificacion_id')->unsigned();
-            $table->foreign('planificacion_id')->references('id')->on('planificacioncosechas');
+            $table->bigInteger('planificacioncosecha_id')->unsigned();
+            $table->foreign('planificacioncosecha_id')->references('id')->on('planificacioncosechas');
             $table->bigInteger('contratista_id')->unsigned();
             $table->foreign('contratista_id')->references('id')->on('empresas');
         });

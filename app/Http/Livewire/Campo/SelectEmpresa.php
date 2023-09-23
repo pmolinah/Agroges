@@ -14,7 +14,7 @@ class SelectEmpresa extends Component
     {
         $this->emit('selectedIdUpdated', $value);
     }
-
+    
     public function SelectEmpresa(){
         $this->emit('SelectEmpresaId',$this->selectedId);
     }

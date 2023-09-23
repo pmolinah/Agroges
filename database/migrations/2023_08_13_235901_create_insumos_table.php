@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('insumo',150);
+            $table->string('marca',50);
+            $table->bigInteger('proveedor_id')->unsigned();
+            $table->foreign('proveedor_id')->references('id')->on('empresas');
+            $table->string('medida',150);
+            $table->float('contenido');
             $table->string('observacion',200);
             $table->integer('costo')->unsigned();
             $table->integer('tipo')->unsigned();
-            
         });
     }
 

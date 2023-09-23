@@ -6,15 +6,22 @@ use Livewire\Component;
 use App\Models\comuna;
 use App\Models\User;
 use App\Models\campo;
+use App\Models\empresa;
 use Illuminate\Support\Facades\Session;
 
 class CreateCampoCuartel extends Component
 {
     public $selectedId;
     public $campo,$direccion,$comuna_id,$superficie,$administrador_id,$capataz_id,$rut;
-  
+    public $cuarteles=array();
+    public $campos=array();
+    public $empresaID,$empresa_id,$campo_id;
+    public $tab1='tabs-home';
+    public $tab2='';
 
    protected $listeners=['SelectComunaId','SelectAdminId','SelectCapatazId','SelectEmpresaId'];
+
+  
 
    public function SelectComunaId($SelectCamunaId){
         $this->comuna_id=$SelectCamunaId;
@@ -30,7 +37,13 @@ class CreateCampoCuartel extends Component
    }
 
    public function SelectEmpresaId($selectEmpresaId){
+
     $this->selectedId=$selectEmpresaId;
+   }
+
+    public function SeleccionEmpresa(){
+        
+        $this->campos=campo::where('empresa_id',$this->empresaID)->get();
    }
 
    
@@ -64,6 +77,8 @@ class CreateCampoCuartel extends Component
         $comuna=comuna::all();
         $administradores=User::where('tipo_id','=',1)->get();
         $capataz=User::where('tipo_id','=',2)->get();
-        return view('livewire.campo.create-campo-cuartel',compact('comuna','administradores','capataz'));
+        $empresas=empresa::where('tipo_id',1)->get();
+        
+        return view('livewire.campo.create-campo-cuartel',compact('comuna','administradores','capataz','empresas'));
     }
 }

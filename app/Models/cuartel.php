@@ -9,6 +9,16 @@ class cuartel extends Model
 {
     use HasFactory;
 
+     
+    protected $fillable = [
+        'campo_id',
+        'superficie',
+        'observaciones',
+        'capataz_id',
+        'superficie',
+        'certificado',
+    ];
+
     public function campo(){
         return $this->belongsTo(campo::class);
     }

@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('exportadoraxplanificacions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->bigInteger('planificacion_id')->unsigned();
-            $table->foreign('planificacion_id')->references('id')->on('planificacioncosechas');
+            $table->bigInteger('planificacioncosecha_id')->unsigned();
+            $table->foreign('planificacioncosecha_id')->references('id')->on('planificacioncosechas');
+            $table->bigInteger('empresa_id')->unsigned();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->float('kilosSolicitados')->unsigned();
-            $table->float('KilosRecolectador')->unsigned();
+            $table->float('KilosRecolectados')->nullable()->unsigned();
             $table->string('observacion',250)->nullable();
         });
     }

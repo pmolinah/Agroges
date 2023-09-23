@@ -72,13 +72,14 @@ class CrudEspecie extends Component
             $this->variedad_id=$this->esp->variedad_id;
             $this->metros2=$this->esp->metros2;
             $this->fechaCosecha=$this->esp->fechaCosecha;
+            $this->distanciaPlanta=$this->esp->distanciaPlanta;
 
         }
         $this->open_edit_especie=true;
     }
 
     public function ActualizarEspecie(){
-        especie::where('id',$this->edit_id)->update(['especie'=>$this->especie,'variedad_id'=>$this->variedad_id,'metros2'=>$this->metros2,'fechaCosecha'=>$this->fechaCosecha,'observacion'=>$this->observacion]);
+        especie::where('id',$this->edit_id)->update(['especie'=>$this->especie,'variedad_id'=>$this->variedad_id,'metros2'=>$this->metros2,'fechaCosecha'=>$this->fechaCosecha,'observacion'=>$this->observacion,'distanciaPlanta'=>$this->distanciaPlanta]);
         $this->open_edit_especie=false;
         $this->dispatchBrowserEvent('Actualizar', [
             'title' => 'Registro Actualizado correctamente.',

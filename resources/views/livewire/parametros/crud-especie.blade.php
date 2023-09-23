@@ -1,7 +1,6 @@
 <div>
     {{-- caja creacion --}}
-     @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
+ 
     <div class="space-y-2">
         <!-- Button trigger vertically centered modal-->
         <div class="grid sm:grid-cols-1 md:grid-cols-3 borde-neutral-800">
@@ -41,7 +40,6 @@
 
                             Nueva Especie
                         </h5>
-                        
                         <!--Close button-->
                         <button type="button"
                             class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
@@ -62,10 +60,10 @@
 
                         </div>
                     </div>
-                    <div class="relative p-4 text-neutral-90">
+                    <div class="relative p-4 text-neutral-50">
                         Seleccione Variedad
                         {{-- select --}}
-                        <select data-te-select-init data-te-select-filter="true" wire:model.defer="variedad_id">
+                        <select  wire:model.defer="variedad_id" class="text-neutral-900 w-full block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value=""> </option>
                             @foreach ($variedades as $variedad)
                                 <option value="{{ $variedad->id }}">{{ $variedad->variedad }}</option>
@@ -75,28 +73,40 @@
                     </div>
                     <div class="relative p-4 text-neutral-50">
                         Fecha de Cosecha de la Especie
-                        <div class="relative mb-3" data-te-input-wrapper-init>
+                        <div class="relative mb-3" >
                             <input type="date" wire:model.defer="fechaCosecha"
                                 class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                         </div>
                     </div>
-                    <div class="relative p-4 text-neutral-50">
-                        Metros Cuadrados
-                        <div class="relative mb-3" data-te-input-wrapper-init>
-                            <input type="text" wire:model.defer="metros2"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
-
+                    <div class="grid sm:grid-cols-1 md:grid-cols-3">
+                        <div class="text-neutral-50 mt-11 ml-4">Distancia Plantación</div>
+                        <div class="relative p-4 text-neutral-50 text-center">
+                        M
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="metros2"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                            </div>
+                        </div>
+                        <div class="relative p-4 text-neutral-50 text-center">
+                        M
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="distanciaPlanta"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                            </div>
                         </div>
                     </div>
-                    <div class="relative p-4 text-neutral-50">
+                           
+                           
+
+                    {{-- <div class="relative p-4 text-neutral-50">
                         Distancia Entre Plantas
                         <div class="relative mb-3" data-te-input-wrapper-init>
                             <input type="text" wire:model.defer="distanciaPlanta"
                                 class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="relative p-4 text-neutral-50">
                         Observación
                         <div class="relative mb-3" data-te-input-wrapper-init>
@@ -153,7 +163,7 @@
 
                                         <td class="whitespace-nowrap">{{ $especie->especie }}</td>
                                         <td class="whitespace-nowrap">{{ $especie->variedad->variedad }}</td>
-                                        <td class="whitespace-nowrap">{{ $especie->metros2 }}</td>
+                                        <td class="whitespace-nowrap">{{ $especie->metros2 * $especie->distanciaPlanta }}</td>
                                         {{-- <td class="whitespace-nowrap">{{ $especie->distanciaPlanta }}</td> --}}
                                         <td class="whitespace-nowrap hidden sm:hidden md:block xl:block  px-6 py-11">
                                             {{ $especie->observacion }}</td>
@@ -203,11 +213,11 @@
 
                     </div>
                 </div>
-                
+
                 <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
                     Variedad
-                    <select data-te-select-init data-te-select-filter="true" class="text-neutral-900" wire:model.defer="variedad_id">
+                    <select data-te-select-init data-te-select-filter="true" class="text-neutral-900 text-neutral-900 w-full block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"" wire:model.defer="variedad_id">
                         <option value="{{$especieDB->variedad_id}}">{{$especieDB->variedad->variedad}}</option>
                     @if(isset($variedades_especie))
                         @foreach ($variedades_especie as $variedades_especie)
@@ -221,16 +231,26 @@
            
 
             {{-- selct pluck --}}
-            <div class="relative p-4 text-neutral-50 dark:bg-info-900">
-                Metros Cuadrados
-                <div class="relative mb-3" data-te-input-wrapper-init>
-                    <input type="text" wire:model.defer="metros2" 
-                        class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
-
-                </div>
-            </div>
+             <div data-te-select-init class="grid sm:grid-cols-1 md:grid-cols-3 dark:bg-info-900">
+                <div class="text-neutral-50 mt-11 ml-4">Distancia Plantación</div>
+                 <div class="relative p-4 text-neutral-50 text-center">
+                        M
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="metros2"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                            </div>
+                        </div>
+                        <div class="relative p-4 text-neutral-50 text-center">
+                        M
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="distanciaPlanta"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                            </div>
+                        </div>
+             </div>
+            
              <div class="relative p-4 text-neutral-50 dark:bg-info-900">
-                Metros Cuadrados
+                Fecha Cosecha
                 <div class="relative mb-3" data-te-input-wrapper-init>
                     <input type="date" wire:model.defer="fechaCosecha" 
                         class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />

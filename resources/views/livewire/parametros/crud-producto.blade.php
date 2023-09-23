@@ -1,5 +1,5 @@
 <div>
-    <div>
+      <div>
         {{-- caja creacion --}}
 
         <div class="space-y-2">
@@ -8,13 +8,13 @@
                 <div class="">
                     <button type="button"
                         class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                        data-te-toggle="modal" data-te-target="#exampleModalCenterBodega" data-te-ripple-init
+                        data-te-toggle="modal" data-te-target="#exampleModalCenterInsumo" data-te-ripple-init
                         data-te-ripple-color="light">
-                        Agregar Nueva Bodega
+                        Agregar Nuevo Insumo
                     </button>
                 </div>
                 <div class="">
-                    <h6 class="text-3xl  font-medium leading-tight">Buscar Bodega</h6>
+                    <h6 class="text-3xl  font-medium leading-tight">Buscar Insumo</h6>
                 </div>
                 <div class="">
 
@@ -28,7 +28,7 @@
             <!--Verically centered modal-->
             <div data-te-modal-init
                 class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-                data-te-backdrop="static" data-te-keyboard="false" id="exampleModalCenterBodega" tabindex="-1"
+                data-te-backdrop="static" data-te-keyboard="false" id="exampleModalCenterInsumo" tabindex="-1"
                 aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
                 <div data-te-modal-dialog-ref
                     class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
@@ -39,7 +39,7 @@
                             <!--Modal title-->
                             <h5 class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
 
-                                Nueva Bodega
+                                Nuevo Insumo
                             </h5>
                             <!--Close button-->
                             <button type="button"
@@ -54,34 +54,75 @@
 
                         <!--Modal body-->
                         <div class="relative p-4 text-neutral-50">
-                            Bodega
+                            Insumo
                             <div class="relative mb-3" data-te-input-wrapper-init>
-                                <input type="text" wire:model.defer="bodega"
+                                <input type="text" wire:model.defer="insumo"
                                     class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                             </div>
                         </div>
-                        <div class="relative p-4 text-neutral-50">
-                            <select
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                id="empresa_id" name="empresa_id">
+                         <div class="relative p-4 text-neutral-50">
+                            Marca
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="marca"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
-                                <option class="text-neutral-900">Seleccione Propietario</option>
+                            </div>
+                        </div>
+                         <div class="relative p-4 text-neutral-50">
+                            Unidad de Medida
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="medida"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                            </div>
+                        </div>
+                         <div class="relative p-4 text-neutral-50">
+                            Contenido
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="contenido"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                            </div>
+                        </div>
+                         <div class="relative p-4 text-neutral-50">
+                            Costo
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="costo"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                            </div>
+                        </div>
+                         <div class="relative p-4 text-neutral-50">
+                            Tipo
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="tipo"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                            </div>
+                        </div>
+
+                        <div class="relative p-4 text-neutral-50">
+                            <select wire:model.defer="proveedor_id"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                id="proveedor_id" name="proveedor_id">
+
+                                <option class="text-neutral-900">Seleccione Proveedor</option>
                                 @foreach ($empresas as $empresa)
                                     <option class="text-primary" value="{{ $empresa->id }}">
                                         {{ $empresa->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="relative p-4 text-neutral-900">
+                        {{-- <div class="relative p-4 text-neutral-900">
                             <select
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                 id="campo_id" name="campo_id" wire:model.defer="campo_id">
 
 
                             </select>
-                        </div>
-                        <div class="relative p-4 text-neutral-90">
+                        </div> --}}
+                        {{-- <div class="relative p-4 text-neutral-90">
                             <div class="bg-info-900 w-full">
 
                                 <select
@@ -95,7 +136,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="relative p-4 text-neutral-50">
                             Observación
                             <div class="relative mb-3" data-te-input-wrapper-init>
@@ -115,10 +156,10 @@
                                 data-te-modal-dismiss data-te-ripple-init data-te-ripple-color="light">
                                 Cerrar
                             </button>
-                            <button type="button" wire:click="GuardarBodega"
+                            <button type="button" wire:click="GuardarInsumo"
                                 class="ml-1 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                                 data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
-                                Guardar Bodega
+                                Guardar Insumo
                             </button>
                         </div>
                     </div>
@@ -137,33 +178,41 @@
                                     class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                                     <tr>
 
-                                        <th scope="col" class=" px-6 py-4">Bodega</th>
-                                        <th scope="col" class=" px-6 py-4">Campo</th>
-                                        <th scope="col" class=" px-6 py-4">Encargado</th>
-                                        <th scope="col" class="hidden sm:hidden md:block xl:block px-6 py-4">
-                                            Observacion</th>
+                                        <th scope="col" class=" px-6 py-4">Insumo</th>
+                                        <th scope="col" class=" px-6 py-4">Marca</th>
+                                        <th scope="col" class=" px-6 py-4">Proveedor</th>
+                                        <th scope="col" class=" px-6 py-4">Unidad de Medida</th>
+                                        {{-- <th scope="col" class=" px-6 py-4">Costo</th> --}}
+                                        <th scope="col" class=" px-6 py-4">Presentación o Contenido</th>
+                                        {{-- <th scope="col" class=" px-6 py-4">Tipo</th> --}}
+                                        <th scope="col" class="hidden sm:hidden md:block xl:block px-6 py-4">   Observacion</th>
+                                         
                                         <th scope="col" class=" px-6 py-4">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bodegas as $Bodega)
+                                    @foreach ($insumos as $Insumo)
                                         <tr class="border-b dark:border-neutral-500">
 
-                                            <td class="whitespace-nowrap">{{ $Bodega->bodega }}</td>
-                                            <td class="whitespace-nowrap">{{ $Bodega->campo_id }}</td>
-                                            <td class="whitespace-nowrap">{{ $Bodega->encargado_id }}</td>
+                                            <td class="whitespace-nowrap">{{ $Insumo->insumo }}</td>
+                                            <td class="whitespace-nowrap">{{ $Insumo->marca }}</td>
+                                            <td class="whitespace-nowrap">{{ $Insumo->proveedor->razon_social }}</td>
+                                            <td class="whitespace-nowrap">{{ $Insumo->medida }}</td>
+                                            {{-- <td class="whitespace-nowrap">{{ $Insumo->costo }}</td> --}}
+                                            <td class="whitespace-nowrap">{{ $Insumo->contenido }}</td>
+                                            {{-- <td class="whitespace-nowrap">{{ $Insumo->tipo }}</td> --}}
                                             <td
                                                 class="whitespace-nowrap hidden sm:hidden md:block xl:block  px-6 py-11">
-                                                {{ $Bodega->observacion }}</td>
+                                                {{ $Insumo->observacion }}</td>
 
                                             <td class="whitespace-nowrap  px-6 py-4">
                                                 <center><button type="button"
-                                                        wire:click="EliminarBodega({{ $Bodega->id }})"
+                                                        wire:click="EliminarInsumo({{ $Insumo->id }})"
                                                         class="mb-1 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
                                                             class="far fa-trash-alt"></i></button>
                                                 </center>
                                                 <center><button type="button"
-                                                        wire:click="EditarBodega({{ $Bodega }})"
+                                                        wire:click="EditarInsumo({{ $Insumo->id }})"
                                                         class="mb-1inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
                                                             class="far fa-edit"></i></button>
                                                 </center>
@@ -174,54 +223,82 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $bodegas->links() }}
+                        {{ $insumos->links() }}
                     </div>
                 </div>
             </div>
             <!--Modal title-->
-            <x-modal wire:model="open_editBodega" @click.away="false">
+            <x-modal wire:model="open_editInsumo" >
                 <h5
                     class=" p-3 text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200 dark:bg-info-900">
 
-                    Edición de Bodega
+                    Edición de Insumo
                 </h5>
                 <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
-                    Bodega <input type="hidden" wire:model.defer="edit_idBodega">
+                    Insumo <input type="hidden" wire:model.defer="edit_idInsumo">
                     <div class="relative mb-3" data-te-input-wrapper-init>
-                        <input type="text" wire:model.defer="bodega"
+                        <input type="text" wire:model.defer="insumo"
                             class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                     </div>
                 </div>
 
-                <div class="relative p-4 text-neutral-50 dark:bg-info-900">
-                    Campo Actual
-                    <select wire:change="SelectEmpresaxCampo" wire:model="empresa_id" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                       
+                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Marca
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input type="text" wire:model.defer="marca"
+                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
-                        <option class="text-secondary" value=" ">Seleccione Propietario.</option>
-                        @foreach ($empresas as $empresa)
-                            <option class="text-primary" value="{{ $empresa->id }}">{{ $empresa->razon_social }}
-                            </option>
-                        @endforeach
-                    </select>
+                    </div>
                 </div>
                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
-                    Campo Actual
-                    <select wire:model.defer="campo_id" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" >
+                    Proveedor
+                    <select wire:model.defer="proveedor_id" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" >
                        
-                        <option class="text-neutral-900" value="{{ $campoId }}">{{ $campo_nombre }} </option>
-                        @foreach ($campos as $campo)
-                            <option class="text-primary" value="{{ $campo->id }}">{{ $campo->campo }} </option>
+                        <option class="text-neutral-900" value="{{ $proveedor_id }}">{{ $proveedor_nombre}} </option>
+                        @foreach ($empresas as $empresa)
+                            <option class="text-primary" value="{{ $empresa->id }}">{{ $empresa->razon_social }} </option>
                            
                         @endforeach
                     </select>
                 </div>
-                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
-                    Observacion <input type="hidden" wire:model.defer="observacion">
+                <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Unidad de Medida
                     <div class="relative mb-3" data-te-input-wrapper-init>
-                        <input type="text" wire:model.defer="bodega"
+                        <input type="text" wire:model.defer="medida"
+                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                    </div>
+                </div>
+                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Contenido 
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input type="text" wire:model.defer="contenido"
+                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                    </div>
+                </div>
+                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Costo 
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input type="text" wire:model.defer="costo"
+                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                    </div>
+                </div>
+                <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Tipo 
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input type="text" wire:model.defer="tipo"
+                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                    </div>
+                </div>
+                 <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Observacion 
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input type="text" wire:model.defer="observacion"
                             class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                     </div>
@@ -235,10 +312,10 @@
              
                 <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
                 <div class="dark:bg-info-900 p-3">
-                    <button type="button" wire:click="ActualizarBodega"
+                    <button type="button" wire:click="ActualizarInsumo"
                         class="ml-1 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                         data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
-                        Actualizar Bodega
+                        Actualizar Insumo
                     </button>
                     <button type="button" wire:click="Limpiar"
                         class="ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"

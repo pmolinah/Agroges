@@ -139,7 +139,7 @@ $(document).ready(function(){
 
         $('#cuartelPlan_id').change(function(){
             var cuartelPlan_id = $('#cuartelPlan_id').val();
-            //alert(cuartelPlan_id);
+        
             $.get('/api/Seleccion/'+cuartelPlan_id+'/CuartelPlan', function(info){
                 
                 $('#especie_id').val(info[1]);
@@ -148,20 +148,23 @@ $(document).ready(function(){
                 $('#Capataz').val(info[4]);
                 $('#Administrador').val(info[5]);
                 $('#variedad').val(info[6]);
-
-                
-            
-               
+                $('#plantacion_id').val(info[7]);
+       
             });
         });
 
         $('#especie_id').change(function(){
             var especie_id = $('#especie_id').val();
             $.get('/api/Seleccion/'+especie_id+'/Especie', function(info){
+                
                 var cantidad;
                 var superficieCuartel = $('#superficiecuartel').val()
                 var distanciaPlanta = info[0].distanciaPlanta;
-                cantidad = (superficieCuartel/distanciaPlanta);
+                var metros2 = info[0].metros2;
+                
+                cantidad = (parseInt(metros2) * parseInt(distanciaPlanta));
+                cantidad = (superficieCuartel/cantidad);
+                
                 $('#cantidadPlantas').val(cantidad.toFixed(2));
                 $('#cantidadPlantasDisabled').val(cantidad.toFixed(2));
                 
@@ -198,20 +201,31 @@ $(document).ready(function(){
             if(kilos>0)
             {
 
-                $('#valoreskilos').each(function(){
+                // $('#valoreskilos').each(function(){
+                //     KilosMatriz.push($(this).val());
+                // });
+
+                $('input[name="kilosexportadora[]"]').each(function() {
                     KilosMatriz.push($(this).val());
                 });
+                
+                //alert(KilosMatriz.length);
 
                 for(i=0; i<KilosMatriz.length;i++){
                     totalkilos=parseFloat(totalkilos)+parseFloat(KilosMatriz[i]);
                 }
-                totalkilos=parseFloat(totalkilos)+parseFloat(kilos);
+                totalkilos=parseFloat(totalkilos)+ parseFloat(kilos);
                 $('#totadekilos').val(totalkilos);
 
+               
 
 
-                $('.input-element').each(function() {
-                    valores.push($(this).val());
+                // $('.input-element').each(function() {
+                //     valores.push($(this).val());
+                // });
+
+                $('input[name="exportadora_id[]"]').each(function() {
+                    KilosMatriz.push($(this).val());
                 });
                 
                 var selectedValue = selectedOption.val();
@@ -235,7 +249,7 @@ $(document).ready(function(){
                 }
                 if (detenerCiclo) {
                 }else{
-                    $("#grilla tbody").append('<tr id="fila'+selectedValue+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+selectedValue+'" id="matrizdatos" name="id[]" class="input-element bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">'+selectedText+'</label></td><td><input value="'+kilos+'" name="kilos[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900"></td><td><center><button type="button" onclick="EliminarSolicitudCliente('+selectedValue+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')
+                    $("#grilla tbody").append('<tr id="fila'+selectedValue+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+selectedValue+'" id="matrizdatos" name="exportadora_id[]" class="input-element bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">'+selectedText+'</label></td><td><input value="'+kilos+'" name="kilosexportadora[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900"></td><td><center><button type="button" onclick="EliminarSolicitudCliente('+selectedValue+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')
 
                 }
             }else{
@@ -277,7 +291,13 @@ $(document).ready(function(){
                
             };
  
-        })
-            
+        });
+       
+       
+
+                   
     });
-    
+
+   
+
+   

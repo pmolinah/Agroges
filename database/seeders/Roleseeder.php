@@ -12,6 +12,7 @@ use App\Models\Tipo;
 use App\Models\tipousuario;
 use App\Models\variedad;
 use App\Models\especie;
+use Illuminate\Support\Facades\Hash;
 
 class Roleseeder extends Seeder
 {
@@ -234,7 +235,7 @@ class Roleseeder extends Seeder
         $user = User::create([
             'name'=>'Capataz',
             'email'=>'r@r.cl',
-            'password'=>bcrypt('11111111'),
+            'password'=>Hash::make('11111111'),
             'tipo_id'=>2,
 
         ])->assignRole('Admin');

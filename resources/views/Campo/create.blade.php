@@ -1,7 +1,7 @@
  <x-app-layout>
      <x-slot name="header">
          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             {{ __('Creación de Campos, Agrícolas y sus cuarteles') }}
+             {{ __('Creación de Campos') }}
          </h2>
      </x-slot>
 

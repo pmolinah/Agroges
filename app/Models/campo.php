@@ -31,4 +31,7 @@ class campo extends Model
     public function cuartel(){
         return $this->hasMany(cuartel::class);
     }
+    public function capataz(){
+        return $this->belongsTo(User::class);
+    }
 }

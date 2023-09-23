@@ -22,4 +22,5 @@ class especie extends Model
         'fechaCosecha',
        
     ];
+
 }

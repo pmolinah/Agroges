@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class exportadoraxplanificacion extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'planificacioncosecha_id',
+        'empresa_id',
+        'kilosSolicitados',
+        'empresa_id',
+    ];
+
+    public function planificacioncosecha()
+    {
+        return $this->belongsTo(planificacioncosecha::class);
+    }
+    public function empresa(){
+        return $this->belongsTo(empresa::class);
+    }
 }

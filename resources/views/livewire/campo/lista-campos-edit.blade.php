@@ -119,18 +119,18 @@
                                     {!! Form::close() !!}
                                 </div>
                                 <div class="mx-auto">
-                                    <button type="button" data-te-ripple-init data-te-ripple-color="light"
+                                    <button type="button" data-te-ripple-init data-te-ripple-color="light" wire:click="EliminarCampo({{$campo->id}})"
                                         class="flex items-center rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                                         Eliminar Campo
                                     </button>
                                 </div>
-                                <div class="mx-auto">
+                                {{-- <div class="mx-auto">
                                      
                                     <button wire:click="EnviarCampo_id('{{ $campo->id }}')" type="button" data-te-ripple-init data-te-ripple-color="light"
                                         class="flex items-center rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                                         Añadir Cuarteles
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
                               
                             {{-- fin botones --}}
@@ -142,4 +142,33 @@
             @endforeach
         </div>
     </div>
+     <script>
+                window.addEventListener('Guardar', function(e) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito, Registro Guardado...',
+                        text: '{{ Session::get('success') }}',
+                        timer: 5000,
+                        showConfirmButton: false
+                    });
+                });
+                window.addEventListener('Eliminar', function(e) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Éxito, Registro Eliminado...',
+                        text: '{{ Session::get('success') }}',
+                        timer: 5000,
+                        showConfirmButton: false
+                    });
+                });
+                window.addEventListener('Actualizar', function(e) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito, Registro Actualizado...',
+                        text: '{{ Session::get('success') }}',
+                        timer: 5000,
+                        showConfirmButton: false
+                    });
+                });
+            </script>
 </div>

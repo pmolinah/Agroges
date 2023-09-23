@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('observacion',250)->nullable();
             $table->bigInteger('envase_id')->unsigned();
             $table->foreign('envase_id')->references('id')->on('envases');
+            $table->bigInteger('plantacion_id')->unsigned();
+            $table->foreign('plantacion_id')->references('id')->on('plantacions');
             // $table->bigInteger('especie_id')->unsigned();
             // $table->foreign('especie_id')->references('id')->on('especies');
             // $table->float('kilosreales')->unsigned();
