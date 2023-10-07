@@ -41,13 +41,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-     
+     //dd($request['name']);
         $user=User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+            'password' => bcrypt($request['password']),
             'tipo_id' => $request['tipo_id'],
-        ])->roles()->sync($request->rol);
+        ])->assignRole($request->rol);
+       
+        
         // return "ok";
         Session::flash('success', 'Usuario Guardado Correctamente');
         
@@ -81,6 +83,7 @@ class UserController extends Controller
     {
         
         $act=User::where('id',$request->id)->update(['email'=>$request->email,'name'=>$request->name]);
+        $user = User::find($request->id)->syncRoles($request->rol);
         Session::flash('success', 'Usuario Actualizado Correctamente');
         return back();
     }

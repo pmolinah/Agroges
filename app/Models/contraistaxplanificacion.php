@@ -12,6 +12,7 @@ class contraistaxplanificacion extends Model
     protected $fillable=[
         'planificacioncosecha_id',
         'contratista_id',
+        'tratoxcosecha',
     ];
 
     public function planificacioncosecha()

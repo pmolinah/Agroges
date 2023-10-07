@@ -66,13 +66,17 @@ Route::get('/', function () {
     Route::post('/Store/Plantacion',[PlantacionController::class, 'store'])->name('Plantacion.store');
     // Rutas de cosecha
     Route::get('/Index/Cosechas',[CosechaController::class, 'index'])->name('Cosecha.index');
-    Route::get('Planificacion/Cosechas',[CosechaController::class, 'planificacion'])->name('Cosecha.planificacion');
+    Route::get('/Planificacion/Cosechas',[CosechaController::class, 'planificacion'])->name('Cosecha.planificacion');
+    Route::get('/Cosechar/{id}/Cosecha',[CosechaController::class,'cosechar'])->name('Cosechar.cosecha');
     Route::get('create/Planificacion/Cosechas',[CosechaController::class, 'planificacionCreate'])->name('Cosecha.planificacionCreate');
     Route::post('/Store/Planificacion',[CosechaController::class, 'planificacionStore'])->name('Planificacion.store');
     Route::get('/Edit/{id}/Planificacion',[CosechaController::class, 'planificacionEdit'])->name('Planificacion.edit');
     Route::post('/Update/Planificacion/Cosechas',[CosechaController::class, 'planificacionUpdate'])->name('Planificacion.update');
-
-    Route::get('Create/Cosechas',[CosechaController::class, 'create'])->name('Cosecha.create');
+    Route::post('/Store/Cosecha',[CosechaController::class, 'CosechaStore'])->name('Cosecha.store');
+    Route::get('/Create/Cosechas',[CosechaController::class, 'create'])->name('Cosecha.create');
+    
+    //rutas de cosechas cerradas e informes
+    Route::get('/Index/CosechasCerradas',[CosechaController::class,'indexCosechasCerradas'])->name('CosechasCerradas.index');
 
 
     //rutas de parametros de sistema

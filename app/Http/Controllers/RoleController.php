@@ -42,8 +42,9 @@ class RoleController extends Controller
         // dd($request);
         if(empty($this->nombre))
         {
-            $role = Role::create($request->all());
-            $role->syncPermissions($request->permission);
+          
+            $role = Role::create($request->all())->syncPermissions($request->permission);
+         
             Session::flash('success', 'Rol Guardado Correctamente...');
             return back();
         }else{

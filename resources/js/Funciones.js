@@ -79,8 +79,21 @@ $(document).ready(function(){
         $('#campo_id').on('change', Cambio_campo);
         $('#empresaPlan_id').on('change', Cambio_empresa_plan);
         $('#campoPlan_id').on('change', Cambio_campo_plan);
+        $('#envase_id').on('change',Cambio_envase_plan);
+       
     });
 
+   
+    function Cambio_envase_plan(){
+        var caID = $('#campoPlan_id').val();
+        var enID = $('#envase_id').val();
+
+        $.get('/api/stock/'+caID+'/envase/'+enID+'/empresa',function(info){
+            $('#stock').val(info[0].stock);
+        });
+
+    }
+    
     function Cambio_empresa_plan(){
         var id = $(this).val();
         
@@ -197,69 +210,77 @@ $(document).ready(function(){
             var valores = [];
             var KilosMatriz = [];
             var totalkilos = 0;
-            var kilos = $('#nuevoskilos').val();
-            if(kilos>0)
-            {
+            var selectedValue = selectedOption.val();
+            selectedValue=selectedValue.trim();
+            var exID = selectedValue
+            var enID = $('#envase_id').val();
+            $.get('/api/stock/'+exID+'/envase/'+enID+'/exportadora', function(info){
+           
+                var stockEnv = info[0];
+                var capacidad = info[1];
+                var kilos = $('#nuevoskilos').val();
 
-                // $('#valoreskilos').each(function(){
-                //     KilosMatriz.push($(this).val());
-                // });
-
-                $('input[name="kilosexportadora[]"]').each(function() {
-                    KilosMatriz.push($(this).val());
-                });
-                
-                //alert(KilosMatriz.length);
-
-                for(i=0; i<KilosMatriz.length;i++){
-                    totalkilos=parseFloat(totalkilos)+parseFloat(KilosMatriz[i]);
+                var resul = parseFloat(capacidad)/parseFloat(kilos);
+                if(resul<1){
+                    alert('La cantidad de Envases en cuenta corriente podria no cubrir la necesidad de la exportador, favor revisar stock de envases');
+                    alert(resul);
                 }
-                totalkilos=parseFloat(totalkilos)+ parseFloat(kilos);
-                $('#totadekilos').val(totalkilos);
+                if(kilos>0)
+                {
 
-               
+                    $('input[name="kilosexportadora[]"]').each(function() {
+                        KilosMatriz.push($(this).val());
+                    });
+                    
+                    //alert(KilosMatriz.length);
 
-
-                // $('.input-element').each(function() {
-                //     valores.push($(this).val());
-                // });
-
-                $('input[name="exportadora_id[]"]').each(function() {
-                    KilosMatriz.push($(this).val());
-                });
-                
-                var selectedValue = selectedOption.val();
-                var selectedText = selectedOption.text();
-                selectedText=selectedText.trim();
-                selectedValue=selectedValue.trim();
-                var detenerCiclo =false;
-                for (var i = 0; i < valores.length; i++) {
-                    if (selectedValue == valores[i]) {
-                        valores = []; // Vacía el array 'valores'
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error...',
-                            text: 'Exportadora ya existe',
-                            footer: '<a href="">Verifique dato</a>'
-                        })
-                        
-                        detenerCiclo = true;
-                        break; // Detiene el ciclo
+                    for(i=0; i<KilosMatriz.length;i++){
+                        totalkilos=parseFloat(totalkilos)+parseFloat(KilosMatriz[i]);
                     }
-                }
-                if (detenerCiclo) {
-                }else{
-                    $("#grilla tbody").append('<tr id="fila'+selectedValue+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+selectedValue+'" id="matrizdatos" name="exportadora_id[]" class="input-element bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">'+selectedText+'</label></td><td><input value="'+kilos+'" name="kilosexportadora[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900"></td><td><center><button type="button" onclick="EliminarSolicitudCliente('+selectedValue+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')
+                    totalkilos=parseFloat(totalkilos)+ parseFloat(kilos);
+                    $('#totadekilos').val(totalkilos);
 
-                }
-            }else{
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error...',
-                    text: 'Cantidad de Kilos vacio',
-                    footer: '<a href="">Verifique dato</a>'
-                })
-            };
+                
+                    $('input[name="exportadora_id[]"]').each(function() {
+                        KilosMatriz.push($(this).val());
+                    });
+                    
+                    var selectedValue = selectedOption.val();
+                    var selectedText = selectedOption.text();
+                    selectedText=selectedText.trim();
+                    selectedValue=selectedValue.trim();
+
+                            var detenerCiclo =false;
+                            for (var i = 0; i < valores.length; i++) {
+                                if (selectedValue == valores[i]) {
+                                    valores = []; // Vacía el array 'valores'
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error...',
+                                        text: 'Exportadora ya existe',
+                                        footer: '<a href="">Verifique dato</a>'
+                                    })
+                                    
+                                    detenerCiclo = true;
+                                    break; // Detiene el ciclo
+                                }
+                            }
+                            if (detenerCiclo) {
+                            }else{
+                                $("#grilla tbody").append('<tr id="fila'+selectedValue+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+selectedValue+'" id="matrizdatos" name="exportadora_id[]" class="input-element bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">'+selectedText+'</label></td><td><input value="'+kilos+'" name="kilosexportadora[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900"></td><td><label class="text-neutral-900">'+stockEnv+'</label></td><td><center><button type="button" onclick="EliminarSolicitudCliente('+selectedValue+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')
+
+                            }
+                    
+
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error...',
+                        text: 'Cantidad de Kilos vacio',
+                        footer: '<a href="">Verifique dato</a>'
+                    })
+                };
+            });
         });
 
         $('#AgregarContratista').click(function(){
@@ -267,6 +288,7 @@ $(document).ready(function(){
             var cont_id = contratista_id.val();
             var cont_nm = contratista_id.text();
             var valorescontratista = [];
+            var tratoxcosecha = $('#tratoxcosecha').val();
             var detenerCiclo =false;
             $('.input-contratista').each(function() {
                 valorescontratista.push($(this).val());
@@ -287,17 +309,46 @@ $(document).ready(function(){
             }
             if (detenerCiclo) {
             }else{
-                $("#grilla2 tbody").append(`<tr id="filas${cont_id}"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="${cont_id}" id="matrizdatoscontratista" name="id[]" class="input-contratista bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">${cont_nm}</label></td><td><center><button type="button" onclick="EliminarContratista(${cont_id})" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>`)
+                $("#grilla2 tbody").append(`<tr id="filas${cont_id}"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="${cont_id}" id="matrizdatoscontratista" name="id[]" class="input-contratista bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">${cont_nm}</label></td><td><input class="text-neutral-900" type="num" name="tratoxcosecha[]" value="${tratoxcosecha}"></td><td><center><button type="button" onclick="EliminarContratista(${cont_id})" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>`)
                
             };
  
         });
-       
-       
-
-                   
+                          
     });
+    // $(document).ready(function() {
+        // Detectar cambios en los campos con name="valores[]"
+        // $('input[name^="valores["]').on('input', function() {
+            // Aquí puedes realizar acciones cuando se detecte un cambio
+            //var valor = $(this).val();
+            //alert(valor);
+            //var cantidadInputs = $('input[name^="valores["]').length;
+            // $('#cierreCosecha').click(function(){
+              
+                // var totalCosechaReal=0;
+                // $('input[name^="valores["]').each(function(index, elemento) {
+                //     // Acceder al valor de cada campo de entrada
+                //     var valor = $(elemento).val();
+                //     if(valor === "" || valor === null || valor === undefined || valor === "0"){
+                //         alert('No puede Existir una Exportadora con 0 kilos');
+                //         event.preventDefault();
+                //     }
+                //     totalCosechaReal = parseFloat(totalCosechaReal) + parseFloat(valor);
+                // });
 
+  
+                // var cosechaActual = $('#cosechaActual').val();
+                // if (cosechaActual!=totalCosechaReal){
+                //     alert('Diferencia de Kilos por asignar')
+                //     event.preventDefault();
+                //}//else{
+                //     alert('Kilos Asignados Correctamente')
+                // }
+
+            //});
+            
+        // });
+    //});
    
 
    

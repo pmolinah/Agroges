@@ -7,6 +7,7 @@ use App\Models\comuna;
 use App\Models\User;
 use App\Models\campo;
 use App\Models\empresa;
+use App\Models\envase;
 use Illuminate\Support\Facades\Session;
 
 class CreateCampoCuartel extends Component
@@ -78,7 +79,7 @@ class CreateCampoCuartel extends Component
         $administradores=User::where('tipo_id','=',1)->get();
         $capataz=User::where('tipo_id','=',2)->get();
         $empresas=empresa::where('tipo_id',1)->get();
-        
-        return view('livewire.campo.create-campo-cuartel',compact('comuna','administradores','capataz','empresas'));
+        $envases=envase::all();
+        return view('livewire.campo.create-campo-cuartel',compact('comuna','administradores','capataz','empresas','envases'));
     }
 }

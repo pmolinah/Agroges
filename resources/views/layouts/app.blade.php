@@ -55,6 +55,11 @@
             $('#myTable2').DataTable();
         });
     </script>
+     <script>
+        $(document).ready(function() {
+            $('#myTable55').DataTable();
+        });
+    </script>
     <script>
         function EliminarSolicitudCliente(id) {
             //alert(id);

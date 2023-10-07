@@ -14,6 +14,9 @@ class exportadoraxplanificacion extends Model
         'empresa_id',
         'kilosSolicitados',
         'empresa_id',
+        'cuentaenvase_id',
+        'envasesUtilizadosReales',
+        'KilosRecolectados',
     ];
 
     public function planificacioncosecha()
@@ -22,5 +25,8 @@ class exportadoraxplanificacion extends Model
     }
     public function empresa(){
         return $this->belongsTo(empresa::class);
+    }
+    public function cuentaenvase(){
+        return $this->belongsTo(cuentaenvase::class);
     }
 }

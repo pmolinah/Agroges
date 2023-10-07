@@ -122,21 +122,11 @@
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
                                     href="{{ route('Cosecha.index') }}" data-te-dropdown-item-ref><i class="fa-solid fa-apple-whole"></i>&nbsp;&nbsp;&nbsp;Cosechas</a>
                             </li>
-                            {{-- <li>
+                             <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="{{ route('Empresa.index') }}" data-te-dropdown-item-ref><i
-                                        class="fa-solid fa-building"></i></i>&nbsp;&nbsp;&nbsp;Empresas</a>
+                                    href="{{ route('CosechasCerradas.index') }}" data-te-dropdown-item-ref><i class="fa-solid fa-carrot"></i>&nbsp;&nbsp;&nbsp;Cosechas Cerradas</a>
                             </li>
-                            <li>
-                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="/Organizacion/Campos/Cuarteles" data-te-dropdown-item-ref><i
-                                        class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;&nbsp;Crear Editar, Estructura de Campos/Agricolas y Cuarteles </a>
-                            </li> --}}
-                            {{-- <li>
-                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="/Organizacion/Campos/Cuarteles" data-te-dropdown-item-ref><i
-                                        class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;&nbsp;Crear Editar, Estructura de Campos/Agricolas y Cuarteles </a>
-                            </li> --}}
+                           
                             <hr
                                 class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
                             <li>

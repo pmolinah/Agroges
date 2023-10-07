@@ -34,6 +34,7 @@ Route::get('Seleccion/{id}/EmpresaPlan',[SelectController::class, 'CambioEmpresa
 Route::get('Seleccion/{id}/CampoPlan',[SelectController::class, 'CambioCampoPlan']);
 Route::get('Seleccion/{id}/CuartelPlan',[SelectController::class, 'CambioCuartelPlan']);
 Route::get('Eliminar/{id}/PlanificacionCosecha',[CosechaController::class, 'EliminarPlanificacionCosecha']);
-
+Route::get('/stock/{caID}/envase/{enID}/empresa',[CosechaController::class, 'StockEnvaseEmpresa']);
+Route::get('/stock/{exID}/envase/{enID}/exportadora',[CosechaController::class, 'StockEnvaseExportadora']);
 
 // Route::get('/btn/{solicitud_id}/zip/','ComprimirDescargar@ComprimirDocumentoSolicitud');

@@ -35,6 +35,10 @@ class planificacioncosecha extends Model
     {
         return $this->hasMany(exportadoraxplanificacion::class);
     }
+    public function detallecosecha()
+    {
+        return $this->hasMany(detallecosecha::class);
+    }
 
     public function envase(){
         return $this->belongsTo(envase::class);

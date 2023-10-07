@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('detallecosechas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->bigInteger('cosecha_id')->unsigned();
-            $table->foreign('cosecha_id')->references('id')->on('cosechas');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('planificacioncosecha_id')->unsigned();
+            $table->foreign('planificacioncosecha_id')->references('id')->on('planificacioncosechas');
+            $table->bigInteger('empresa_id')->unsigned();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->string('tarjaenvase')->nullable();
             $table->float('kilos')->unsigned();
             
         });

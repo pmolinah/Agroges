@@ -24,7 +24,7 @@
                                         Editar Planificación de Cosechas
                                     </h1>
                                 </div>
-                                <input type="hidden" value="{{$plancos->id}}" name="planificacioncosecha_id">
+                                <input type="hidden" value="{{ $plancos->id }}" name="planificacioncosecha_id">
                                 <div
                                     class="sm:col-span-1 md:col-span-6 grid sm:grid-cols-1 md:grid-cols-6 p-2 sticky top-0 bg-neutral-100 mt-2 shadow-xl">
                                     <div class="sm:span-col-1 md:col-span-6">
@@ -142,7 +142,7 @@
                                     </div>
 
                                     <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
-                                        <select data-te-select-init data-te-select-filter="true" id="empresa_id"
+                                        <select data-te-select-init data-te-select-filter="true" id="envase_id"
                                             name="envase_id">
                                             <option class="text-primary" value="{{ $plancos->envase_id }}">
                                                 Envase:{{ $plancos->envase->envase }},
@@ -260,30 +260,44 @@
                                                                     <th scope="col" class="px-6 py-4">Exportadora
                                                                     </th>
                                                                     <th scope="col" class="px-6 py-4">Kilos</th>
+                                                                    <th scope="col" class="px-6 py-4">Stock</th>
                                                                     <th scope="col" class="px-6 py-4">Eliminar</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-warning-200">
                                                                 @foreach ($plancos->exportadoraxplanificacion as $exportadoraPlanificacion)
-                                                                        <tr id="fila{{$exportadoraPlanificacion->empresa_id}}">
-                                                                            <td class="justify-center p-1 hidden sm:hidden md:block xl:block">
-                                                                                <input value="{{$exportadoraPlanificacion->empresa_id}}" id="matrizdatos" name="exportadora_id[]" class="input-element bg-transparent text-center text-neutral-900">
-                                                                            </td>
-                                                                            <td>
-                                                                                <label class="bg-transparent text-neutral-900 w-full">
-                                                                                    {{$exportadoraPlanificacion->empresa->nombre}}
-                                                                                </label>
-                                                                            </td>
-                                                                            <td>
-                                                                                <input value="{{ $exportadoraPlanificacion->kilosSolicitados }}" name="kilosexportadora[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900">
-                                                                            </td>
-                                                                            <td>
-                                                                                <center><button type="button" onclick="EliminarSolicitudCliente({{$exportadoraPlanificacion->empresa_id}})" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center>
-                                                                            </td>
-                                                                        </tr>
-
-
-                                                                
+                                                                    <tr
+                                                                        id="fila{{ $exportadoraPlanificacion->empresa_id }}">
+                                                                        <td
+                                                                            class="justify-center p-1 hidden sm:hidden md:block xl:block">
+                                                                            <input
+                                                                                value="{{ $exportadoraPlanificacion->empresa_id }}"
+                                                                                id="matrizdatos"
+                                                                                name="exportadora_id[]"
+                                                                                class="input-element bg-transparent text-center text-neutral-900">
+                                                                        </td>
+                                                                        <td>
+                                                                            <label
+                                                                                class="bg-transparent text-neutral-900 w-full">
+                                                                                {{ $exportadoraPlanificacion->empresa->nombre }}
+                                                                            </label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input
+                                                                                value="{{ $exportadoraPlanificacion->kilosSolicitados }}"
+                                                                                name="kilosexportadora[]"
+                                                                                id="valoreskilos"
+                                                                                class="bg-transparent text-center text-neutral-900">
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <center><button type="button"
+                                                                                    onclick="EliminarSolicitudCliente({{ $exportadoraPlanificacion->empresa_id }})"
+                                                                                    class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
+                                                                                        class="far fa-trash-alt"></i></button>
+                                                                            </center>
+                                                                        </td>
+                                                                    </tr>
                                                                 @endforeach
 
                                                             </tbody>
@@ -313,7 +327,13 @@
                                             @endforeach
                                         </select>
                                     </div>
-
+                                    <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
+                                        Trato x Cosecha
+                                    </div>
+                                    <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 p-2 mt-2">
+                                        <input type="number" id="tratoxcosecha" name="tratoxcosecha"
+                                            class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                    </div>
                                     <div class="sm:col-span-1 text-center p-2 md:col-span-6">
                                         <button type="button" id="AgregarContratista"
                                             class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
@@ -338,6 +358,9 @@
                                                                             <th scope="col" class="px-6 py-4">
                                                                                 Contratista
                                                                             </th>
+                                                                            <th scope="col" class="px-6 py-4">
+                                                                                TratoXCosecha
+                                                                            </th>
 
                                                                             <th scope="col" class="px-6 py-4">
                                                                                 Eliminar</th>
@@ -345,15 +368,30 @@
                                                                     </thead>
                                                                     <tbody class="text-warning-200">
                                                                         @foreach ($plancos->contraistaxplanificacion as $contraistaxplanificacion)
-                                                                            <tr id="filas{{$contraistaxplanificacion->contratista_id}}">
-                                                                                <td class="justify-center p-1 hidden sm:hidden md:block xl:block">
-                                                                                    <input value="{{$contraistaxplanificacion->contratista_id}}" id="matrizdatoscontratista" name="id[]" class="input-contratista bg-transparent text-center text-neutral-900">
+                                                                            <tr
+                                                                                id="filas{{ $contraistaxplanificacion->contratista_id }}">
+                                                                                <td
+                                                                                    class="justify-center p-1 hidden sm:hidden md:block xl:block">
+                                                                                    <input
+                                                                                        value="{{ $contraistaxplanificacion->contratista_id }}"
+                                                                                        id="matrizdatoscontratista"
+                                                                                        name="id[]"
+                                                                                        class="input-contratista bg-transparent text-center text-neutral-900">
                                                                                 </td>
                                                                                 <td>
-                                                                                    <label class="bg-transparent text-neutral-900 w-full">{{$contraistaxplanificacion->contratista->nombre}}</label>
+                                                                                    <label
+                                                                                        class="bg-transparent text-neutral-900 w-full">{{ $contraistaxplanificacion->contratista->nombre }}</label>
+                                                                                </td>
+                                                                                 <td>
+                                                                                    <label
+                                                                                        class="bg-transparent text-neutral-900 w-full"><input class="text-neutral-900" type="num" name="tratoxcosecha[]" value="{{ $contraistaxplanificacion->tratoxcosecha }}"></label>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <center><button type="button" onclick="EliminarContratista({{$contraistaxplanificacion->contratista_id}})" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center>
+                                                                                    <center><button type="button"
+                                                                                            onclick="EliminarContratista({{ $contraistaxplanificacion->contratista_id }})"
+                                                                                            class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
+                                                                                                class="far fa-trash-alt"></i></button>
+                                                                                    </center>
                                                                                 </td>
                                                                             </tr>
                                                                         @endforeach

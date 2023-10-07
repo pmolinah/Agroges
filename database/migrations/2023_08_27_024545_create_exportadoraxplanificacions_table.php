@@ -21,6 +21,9 @@ return new class extends Migration
             $table->float('kilosSolicitados')->unsigned();
             $table->float('KilosRecolectados')->nullable()->unsigned();
             $table->string('observacion',250)->nullable();
+            $table->bigInteger('cuentaenvase_id')->unsigned();
+            $table->foreign('cuentaenvase_id')->references('id')->on('cuentaenvases');
+            $table->integer('envasesUtilizadosReales')->unsigned()->nullable();
         });
     }
 

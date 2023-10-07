@@ -80,6 +80,9 @@
                                 class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
                                 placeholder="M. cuadrados">
                         </div>
+                         {{-- <div class="flex flex-col my-4">
+                            @livewire('envases.crud-envases')
+                         </div> --}}
                         <div class="flex flex-col my-4">
                             {{-- @livewire('campo.select-comuna') --}}
                             @livewire('campo.select-comuna')

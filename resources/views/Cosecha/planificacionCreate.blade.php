@@ -63,7 +63,7 @@
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
                                 <select data-te-select-init data-te-select-filter="true" id="campoPlan_id"
                                     name="campo_id">
-                                    <option class="text-secondary">2.- Seleccione Campo</option>
+                                    <option value="0" class="text-secondary">2.- Seleccione Campo</option>
                                 </select>
                             </div>
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
-                                <select data-te-select-init data-te-select-filter="true" id="empresa_id"
+                                <select data-te-select-init data-te-select-filter="true" id="envase_id"
                                     name="envase_id">
                                     <option class="text-secondary">1.- Seleccione Tipo de Envase</option>
                                     @foreach ($envases as $envase)
@@ -150,9 +150,9 @@
                             </div>
 
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
-                                <input type="text"
+                                <input type="text" id="stock" disabled
                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                    id="exampleFormControlInput1" />
+                                    />
 
 
                             </div>
@@ -195,9 +195,10 @@
                                 Seleccione Empresa/Exportadora
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 p-2 mt-2">
+                                    
                                 <select data-te-select-init data-te-select-filter="true" id="exportadora_id"
                                     name="empresa_id">
-                                    {{-- <option class="text-secondary">Seleccione Empresa Exportadora</option> --}}
+                                    <option class="text-secondary">Seleccione Empresa Exportadora</option>
                                     @foreach ($empresas as $empresa)
                                         <option class="text-primary" value="{{ $empresa->id }}">
                                             {{ $empresa->nombre }}</option>
@@ -246,6 +247,7 @@
                                                                 id</th>
                                                             <th scope="col" class="px-6 py-4">Exportadora</th>
                                                             <th scope="col" class="px-6 py-4">Kilos</th>
+                                                            <th scope="col" class="px-6 py-4">Stock</th>
                                                             <th scope="col" class="px-6 py-4">Eliminar</th>
                                                         </tr>
                                                     </thead>
@@ -278,6 +280,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
+                                Trato x Cosecha
+                            </div>
+                            <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 p-2 mt-2">
+                                <input type="number" id="tratoxcosecha" name="tratoxcosecha"
+                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                            </div>
 
                             <div class="sm:col-span-1 text-center p-2 md:col-span-6">
                                 <button type="button" id="AgregarContratista"
@@ -299,6 +308,8 @@
                                                                     <th scope="col" class="px-6 py-4">id</th>
 
                                                                     <th scope="col" class="px-6 py-4">Contratista
+                                                                    </th>
+                                                                     <th scope="col" class="px-6 py-4">TratoxCosecha
                                                                     </th>
 
                                                                     <th scope="col" class="px-6 py-4">Eliminar</th>

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreign('planificacioncosecha_id')->references('id')->on('planificacioncosechas');
             $table->bigInteger('contratista_id')->unsigned();
             $table->foreign('contratista_id')->references('id')->on('empresas');
+            $table->float('tratoxcosecha')->unsigned();
+            $table->float('kilos')->unsigned()->nullable();
+            $table->float('costototal')->unsigned()->nullable();
         });
     }
 

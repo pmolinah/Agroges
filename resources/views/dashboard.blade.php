@@ -99,6 +99,9 @@
                                 dentro el proceso de cálculo del sistema.</p>
                         </div>
 
+                       
+
+                    @can('capataz.modificar.cosecha')
                         <div
                             class="p-10 flex flex-col items-center text-center group     hover:bg-slate-50 cursor-pointer">
                             <span class="p-5 rounded-full bg-indigo-500 text-white shadow-lg shadow-indigo-200">
@@ -109,12 +112,11 @@
                                 </svg> --}}
                                 <i class="fa-sharp fa-solid fa-clipboard fa-2xl" style="color: #eeeff1;"></i>
                             </span>
-                            <p class="text-xl font-medium text-slate-700 mt-3">Movimientos de Producción</p>
-                            <p class="mt-2 text-sm text-slate-500">Registre procesos de Producción, Ingresos y Salidas
-                                de Mercaderías
+                            <p class="text-xl font-medium text-slate-700 mt-3">Cosechar</p>
+                            <p class="mt-2 text-sm text-slate-500">Realizar Cosechas de las Planificaciones asignadas.
                             </p>
                         </div>
-
+                    @endcan
 
 
 
