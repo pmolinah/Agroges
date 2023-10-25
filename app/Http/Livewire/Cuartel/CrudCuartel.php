@@ -11,7 +11,7 @@ use App\Models\User;
 class CrudCuartel extends Component
 {
     public $campo_id='';
-    public $empresaID,$campoID,$campoNombre,$capatazNombre,$capatazID;
+    public $empresaID,$campoID,$campoNombre,$capatazNombre,$capatazID,$codigoSag;
     public $capataz_id,$observaciones,$superficie,$certificado;
     public $campos=array();
     public $cuarteles=array();
@@ -39,6 +39,7 @@ class CrudCuartel extends Component
             'certificado'=>$this->certificado,
             'superficie'=>$this->superficie,
             'capataz_id'=>$this->capataz_id,
+            'codigoSag'=>$this->codigoSag,
         ]);
 
         $this->cuarteles=cuartel::where('campo_id',$this->campo_id)->get();
@@ -74,6 +75,7 @@ class CrudCuartel extends Component
             $this->superficie=$this->cuarteles->superficie;
             $this->certificado=$this->cuarteles->certificado;
             $this->cuartel_id=$this->cuarteles->id;
+            $this->codigoSag=$this->codigoSag;
         }
         $this->capatazEncargado=User::where('tipo_id',2)->get();
         $this->cuarteles=cuartel::where('campo_id',$this->campoID)->get();
@@ -86,7 +88,7 @@ class CrudCuartel extends Component
     }
 
     public function ActualizarCuartel(){
-        cuartel::where('id',$this->cuartel_id)->update(['observaciones'=>$this->observaciones,'campo_id'=>$this->campoID,'capataz_id'=>$this->capatazID,'superficie'=>$this->superficie,'certificado'=>$this->certificado]);
+        cuartel::where('id',$this->cuartel_id)->update(['observaciones'=>$this->observaciones,'campo_id'=>$this->campoID,'capataz_id'=>$this->capatazID,'superficie'=>$this->superficie,'certificado'=>$this->certificado,'codigoSag'=>$this->codigoSag]);
         $this->dispatchBrowserEvent('ActualizarCuartel', [
             'title' => 'Registro Actualizado correctamente.',
             'icon'=>'success',

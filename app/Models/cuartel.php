@@ -17,6 +17,7 @@ class cuartel extends Model
         'capataz_id',
         'superficie',
         'certificado',
+        'codigoSag',
     ];
 
     public function campo(){
@@ -24,10 +25,15 @@ class cuartel extends Model
     }
 
     public function plantacion(){
-        return $this->belongsTo(plantacion::class);
+        return $this->hasMany(plantacion::class);
     }
 
     public function capataz(){
         return $this->belongsTo(User::class);
     }
+    public function certificacionasignada(){
+
+        return $this->hasMany(certificacionasignada::class);
+    }
+
 }

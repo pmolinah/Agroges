@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Session;
 class CreateCampoCuartel extends Component
 {
     public $selectedId;
-    public $campo,$direccion,$comuna_id,$superficie,$administrador_id,$capataz_id,$rut;
+    public $campo,$direccion,$comuna_id,$superficie,$administrador_id,$rut,$codigoSag;
     public $cuarteles=array();
     public $campos=array();
     public $empresaID,$empresa_id,$campo_id;
     public $tab1='tabs-home';
     public $tab2='';
 
-   protected $listeners=['SelectComunaId','SelectAdminId','SelectCapatazId','SelectEmpresaId'];
+   protected $listeners=['SelectComunaId','SelectAdminId','SelectEmpresaId'];
 
   
 
@@ -33,9 +33,7 @@ class CreateCampoCuartel extends Component
         $this->administrador_id=$SelectAdminId;
    }
 
-   public function SelectCapatazId($SelectCapatazId){
-        $this->capataz_id=$SelectCapatazId;
-   }
+
 
    public function SelectEmpresaId($selectEmpresaId){
 
@@ -56,12 +54,12 @@ class CreateCampoCuartel extends Component
             'comuna_id'=>$this->comuna_id,
             'superficie'=>$this->superficie,
             'adm_id'=>$this->administrador_id,
-            'capataz_id'=>$this->capataz_id,
             'empresa_id'=>$this->selectedId,
             'rut'=>$this->rut,
+            'codigoSag'=>$this->codigoSag,
         ]);
         $this->reset(['direccion','superficie','rut','campo']);
-              // $this->comuna_id = "";
+  
 
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Item has been removed.',
@@ -77,9 +75,9 @@ class CreateCampoCuartel extends Component
     {
         $comuna=comuna::all();
         $administradores=User::where('tipo_id','=',1)->get();
-        $capataz=User::where('tipo_id','=',2)->get();
+        
         $empresas=empresa::where('tipo_id',1)->get();
         $envases=envase::all();
-        return view('livewire.campo.create-campo-cuartel',compact('comuna','administradores','capataz','empresas','envases'));
+        return view('livewire.campo.create-campo-cuartel',compact('comuna','administradores','empresas','envases'));
     }
 }

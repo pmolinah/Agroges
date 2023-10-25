@@ -8,6 +8,7 @@ use App\Models\campo;
 use App\Models\cuartel;
 use App\Models\especie;
 use App\Models\plantacion;
+use App\Models\color;
 
 class SelectController extends Controller
 {
@@ -73,6 +74,10 @@ class SelectController extends Controller
         return $this->MatrizDatosCuartel;
     }
     
-
-    
+    public function RecuperarColor($id){
+        $colores=color::where('id',$id)->get();
+        foreach($colores as $color){
+            return($color->color);
+        };
+    }
 }

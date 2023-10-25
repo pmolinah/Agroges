@@ -14,10 +14,10 @@ class campo extends Model
         'direccion',
         'comuna_id',
         'adm_id',
-        'capataz_id',
         'superficie',
         'empresa_id',
-        'rut'
+        'rut',
+        'codigoSag',
     ];
     public function empresa(){
         return $this->belongsTo(empresa::class);
@@ -31,7 +31,12 @@ class campo extends Model
     public function cuartel(){
         return $this->hasMany(cuartel::class);
     }
-    public function capataz(){
-        return $this->belongsTo(User::class);
+   
+    public function comuna(){
+        return $this->belongsTo(comuna::class);
+    }
+    public function certificacionasignada(){
+
+        return $this->hasMany(certificacionasignada::class);
     }
 }

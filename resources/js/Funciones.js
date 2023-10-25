@@ -76,6 +76,7 @@ $(document).ready(function(){
 //funciones de cambio de seleccion
     $(function(){
         $('#empresa_id').on('change', Cambio_empresa);
+        $('#empresa_idDos').on('change', Cambio_empresaDos);
         $('#campo_id').on('change', Cambio_campo);
         $('#empresaPlan_id').on('change', Cambio_empresa_plan);
         $('#campoPlan_id').on('change', Cambio_campo_plan);
@@ -130,6 +131,17 @@ $(document).ready(function(){
             }    
         });
     }
+    function Cambio_empresaDos(){
+        var id = $(this).val();
+        
+        $.get('/api/Seleccion/'+id+'/Empresa', function(info){
+                var html_select ='<option value=""></option>';
+                for (var i=0; i<info.length; ++i){
+                    html_select +='<option value="'+info[i].id+'">'+info[i].campo+'</option>';
+                    $('#campo_idDos').html(html_select);
+                }    
+            });
+        }
     function Cambio_campo(){
         var id = $(this).val();
         
@@ -176,6 +188,7 @@ $(document).ready(function(){
                 var metros2 = info[0].metros2;
                 
                 cantidad = (parseInt(metros2) * parseInt(distanciaPlanta));
+                superficieCuartel=superficieCuartel*10000;
                 cantidad = (superficieCuartel/cantidad);
                 
                 $('#cantidadPlantas').val(cantidad.toFixed(2));
@@ -219,11 +232,11 @@ $(document).ready(function(){
                 var stockEnv = info[0];
                 var capacidad = info[1];
                 var kilos = $('#nuevoskilos').val();
-
-                var resul = parseFloat(capacidad)/parseFloat(kilos);
+                var capacidadTotal=parseInt(stockEnv)*parseInt(capacidad);
+                var resul = parseInt(capacidadTotal)/parseFloat(kilos);
                 if(resul<1){
                     alert('La cantidad de Envases en cuenta corriente podria no cubrir la necesidad de la exportador, favor revisar stock de envases');
-                    alert(resul);
+                    //alert(resul);
                 }
                 if(kilos>0)
                 {
@@ -310,45 +323,166 @@ $(document).ready(function(){
             if (detenerCiclo) {
             }else{
                 $("#grilla2 tbody").append(`<tr id="filas${cont_id}"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="${cont_id}" id="matrizdatoscontratista" name="id[]" class="input-contratista bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">${cont_nm}</label></td><td><input class="text-neutral-900" type="num" name="tratoxcosecha[]" value="${tratoxcosecha}"></td><td><center><button type="button" onclick="EliminarContratista(${cont_id})" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>`)
-               
+                
             };
- 
+            
         });
                           
     });
-    // $(document).ready(function() {
-        // Detectar cambios en los campos con name="valores[]"
-        // $('input[name^="valores["]').on('input', function() {
-            // Aquí puedes realizar acciones cuando se detecte un cambio
-            //var valor = $(this).val();
-            //alert(valor);
-            //var cantidadInputs = $('input[name^="valores["]').length;
-            // $('#cierreCosecha').click(function(){
-              
-                // var totalCosechaReal=0;
-                // $('input[name^="valores["]').each(function(index, elemento) {
-                //     // Acceder al valor de cada campo de entrada
-                //     var valor = $(elemento).val();
-                //     if(valor === "" || valor === null || valor === undefined || valor === "0"){
-                //         alert('No puede Existir una Exportadora con 0 kilos');
-                //         event.preventDefault();
-                //     }
-                //     totalCosechaReal = parseFloat(totalCosechaReal) + parseFloat(valor);
-                // });
+    $(document).ready(function(){
+        $('#agregarKilos').click(function(){
+            var expoID = $('#expoID').val();
+            var nuevoElementoID = 'kilosExpo' + expoID;
+            alert(nuevoElementoID);
+            var valorExpo = $('#'+nuevoElementoID).val();
+            alert(valorExpo);
+        })
 
-  
-                // var cosechaActual = $('#cosechaActual').val();
-                // if (cosechaActual!=totalCosechaReal){
-                //     alert('Diferencia de Kilos por asignar')
-                //     event.preventDefault();
-                //}//else{
-                //     alert('Kilos Asignados Correctamente')
-                // }
-
-            //});
+    });
+    
+    //suma de envases de exportadora
+    $(document).ready(function(){
+        $('#btnsumarenvase').click(function(){
+            var cantidadColor = $('#cantidadColor').val();
+            var color_id = $('#color_id').val();
+            var verdad = true;
+            var saldoInicial = $('#saldoInicial').val();
+            $('#cantidadColor').val(0);
             
-        // });
-    //});
-   
+            
+            $.get('/api/recuperar/'+color_id+'/color',function(dato){
+                var listacolores = [];
+                $('input[name="colores_id[]"]').each(function() {
+                    listacolores.push($(this).val());
+                });
+                
+                if (listacolores.length>0){
+                    for(var i=0; i<listacolores.length;i++){
+                        if (dato==listacolores[i]){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error...',
+                                text: 'Color de Envase ya agregado...',
+                                footer: '<a href="">Verifique dato</a>'
+                            })
+                            Break;
+                        }
+                    }
+                }
+                var suma = parseInt(saldoInicial)+parseInt(cantidadColor);
+                document.getElementById('saldoInicial').value=suma;
+                           
+                if(verdad){
+                    $("#grillaColor tbody").append('<tr id="filaColor'+color_id+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+cantidadColor+'" name="CantidadEnvaseColor[]" wire:model.defer="CantidadEnvaseColor" class="input-element bg-transparent text-center text-neutral-900"></td><td><input value="'+dato+'" id="colores_id"  name="colores_nom[]" class="bg-transparent text-center text-neutral-900"></td><td><center><button type="button" onclick="EliminarColorEnvase('+color_id+','+cantidadColor+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')   
+                };
+            });
+        });
+    });
 
-   
+//boton de eliminar exportadora
+        
+$('#btnEliminar').click(function(){
+    var boton = document.getElementById('btnEliminar'); // Obtén una referencia al botón por su ID o como desees.
+    var valorPersonalizado = boton.getAttribute('data-valor');
+    Swal.fire({
+        title: 'Desea Elimar la Cuenta?',
+        text: "Ya no se podrá recuperar el Stock Inicial!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.get('/api/Eliminar/Cuenta/'+valorPersonalizado+'/Envases',function(result){
+
+            });
+            
+            Swal.fire(
+                'Elimanada!',
+                'La Cuenta Corriente de Envase de la Exportadora fue eliminada.',
+                'success'
+            )
+            setTimeout(function() {
+                location.reload();
+                }, 3000);
+            
+            
+        }
+        })
+});
+
+// suma de envases de campo
+$(document).ready(function(){
+    $('#btnsumarenvaseDos').click(function(){
+        
+        var cantidadColorDos = $('#cantidadColorDos').val();
+        var color_idDos = $('#color_idDos').val();
+        var verdadDos = true;
+        var saldoInicialDos = $('#saldoInicialDos').val();
+        $('#cantidadColorDos').val(0);
+        
+        
+        $.get('/api/recuperar/'+color_idDos+'/color',function(dato){
+            var listacolores = [];
+            $('input[name="colores_idDos[]"]').each(function() {
+                listacolores.push($(this).val());
+            });
+            
+            if (listacolores.length>0){
+                for(var i=0; i<listacolores.length;i++){
+                    if (dato==listacolores[i]){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error...',
+                            text: 'Color de Envase ya agregado...',
+                            footer: '<a href="">Verifique dato</a>'
+                        })
+                        Break;
+                    }
+                }
+            }
+            var suma = parseInt(saldoInicialDos)+parseInt(cantidadColorDos);
+            document.getElementById('saldoInicialDos').value=suma;
+                       
+            if(verdadDos){
+            $("#grillaColorDos tbody").append('<tr id="filaColorDos'+color_idDos+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+cantidadColorDos+'" name="CantidadEnvaseColorDos[]"  class="input-element bg-transparent text-center text-neutral-900"></td><td><input value="'+dato+'" id="colores_idDos"  name="colores_nomDos[]" class="bg-transparent text-center text-neutral-900"></td><td><center><button type="button" onclick="EliminarColorEnvaseDos('+color_idDos+','+cantidadColorDos+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')   
+            };
+        });
+    });
+});
+
+//boton eliminar campo
+$('#btnEliminarCampo').click(function(){
+    var boton = document.getElementById('btnEliminarCampo'); // Obtén una referencia al botón por su ID o como desees.
+    var valorPersonalizado = boton.getAttribute('data-valor');
+    Swal.fire({
+        title: 'Desea Elimar la Cuenta?',
+        text: "Ya no se podrá recuperar el Stock Inicial!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.get('/api/Eliminar/Cuenta/'+valorPersonalizado+'/Envases/Campo',function(result){
+
+            });
+            
+            Swal.fire(
+                'Elimanada!',
+                'La Cuenta Corriente de Envase de la Exportadora fue eliminada.',
+                'success'
+            )
+            setTimeout(function() {
+                location.reload();
+                }, 3000);
+            
+            
+        }
+        })
+});
+// fin
+
+      

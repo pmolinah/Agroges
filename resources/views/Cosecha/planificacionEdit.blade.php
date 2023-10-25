@@ -33,21 +33,7 @@
                                             Datos de la Cosecha
                                         </h3>
                                     </div>
-                                    {{-- <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2">
-                                        Seleccione Responsable
-                                    </div>
-
-
-                                    <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50">
-
-                                        <select data-te-select-init data-te-select-filter="true">
-                                            <option value="{{ $plancos->cuartel->capataz->id }}">
-                                                {{ $plancos->cuartel->capataz->name }}</option>
-                                            @foreach ($usuarios as $usuario)
-                                                <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div> --}}
+                                  
 
                                     <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
                                         Seleccione Propietario
@@ -58,10 +44,7 @@
                                             name="empresa_id">
                                             <option value="{{ $plancos->cuartel->campo->empresa->id }}">
                                                 {{ $plancos->cuartel->campo->empresa->razon_social }}</option>
-                                            {{-- @foreach ($empresas as $empresa)
-                                        <option class="text-primary" value="{{ $empresa->id }}">
-                                            {{ $empresa->nombre }}</option>
-                                    @endforeach --}}
+                                           
                                         </select>
                                     </div>
                                     <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
@@ -157,7 +140,7 @@
 
                                     </div>
                                     <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
-                                        Stock de Enases del Campo
+                                        Stock de Envases del Campo
                                     </div>
 
                                     <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
@@ -184,7 +167,7 @@
                                     </div>
 
                                     <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 text-neutral-50 mt-2">
-                                        <input type="text" value="{{ $plancos->cuartel->campo->capataz->name }}"
+                                        <input type="text" value="{{ $plancos->cuartel->capataz->name }}"
                                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                             id="Capataz" />
 
@@ -209,9 +192,9 @@
                                         <select data-te-select-init data-te-select-filter="true" id="exportadora_id"
                                             name="empresa_id">
                                             {{-- <option class="text-secondary">Seleccione Empresa Exportadora</option> --}}
-                                            @foreach ($empresas as $empresa)
+                                            @foreach ($empresasE as $empresa)
                                                 <option class="text-primary" value="{{ $empresa->id }}">
-                                                    {{ $empresa->nombre }}</option>
+                                                    {{ $empresa->razon_social }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -279,7 +262,7 @@
                                                                         <td>
                                                                             <label
                                                                                 class="bg-transparent text-neutral-900 w-full">
-                                                                                {{ $exportadoraPlanificacion->empresa->nombre }}
+                                                                                {{ $exportadoraPlanificacion->empresa->razon_social }}
                                                                             </label>
                                                                         </td>
                                                                         <td>
@@ -321,9 +304,9 @@
                                         <select data-te-select-init data-te-select-filter="true" id="contratista_id"
                                             name="empresa_id">
                                             <option class="text-secondary">Seleccione Empresa Contratista</option>
-                                            @foreach ($empresas as $empresa)
+                                            @foreach ($empresasC as $empresa)
                                                 <option class="text-primary" value="{{ $empresa->id }}">
-                                                    {{ $empresa->nombre }}</option>
+                                                    {{ $empresa->razon_social }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -380,7 +363,7 @@
                                                                                 </td>
                                                                                 <td>
                                                                                     <label
-                                                                                        class="bg-transparent text-neutral-900 w-full">{{ $contraistaxplanificacion->contratista->nombre }}</label>
+                                                                                        class="bg-transparent text-neutral-900 w-full">{{ $contraistaxplanificacion->contratista->razon_social }}</label>
                                                                                 </td>
                                                                                  <td>
                                                                                     <label

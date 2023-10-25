@@ -23,7 +23,7 @@ class SelectEmpresa extends Component
     public function render()
     {
         
-        $contnomb=empresa::all();
+        $contnomb=empresa::where('tipo_id',1)->get();
         return view('livewire.campo.select-empresa',compact('contnomb'));
     }
 

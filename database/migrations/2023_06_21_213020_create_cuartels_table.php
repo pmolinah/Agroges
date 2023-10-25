@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('superficie',8,2);
             $table->integer('certificado')->nullable();
             $table->string('observaciones');
+            $table->string('codigoSag',10);
         });
     }
 

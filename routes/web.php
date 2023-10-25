@@ -10,6 +10,8 @@ use App\Http\Controllers\PlantacionController;
 use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\CuentaCorrienteController;
+use App\Http\Controllers\GuiasController;
+use App\Http\Controllers\CertificacionController;
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -77,13 +79,25 @@ Route::get('/', function () {
     
     //rutas de cosechas cerradas e informes
     Route::get('/Index/CosechasCerradas',[CosechaController::class,'indexCosechasCerradas'])->name('CosechasCerradas.index');
+    Route::get('/Reporte/{planificacioncosecha_id}/Cosecha',[CosechaController::class, 'ReporteCosecha'])->name('Reporte.cosecha');
+    Route::get('/Reporte/{planificacioncosecha_id}/Cosecha/{contratista_id}/Contratista',[CosechaController::class, 'ReporteCosechaContratista'])->name('Reporte.cosecha.contratista');
 
-
+   //rutas de Guias
+   Route::get('/Guias/index',[GuiasController::class,'index'])->name('Guias.index'); 
+    
     //rutas de parametros de sistema
     Route::get('/Parametros/Index',[ParametrosController::class,'index'])->name('Parametros.index');
 
     //rutas de Cuenta Corriente de Envases
     Route::get('Cuenta/Corriente/Envases',[CuentaCorrienteController::class, 'index'])->name('CuentaCorriente.index');
+
+    // rutas de certificacion
+    Route::get('Index/Certificacion',[CertificacionController::class, 'index'])->name('Certificacion.index');
+
+    //cuenta corriente
+    Route::post('/store/cuentacorriente/exportadora',[CuentaCorrienteController::class, 'store'])->name('cuentacorriente.store');
+    Route::post('store/cuentacorriente/campo',[CuentaCorrienteController::class, 'storeCampo'])->name('CuenEnvaseCampo.store');
+    
 
     
     //Rutas de Organización

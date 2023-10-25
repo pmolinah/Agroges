@@ -14,13 +14,18 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nombre',250);
+            $table->string('nombre',100);
             $table->string('rut',10)->unique();
             $table->string('razon_social',250);
-            $table->string('direccion',250);
-            
-            $table->string('email',250)->nullable();
-            $table->string('telefono',50)->nullable();
+            $table->string('direccion',100);
+           
+            $table->string('email',50)->nullable();
+            $table->string('telefono',30)->nullable();
+            $table->string('nombreContacto',100)->nullable();
+            $table->string('telefonoContacto',30)->nullable();
+            $table->string('emailContacto',50)->nullable();
+            $table->string('codigoproexp',10)->nullable();
+
            
         });
     }

@@ -94,6 +94,40 @@
             )
         }
     </script>
+     <script>
+        function EliminarColorEnvase(id,cantidad) {
+            //alert(cantidad);
+            var saldoInicial = $('#saldoInicial').val();
+            resta = parseInt(saldoInicial)-parseInt(cantidad);
+            $('#saldoInicial').val(resta);
+            $('#cantidadColor').val(0);
+            $('#filaColor' + id).remove();
+           
+            Swal.fire(
+                'Envase',
+                'Envase  Eliminada de la lista!',
+                'success'
+            )
+        }
+     
+    </script>
+    <script>
+        function EliminarColorEnvaseDos(idDos,cantidadDos) {
+            //alert(cantidad);
+            var saldoInicialDos = $('#saldoInicialDos').val();
+            restaDos = parseInt(saldoInicialDos)-parseInt(cantidadDos);
+            $('#saldoInicialDos').val(restaDos);
+            $('#cantidadColorDos').val(0);
+            $('#filaColorDos' + idDos).remove();
+           
+            Swal.fire(
+                'Envase',
+                'Envase  Eliminada de la lista!',
+                'success'
+            )
+        }
+     
+    </script>
 
 </head>
 

@@ -14,6 +14,7 @@ class cuentaenvase extends Model
         'envase_id',
         'observacion',
         'saldo',
+        'campo_id',
     ];
 
     public function empresa(){
@@ -22,5 +23,13 @@ class cuentaenvase extends Model
 
     public function envase(){
         return $this->belongsTo(envase::class);
+    }
+
+    public function detallecuentaenvase(){
+        return $this->hasMany(detallecuentaenvase::class);
+    }
+
+    public function campo(){
+        return $this->belongsTo(campo::class);
     }
 }

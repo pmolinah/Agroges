@@ -22,4 +22,8 @@ class envaseempresa extends Model
     public function envase(){
         return $this->belongsTo(envase::class);
     }
+
+    public function desgloseenvasecampo(){
+        return $this->hasMany(desgloseenvasecampo::class);
+    }
 }

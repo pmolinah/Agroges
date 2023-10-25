@@ -14,9 +14,18 @@ class detallecosecha extends Model
         'empresa_id',
         'tarjaenvase',
         'kilos',
+        'exportadora_id',
+        'pivote',
     ];
 
     public function planificacioncosecha(){
         return $this->belongsTo(planificacioncosecha::class);
+    }
+
+    public function empresa(){
+        return $this->belongsTo(empresa::class);
+    }
+    public function exportadora(){
+        return $this->belongsTo(empresa::class);
     }
 }

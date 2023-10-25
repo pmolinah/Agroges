@@ -19,11 +19,18 @@ class empresa extends Model
         'comuna_id',
         'telefono',
         'tipo_id',
-        'email'
+        'email',
+        'nombreContacto',
+        'telefonoContacto',
+        'emailContacto',
+        'codigoproexp',
     ];
 
     public function campo(){
         return $this->hasMany(campo::class);
+    }
+    public function comuna(){
+        return $this->belongsTo(comuna::class);
     }
 }
 

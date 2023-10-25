@@ -75,6 +75,14 @@
                             </div>
                         </div>
                         <div class="relative p-4 text-neutral-50">
+                            Código SAG
+                            <div class="relative mb-3" data-te-input-wrapper-init>
+                                <input type="text" wire:model.defer="codigoSag"
+                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                            </div>
+                        </div>
+                        <div class="relative p-4 text-neutral-50">
                             <select
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                 id="empresa_id" name="empresa_id">
@@ -82,7 +90,7 @@
                                 <option class="text-neutral-900">Seleccione Propietario</option>
                                 @foreach ($empresas as $empresa)
                                     <option class="text-primary" value="{{ $empresa->id }}">
-                                        {{ $empresa->nombre }}</option>
+                                        Rut:{{ $empresa->rut }},Razón Social:{{ $empresa->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -111,7 +119,7 @@
                             </div>
                         </div>
                         <div class="relative p-4 text-neutral-50">
-                            Superfice
+                            Superfice en Hectáreas
                             <div class="relative mb-3" data-te-input-wrapper-init>
                                 <input type="text" wire:model.defer="superficie"
                                     class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
@@ -161,6 +169,14 @@
                     Cuartel <input type="hidden" wire:model.defer="cuartel_id">
                     <div class="relative mb-3" data-te-input-wrapper-init>
                         <input type="text" wire:model.defer="observaciones"
+                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+
+                    </div>
+                </div>
+                <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                    Cuartel <input type="hidden" wire:model.defer="cuartel_id">
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input type="text" wire:model.defer="codigoSag"
                             class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                     </div>

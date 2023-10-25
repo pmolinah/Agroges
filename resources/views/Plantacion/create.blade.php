@@ -18,82 +18,80 @@
                         style="background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png') ;">
                         {{-- grid de fondo completo --}}
                         <div
-                            class="grid xs:grid-cols-1 md:lg:xl:grid-cols-3 group bg-white shadow-xl shadow-neutral-100 border p-1">
+                            class="grid xs:grid-cols-1 md:lg:xl:grid-cols-3 group bg-neutral-100 shadow-xl shadow-neutral-100 border p-1">
 
                             {{-- inicio --}}
                             <div
-                                class="block m-3 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                                class="block m-3 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-neutral-50 border-dotted border-2 border-sky-500 shadow-xl">
                                 <div
-                                    class="border-b-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50">
-                                    1.- Seleccione Propietario
+                                    class="font-bold px-6 py-3 text-neutral-900 border-dotted border-2 border-sky-500">
+                                    1.- Seleccione Propietario.
                                 </div>
                                 <div class="p-6">
                                     <h5
                                         class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                        <select data-te-select-init data-te-select-filter="true" id="empresa_id"
+                                        <select class="text-neutral-900 border-dotted border-2 border-sky-500 p-2" id="empresa_id"
                                             name="empresa_id">
 
-                                            <option class="text-secondary">Seleccione Propietario</option>
+                                            <option class="">Seleccione Propietario</option>
                                             @foreach ($empresas as $empresa)
-                                                <option class="text-primary" value="{{ $empresa->id }}">
+                                                <option class="" value="{{ $empresa->id }}">
                                                     {{ $empresa->nombre }}</option>
                                             @endforeach
                                         </select>
                                     </h5>
-                                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                                        Se debe seleccionar un propietario para desplegar los campos y cuarteles para
-                                        azignar plantaciones
+                                    <p class="mb-4 text-info-800 font-bold">
+                                        Se debe seleccionar un propietario para desplegar los campos 
                                     </p>
                                 </div>
                             </div>
                             {{-- fin --}}
                             {{-- inicio --}}
                             <div
-                                class="block m-3 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-success-700">
+                                class="block m-3 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-neutral-50 border-dotted border-2 border-sky-500 shadow-xl">
                                 <div
-                                    class="border-b-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50">
+                                    class="font-bold px-6 py-3 text-neutral-900 border-dotted border-2 border-sky-500">
                                     2.- Seleccione Campo
                                 </div>
                                 <div class="p-6">
                                     <h5
                                         class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                        <select data-te-select-init data-te-select-filter="true" id="campo_id"
+                                        <select class="text-neutral-900 border-dotted border-2 border-sky-500 p-2" id="campo_id"
                                             name="campo_id">
 
                                         </select>
                                     </h5>
-                                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                                        Se debe seleccionar un propietario para desplegar los campos y cuarteles para
-                                        azignar plantaciones
+                                    <p class="mb-4 text-info-800 font-bold">
+                                        Se debe seleccionar un  campo para desplegar cuarteles y
+                                        asignar plantaciones
                                     </p>
                                 </div>
                             </div>
                             {{-- fin --}}
                             {{-- inicio --}}
                             <div
-                                class="block m-3 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-warning-700">
+                                class="block m-3 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-neutral-50 border-dotted border-2 border-sky-500 shadow-xl">
                                 <div
-                                    class="border-b-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50">
+                                    class="font-bold px-6 py-3 text-neutral-900 border-dotted border-2 border-sky-500">
                                     3.- Seleccione Cuartel
                                 </div>
                                 <div class="p-6">
                                     <h5
                                         class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                        <select data-te-select-init data-te-select-filter="true" id="cuartel_id"
+                                        <select class="text-neutral-900 border-dotted border-2 border-sky-500 p-2" id="cuartel_id"
                                             name="cuartel_id">
 
                                         </select>
                                     </h5>
-                                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-50">
-                                        Se debe seleccionar un propietario para desplegar los campos y cuarteles para
-                                        azignar plantaciones
+                                    <p class="mb-4 text-info-800 font-bold">
+                                        Se debe seleccionar un propietario un cuartel para continuar con la plantación de la especie.
                                     </p>
                                 </div>
                             </div>
                             {{-- fin --}}
                             {{-- informacion de la plantaciones --}}
 
-                            <div class="rounded-lg xs:col-span-1 ml-3 p-4 bg-primary-600 md:col-span-3 mr-3">
+                            <div class="rounded-lg xs:col-span-1 ml-3 p-4  md:col-span-3 mr-3 bg-neutral-50 border-dotted border-2 border-sky-500 shadow-xl">
 
                                 <div class="">
                                     <div class="border-b border-gray-900/10 pb-12">
@@ -106,10 +104,10 @@
                                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                             <div class="sm:col-span-4">
                                                 <label
-                                                    class="block text-sm font-medium leading-6 text-neutral-900">Responsable</label>
+                                                    class="block text-sm font-medium leading-6 text-neutral-900 font-bold">Responsable</label>
                                                 <div class="mt-2 text-neutral-900">
 
-                                                    <select data-te-select-init data-te-select-filter="true"
+                                                    <select 
                                                         name="contratista_id" class="text-neutral-800 " id="empresa_id">
                                                         <option value=""><label
                                                                 class="block text-sm font-medium leading-6 text-neutral-900">Seleccione
@@ -117,7 +115,7 @@
                                                         </option>
                                                         @foreach ($administrador as $administrador)
                                                             <option value="{{ $administrador->id }}"><label
-                                                                    class="block text-sm font-medium leading-6 text-neutral-900">{{ $administrador->name }}</label>
+                                                                    class="block text-sm font-medium leading-6 text-neutral-900 font-bold">{{ $administrador->name }}</label>
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -127,7 +125,7 @@
 
                                             <div class="col-span-full">
                                                 <label for="about"
-                                                    class="block text-sm font-medium leading-6 text-neutral-50">Observaciones</label>
+                                                    class="block text-sm font-medium leading-6 text-neutral-900 font-bold">Observaciones</label>
                                                 <div class="mt-2">
                                                     <textarea id="about" name="observacion" rows="3"
                                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
@@ -141,17 +139,16 @@
                                             <h2 class="text-base font-semibold leading-7 text-neutral-900">
                                                 Caracteristicas de la Plantación
                                             </h2>
-                                            <p class="mt-1 text-sm leading-6 text-neutral-900">Especie, Cantidad,
-                                                Certificaciones.</p>
+                                            <p class="mt-1 text-sm leading-6 text-neutral-900 font-bold">Especie, Cantidad.</p>
 
                                             <div class="mt-10 grid md:grid-cols-4 gap-x-2 sm:grid-cols-1">
 
                                                 <div class="sm:col-span-1 md:col-span-2">
                                                     <label for="first-name"
-                                                        class="block text-sm font-medium leading-6 text-neutral-50">Especie
+                                                        class="block text-sm font-medium leading-6 text-neutral-900 font-bold">Seleccionar Especie
                                                     </label>
                                                     <div class="mt-2">
-                                                        <select data-te-select-init data-te-select-filter="true"
+                                                        <select 
                                                             name="especie_id" class="text-neutral-800 " id="especie_id">
                                                             <option value=""><label
                                                                     class="block text-sm font-medium leading-6 text-neutral-900">Seleccione
@@ -168,10 +165,10 @@
 
                                                 <div class="sm:col-span-1 md:col-span-2">
                                                     <label for="last-name"
-                                                        class="block text-sm font-medium leading-6 text-neutral-50">Variedad
+                                                        class="block text-sm font-medium leading-6 text-neutral-900 font-bold">Variedad
                                                     </label>
                                                     <div class="mt-2">
-                                                        <select data-te-select-init data-te-select-filter="true"
+                                                        <select 
                                                             name="variedad_id" class="text-neutral-800 "
                                                             id="empresa_id">
                                                             <option value=""><label
@@ -188,10 +185,10 @@
                                                 </div>
                                             </div>
 
-                                            <div class="grid sm:cols-1 md:grid-cols-4 gap-x-2">
+                                            <div class="grid sm:cols-1 md:grid-cols-4 mt-6 gap-x-2">
                                                 <div class="">
                                                     <label for="city"
-                                                        class="block text-sm font-medium leading-6 text-neutral-50 ">Superficie
+                                                        class="block text-sm font-medium leading-6 text-neutral-900 font-bold text-center">Superficie
                                                         de Cuatel</label>
                                                     <div class="mt-2">
                                                         <input type="text" name="superficiecuartel" id="superficiecuartel" disabled
@@ -201,7 +198,7 @@
                                                 </div>
                                                 <div class="">
                                                     <label for="city"
-                                                        class="block text-sm font-medium leading-6 text-neutral-50 ">Cantidad
+                                                        class="block text-sm font-medium leading-6 text-neutral-900 font-bold text-center">Cantidad
                                                         de Plantas Máxima</label>
                                                     <div class="mt-2">
                                                         <input type="text" name="cantidadPlantasDisabled" id="cantidadPlantasDisabled"
@@ -216,7 +213,7 @@
                                                
                                                 <div class="">
                                                     <label for="region"
-                                                        class=" block text-sm font-medium leading-6 text-neutral-50">Cantidad
+                                                        class=" block text-sm font-medium leading-6 text-neutral-900 font-bold text-center">Cantidad
                                                         Plantada
                                                     </label>
                                                     <div class="mt-2">
@@ -228,7 +225,7 @@
 
                                                 <div class="">
                                                     <label
-                                                        class="block text-sm font-medium leading-6 text-neutral-50">Fecha
+                                                        class="block text-sm font-medium leading-6 text-neutral-900 font-bold text-center">Fecha
                                                         Plantación</label>
                                                     <div class="mt-2">
                                                         <input type="date" name="fechaPlantacion"
@@ -240,11 +237,11 @@
                                            
                                         </div>
 
-                                        <div class="mt-6 flex items-center justify-end gap-x-6">
+                                        <div class="mt-6 flex items-center justify-end gap-x-6 text-center">
                                             {{-- <button type="button"
                                         class="text-sm font-semibold leading-6 text-gray-900">Cancel</button> --}}
                                             <button type="submit"
-                                                class="rounded-md bg-success-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600">Guardar
+                                                class="p-3 font-bold rounded-md bg-success-900 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600">Guardar
                                                 Plantación</button>
                                         </div>
 

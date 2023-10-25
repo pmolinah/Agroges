@@ -59,8 +59,14 @@
                             <div class="grid gap-2 grid-cols-5 xs:grid-cols-1">
                                 <div clas="col-start-1 col-end-1 grid grid-cols-5">
                                     
+                                     <div class="text-neutral-100">
+                                        Codigo SAG,
+                                    </div>
+                                    <div class="">
+                                        {{ Form::text('codigoSag', null, ['class' => 'peer block min-h-[auto]  rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
+                                    </div>
                                     <div class="text-neutral-100">
-                                        Rut,{{$campo->id}}
+                                        Rut,
                                     </div>
                                     <div class="">
                                         {{ Form::text('rut', null, ['class' => 'peer block min-h-[auto]  rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
@@ -79,7 +85,7 @@
                                     {{ Form::text('direccion', null, ['class' => 'peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
                                 </div>
                                 <div class="text-neutral-100">
-                                    Superficie
+                                    Superficie en Ha
                                 </div>
                                 <div clas="col-start-1 col-end-1">
                                     {{ Form::text('superficie', null, ['class' => 'peer block min-h-[auto] rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
@@ -100,14 +106,14 @@
                                         {{ Form::select('comuna_id', $administradores->pluck('name', 'id')->all(), null, ['class' => 'p-2', 'style' => 'width: 500px;']) }}
                                     </div>
                                 </div>
-                                <div class="text-neutral-100">
+                                {{-- <div class="text-neutral-100">
                                     Capataz
                                 </div>
                                 <div clas="col-start-1 col-end-1 grid grid-cols-5">
                                     <div class="col-start-1 col-end-1">
                                         {{ Form::select('comuna_id', $capataz->pluck('name', 'id')->all(), null, ['class' => 'p-2', 'style' => 'width: 500px;']) }}
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
 

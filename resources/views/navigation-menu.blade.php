@@ -129,11 +129,83 @@
                            
                             <hr
                                 class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{route('Guias.index')}}" data-te-dropdown-item-ref><i class="fa-solid fa-clipboard"></i>&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;Guías de Despacho</a>
+                            </li>
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{route('Guias.index')}}" data-te-dropdown-item-ref><i class="fa-solid fa-clipboard"></i>&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Guías de Recepción</a>
+                            </li>
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{route('Guias.index')}}" data-te-dropdown-item-ref><i class="fa-solid fa-arrows-turn-to-dots"></i>&nbsp;&nbsp;&nbsp;Trspasos de Envases Entre cuentas de Campos</a>
+                            </li>
+                            <hr
+                                class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
                             <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
                                     href="#" data-te-dropdown-item-ref><i
                                         class="fa-solid fa-file"></i>&nbsp;&nbsp;&nbsp;Informes </a>
                             </li>
+                        </ul>
+                    </div>
+                    {{-- fin boton Produccion --}}
+                     {{-- botn Produccion --}}
+                    <div class="relative" data-te-dropdown-ref>
+                        <button
+                            class="flex items-center whitespace-nowrap rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                            type="button" id="dropdownMenuButton1d" data-te-dropdown-toggle-ref aria-expanded="false"
+                            data-te-ripple-init data-te-ripple-color="light">
+                            Certificaciones
+                            <span class="ml-2 w-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    class="h-5 w-5">
+                                    <path fill-rule="evenodd"
+                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </button>
+                        <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
+                            aria-labelledby="dropdownMenuButton1d" data-te-dropdown-menu-ref>
+                            <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{ route('Certificacion.index') }}" data-te-dropdown-item-ref>
+                                    <i class="fa-solid fa-medal"></i>&nbsp;&nbsp;&nbsp;Administración de Certificaciones</a>
+                            </li>
+                            <!-- <li>
+                            <a
+                                class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                href="#"
+                                data-te-dropdown-item-ref
+                                >Perfiles</a
+                            >
+                            </li> -->
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{ route('Cosecha.planificacion') }}" data-te-dropdown-item-ref><i class="fa-solid fa-list"></i>&nbsp;&nbsp;&nbsp;Informe de Certificaciones</a>
+                            </li>
+                            {{-- <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{ route('Cosecha.index') }}" data-te-dropdown-item-ref><i class="fa-solid fa-apple-whole"></i>&nbsp;&nbsp;&nbsp;Cosechas</a>
+                            </li> --}}
+                             {{-- <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{ route('CosechasCerradas.index') }}" data-te-dropdown-item-ref><i class="fa-solid fa-carrot"></i>&nbsp;&nbsp;&nbsp;Cosechas Cerradas</a>
+                            </li>
+                           
+                            <hr
+                                class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{route('Guias.index')}}" data-te-dropdown-item-ref><i class="fa-solid fa-clipboard"></i>&nbsp;&nbsp;&nbsp;Guías de Recepción y Despacho</a>
+                            </li>
+                            <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="#" data-te-dropdown-item-ref><i
+                                        class="fa-solid fa-file"></i>&nbsp;&nbsp;&nbsp;Informes </a>
+                            </li> --}}
                         </ul>
                     </div>
                     {{-- fin boton Produccion --}}

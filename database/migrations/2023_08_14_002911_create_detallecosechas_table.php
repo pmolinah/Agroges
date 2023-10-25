@@ -20,7 +20,10 @@ return new class extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->string('tarjaenvase')->nullable();
             $table->float('kilos')->unsigned();
-            
+            $table->bigInteger('exportadora_id')->unsigned();
+            $table->foreign('exportadora_id')->references('id')->on('empresas');
+            $table->string('pivote');
+                       
         });
     }
 

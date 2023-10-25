@@ -56,6 +56,12 @@
                     class="bg-primary-600 sm:col-span-1 md:col-span-2 mb-10 ml-2 mr-2 mt-8 mx-auto px-16 py-8 rounded-lg shadow-lg">
                     <h2 class="text-center text-2xl font-bold tracking-wide text-neutral-50">2.- Datos del Campo</h2>
                     <form class="my-8 text-sm">
+                     <div class="flex flex-col my-4">
+                            <label for="name" class="text-warning-300">Código Sag</label>
+                            <input type="text" wire:model.defer="codigoSag"
+                                class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
+                                placeholder="Código de Registro SAG">
+                        </div>
                         <div class="flex flex-col my-4">
                             <label for="name" class="text-warning-300">Nombre del Campo</label>
                             <input type="text" wire:model.defer="campo"
@@ -75,10 +81,10 @@
                                 placeholder="Dirección del Campo o Agrícola">
                         </div>
                         <div class="flex flex-col my-4">
-                            <label for="text" class="text-warning-300">Metros Cuadrado</label>
+                            <label for="text" class="text-warning-300">Superficie en Hectáreas</label>
                             <input type="number" wire:model.defer="superficie" min="1" max="50"
                                 class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                                placeholder="M. cuadrados">
+                                placeholder="Medición solo en Hectáreas">
                         </div>
                          {{-- <div class="flex flex-col my-4">
                             @livewire('envases.crud-envases')
@@ -92,10 +98,7 @@
 
                             @livewire('campo.select-admin')
                         </div>
-                        <div class="flex flex-col my-4">
-
-                            @livewire('campo.select-capataz')
-                        </div>
+                     
                         <div class="my-4 flex items-center justify-center space-x-4">
                             <button wire:click.prevent="save"
                                 class="bg-success-900 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Añadir

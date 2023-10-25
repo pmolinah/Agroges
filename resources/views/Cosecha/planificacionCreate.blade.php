@@ -51,9 +51,9 @@
                                 <select data-te-select-init data-te-select-filter="true" id="empresaPlan_id"
                                     name="empresa_id">
                                     <option class="text-secondary">1.- Seleccione Propietario</option>
-                                    @foreach ($empresas as $empresa)
+                                    @foreach ($empresasC as $empresa)
                                         <option class="text-primary" value="{{ $empresa->id }}">
-                                            {{ $empresa->nombre }}</option>
+                                            {{ $empresa->razon_social }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -139,7 +139,7 @@
                                     <option class="text-secondary">1.- Seleccione Tipo de Envase</option>
                                     @foreach ($envases as $envase)
                                         <option class="text-primary" value="{{ $envase->id }}">
-                                            Envase:{{ $envase->envase }}, Kilos:{{ $envase->capacidad }},
+                                            {{ $envase->envase }}, Kilos:{{ $envase->capacidad }},
                                             Tara:{{ $envase->tara }} </option>
                                     @endforeach
                                 </select>
@@ -192,7 +192,7 @@
                                 </h3>
                             </div>
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
-                                Seleccione Empresa/Exportadora
+                                Nombre Exportadora
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 p-2 mt-2">
                                     
@@ -201,12 +201,12 @@
                                     <option class="text-secondary">Seleccione Empresa Exportadora</option>
                                     @foreach ($empresas as $empresa)
                                         <option class="text-primary" value="{{ $empresa->id }}">
-                                            {{ $empresa->nombre }}</option>
+                                            {{ $empresa->razon_social }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
-                                Kilos
+                                Kilos Solicitados
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 p-2 mt-2">
                                 <input type="number" id="nuevoskilos" name="nuevoskilos"
@@ -247,7 +247,7 @@
                                                                 id</th>
                                                             <th scope="col" class="px-6 py-4">Exportadora</th>
                                                             <th scope="col" class="px-6 py-4">Kilos</th>
-                                                            <th scope="col" class="px-6 py-4">Stock</th>
+                                                            <th scope="col" class="px-6 py-4">Stock/Bins</th>
                                                             <th scope="col" class="px-6 py-4">Eliminar</th>
                                                         </tr>
                                                     </thead>
@@ -268,15 +268,15 @@
                             </div>
 
                             <div class="sm:col-span-1 md:col-span-2 bg-danger-100 p-2 mt-2">
-                                Seleccione Contratista
+                                Contratista
                             </div>
                             <div class="sm:col-span-1 md:col-span-4 bg-neutral-600 p-2 mt-2">
                                 <select data-te-select-init data-te-select-filter="true" id="contratista_id"
                                     name="empresa_id">
                                     <option class="text-secondary">Seleccione Empresa Contratista</option>
-                                    @foreach ($empresas as $empresa)
+                                    @foreach ($empresasE as $empresa)
                                         <option class="text-primary" value="{{ $empresa->id }}">
-                                            {{ $empresa->nombre }}</option>
+                                            {{ $empresa->razon_social }}</option>
                                     @endforeach
                                 </select>
                             </div>

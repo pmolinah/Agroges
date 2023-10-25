@@ -6,19 +6,22 @@ use Livewire\Component;
 use App\Models\envase;
 use App\Models\empresa;
 use App\Models\cuentaenvase;
-
+use App\Models\color;
 
 class Index extends Component
 {
     public $envase=array();
     public $envEdit=array();
-    public $envase_id,$empresa_id,$saldo,$observacion;
+    public $envase_id,$empresa_id,$saldo=0,$observacion;
     public $exportadoras;
     public $cuentaenvases;
     public $modal=false;
     public $exportadora,$envaseID,$envaseNombre,$cuentaID;
+    public $CantidadEnvaseColor=array();
+    public $coloresNombres=array();
 
     public function guardarEnvase(){
+        dd($this->CantidadEnvaseColor);
         cuentaenvase::create([
             'empresa_id'=>$this->empresa_id,
             'envase_id'=>$this->envase_id,
@@ -74,6 +77,7 @@ class Index extends Component
         $this->envase=envase::all();
         $this->exportadoras=empresa::where('tipo_id',4)->get();
         $this->cuentaenvases=cuentaenvase::all();
-        return view('livewire.cuenta-corriente.index');
+        $colores=color::all();
+        return view('livewire.cuenta-corriente.index',compact('colores'));
     }
 }

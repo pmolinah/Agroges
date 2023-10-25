@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('envase_id')->references('id')->on('envases');
             $table->integer('saldo')->unsigned();
             $table->string('observacion',100)->nullable();
+            $table->bigInteger('campo_id')->unsigned();
+            $table->foreign('campo_id')->references('id')->on('campos');
             
         });
     }

@@ -21,8 +21,9 @@ return new class extends Migration
             $table->BigInteger('adm_id')->unsigned();
             $table->foreign('adm_id')->references('id')->on('users');
             $table->float('superficie');
-            $table->BigInteger('capataz_id')->unsigned();
-            $table->foreign('capataz_id')->references('id')->on('users');
+            $table->string('codigoSag',10);
+            // $table->BigInteger('capataz_id')->unsigned();
+            // $table->foreign('capataz_id')->references('id')->on('users');
            });
     }   
     /**

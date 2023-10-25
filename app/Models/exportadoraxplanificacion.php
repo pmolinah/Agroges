@@ -19,14 +19,17 @@ class exportadoraxplanificacion extends Model
         'KilosRecolectados',
     ];
 
+    public function empresa(){
+        return $this->belongsTo(empresa::class);
+    }
     public function planificacioncosecha()
     {
         return $this->belongsTo(planificacioncosecha::class);
     }
-    public function empresa(){
-        return $this->belongsTo(empresa::class);
-    }
     public function cuentaenvase(){
         return $this->belongsTo(cuentaenvase::class);
+    }
+    public function desgloseenvase(){
+        return $this->hasMany(desgloseenvase::class);
     }
 }
