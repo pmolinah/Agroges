@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('cuentaenvase_id')->unsigned();
             $table->foreign('cuentaenvase_id')->references('id')->on('cuentaenvases');
             $table->integer('envasesUtilizadosReales')->unsigned()->nullable();
-            $table->integer('guiaDespado')->unsigned()->nullable();
+            $table->integer('guiaDespacho')->unsigned()->nullable();
 
         });
     }

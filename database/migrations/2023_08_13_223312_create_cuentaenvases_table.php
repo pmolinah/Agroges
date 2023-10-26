@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->bigInteger('envase_id')->unsigned();
             $table->foreign('envase_id')->references('id')->on('envases');
-            $table->integer('saldo')->unsigned();
+            $table->integer('saldo');
             $table->string('observacion',100)->nullable();
             $table->bigInteger('campo_id')->unsigned();
             $table->foreign('campo_id')->references('id')->on('campos');

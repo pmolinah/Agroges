@@ -84,6 +84,7 @@ Route::get('/', function () {
 
    //rutas de Guias
    Route::get('/Guias/index',[GuiasController::class,'index'])->name('Guias.index'); 
+   Route::get('/Guias/show',[GuiasController::class, 'show'])->name('Guias.show');
     
     //rutas de parametros de sistema
     Route::get('/Parametros/Index',[ParametrosController::class,'index'])->name('Parametros.index');

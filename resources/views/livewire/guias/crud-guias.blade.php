@@ -18,7 +18,9 @@
                 <option>Seleccionar Empresa Exportadora</option>
                 @foreach ($planificacioncosecha as $planificacion)
                     @foreach ($planificacion->exportadoraxplanificacion as $exportadora)
-                        <option value="{{ $exportadora->id}}">{{ $exportadora->empresa->razon_social }}</option>
+                        @if ($exportadora->guiaDespacho == NULL)
+                            <option value="{{ $exportadora->id}}">{{ $exportadora->empresa->razon_social }}</option>
+                        @endif
                     @endforeach
                 @endforeach
             </select>
@@ -45,6 +47,8 @@
                 </div>
                 <div class="col-span-3  text-right mt-1 border-dotted border-2 border-sky-500">
                         <input type="text" class="uppercase w-full p-2 text-center" value="{{$expplan->planificacioncosecha->cuartel->campo->empresa->razon_social}}">
+                        {{-- campo oculto para planificacioncosecha_id --}}
+                     
                 </div>
                 <div class="col-span-7">
                 </div>
@@ -120,7 +124,9 @@
                                 @foreach ($detalleCosecha as $detalle)
                                     <tr>
                                         <td class= "w-96 border-dotted w-full mt-3 border-2 border-sky-500">
-                                            {{$expplan->planificacioncosecha->plantacion->especie->especie}}, Especie.:{{$expplan->planificacioncosecha->plantacion->especie->variedad->variedad}}</td>
+                                            {{$expplan->planificacioncosecha->plantacion->especie->especie}}, Especie.:{{$expplan->planificacioncosecha->plantacion->especie->variedad->variedad}}
+                                            <input type="hidden" value="{{$expplan->planificacioncosecha->plantacion->especie_id}}" wire:model.defer="especie_id">
+                                        </td>
                                         <td class="text-center w-64 border-dotted w-full mt-3 border-2 border-sky-500">
                                             {{$detalle->tarjaenvase}}</td>
                                         <td class="text-center w-24 border-dotted w-full mt-3 border-2 border-sky-500">
@@ -134,7 +140,9 @@
                 </div>
                 <div class="col-span-10"></div>
                 <div class="mt-3 col-span-1 border-dotted border-2 border-sky-500">Total</div>
-                <div class="text-center mt-3 col-span-1 border-dotted border-2 border-sky-500">{{$sum}}</div>
+                <div class="text-center mt-3 col-span-1 border-dotted border-2 border-sky-500">{{$sum}}
+                <input type="hidden" value="{{$sum}}" wire:model.defer="cantidadkilos">
+                </div>
                 
                 <div class="text-center col-span-12 mt-4">
                     <h6 class="text-primary-500 text-3xl leading-tight">Detalle Envases</h6>
@@ -150,11 +158,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $sumar=0; @endphp
+                                @php $sumar=0; $envase; @endphp
                                 @foreach ($expplan->desgloseenvase as $detalleEnvase)
                                     <tr>
                                         <td class= "w-96 border-dotted w-full mt-3 border-2 border-sky-500">
-                                            {{$detalleEnvase->exportadoraxplanificacion->planificacioncosecha->envase->envase}}</td>
+                                            {{$detalleEnvase->exportadoraxplanificacion->planificacioncosecha->envase->envase}}
+                                            <input type="hidden" value="{{$detalleEnvase->exportadoraxplanificacion->planificacioncosecha->envase_id}}" wire:model.defer="envase_id">
+                                        </td>
                                         <td class="text-center w-64 border-dotted w-full mt-3 border-2 border-sky-500">
                                             {{$detalleEnvase->color->color}}</td>
                                         <td class="text-center w-24 border-dotted w-full mt-3 border-2 border-sky-500">
@@ -168,24 +178,33 @@
                 </div>
                 <div class="col-span-10"></div>
                 <div class="mt-3 col-span-1 border-dotted border-2 border-sky-500">Total</div>
-                <div class="text-center mt-3 col-span-1 border-dotted border-2 border-sky-500">{{$sumar}}</div>
+                <div class="text-center mt-3 col-span-1 border-dotted border-2 border-sky-500">{{$sumar}}
+                <input type="hidden" value="{{$sumar}}" wire:model.defer="cantidadEnvases">
+                </div>
             @endforeach
     </div>
     @if($visible)
         <div class="grid grid-cols-12 mt-8">
+            <div class="text-center col-start-4 col-span-5 mb-8 shadow-2xl">
+                <label class="font-bold">Observación Max 100 Caractéres<p>(Opcional)</p></label>
+                <textarea wire:model.defer="observacion" rows="3"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+            </div>
             <div class="col-start-1 col-span-5">
                 <button
-                    type="button" wire:click="generarGuia"
+                    type="button" wire:click="generarGuiaDespacho"
                     class="mb-2 block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                     Generar Guía de Despacho
                 </button>
             </div>
             <div class="col-start-7 col-span-12">
-                <button
-                    type="button" wire:click="editarGuia"
-                    class="mb-2 block w-full rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                    Generar Guía de Despacho
-                </button>
+                <a href="{{route('Cosechar.cosecha',$planificacion->id)}}">
+                    <button
+                        type="button" wire:click="editarGuia"
+                        class="mb-2 block w-full rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                        Editar Cosecha, Error de Información
+                    </button>
+                </a>
             </div>
         </div>
     @endif

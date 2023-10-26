@@ -16,7 +16,7 @@
                     style="background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png') ;">
                 <form action="{{route('Planificacion.store')}}" method="post">
                 @CSRF
-                    <div class="grid sm:grid-cols-1 md:grid-cols-2 shadow-xl">{{-- inicio 12 espacios --}}
+                    <div class="grid sm:grid-cols-1 md:grid-cols-12 shadow-xl">{{-- inicio 12 espacios --}}
 
                         <div class="sm:col-span-1 md:col-span-12 bg-neutral-100">
                             <h1 class="text-center mb-2 mt-0 text-5xl font-medium leading-tight text-primary">

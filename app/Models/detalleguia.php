@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class guia extends Model
+class detalleguia extends Model
 {
     use HasFactory;
-
     protected $fillable = [
+        'guia_id',
         'planificacioncosecha_id',
-        'empresa_id',
-        'numero',
-        'tipo',
-        'cantidadKilos',
-        'cantidadEnvases',
-        'fecha',
+        'especie_id',
+        'kilos',
         'observacion',
-        'envase_id',
+        'color_id',
     ];
 }

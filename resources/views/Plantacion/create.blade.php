@@ -108,7 +108,7 @@
                                                 <div class="mt-2 text-neutral-900">
 
                                                     <select 
-                                                        name="contratista_id" class="text-neutral-800 " id="empresa_id">
+                                                        name="contratista_id" class="text-neutral-900 border-dotted border-2 border-sky-500 p-2" id="empresa_id">
                                                         <option value=""><label
                                                                 class="block text-sm font-medium leading-6 text-neutral-900">Seleccione
                                                                 Responsable</label>
@@ -149,7 +149,7 @@
                                                     </label>
                                                     <div class="mt-2">
                                                         <select 
-                                                            name="especie_id" class="text-neutral-800 " id="especie_id">
+                                                            name="especie_id" class="text-neutral-900 border-dotted border-2 border-sky-500 p-2" id="especie_id">
                                                             <option value=""><label
                                                                     class="block text-sm font-medium leading-6 text-neutral-900">Seleccione
                                                                     Especie</label></option>
@@ -169,7 +169,7 @@
                                                     </label>
                                                     <div class="mt-2">
                                                         <select 
-                                                            name="variedad_id" class="text-neutral-800 "
+                                                            name="variedad_id" class="text-neutral-900 border-dotted border-2 border-sky-500 p-2"
                                                             id="empresa_id">
                                                             <option value=""><label
                                                                     class="block text-sm font-medium leading-6 text-neutral-900">Seleccione

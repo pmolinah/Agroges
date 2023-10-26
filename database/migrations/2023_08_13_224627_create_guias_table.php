@@ -16,11 +16,14 @@ return new class extends Migration
             $table->timestamps();
             $table->bigInteger('empresa_id')->unsigned();
             $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->bigInteger('numero')->unsigned()->nullable();
             $table->integer('tipo')->unsigned();
-            $table->bigInteger('cantidad')->unsigned();
-            $table->integer('numero')->unsigned();
-            $table->date('fecha');
-
+            $table->integer('cantidadKilos')->unsigned();
+            $table->integer('cantidadEnvases')->unsigned();
+            $table->datetime('fecha');
+            $table->string('observacion',100)->nullable();
+            $table->bigInteger('envase_id')->unsigned();
+            $table->foreign('envase_id')->references('id')->on('envases');
         });
     }
 

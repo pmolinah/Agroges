@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('envaseempresa_id')->references('id')->on('envaseempresas');
             $table->unsignedBigInteger('color_id');
             $table->foreign('color_id')->references('id')->on('colors');
-            $table->integer('stock')->unsigned();
+            $table->integer('stock');
         });
     }
 
