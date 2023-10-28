@@ -82,10 +82,14 @@ Route::get('/', function () {
     Route::get('/Reporte/{planificacioncosecha_id}/Cosecha',[CosechaController::class, 'ReporteCosecha'])->name('Reporte.cosecha');
     Route::get('/Reporte/{planificacioncosecha_id}/Cosecha/{contratista_id}/Contratista',[CosechaController::class, 'ReporteCosechaContratista'])->name('Reporte.cosecha.contratista');
 
-   //rutas de Guias
+   //rutas de Guias Despacho
    Route::get('/Guias/index',[GuiasController::class,'index'])->name('Guias.index'); 
    Route::get('/Guias/show',[GuiasController::class, 'show'])->name('Guias.show');
+   Route::get('Guia/{guia_id}/Despacho',[GuiasController::class, 'GuiaDespacho'])->name('Guia.despacho');
     
+    // rutas de guias de recepcion    //
+    Route::get('/Guias/Recepcion',[GuiasController::class, 'GuiaRecepcion'])->name('Guias.recepcion');        
+
     //rutas de parametros de sistema
     Route::get('/Parametros/Index',[ParametrosController::class,'index'])->name('Parametros.index');
 

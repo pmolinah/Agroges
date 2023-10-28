@@ -12,6 +12,7 @@ use App\Models\Tipo;
 use App\Models\tipousuario;
 use App\Models\variedad;
 use App\Models\especie;
+use App\Models\color;
 use Illuminate\Support\Facades\Hash;
 
 class Roleseeder extends Seeder
@@ -30,6 +31,10 @@ class Roleseeder extends Seeder
 
 
         //
+        color::create(['color'=>'AZUL']);
+        color::create(['color'=>'AMARILLO']);
+        color::create(['color'=>'ROJO']);
+        color::create(['color'=>'GRIS']);
        
         $role1= Role::create(['name'=>'Admin','description'=>'Rol con todas los permiso del sistema, Administrador de Sistema']);
         $role2= Role::create(['name'=>'Capat','description'=>'Rol capataz']);

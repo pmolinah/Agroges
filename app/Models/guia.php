@@ -20,4 +20,14 @@ class guia extends Model
         'observacion',
         'envase_id',
     ];
+
+    public function empresa(){
+        return $this->belongsTo(empresa::class);
+    }
+    public function planificacioncosecha(){
+        return $this->belongsTo(planificacioncosecha::class);
+    }
+    public function envase(){
+        return $this->belongsTo(envase::class);
+    }
 }
