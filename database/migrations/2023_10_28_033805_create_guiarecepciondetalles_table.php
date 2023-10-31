@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('envase_id')->references('id')->on('envases');
             $table->bigInteger('color_id')->unsigned();
             $table->foreign('color_id')->references('id')->on('colors');
-            $table->integer('observacion')->unsigned();
+            // $table->integer('observacion')->unsigned();
             $table->bigInteger('especie_id')->unsigned();
             $table->foreign('especie_id')->references('id')->on('especies');
             $table->float('kilos')->unsigned();

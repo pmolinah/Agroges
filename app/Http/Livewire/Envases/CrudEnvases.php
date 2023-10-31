@@ -94,7 +94,7 @@ class CrudEnvases extends Component
   
     public function render()
     {
-        
+     
         $envase=envase::all();
         $envase_campo=envaseempresa::where('campo_id',$this->campo_id)->paginate(5);
         $empresas=empresa::where('tipo_id',1)->get();

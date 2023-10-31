@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->integer('numero')->unsigned();
             $table->date('fecha');
+            $table->integer('emitida')->unsigned()->nullable();
+
         });
     }
 

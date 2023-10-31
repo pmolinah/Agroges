@@ -121,14 +121,7 @@
             {{-- fin contenido --}}
         </div>
        
-        {{-- <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-            id="tabs-messages" role="tabpanel" aria-labelledby="tabs-profile-tab">
-            Tab 3 content
-        </div>
-        <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-            id="tabs-contact" role="tabpanel" aria-labelledby="tabs-contact-tab">
-            Tab 4 content
-        </div> --}}
+        
     </div>
     {{-- fin --}}
 

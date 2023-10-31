@@ -9,7 +9,10 @@ class guiarecepcion extends Model
 {
     use HasFactory;
 protected $fillable =[
-
+    'campo_id',
+    'empresa_id',
+    'numero',
+    'fecha',
 ];
 
 public function guiarecepciondetalle(){

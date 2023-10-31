@@ -208,6 +208,18 @@
             </div>
         </div>
     @endif
+    <script>
+        window.addEventListener('GuiaDespachoOK', function(e) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Guía Generada...',
+                text: '{{ Session::get('success') }}',
+                timer: 8000,
+                showConfirmButton: false
+            });
+        });
+       
+    </script>
 </div>
                                     
 

@@ -13,6 +13,7 @@ use App\models\cuentaenvase;
 use App\Models\detallecuentaenvase;
 use App\Models\envaseempresa;
 use App\Models\desgloseenvasecampo;
+use Illuminate\Support\Facades\Session;
 use DateTime;
 class CrudGuias extends Component
 {
@@ -91,7 +92,7 @@ class CrudGuias extends Component
                         $campoDetalleDescuento=desgloseenvasecampo::where('color_id',$desgloseenvase->color_id)->where('envaseempresa_id',$campoDes->id)->decrement('stock',$desgloseenvase->stock);
                     }
                 }else{
-                    $campodescuento=envaseempresa::where('campo_id',$exportadoraxpla->cuentaenvase->campo_id)->where('envase_id',$exportadoraxpla->cuentaenvase->envase_id)->decrement('stock',$desgloseenvase->stock);
+                    //$campodescuento=envaseempresa::where('campo_id',$exportadoraxpla->cuentaenvase->campo_id)->where('envase_id',$exportadoraxpla->cuentaenvase->envase_id)->decrement('stock',$desgloseenvase->stock);
                     $campodescuentos=envaseempresa::where('campo_id',$exportadoraxpla->cuentaenvase->campo_id)->where('envase_id',$exportadoraxpla->cuentaenvase->envase_id)->get();
                     $this->saldoNegativo=0;
                     $this->saldoNegativo=$this->saldoNegativo - $desgloseenvase->stock;
@@ -103,7 +104,7 @@ class CrudGuias extends Component
                             'stock'=>$this->saldoNegativo,
                         ]);   
                     }
-                    $cuentaEnvase=cuentaenvase::where('id',$exportadoraxpla->cuentaenvase_id)->decrement('saldo',$desgloseenvase->stock);
+                    //$cuentaEnvase=cuentaenvase::where('id',$exportadoraxpla->cuentaenvase_id)->decrement('saldo',$desgloseenvase->stock);
                     $this->saldoNegativo=0;
                     $this->saldoNegativo=$this->saldoNegativo - $desgloseenvase->stock;
                     detallecuentaenvase::create([
@@ -113,23 +114,18 @@ class CrudGuias extends Component
                     ]);
                 }
             }
-              
-
-            // $cuentaEnvases=cuentaenvase::with('detallecuentaenvase')->where('id',$exportadoraxpla->cuentaenvase_id)->get();
-            // foreach($cuentaEnvases as $cuentaEnvase){
-            //     foreach($cuentaEnvase->detallecuentaenvase as $detalleCuentaEnvase){
-                    
-            //     }
-            // }
         }
+       
+        Session::flash('success', 'Guia Guardada Correctamente...N°'.$saveGuia->id+1000);
+        return redirect()->route('Guias.index');
     }
+           
 
     public function render()
     {
     
         $planificacioncosecha=planificacioncosecha::with('exportadoraxplanificacion.desgloseenvase','contraistaxplanificacion','detallecosecha')->whereBetween('updated_at', [$this->fechainicial . ' 00:00:00', $this->fechafinal . ' 23:59:59'])->get();
-            //whereRaw("DATE(updated_at) = ?", [$this->fechainicial])->get();
-        
+                    
         return view('livewire.guias.crud-guias',compact('planificacioncosecha'));
     }
 }
