@@ -11,26 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('guiarecepcions', function (Blueprint $table) {
+        Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->bigInteger('campo_id')->unsigned();
-            $table->foreign('campo_id')->references('id')->on('campos');
+            $table->string('patente',6);
+            $table->integer('tipovehiculo_id');
             $table->bigInteger('empresa_id')->unsigned();
             $table->foreign('empresa_id')->references('id')->on('empresas');
-            $table->integer('numero')->unsigned();
-            $table->date('fecha');
+            $table->bigInteger('conductor_id')->unsigned();
+            $table->foreign('conductor_id')->references('id')->on('Users');
+            $table->integer('color')->nullable();
             $table->string('observacion',100)->nullable();
-            $table->integer('emitida')->unsigned()->nullable();
+            $table->string('marca',50)->nullable();
+            $table->integer('anio')->nullable();
+            $table->integer('tipoVehiculo')->nullable();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('guiarecepcions');
+        Schema::dropIfExists('vehiculos');
     }
 };
