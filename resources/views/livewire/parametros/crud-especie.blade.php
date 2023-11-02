@@ -82,14 +82,14 @@
                     <div class="grid sm:grid-cols-1 md:grid-cols-3">
                         <div class="text-neutral-50 mt-11 ml-4">Distancia Plantación</div>
                         <div class="relative p-4 text-neutral-50 text-center">
-                        M
+                        Sobre Hilera
                             <div class="relative mb-3" data-te-input-wrapper-init>
                                 <input type="text" wire:model.defer="metros2"
                                     class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
                             </div>
                         </div>
                         <div class="relative p-4 text-neutral-50 text-center">
-                        M
+                        Entre Hilera
                             <div class="relative mb-3" data-te-input-wrapper-init>
                                 <input type="text" wire:model.defer="distanciaPlanta"
                                     class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
@@ -150,7 +150,7 @@
 
                                     <th scope="col" class=" px-6 py-4">Especie</th>
                                     <th scope="col" class=" px-6 py-4">Variedad</th>
-                                    <th scope="col" class=" px-6 py-4">M2</th>
+                                    {{-- <th scope="col" class=" px-6 py-4">M2</th> --}}
                                     {{-- <th scope="col" class=" px-6 py-4">Distancia</th> --}}
                                     <th scope="col" class="hidden sm:hidden md:block xl:block px-6 py-4">Observacion
                                     </th>
@@ -163,7 +163,7 @@
 
                                         <td class="whitespace-nowrap">{{ $especie->especie }}</td>
                                         <td class="whitespace-nowrap">{{ $especie->variedad->variedad }}</td>
-                                        <td class="whitespace-nowrap">{{ $especie->metros2 * $especie->distanciaPlanta }}</td>
+                                        {{-- <td class="whitespace-nowrap">{{ $especie->metros2 * $especie->distanciaPlanta }}</td> --}}
                                         {{-- <td class="whitespace-nowrap">{{ $especie->distanciaPlanta }}</td> --}}
                                         <td class="whitespace-nowrap hidden sm:hidden md:block xl:block  px-6 py-11">
                                             {{ $especie->observacion }}</td>

@@ -35,9 +35,9 @@
                                     <th>Campo</th>
                                     <th>Cuartel</th>
                                     <th>Especie</th>
-                                    <th>Cantidad/Máxima/plantar</th>
-                                    <th>Cantidad/Plantada</th>
-                                    <th>Contratista/Ejecutor</th>
+                                    {{-- <th>Cantidad/Máxima/plantar</th> --}}
+                                    <th>Densidad de Plantación/Ha</th>
+                                    {{-- <th>Contratista/Ejecutor</th> --}}
                                     <th>Observacion</th>
                                     <th>Eliminar</th>
                                     <th>Editar</th>
@@ -52,9 +52,9 @@
                                         <td>{{ $Plantación->cuartel->campo->campo}}</td>
                                         <td>{{ $Plantación->cuartel->observaciones }}</td>
                                         <td>{{ $Plantación->especie->especie }}</td>
-                                        <td>{{ $Plantación->cantidadPlantas }}</td>
+                                        {{-- <td>{{ $Plantación->cantidadPlantas }}</td> --}}
                                         <td>{{ $Plantación->cantidadPlantada }}</td>
-                                        <td>{{ $Plantación->contratista_id }}</td>
+                                        {{-- <td>{{ $Plantación->contratista_id }}</td> --}}
                                         <td>{{ $Plantación->observacion }}</td>
                                         <td> 
                                             

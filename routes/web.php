@@ -12,7 +12,8 @@ use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\CuentaCorrienteController;
 use App\Http\Controllers\GuiasController;
 use App\Http\Controllers\CertificacionController;
-use App\Http\Livewire\Vehiculos\Crudvehiculos;
+use App\Http\Controllers\VehiculosController;
+
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -105,7 +106,7 @@ Route::get('/', function () {
     Route::post('store/cuentacorriente/campo',[CuentaCorrienteController::class, 'storeCampo'])->name('CuenEnvaseCampo.store');
     
     //rutas de Administración de Vehiculos
-    Route::get('/Administracion/Vehiculos',[Crudvehiculos::class, 'render'])->name('Vehiculos.index');
+    Route::get('/Administracion/Vehiculos',[VehiculosController::class, 'index'])->name('Vehiculos.index');
 
     
     //Rutas de Organización

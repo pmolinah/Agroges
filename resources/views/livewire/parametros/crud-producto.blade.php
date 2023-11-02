@@ -93,13 +93,17 @@
 
                             </div>
                         </div>
-                         <div class="relative p-4 text-neutral-50">
-                            Tipo
-                            <div class="relative mb-3" data-te-input-wrapper-init>
-                                <input type="text" wire:model.defer="tipo"
-                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                          <div class="relative p-4 text-neutral-50">
+                            <select wire:model.defer="tipo"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                id="proveedor_id" name="tipo">
 
-                            </div>
+                                <option class="text-neutral-900">Seleccione tipo</option>
+                               
+                                    <option class="text-primary" value="1">Fertilizante</option>
+                                       
+                           
+                            </select>
                         </div>
 
                         <div class="relative p-4 text-neutral-50">

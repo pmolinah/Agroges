@@ -20,11 +20,11 @@ return new class extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->bigInteger('conductor_id')->unsigned();
             $table->foreign('conductor_id')->references('id')->on('Users');
-            $table->integer('color')->nullable();
+            $table->string('color',20)->nullable();
             $table->string('observacion',100)->nullable();
             $table->string('marca',50)->nullable();
             $table->integer('anio')->nullable();
-            $table->integer('tipoVehiculo')->nullable();
+           
         });
     }
 

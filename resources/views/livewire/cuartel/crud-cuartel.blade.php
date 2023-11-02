@@ -121,7 +121,7 @@
                         <div class="relative p-4 text-neutral-50">
                             Superfice en Hectáreas
                             <div class="relative mb-3" data-te-input-wrapper-init>
-                                <input type="text" wire:model.defer="superficie"
+                                <input type="number" wire:model.defer="superficie"
                                     class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
 
                             </div>
