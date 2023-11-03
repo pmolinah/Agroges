@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\guia;
+use App\Models\guiarecepcion;
 use App\Models\exportadoraxplanificacion;
 use App\Models\detallecosecha;
 
@@ -47,7 +48,8 @@ class GuiasController extends Controller
     public function show()
     {
         $guias=guia::all();
-        return view('Guia.GuiasShow',compact('guias'));
+        $guiasRecepcion=guiarecepcion::where('emitida',1)->get();
+        return view('Guia.GuiasShow',compact('guias','guiasRecepcion'));
     }
 
     public function GuiaDespacho($guia_id){
@@ -115,11 +117,20 @@ class GuiasController extends Controller
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(13, 4, 'Giro', 1, 'C', 1, 0, 11, '', true);
             PDF::SetFillColor(253, 254, 254);
-            PDF::MultiCell(90, 4, 'Falta', 1, 'C', 1, 0, '', '', true);
+            PDF::MultiCell(90, 4, $GuiaDespacho->empresa->giro, 1, 'C', 1, 0, '', '', true);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(13, 4, 'Código', 1, 'C', 1, 0, 114, '', true);
             PDF::SetFillColor(253, 254, 254);
             PDF::MultiCell(70, 4, $GuiaDespacho->empresa->email, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(16, 4, 'Conductor', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(90, 4, $GuiaDespacho->conductor->name, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Patente', 1, 'C', 1, 0, 114, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(70, 4, $GuiaDespacho->vehiculo->patente, 1, 'C', 1, 0, '', '', true);
             PDF::Ln(3);
             PDF::SetFont('Helvetica', '', 10);
             PDF::Write(0, '_______________________________________________________________________________________________');

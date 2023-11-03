@@ -163,11 +163,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="sm:col-span-1 md:col-span-2">
+                                                {{-- <div class="sm:col-span-1 md:col-span-2">
                                                     <label for="last-name"
                                                         class="block text-sm font-medium leading-6 text-neutral-900 font-bold">Variedad
-                                                    </label>
-                                                    <div class="mt-2">
+                                                    </label> --}}
+                                                    {{-- <div class="mt-2">
                                                         <select 
                                                             name="variedad_id" class="text-neutral-900 border-dotted border-2 border-sky-500 p-2"
                                                             id="empresa_id">
@@ -181,8 +181,8 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
-                                                </div>
+                                                    </div> --}}
+                                                {{-- </div> --}}
                                             </div>
 
                                             <div class="grid sm:cols-1 md:grid-cols-4 mt-6 gap-x-2">

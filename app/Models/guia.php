@@ -19,6 +19,8 @@ class guia extends Model
         'fecha',
         'observacion',
         'envase_id',
+        'vehiculo_id',
+        'conductor_id',
     ];
 
     public function empresa(){
@@ -29,5 +31,11 @@ class guia extends Model
     }
     public function envase(){
         return $this->belongsTo(envase::class);
+    }
+    public function vehiculo(){
+        return $this->belongsTo(vehiculo::class);
+    }
+    public function conductor(){
+        return $this->belongsTo(User::class);
     }
 }

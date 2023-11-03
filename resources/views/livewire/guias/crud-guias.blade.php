@@ -103,9 +103,34 @@
                 <div class="col-span-1 mt-2 p-1">
                     <label class="border-solid border-2 border-sky-500 text-xl p-1 font-medium leading-tigh">Giro.................:</label>
                 </div>
-                <div class="col-span-4  text-right mt-1 border-dotted border-2 border-sky-500">
-                    <input type="text" class="uppercase w-full p-2 text-left" value="">
+                <div class="col-span-7  text-right mt-1 border-dotted border-2 border-sky-500">
+                    <input type="text" class="uppercase w-full p-2 text-left" value="{{$expplan->empresa->giro}}">
                 </div>
+                <div class="col-span-6 p-2 ml-1 mt-2 border-dotted border-2 border-sky-500">
+                    Conductor
+                    <select wire:model.defer="conductor_id" class=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <option></option>
+                        @foreach ($conductores as $conductor)
+                        
+                                <option value="{{ $conductor->id}}">{{ $conductor->name }}</option>
+                        
+                        
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-span-6 p-2 ml-1 mt-2 border-dotted border-2 border-sky-500">
+                Patente Vehiculo
+                    <select wire:model.defer="vehiculo_id" class=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <option></option>
+                        @foreach ($vehiculos as $vehiculo)
+                        
+                                <option value="{{ $vehiculo->id}}">{{ $vehiculo->patente }}</option>
+                        
+                        
+                        @endforeach
+                    </select>
+                </div>
+               
                 <div class="text-center col-span-12 mt-4">
                     <h6 class="text-primary-500 text-3xl leading-tight">Detalle Kilos</h6>
                 </div>

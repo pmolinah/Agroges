@@ -13,6 +13,8 @@ use App\models\cuentaenvase;
 use App\Models\detallecuentaenvase;
 use App\Models\envaseempresa;
 use App\Models\desgloseenvasecampo;
+use App\Models\vehiculo;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use DateTime;
 class CrudGuias extends Component
@@ -35,6 +37,8 @@ class CrudGuias extends Component
     public $especie_id=0;
     public $fechaactual;
     public $numeroGuia=0;
+    public $conductor_id;
+    public $vehiculo_id;
 
     public function mount()
     {
@@ -63,6 +67,8 @@ class CrudGuias extends Component
                 'fecha'=>$this->fechaActual,
                 'observacion'=>$this->observacion,
                 'envase_id'=>$exportadoraxpla->planificacioncosecha->envase_id,
+                'conductor_id'=>$this->conductor_id,
+                'vehiculo_id'=>$this->vehiculo_id,
             ]);
          
             $saveGuia->update(['numero' => $saveGuia->id+1000]);
@@ -125,7 +131,8 @@ class CrudGuias extends Component
     {
     
         $planificacioncosecha=planificacioncosecha::with('exportadoraxplanificacion.desgloseenvase','contraistaxplanificacion','detallecosecha')->whereBetween('updated_at', [$this->fechainicial . ' 00:00:00', $this->fechafinal . ' 23:59:59'])->get();
-                    
-        return view('livewire.guias.crud-guias',compact('planificacioncosecha'));
+        $vehiculos=vehiculo::all();
+        $conductores=User::where('tipo_id',6)->get();          
+        return view('livewire.guias.crud-guias',compact('planificacioncosecha','conductores','vehiculos'));
     }
 }

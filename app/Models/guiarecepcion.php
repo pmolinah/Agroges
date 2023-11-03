@@ -13,10 +13,20 @@ protected $fillable =[
     'empresa_id',
     'numero',
     'fecha',
+    'vehiculo_id',
+    'conductor_id',
+    'observacion',
+    'emitida',
 ];
 
 public function guiarecepciondetalle(){
     return $this->hasMany(guiarecepciondetalle::class);
+}
+public function campo(){
+    return $this->belongsTo(campo::class);
+}
+public function empresa(){
+    return $this->belongsTo(empresa::class);
 }
 
 }

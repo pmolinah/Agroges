@@ -90,7 +90,8 @@ Route::get('/', function () {
    Route::get('Guia/{guia_id}/Despacho',[GuiasController::class, 'GuiaDespacho'])->name('Guia.despacho');
     
     // rutas de guias de recepcion    //
-    Route::get('/Guias/Recepcion',[GuiasController::class, 'GuiaRecepcion'])->name('Guias.recepcion');        
+    Route::get('/Guias/Recepcion',[GuiasController::class, 'GuiaRecepcion'])->name('Guias.recepcion');     
+    Route::get('/Guias/{id}/Recepcion',[GuiasController::class, 'GuiaRecepcionEmitir'])->name('Guia.RecepcionEmitir');    
 
     //rutas de parametros de sistema
     Route::get('/Parametros/Index',[ParametrosController::class,'index'])->name('Parametros.index');

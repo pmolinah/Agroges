@@ -11,13 +11,18 @@ use App\Models\especie;
 use App\Models\guiarecepcion;
 use App\Models\observacion;
 use App\Models\guiarecepciondetalle;
+use App\Models\vehiculo;
+use App\Models\User;
+use App\Models\envaseempresa;
+use App\Models\cuentaenvase;
+use App\Models\detallecuentaenvase;
 use Illuminate\Support\Facades\Session;
 use Date;
 
 class CrudGuiasRecepcion extends Component
 {
     public $fechaGuia,$NombreCampo,$DireccionCampo,$campo_id,$exportadora_id,$Cantidad;
-    public $rutExportadora,$razonSocialExportadora,$direccionExportadora,$comunaExportadora,$emailExportadora;
+    public $rutExportadora,$razonSocialExportadora,$direccionExportadora,$comunaExportadora,$emailExportadora,$giroExportadora,$conductor_id,$vehiculo_id;
     public $especie_id,$observacion,$envase_id,$color_id,$kilos;
     public $guiarecepciondetalles=array();
     public $visible=false;
@@ -33,6 +38,9 @@ class CrudGuiasRecepcion extends Component
     public $conteo;
     public $i=0,$j=0;
     public $matEnvCol=array();
+    public $detCuenta,$detGuia;
+    public $valorNegativo;
+
     public function SeleccionCampo_id(){
         $datoCampo=campo::where('id',$this->campo_id)->get();
         foreach($datoCampo as $campo){
@@ -73,6 +81,8 @@ class CrudGuiasRecepcion extends Component
                 'empresa_id'=>$this->exportadora_id,
                 'numero'=>0,
                 'fecha'=>$this->fechaGuia,
+                'conductor_id'=>$this->conductor_id,
+                'vehiculo_id'=>$this->vehiculo_id,
             ]);
             $guiaRecepcion->update(['numero'=>$guiaRecepcion->id+1000]);
             $this->numeroGuiaRecepcion=$guiaRecepcion->id+1000;
@@ -117,12 +127,7 @@ class CrudGuiasRecepcion extends Component
                     $this->i++;
                 }
         }
-                    
-                      
-
-
-       
-
+   
     }
 
     public function AgregarLinea(){
@@ -227,9 +232,73 @@ class CrudGuiasRecepcion extends Component
          // fin de resumenes
     }
 
+    public function generarGuiaRecepcion(){
+        //dd($this->NumGuiaRec);
+        $detalleGuiaRecepcion=guiarecepciondetalle::where('guiarecepcion_id',$this->NumGuiaRec)->get(); //todas las filas de la guia de recepcion
+        $guiaRep=guiarecepcion::where('id',$this->NumGuiaRec)->update(['conductor_id'=>$this->conductor_id,'vehiculo_id'=>$this->vehiculo_id,'observacion'=>$this->observacion,'emitida'=>1]);
+        foreach($detalleGuiaRecepcion as $dgrEnvID){ //filas de guia de recepcion
+            $buscarCuenta=cuentaenvase::where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('envase_id',$dgrEnvID->envase_id)->count();
+            $buscarEnv=cuentaenvase::where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('envase_id',$dgrEnvID->envase_id)->get();
+          
+            if($buscarCuenta>0){
+                
+                foreach($buscarEnv as $CuentaID){
+                    $buscarColor=detallecuentaenvase::where('cuentaenvase_id',$CuentaID->id)->where('color_id',$dgrEnvID->color_id)->count();
+                    $buscarColorNegativo=detallecuentaenvase::where('cuentaenvase_id',$CuentaID->id)->where('color_id',$dgrEnvID->color_id)->get();
+                    foreach($buscarColorNegativo as $negativo){{
+                        $this->valorNegativo=$negativo->stock;
+                    }}
+                    if($buscarColor>0){
+                        $buscarColorSuma=detallecuentaenvase::where('cuentaenvase_id',$CuentaID->id)->where('color_id',$dgrEnvID->color_id)->increment('stock',$dgrEnvID->cantidadEnvase);
+                        $sumaCampo=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase);
+                        if($this->valorNegativo>=0){
+                            $sumaCuentaEnvase=cuentaenvase::where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('envase_id',$dgrEnvID->envase_id)->increment('saldo',$dgrEnvID->cantidadEnvase);
+                        }
+                    }else{
+                        detallecuentaenvase::create([
+                            'cuentaenvase_id'=>$CuentaID->id,
+                            'color_id'=>$dgrEnvID->color_id,
+                            'stock'=>$dgrEnvID->cantidadEnvase,
+                        ]);
+                        $sumaCampo=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase);
+                    }
+                }
+            }else{
+                $cuentaNueva=cuentaenvase::create([
+                    'campo_id'=>$this->campo_id,
+                    'empresa_id'=>$this->exportadora_id,
+                    'envase_id'=>$dgrEnvID->envase_id,
+                    'observacion'=>'Saldo Iniciado con Guia de Recepcion'.$this->NumGuiaRec,
+                    'saldo'=>$dgrEnvID->cantidadEnvase,
+                ]);
+                detallecuentaenvase::create([
+                    'cuentaenvase_id'=>$cuentaNueva->id,
+                    'color_id'=>$dgrEnvID->color_id,
+                    'stock'=>$dgrEnvID->cantidadEnvase,
+                ]);
+
+                $envaseEmpresa=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->count();
+                if($envaseEmpresa>0){
+                    $envaseEmpresa=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase);
+                }else{
+                    envaseempresa::create([
+                        'campo_id'=>$this->campo_id,
+                        'envase_id'=>$dgrEnvID->envase_id,
+                        'stock'=>$dgrEnvID->cantidadEnvase,
+                    ]);
+                }
+            }
+        }
+
+      Session::flash('success', 'Guia Guardada Correctamente..');
+        return redirect()->route('Guias.recepcion');
+    }
+
+
     public function render()
     {
-      
+        $vehiculos=vehiculo::all();
+        $conductores=User::where('tipo_id',6)->get();
         $empresas=empresa::where('tipo_id',1)->get();
         $exportadoras=empresa::where('tipo_id',4)->get();
         $campos=campo::all();
@@ -237,6 +306,6 @@ class CrudGuiasRecepcion extends Component
         $colores=color::all();
         $especies=especie::all();
         $observaciones=observacion::all();
-        return view('livewire.guias.crud-guias-recepcion',compact('empresas','exportadoras','campos','envases','colores','especies','observaciones'));
+        return view('livewire.guias.crud-guias-recepcion',compact('empresas','exportadoras','campos','envases','colores','especies','observaciones','vehiculos','conductores'));
     }
 }

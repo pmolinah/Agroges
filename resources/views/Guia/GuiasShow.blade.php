@@ -46,7 +46,7 @@
                             <tbody>
                                 @foreach ($guias as $guia)
                                     <tr>
-                                        <td>@if($guia->tipo==1) Despacho @else Recepción @endif</td>
+                                        <td>Despacho</td>
                                         <td>{{ $guia->numero }}</td>
                                         <td>{{ $guia->fecha}}</td>
                                         <td>{{ $guia->empresa->razon_social}}</td>
@@ -62,6 +62,30 @@
                                                 <a href="{{route('Guia.despacho',$guia->id)}}"
                                                     <button type="button"  class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-warning-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
                                                         <i class="fa-solid fa-magnifying-glass"></i> <!--&nbsp;&nbsp;&nbsp;</i> onclick="EditarCosecha({{$guia->id}})" -->
+                                                    </button>
+                                                </a>      
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                 @foreach ($guiasRecepcion as $guiaRecep)
+                                    <tr>
+                                        <td>Recepción</td>
+                                        <td>{{ $guiaRecep->numero }}</td>
+                                        <td>{{ $guiaRecep->updated_at}}</td>
+                                        <td>{{ $guiaRecep->empresa->razon_social}}</td>
+                                        <td>{{ $guiaRecep->campo->campo}}</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>{{ $guiaRecep->observacion}}</td>
+                                       
+                                        <td>      
+                                                <a href="{{route('Guia.RecepcionEmitir',$guiaRecep->id)}}"
+                                                    <button type="button"  class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-warning-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
                                                     </button>
                                                 </a>      
 
