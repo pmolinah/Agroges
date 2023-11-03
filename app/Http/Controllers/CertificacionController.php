@@ -16,15 +16,9 @@ class CertificacionController extends Controller
      */
     public function index()
     {
-        
-      
-        
-        $certificacioCuartel=cuartel::with('certificacionasignada','plantacion')->get();
-        $certificacioCampo=campo::with('certificacionasignada')->get();
-       
-       
-       
-        return view('Certificacion.index',compact('certificacioCuartel','certificacioCampo'));
+        $certificacionCuartel=cuartel::with('certificacionasignada','plantacion')->get();
+        $certificacionCampo=campo::with('certificacionasignada')->get();
+        return view('Certificacion.index',compact('certificacionCuartel','certificacionCampo'));
     }
 
     /**

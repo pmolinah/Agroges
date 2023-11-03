@@ -7,7 +7,7 @@
 
     <div class="grid grid-cols-12 py-5 px-5">
         <!-- edit rol formulario nuevo -->
-        <div class="xs:col-start-1 xs:col-end-12 md:col-start-3 md:col-span-8 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-secondary-900">
+        <div class="xs:col-start-1 xs:col-end-12 md:col-start-3 md:col-span-8 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-secondary-100 border-solid border-2 border-sky-500">
 
 
 

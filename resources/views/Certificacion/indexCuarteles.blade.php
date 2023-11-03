@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Listado de Campos Certificados') }}
+            {{ __('Listado de Cuarteles Certificados') }}
         </h2>
     </x-slot>
     <!-- Add Item Ml -->
@@ -17,45 +17,46 @@
                  
                     <div
                         class="grid grid-cols-1 md:lg:xl:grid-cols-12 group bg-white shadow-xl shadow-neutral-100 border p-5">
-                        <div class="col-span-8 border-solid border-2 border-sky-500 mr-4 p-1 shadow-2xl">
+                        <div class="col-span-8 border-dotted border-2 border-sky-500 mr-4 p-1 shadow-2xl">
                             <div class="p-3">
-                                <h5>Listado de Campos y Cuarteles</h5></label>
+                                <h5>Listado Cuarteles</h5></label>
                             </div>
                             <table id="myTable" class="display">
                                 <thead>
                                     <tr>
-                                    
-                                        <th>Campo</th>
+                          
+                                        <th>Cuartel</th>
                                         <th>Sup./Ha</th>
                               
                                         {{-- <th>Especie</th>
                                         <th>Variedad</th>
-                                        <th>Cantidad/Especie</th> --}}
-                                        <th>Cert./Vig./Venc.</th>
+                                        <th>Cantidad/Especie</th>
+                                        <th>Cert./Vig./Venc.</th> --}}
                                       
                                         <th>Asignar</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($certificacionCampo as $campo )
-                                        
+                                  
+                                
+                                    @foreach ($certificacionCuartel as $Cuartel)
                                         <tr>
-                                      
-                                            <td><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;&nbsp;{{$campo->campo}}</td>
-                                            <td>{{$campo->superficie}}</td>
-                                               
-{{--                                             
-                                            <td>N/A</td>
-                                            <td>N/A</td>
-                                            <td>N/A</td> --}}
-                                            <td>
-                                                @foreach ($campo->certificacionasignada as $campoCertificacion)
-                                                    {{$campoCertificacion->certificacion->certificacion}}
+                               
+                                            <td><i class="fa-solid fa-hashtag"></i>&nbsp;&nbsp;&nbsp;{{ $Cuartel->observaciones }}</td>
+                                            <td>{{ $Cuartel->superficie }}</td>
+                                                @foreach ($Cuartel->plantacion as $cuartelPlantacion )
+                                                                                                   
+                                                    {{-- <td>{{$cuartelPlantacion->especie->especie}}</td>
+                                                    <td>{{$cuartelPlantacion->especie->variedad->variedad}}</td>
+                                                    <td>{{$cuartelPlantacion->cantidadPlantada}}</td> --}}
+                                                    <td>
+                                                        @foreach ($Cuartel->certificacionasignada as $cuartelCertificacion )
+                                                            {{$cuartelCertificacion->certificacion->certificacion}}
+                                                        @endforeach
+                                                    </td>
                                                 @endforeach
-                                            </td>
-                                       
-                                          
+                                   
                                             <td>
                                                 <a href="">
                                                     <button type="button"
@@ -75,13 +76,11 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                
-                                   
 
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-span-4 border-solid border-2 border-sky-500 p-2 shadow-2xl">
+                        <div class="col-span-4 border-dotted border-2 border-sky-500 p-2 shadow-2xl">
                            @livewire('certificaciones.crud-certificacion')
                         </div>
 

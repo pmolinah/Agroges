@@ -29,8 +29,9 @@
                                     <th scope="col" class="px-6 py-4">Nombre</th>
                                     <th scope="col" class="px-6 py-4">Rut</th>
                                     <th scope="col" class="px-6 py-4">Razón Social</th>
+                                    <th scope="col" class="px-6 py-4">Tipo Empresa</th>
                                     <th scope="col" class="px-6 py-4">Editar</th>
-                                    <th scope="col" class="px-6 py-4">Inhabilitar</th>
+                                    {{-- <th scope="col" class="px-6 py-4">Inhabilitar</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,16 +42,17 @@
                                             <td class="whitespace-nowrap px-6 py-4">{{ $empresa->nombre }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $empresa->rut }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $empresa->razon_social }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $empresa->tipo->tipo }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">
                                                 <button type="button" class="inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]">
                                                 <a href="{{ route('Empresa.edit',$empresa->id)}}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>Editar </a>
                                                 </button>
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4">
+                                            {{-- <td class="whitespace-nowrap px-6 py-4">
                                                 <button type="button" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-700 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
                                                     Inhabilitar
                                                 </button>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>

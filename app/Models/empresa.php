@@ -24,6 +24,7 @@ class empresa extends Model
         'telefonoContacto',
         'emailContacto',
         'codigoproexp',
+        'giro',
     ];
 
     public function campo(){
@@ -31,6 +32,9 @@ class empresa extends Model
     }
     public function comuna(){
         return $this->belongsTo(comuna::class);
+    }
+    public function tipo(){
+        return $this->belongsTo(tipo::class);
     }
 }
 

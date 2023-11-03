@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('telefonoContacto',30)->nullable();
             $table->string('emailContacto',50)->nullable();
             $table->string('codigoproexp',10)->nullable();
+            $table->string('giro',100)->nullable();
 
            
         });

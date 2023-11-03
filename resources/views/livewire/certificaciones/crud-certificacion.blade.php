@@ -17,7 +17,7 @@
             <div class="">
 
                 <input type="text" wire:model="search"
-                    class="  peer block min-h-[auto]  rounded bg-info-300 py-[0.32rem] leading-[1.6] transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]"
+                    class="border-solid border-2 border-sky-500 p-2"
                     id="exampleFormControlInput1" />
             </div>
         </div>
