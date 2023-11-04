@@ -90,44 +90,45 @@ class CrudGuiasRecepcion extends Component
             $this->guiarecepciondetalles=guiarecepcion::with('guiarecepciondetalle')->where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('emitida',NULL)->where('fecha',$this->fechaGuia)->get();
             $this->visible=true;
         }
-        
-        $this->guiarecepciondetalles=guiarecepcion::with('guiarecepciondetalle')->where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('emitida',NULL)->where('fecha',$this->fechaGuia)->get();
-        foreach($this->guiarecepciondetalles as $GuiaID){
-            $this->guiaRepID=$GuiaID->id;
-        }
         //cuenta de envases por color
-        $envases=envase::all();
-        foreach($envases as $envase){
-            $colores=color::all();
-                foreach($colores as $color){
-                    $detalleGuiaRecepcion=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('envase_id',$envase->id)->where('color_id',$color->id)->count();
-                    if($detalleGuiaRecepcion>0){
-                        $suma=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('envase_id',$envase->id)->where('color_id',$color->id)->sum('cantidadEnvase');
-                        $this->matrizEnvaseColor[$this->i][$this->j]=$envase->envase;
-                        $this->matrizEnvaseColor[$this->i][$this->j+1]=$color->color;
-                        $this->matrizEnvaseColor[$this->i][$this->j+2]=$suma;
-                    }
-                    $this->i++;
-                }
-        }
-        //cuenta de frutas por especie
-        $especies=especie::all();
-        foreach($especies as $especie){
-            $observaciones=observacion::all();
-                foreach($observaciones as $observacion){
-                    $detalleGuiaRecepcionEspecie=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->count();
-                    if($detalleGuiaRecepcionEspecie>0){
-                        $suma=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->sum('kilos');
-                        if($especie->especie!='N/A' || $observacion->observacion!='Vacio'){
-                            $this->matrizEspecieKilos[$this->i][$this->j]=$especie->especie;
-                            $this->matrizEspecieKilos[$this->i][$this->j+1]=$observacion->observacion;
-                            $this->matrizEspecieKilos[$this->i][$this->j+2]=$suma;
+            $this->guiarecepciondetalles=guiarecepcion::with('guiarecepciondetalle')->where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('emitida',NULL)->where('fecha',$this->fechaGuia)->get();
+            foreach($this->guiarecepciondetalles as $GuiaID){
+                $this->guiaRepID=$GuiaID->id;
+            }
+            
+            $envases=envase::all();
+            foreach($envases as $envase){
+                $colores=color::all();
+                    foreach($colores as $color){
+                        $detalleGuiaRecepcion=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('envase_id',$envase->id)->where('color_id',$color->id)->count();
+                        if($detalleGuiaRecepcion>0){
+                            $suma=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('envase_id',$envase->id)->where('color_id',$color->id)->sum('cantidadEnvase');
+                            $this->matrizEnvaseColor[$this->i][$this->j]=$envase->envase;
+                            $this->matrizEnvaseColor[$this->i][$this->j+1]=$color->color;
+                            $this->matrizEnvaseColor[$this->i][$this->j+2]=$suma;
                         }
+                        $this->i++;
                     }
-                    $this->i++;
-                }
-        }
-   
+            }
+        //
+        //cuenta de frutas por especie
+            $especies=especie::all();
+            foreach($especies as $especie){
+                $observaciones=observacion::all();
+                    foreach($observaciones as $observacion){
+                        $detalleGuiaRecepcionEspecie=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->count();
+                        if($detalleGuiaRecepcionEspecie>0){
+                            $suma=guiarecepciondetalle::where('guiarecepcion_id',$this->guiaRepID)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->sum('kilos');
+                            if($especie->especie!='N/A' || $observacion->observacion!='Vacio'){
+                                $this->matrizEspecieKilos[$this->i][$this->j]=$especie->especie;
+                                $this->matrizEspecieKilos[$this->i][$this->j+1]=$observacion->observacion;
+                                $this->matrizEspecieKilos[$this->i][$this->j+2]=$suma;
+                            }
+                        }
+                        $this->i++;
+                    }
+            }
+        //
     }
 
     public function AgregarLinea(){

@@ -28,5 +28,12 @@ public function campo(){
 public function empresa(){
     return $this->belongsTo(empresa::class);
 }
+public function conductor(){
+    return $this->belongsTo(User::class);
+}
+public function vehiculo(){
+    return $this->belongsTo(vehiculo::class);
+}
+
 
 }

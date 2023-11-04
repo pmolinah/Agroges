@@ -8,6 +8,11 @@ use App\Models\guia;
 use App\Models\guiarecepcion;
 use App\Models\exportadoraxplanificacion;
 use App\Models\detallecosecha;
+use App\Models\envase;
+use App\Models\color;
+use App\Models\especie;
+use App\Models\observacion;
+use App\Models\guiarecepciondetalle;
 
 use PDF;
 class GuiasController extends Controller
@@ -17,6 +22,10 @@ class GuiasController extends Controller
      */
     public $lineas=1;
     public $suma=0;
+    public $matrizEspecieKilos=[];
+    public $matrizEnvaseColor=[];
+    public $i=0,$j=0;
+
     public function index()
     {
         return view('Guia.index');
@@ -221,9 +230,191 @@ class GuiasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function GuiaRecepcionEmitir($id)
     {
+        $guiasRecepcion=guiarecepcion::with('guiarecepciondetalle')->where('id',$id)->get();
+        foreach($guiasRecepcion as $guiaRecep){
+            PDF::SetTitle('Guía de Recepción');
+            PDF::AddPage();
+            //PDF::setPageFormat('letter');
+            PDF::Write(0, 'Guía de Recepción');
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(50, 4, 'Guía de Recepción N°', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(40, 4, $guiaRecep->numero, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Campo', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(75, 4, $guiaRecep->campo->campo, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Drección', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(75, 4, $guiaRecep->campo->direccion, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Comuna', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::SetFont('Helvetica', '', 7);
+            PDF::MultiCell(75, 4, $guiaRecep->campo->comuna->comuna, 1, 'R', 1, 0, '', '', true);
+
+            PDF::SetFont('Helvetica', '', 10);
+            PDF::Ln(2);
+            PDF::Write(0, '_______________________________________________________________________________________________');
+            PDF::Ln(5);
+            PDF::Write(0, 'Datos Exportadora');
+            PDF::Ln(5);
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Rut', 1, 'L', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(20, 4, $guiaRecep->empresa->rut, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(20, 4, 'Razón Social', 1, 'L', 1, 0, 43, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(80, 4, $guiaRecep->empresa->razon_social, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(14, 4, 'Teléfono', 1, 'L', 1, 0, 143, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(40, 4, $guiaRecep->empresa->telefono, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Comuna', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(90, 4, $guiaRecep->empresa->comuna->comuna, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Email', 1, 'C', 1, 0, 114, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(70, 4, $guiaRecep->empresa->email, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Giro', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(90, 4, $guiaRecep->empresa->giro, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Código', 1, 'C', 1, 0, 114, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(70, 4, $guiaRecep->empresa->email, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(16, 4, 'Conductor', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(90, 4, $guiaRecep->conductor->name, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(13, 4, 'Patente', 1, 'C', 1, 0, 114, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(70, 4, $guiaRecep->vehiculo->patente, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(3);
+            PDF::SetFont('Helvetica', '', 10);
+            PDF::Write(0, '_______________________________________________________________________________________________');
+            PDF::Ln(8);
+
+             //titulo detalle
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(8, 4, 'C/E', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(60, 4, 'Detalle', 1, 'C', 1, 0, 19, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(20, 4, 'Color', 1, 'C', 1, 0, 79, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(20, 4, 'Observación', 1, 'C', 1, 0, 99, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(69, 4, 'Especie', 1, 'C', 1, 0, 119, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(9, 4, 'Kilos', 1, 'C', 1, 0, 188, '', true);
+            PDF::Ln(4);
+
+           
+            foreach ($guiaRecep->guiarecepciondetalle as $detalle ){
+                PDF::SetFillColor(253, 254, 254);
+                PDF::MultiCell(8, 4, $detalle->cantidadEnvase, 1, 'C', 1, 0, 11, '', true);
+                PDF::MultiCell(60, 4, $detalle->envase->envase, 1, 'L', 1, 0, '', '', true);
+                PDF::MultiCell(20, 4, $detalle->color->color, 1, 'C', 1, 0, '', '', true);
+                PDF::MultiCell(20, 4, $detalle->observacion->observacion, 1, 'C', 1, 0, '', '', true);
+                PDF::MultiCell(69, 4, $detalle->especie->especie, 1, 'L', 1, 0, '', '', true);
+                PDF::MultiCell(9, 4, $detalle->kilos, 1, 'L', 1, 0, '', '', true);
+                PDF::Ln(4);
+            }
+
+            //cuenta de envases por color
+            $this->guiarecepciondetalles=guiarecepcion::where('id',$id)->get();
+            foreach($this->guiarecepciondetalles as $GuiaID){
+                $this->guiaRepID=$GuiaID->id;
+            }
+            PDF::Ln(12);
+
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(50, 4, 'Envase', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(31, 4, 'Color', 1, 'C', 1, 0, 61, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(11, 4, 'Suma', 1, 'C', 1, 0, 92, '', true);
+            PDF::Ln(4);
+            $envases=envase::all();
+            foreach($envases as $envase){
+                $colores=color::all();
+                    foreach($colores as $color){
+                        $detalleGuiaRecepcion=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('envase_id',$envase->id)->where('color_id',$color->id)->count();
+                        if($detalleGuiaRecepcion>0){
+                            $suma=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('envase_id',$envase->id)->where('color_id',$color->id)->sum('cantidadEnvase');
+                            PDF::SetFillColor(253, 254, 254);
+                            
+                            PDF::MultiCell(50, 4, $envase->envase, 1, 'L', 1, 0, 11, '', true);
+                            
+                            PDF::MultiCell(31, 4, $color->color, 1, 'C', 1, 0, 61, '', true);
+                          
+                            PDF::MultiCell(11, 4, $suma, 1, 'C', 1, 0, 92, '', true);
+                        }
+                        PDF::Ln(4);
+                    }
+            }
         //
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::Ln(-4);
+            PDF::MultiCell(50, 4, 'Especie', 1, 'C', 1, 0, 104, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(31, 4, 'Observación', 1, 'C', 1, 0, 154, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(12, 4, 'Kilos', 1, 'C', 1, 0, 185, '', true);
+            PDF::Ln(4);
+
+             //cuenta de frutas por especie
+            $especies=especie::all();
+            foreach($especies as $especie){
+                $observaciones=observacion::all();
+                    foreach($observaciones as $observacion){
+                        $detalleGuiaRecepcionEspecie=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->count();
+                        if($detalleGuiaRecepcionEspecie>0){
+                            $suma=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->sum('kilos');
+                            if($especie->especie!='N/A' || $observacion->observacion!='Vacio'){
+                              
+                                PDF::SetFillColor(253, 254, 254);
+                            
+                                PDF::MultiCell(50, 4, $especie->especie, 1, 'L', 1, 0, 104, '', true);
+                                
+                                PDF::MultiCell(31, 4, $observacion->observacion, 1, 'C', 1, 0, 154, '', true);
+                              
+                                PDF::MultiCell(12, 4, $suma, 1, 'C', 1, 0, 185, '', true);
+                            }
+                        }
+                        PDF::Ln(4);
+                        $this->i++;
+                    }
+            }
+        //
+
+
+
+            PDF::Output('Guia_recepcion_numero'.$guiaRecep->numero.'pdf');
+            
+        }
     }
 
     /**
