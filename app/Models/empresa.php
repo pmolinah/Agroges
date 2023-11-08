@@ -36,5 +36,8 @@ class empresa extends Model
     public function tipo(){
         return $this->belongsTo(tipo::class);
     }
+    public function devoluciontraspaso(){   
+        return $this->hasMany(devoluciontraspaso::class, 'destino_id')->where('destino_type', 'empresa');
+    }
 }
 

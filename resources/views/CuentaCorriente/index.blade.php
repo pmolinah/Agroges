@@ -195,7 +195,7 @@
                                             {{-- <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button> --}}
                                             <button type="submit"
                                                 class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar
-                                                Envases a Cuenta Corriente de la EXportadora.</button>
+                                                Envases a Cuenta Corriente de la Exportadora.</button>
                                         </div>
 
 
@@ -210,11 +210,12 @@
                                         <thead
                                             class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                                             <tr>
-                                                {{-- <th scope="col" class=" px-6 py-4">Id</th> --}}
+                                                <th scope="col" class=" px-6 py-4">Campo</th>
                                                 <th scope="col" class=" px-6 py-4">Exportadora</th>
                                                 <th scope="col" class=" px-6 py-4">Tipo Envase</th>
+                                                <th scope="col" class=" px-6 py-4">Detalle</th>
                                                 <th scope="col" class=" px-6 py-4">Stock</th>
-                                                <th scope="col" class=" px-6 py-4">Elimitar</th>
+                                                {{-- <th scope="col" class=" px-6 py-4">Elimitar</th> --}}
                                                 {{-- <th scope="col" class=" px-6 py-4">Editar</th> --}}
 
                                             </tr>
@@ -222,22 +223,41 @@
                                         <tbody>
                                             @foreach ($cuentaenvases as $cuentaenvase)
                                                 <tr class="border-b dark:border-neutral-500">
-                                                    {{-- <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ $cuentaenvase->id }}</td> --}}
+                                                    <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ $cuentaenvase->campo->campo }}</td>
                                                     <td class="whitespace-nowrap  px-6 py-4">
                                                         {{ $cuentaenvase->empresa->razon_social }}</td>
                                                     <td class="whitespace-nowrap  px-6 py-4">
                                                         {{ $cuentaenvase->envase->envase }}</td>
+
+                                                    <td class="px-6 py-4 border-solid border-2 border-sky-500">
+                                                            <table class="w-full border-solid border-2 border-sky-500">
+                                                                <thead>
+                                                                    <tr class="border-solid border-2 border-sky-500">
+                                                                        <th class="border-solid border-2 border-sky-500">Color</th>
+                                                                        <th class="border-solid border-2 border-sky-500">Cantidad</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($cuentaenvase->detallecuentaenvase as $desgloseEnvase )
+                                                                        <tr class="border-solid border-2 border-sky-500">
+                                                                            <th class="border-solid border-2 border-sky-500">{{$desgloseEnvase->color->color}}</th>
+                                                                            <th class="border-solid border-2 border-sky-500">{{$desgloseEnvase->stock}}</th>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                    </td>   
                                                     <td class="whitespace-nowrap  px-6 py-4">
                                                         {{ $cuentaenvase->saldo }}</td>
 
 
-                                                    <td class="whitespace-nowrap  px-6 py-4">
+                                                    {{-- <td class="whitespace-nowrap  px-6 py-4">
                                                         <center><button type="button" id="btnEliminar"
                                                                 data-valor="{{ $cuentaenvase->id }}"
                                                                 class="mb-1 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
                                                                     class="far fa-trash-alt"></i></button>
                                                         </center>
-                                                    </td>
+                                                    </td> --}}
 
                                                 </tr>
                                             @endforeach
@@ -449,39 +469,73 @@
                                 <div class="border-solid border-2 border-neutral-900 shadow-2xl">
 
 
-                                    <table class="w-full text-center text-sm font-light">
+                                    <table class="w-full text-center text-sm font-light border-solid border-2 border-sky-500">
                                         <thead
                                             class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-                                            <tr>
+                                            <tr class="border-solid border-2 border-sky-500">
                                              
                                                     
-                                                    <th scope="col" class=" px-6 py-4">Campo</th>
-                                                    <th scope="col" class=" px-6 py-4">Tipo Envase</th>
-                                                    <th scope="col" class=" px-6 py-4">Stock</th>
-                                                    <th scope="col" class=" px-6 py-4">Elimitar</th>
-                                                    {{-- <th scope="col" class=" px-6 py-4">Editar</th> --}}
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">Campo.</th>
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">Tipo Envase</th>
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">Desglose de Envases</th>
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">Stock</th>
+                                                    {{-- <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">Elimitar</th> --}}
+                                                    
                                               
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
                                                 @foreach ($envaseempresa as $empresaCampo )
+                                            <tr>
                                                     
-                                                    <th scope="col" class=" px-6 py-4">{{$empresaCampo->campo->campo}}</th>
-                                                    <th scope="col" class=" px-6 py-4">{{$empresaCampo->envase->envase}}</th>
-                                                    <th scope="col" class=" px-6 py-4">{{$empresaCampo->stock}}</th>
-                                                    <th scope="col" class=" px-6 py-4">
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">{{$empresaCampo->campo->campo}}</th>
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">{{$empresaCampo->envase->envase}}</th>
+                                                    <th class="px-6 py-4 border-solid border-2 border-sky-500">
+                                                            <table class="w-full border-solid border-2 border-sky-500">
+                                                                <thead>
+                                                                    <tr class="border-solid border-2 border-sky-500">
+                                                                        <th class="border-solid border-2 border-sky-500">Color</th>
+                                                                        <th class="border-solid border-2 border-sky-500">Cantidad</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @php $cant=0; @endphp
+                                                                    @foreach ($empresaCampo->desgloseenvasecampo as $desgloseEnvase )
+                                                                        <tr class="border-solid border-2 border-sky-500">
+                                                                            <th class="border-solid border-2 border-sky-500">{{$desgloseEnvase->color->color}}</th>
+                                                                            <th class="border-solid border-2 border-sky-500">{{$desgloseEnvase->stock}}</th>
+                                                                            @php $cant = $cant + $desgloseEnvase->stock; @endphp
+                                                                        </tr>
+                                                                    @endforeach
+                                                                        <tr class="border-solid border-2 border-sky-500">    
+                                                                            <th class="border-solid border-2 border-sky-500">-</th>
+                                                                            <th class="border-solid border-2 border-sky-500">-</th>
+                                                                        </tr>
+                                                                        <tr class="border-solid border-2 border-sky-500">    
+                                                                            <th class="border-solid border-2 border-sky-500">Total Envases de Campo</th>
+                                                                            <th class="border-solid border-2 border-sky-500">{{$cant}}</th>
+                                                                        <tr
+                                                                </tbody>
+                                                            </table>
+                                                    </th>    
+                                                            
+                                               
+                                                        
+                                           
+                                                   
+                                                    <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">{{$empresaCampo->stock}}</th>
+                                                    {{-- <th scope="col" class=" px-6 py-4 border-solid border-2 border-sky-500">
                                                          <center><button type="button" id="btnEliminarCampo"
                                                                 data-valor="{{ $empresaCampo->id }}"
                                                                 class="mb-1 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
                                                                     class="far fa-trash-alt"></i></button>
                                                         </center>
-                                                    </th>
-                                                    {{-- <th scope="col" class=" px-6 py-4">Editar</th> --}}
+                                                    </th> --}}
+                                                  
+                                            </tr>
                                                 @endforeach
 
-                                            </tr>
 
                                         </tbody>
                                     </table>

@@ -39,4 +39,7 @@ class campo extends Model
 
         return $this->hasMany(certificacionasignada::class);
     }
+    public function devoluciontraspaso(){   
+        return $this->hasMany(devoluciontraspaso::class, 'destino_id')->where('destino_type', 'campo');
+    }
 }

@@ -31,9 +31,9 @@ class cuartel extends Model
     public function capataz(){
         return $this->belongsTo(User::class);
     }
-    public function certificacionasignada(){
+    public function certificacionasignadacuartel(){
 
-        return $this->hasMany(certificacionasignada::class);
+        return $this->hasMany(certificacionasignadacuartel::class);
     }
 
 }

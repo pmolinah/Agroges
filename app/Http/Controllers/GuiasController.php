@@ -21,6 +21,7 @@ class GuiasController extends Controller
      * Display a listing of the resource.
      */
     public $lineas=1;
+    public $lineaNegativa=0;
     public $suma=0;
     public $matrizEspecieKilos=[];
     public $matrizEnvaseColor=[];
@@ -346,7 +347,7 @@ class GuiasController extends Controller
             foreach($this->guiarecepciondetalles as $GuiaID){
                 $this->guiaRepID=$GuiaID->id;
             }
-            PDF::Ln(12);
+            PDF::Ln(10);
 
             PDF::SetFont('Helvetica', '', 8);
             PDF::SetFillColor(229, 231, 233);
@@ -355,7 +356,7 @@ class GuiasController extends Controller
             PDF::MultiCell(31, 4, 'Color', 1, 'C', 1, 0, 61, '', true);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(11, 4, 'Suma', 1, 'C', 1, 0, 92, '', true);
-            PDF::Ln(4);
+            
             $envases=envase::all();
             foreach($envases as $envase){
                 $colores=color::all();
@@ -372,9 +373,11 @@ class GuiasController extends Controller
                             PDF::MultiCell(11, 4, $suma, 1, 'C', 1, 0, 92, '', true);
                         }
                         PDF::Ln(4);
+                        $this->lineaNegativa=$this->lineaNegativa-3;
                     }
             }
-        //
+        // 
+            PDF::Ln($this->lineaNegativa);
             PDF::SetFont('Helvetica', '', 8);
             PDF::SetFillColor(229, 231, 233);
             PDF::Ln(-4);
@@ -383,8 +386,7 @@ class GuiasController extends Controller
             PDF::MultiCell(31, 4, 'Observación', 1, 'C', 1, 0, 154, '', true);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(12, 4, 'Kilos', 1, 'C', 1, 0, 185, '', true);
-            PDF::Ln(4);
-
+            
              //cuenta de frutas por especie
             $especies=especie::all();
             foreach($especies as $especie){

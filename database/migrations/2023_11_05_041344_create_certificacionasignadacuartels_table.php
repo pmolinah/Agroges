@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certificacionasignadas', function (Blueprint $table) {
+        Schema::create('certificacionasignadacuartels', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->bigInteger('certificacion_id')->unsigned();
@@ -23,13 +23,11 @@ return new class extends Migration
             $table->string('observacion',100)->nullable();
             $table->string('rutaDocumento');
             $table->string('documento',100);
-            $table->bigInteger('campo_id')->unsigned();
-            $table->foreign('campo_id')->references('id')->on('campos');
+            $table->bigInteger('cuartel_id')->unsigned();
+            $table->foreign('cuartel_id')->references('id')->on('cuartels');
          
             $table->string('casaCertificadora',30);
             $table->integer('alertaTempranaCaducidad');
-
-
         });
     }
 
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certificacionasignadas');
+        Schema::dropIfExists('certificacionasignadacuartels');
     }
 };

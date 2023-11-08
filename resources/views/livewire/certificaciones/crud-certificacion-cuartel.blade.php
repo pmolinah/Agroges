@@ -1,5 +1,6 @@
 <div>
-    <form action="{{route('store.certificado')}}" method="post" enctype="multipart/form-data">
+    <div>
+    <form action="{{route('store.certificadoCuartel')}}" method="post" enctype="multipart/form-data">
     @CSRF
     <div class="grid grid-cols-1 md:lg:xl:grid-cols-12 group bg-white shadow-xl shadow-neutral-100 border p-5">
             {{-- ingreso --}}
@@ -8,8 +9,8 @@
                     <!--Modal body-->
                     <div class="grid grid-cols-10 border-solid border-2 border-sky-500 m-2 shadow-2xl">
                     <div class="col-span-10 p-3 bg-info-100">
-                        <h3 class="text-bold text-xl text-center a Campo">
-                            Asignación de Certificados a Campo
+                        <h3 class="text-bold text-xl text-center">
+                            Asignación de Certificados al Cuartel
                         </h3>
                     </div>
                         <div class="font-bold col-span-10 relative  p-2 m-2">
@@ -34,12 +35,12 @@
                             <input type="date" wire:model.defer="fechaTermino" name="fechaTermino" class="border-solid border-2 border-sky-500">
                         </div>
                         <div class="col-span-10 p-2 m-2 ">
-                        Campo
-                                <select wire:model.defer="campo_id" name="campo_id"
+                        Cuartel
+                                <select wire:model.defer="cuartel_id" name="cuartel_id"
                                         class="border-solid border-2 border-sky-500 block w-full rounded-md border-0 py-1.5 text-neutral-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                         <option></option>
-                                        @foreach ($certificacionCampo as $campo)
-                                            <option value="{{ $campo->id }}">{{ $campo->campo }}</option>
+                                        @foreach ($certificacionCuartel as $cuartel)
+                                            <option value="{{ $cuartel->id }}">{{ $cuartel->observaciones }}</option>
                                         @endforeach
 
                                     </select>
@@ -70,7 +71,7 @@
                         <button type="submit" 
                             class="ml-1 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                             data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
-                            Asignar Certificado al Campo
+                            Asignar Certificado al Cuartel
                         </button>
                     </div>
                 </div>
@@ -238,7 +239,7 @@
             </div>
             <div class="col-span-7 border-solid border-2 border-sky-500  p-1 m-2 shadow-2xl">
             <div class="p-3 text-xl text-bold">
-                <h5>Listado de Campos y Cuarteles</h5></label>
+                <h5>Listado de Cuarteles</h5></label>
             </div>
             <script>
                
@@ -247,16 +248,16 @@
                 <thead class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                     <tr>
 
-                        <th class=" px-6 py-4">Campo</th>
+                        <th class=" px-6 py-4">Cuartel</th>
                         <th class=" px-6 py-4">Sup./Ha</th>
                         <th class=" px-6 py-4">Cert./Vig./Venc. <p>Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-trash-alt"></i></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($certificacionCampo as $campo)
+                    @foreach ($certificacionCuartel as $cuartel)
                         <tr class="border-b dark:border-neutral-500">
-                            <td class="text-left"><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;&nbsp;{{ $campo->campo }}</td>
-                            <td>{{ $campo->superficie }}</td>
+                            <td class="text-left"><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;&nbsp;{{ $cuartel->observaciones }}</td>
+                            <td>{{ $cuartel->superficie }}</td>
                             <td  class="text-center">
                             <center>
                                 <table>
@@ -266,19 +267,19 @@
                                         <th></th>
                                     </thead>
                                     <tbody>
-                                        @foreach ($campo->certificacionasignada as $campoCertificacion)
+                                        @foreach ($cuartel->certificacionasignadacuartel as $cuartelCertificacioncuartel)
                                             <tr>
-                                                <th class="border-solid border-2 border-sky-500">{{$campoCertificacion->certificacion->certificacion }}</th>
-                                                <th class="border-solid border-2 border-sky-500"><a href="../{{$campoCertificacion->rutaDocumento}}{{$campoCertificacion->documento}}" target="_blank">
+                                                <th class="border-solid border-2 border-sky-500">{{$cuartelCertificacioncuartel->certificacion->certificacion }}</th>
+                                                <th class="border-solid border-2 border-sky-500"><a href="../../{{$cuartelCertificacioncuartel->rutaDocumento}}{{$cuartelCertificacioncuartel->documento}}" target="_blank">
                                                         <button type="button" class="mb-1 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
                                                                 <i class="far fa-search">
                                                         </i></button>           
                                                     </a>           
                                                 </th>    
                                                 <th class="border-solid border-2 border-sky-500">
-                                                    <button type="button" wire:click="EliminarCertificado({{ $campoCertificacion->id }})"
+                                                    <button type="button" wire:click="EliminarCertificado({{ $cuartelCertificacioncuartel->id }})"
                                                     class="mb-1 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
-                                                    <i class="far fa-trash-alt"></i>
+                                                    <i class="far fa-trash-alt">.</i>
                                                     </button>
                                                 </th>
                                             </tr>
@@ -315,3 +316,4 @@
         </div>
         {{-- modal --}}
     </div>
+</div>

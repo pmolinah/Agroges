@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class certificacionasignada extends Model
+class certificacionasignadacuartel extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'certificacion_id',
         'fechaInicio',
@@ -17,20 +16,16 @@ class certificacionasignada extends Model
         'fechaProrroga',
         'observacion',
         'rutaDocumento',
-        'campo_id',
+        'cuartel_id',
         'documento',
         'casaCertificadora',
         'alertaTempranaCaducidad',
     ];
 
-    public function campo(){
-        return $this->belongsTo(campo::class);
-    }
     public function certificacion(){
         return $this->belongsTo(certificacion::class);
     }
     public function cuartel(){
         return $this->belongsTo(cuartel::class);
     }
-
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\CuentaCorrienteController;
 use App\Http\Controllers\GuiasController;
 use App\Http\Controllers\CertificacionController;
 use App\Http\Controllers\VehiculosController;
+use App\Http\Controllers\DevolucionEnvaseController;
 
 use App\Models\empresa;
 /*??
@@ -101,6 +102,7 @@ Route::get('/', function () {
 
     // rutas de certificacion
     Route::get('Index/Certificacion',[CertificacionController::class, 'index'])->name('Certificacion.index');
+    Route::get('Index/Certificacion/Cuarteles',[CertificacionController::class, 'indexCertificacionCuartel'])->name('CertificacionCuartel.index');
 
     //cuenta corriente
     Route::post('/store/cuentacorriente/exportadora',[CuentaCorrienteController::class, 'store'])->name('cuentacorriente.store');
@@ -109,7 +111,15 @@ Route::get('/', function () {
     //rutas de Administración de Vehiculos
     Route::get('/Administracion/Vehiculos',[VehiculosController::class, 'index'])->name('Vehiculos.index');
 
-    
+    //asignacion de certificados a campos
+    Route::post('/Asignacion/certificados/campo',[CertificacionController::class, 'store'])->name('store.certificado');
+    Route::post('/Asignacion/certificados/cuartel',[CertificacionController::class, 'storeCuartel'])->name('store.certificadoCuartel');
+
+    //Devolucion de Envases
+    Route::get('/Devolucion/Envases',[DevolucionEnvaseController::class,'Devolucion'])->name('Devolucion.Envases');
+
+
+
     //Rutas de Organización
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');
     Route::get('/Organizacion/Campos/Cuarteles', function () {

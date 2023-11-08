@@ -37,7 +37,7 @@ class CuentaCorrienteController extends Controller
         $envaseCampo=envase::all();
         $colores=color::all();
         $cuentaenvases=cuentaenvase::all();
-        $envaseempresa=envaseempresa::all();
+        $envaseempresa=envaseempresa::with('desgloseenvasecampo')->get();
         
         return view('CuentaCorriente.index',compact('exportadoras','envase','colores','cuentaenvases','empresas','envaseCampo','envaseempresa'));
         
@@ -57,7 +57,7 @@ class CuentaCorrienteController extends Controller
     public function store(Request $request)
     {
         
-        //verificacion si el campo tiene cuenta corriente creada
+        //verificacion si el campo tiene cuenta corriente creada con el tipo de envase
         $campo=envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->count();
         if($campo>0){
             $campo=envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->get();
@@ -105,26 +105,30 @@ class CuentaCorrienteController extends Controller
                 if($validacionDesgloseExportadora>0){
                     detallecuentaenvase::where('cuentaenvase_id',$this->cuentaEnvID)->where('color_id',$colorID->id)->increment('stock',$this->colorCantidad[$i]);
                     cuentaenvase::where('empresa_id',$request->exportadora_id)->where('envase_id',$request->envase_id)->where('campo_id',$request->campo_id)->increment('saldo',$this->colorCantidad[$i]);
+                    envaseempresa::where('id',$this->empresaenvaseID)->increment('stock',$this->colorCantidad[$i]);
                 }else{
                     cuentaenvase::where('empresa_id',$request->exportadora_id)->where('envase_id',$request->envase_id)->where('campo_id',$request->campo_id)->increment('saldo',$this->colorCantidad[$i]);
+                    envaseempresa::where('id',$this->empresaenvaseID)->increment('stock',$this->colorCantidad[$i]);
                     $SaveCuenta=detallecuentaenvase::create([
                         'cuentaenvase_id'=>$this->cuentaEnvID,
                         'stock'=>$this->colorCantidad[$i],
                         'color_id'=>$colorID->id,
                     ]);
                 }
-                $verificaExistenciaEnvase=desgloseenvasecampo::where('envaseempresa_id',$this->empresaenvaseID)->where('color_id',$colorID->id)->count();  //verifica que el tipo de envase exista para agregar el detalle sino, debe crearse ///////////////******* */
-                if($verificaExistenciaEnvase>0){
-                    $actualizaDetalleEmpresa=desgloseenvasecampo::where('envaseempresa_id',$this->empresaenvaseID)->where('color_id',$colorID->id)->increment('stock',$this->colorCantidad[$i]);
-                    envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->increment('stock',$this->colorCantidad[$i]);
-                }else{
-                    envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->increment('stock',$this->colorCantidad[$i]);
-                    desgloseenvasecampo::create([
-                        'envaseempresa_id'=>$this->empresaenvaseID,
-                        'color_id'=>$colorID->id,
-                        'stock'=>$this->colorCantidad[$i],
-                    ]);
-                }
+
+                //proceso de creacion de envases si faltaba en campo o agragaba si existia, no debe ser asi porque modifica el stock original detallado
+                // $verificaExistenciaEnvase=desgloseenvasecampo::where('envaseempresa_id',$this->empresaenvaseID)->where('color_id',$colorID->id)->count();  //verifica que el tipo de envase exista para agregar el detalle sino, debe crearse ///////////////******* */
+                // if($verificaExistenciaEnvase>0){
+                //     $actualizaDetalleEmpresa=desgloseenvasecampo::where('envaseempresa_id',$this->empresaenvaseID)->where('color_id',$colorID->id)->increment('stock',$this->colorCantidad[$i]);
+                //     envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->increment('stock',$this->colorCantidad[$i]);
+                // }else{
+                //     envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->increment('stock',$this->colorCantidad[$i]);
+                //     desgloseenvasecampo::create([
+                //         'envaseempresa_id'=>$this->empresaenvaseID,
+                //         'color_id'=>$colorID->id,
+                //         'stock'=>$this->colorCantidad[$i],
+                //     ]);
+                // }
             }
         }
        
@@ -133,32 +137,58 @@ class CuentaCorrienteController extends Controller
     }
 
     public function storeCampo(Request $request){
-        $cuenta=envaseempresa::create([
-            'campo_id'=>$request->campo_id,
-            'envase_id'=>$request->envase_id,
-            'observacion'=>$request->observacionDos,
-            'stock'=>0,
-        ]);
-
-        $this->colorMatriz=$request->colores_nomDos;
-        $this->colorCantidad=$request->CantidadEnvaseColorDos;
-        $this->num=count($this->colorMatriz);
-        for($i=0;$i<$this->num;$i++){
-            $color=color::where('color',$this->colorMatriz[$i])->get();
-            foreach($color as $colorID){
-                $SaveCuenta=desgloseenvasecampo::create([
-                    'envaseempresa_id'=>$cuenta->id,
-                    'stock'=>$this->colorCantidad[$i],
-                    'color_id'=>$colorID->id,
-                ]);
-                $this->sumaEnvases=$this->sumaEnvases + $this->colorCantidad[$i]; 
+        $cuentacampoexiste=envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->count();
+            if($cuentacampoexiste<1){
+                    $cuenta=envaseempresa::create([
+                        'campo_id'=>$request->campo_id,
+                        'envase_id'=>$request->envase_id,
+                        'observacion'=>$request->observacionDos,
+                        'stock'=>0,
+                    ]);
+                    $this->colorMatriz=$request->colores_nomDos;
+                    $this->colorCantidad=$request->CantidadEnvaseColorDos;
+                    $this->num=count($this->colorMatriz);
+                    for($i=0;$i<$this->num;$i++){
+                        $color=color::where('color',$this->colorMatriz[$i])->get();
+                        foreach($color as $colorID){
+                            $SaveCuenta=desgloseenvasecampo::create([
+                                'envaseempresa_id'=>$cuenta->id,
+                                'stock'=>$this->colorCantidad[$i],
+                                'color_id'=>$colorID->id,
+                            ]);
+                            $this->sumaEnvases=$this->sumaEnvases + $this->colorCantidad[$i]; 
+                        }
+                    }
+                    $cuenta->update(['stock'=>$this->sumaEnvases]); 
+            }else{
+                $cuentacampoexiste=envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->get();
+                    $this->colorMatriz=$request->colores_nomDos;
+                    $this->colorCantidad=$request->CantidadEnvaseColorDos;
+                foreach($cuentacampoexiste as $empresaID){
+                    $this->num=count($this->colorMatriz);
+                    for($i=0;$i<$this->num;$i++){
+                            $color=color::where('color',$this->colorMatriz[$i])->get();
+                           foreach($color as $colorID){
+                                $desgloseenvasecampo=desgloseenvasecampo::where('envaseempresa_id',$empresaID->id)->where('color_id',$colorID->id)->count();
+                                if($desgloseenvasecampo>0){
+                                    $desgloseenvasecampo=desgloseenvasecampo::where('envaseempresa_id',$empresaID->id)->where('color_id',$colorID->id)->increment('stock',$this->colorCantidad[$i]);
+                                    $cuentaenvasuma=envaseempresa::where('id',$empresaID->id)->increment('stock',$this->colorCantidad[$i]);
+                                }else{
+                                    $SaveCuenta=desgloseenvasecampo::create([
+                                        'envaseempresa_id'=>$empresaID->id,
+                                        'stock'=>$this->colorCantidad[$i],
+                                        'color_id'=>$colorID->id,
+                                    ]);
+                                    $cuentaenvasuma=envaseempresa::where('id',$empresaID->id)->increment('stock',$this->colorCantidad[$i]);
+                                }
+                            }
+                    }
+                }
             }
+            Session::flash('success', 'Cuenta Corriente iniciada Correctamente');
+            return redirect()->route('CuentaCorriente.index');
         }
-        $cuenta->update(['stock'=>$this->sumaEnvases]); 
-        Session::flash('success', 'Cuenta Corriente iniciada Correctamente');
        
-        return redirect()->route('CuentaCorriente.index');
-    }
     /**
      * Display the specified resource.
      */

@@ -18,4 +18,7 @@ class detallecuentaenvase extends Model
     public function cuentaenvase(){
         return $this->belongsTo(cuentaenvase::class);
     }
+    public function color(){
+        return $this->belongsTo(color::class);
+    }
 }

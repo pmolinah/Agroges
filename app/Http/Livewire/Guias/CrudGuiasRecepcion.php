@@ -234,7 +234,7 @@ class CrudGuiasRecepcion extends Component
     }
 
     public function generarGuiaRecepcion(){
-        //dd($this->NumGuiaRec);
+
         $detalleGuiaRecepcion=guiarecepciondetalle::where('guiarecepcion_id',$this->NumGuiaRec)->get(); //todas las filas de la guia de recepcion
         $guiaRep=guiarecepcion::where('id',$this->NumGuiaRec)->update(['conductor_id'=>$this->conductor_id,'vehiculo_id'=>$this->vehiculo_id,'observacion'=>$this->observacion,'emitida'=>1]);
         foreach($detalleGuiaRecepcion as $dgrEnvID){ //filas de guia de recepcion
@@ -251,8 +251,10 @@ class CrudGuiasRecepcion extends Component
                     }}
                     if($buscarColor>0){
                         $buscarColorSuma=detallecuentaenvase::where('cuentaenvase_id',$CuentaID->id)->where('color_id',$dgrEnvID->color_id)->increment('stock',$dgrEnvID->cantidadEnvase);
-                        $sumaCampo=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase);
-                        if($this->valorNegativo>=0){
+                        //si existe la cuenta y el color
+                            $sumaCampo=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase); //->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase);
+                            
+                            if($this->valorNegativo>=0){
                             $sumaCuentaEnvase=cuentaenvase::where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('envase_id',$dgrEnvID->envase_id)->increment('saldo',$dgrEnvID->cantidadEnvase);
                         }
                     }else{
