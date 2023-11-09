@@ -11,10 +11,11 @@ use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\CuentaCorrienteController;
 use App\Http\Controllers\GuiasController;
+use App\Http\Controllers\GraficosController;
 use App\Http\Controllers\CertificacionController;
 use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\DevolucionEnvaseController;
-
+use App\Http\Livewire\Graficos\Graficos;
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -118,7 +119,8 @@ Route::get('/', function () {
     //Devolucion de Envases
     Route::get('/Devolucion/Envases',[DevolucionEnvaseController::class,'Devolucion'])->name('Devolucion.Envases');
 
-
+    //ruta de graficos
+    Route::get('/ver/graficos',[GraficosController::class, 'Graficos'])->name('Ver.graficos');
 
     //Rutas de Organización
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');

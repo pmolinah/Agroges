@@ -155,6 +155,4 @@ return [
 
     'render_on_redirect' => false,
 
-    'stack' => 'livewire',
-
 ];

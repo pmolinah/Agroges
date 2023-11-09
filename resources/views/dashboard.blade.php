@@ -70,18 +70,26 @@
 
                         <div
                             class="p-10 flex flex-col items-center text-center group   md:lg:xl:border-r hover:bg-slate-50 cursor-pointer">
-                            <span class="p-5 rounded-full bg-lime-500 text-white shadow-lg shadow-lime-200">
+                            <div class="mx-auto w-full overflow-hidden">
+                            <canvas
+                                data-te-chart="bar"
+                                data-te-dataset-label="Traffic"
+                                data-te-labels="['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday ']"
+                                data-te-dataset-data="[2112, 2343, 2545, 3423, 2365, 1985, 987]">
+                            </canvas>
+                            </div>
+                            {{-- <span class="p-5 rounded-full bg-lime-500 text-white shadow-lg shadow-lime-200"> --}}
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                 </svg> --}}
-                                <i class="fa-solid fa-chart-simple fa-2xl" style="color: #f3f8f2;"></i>
+                                {{-- <i class="fa-solid fa-chart-simple fa-2xl" style="color: #f3f8f2;"></i>
                             </span>
                             <p class="text-xl font-medium text-slate-700 mt-3">Gráficos de Rendimiento de la Producción
                             </p>
                             <p class="mt-2 text-sm text-slate-500">Genere Reportes gráficos para medir rendimientos de
-                                trabajo</p>
+                                trabajo</p> --}}
                         </div>
 
                         <div

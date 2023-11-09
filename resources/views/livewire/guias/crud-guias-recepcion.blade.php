@@ -46,6 +46,7 @@
                 </div>
             
                 <div class="col-span-7">
+                
                 </div>
                 <div class="col-span-2 text-right mt-2 p-1">
                         <label class="border-solid border-2 border-sky-500 text-xl p-1 font-medium leading-tigh">Campo</label>
@@ -301,7 +302,7 @@
                         Generar Guía de Recepción
                     </button>
                 </div>
-            </div>
+                
 </div>
                                             
                                        

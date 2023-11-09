@@ -40,7 +40,16 @@ class CrudGuiasRecepcion extends Component
     public $matEnvCol=array();
     public $detCuenta,$detGuia;
     public $valorNegativo;
+    public $datoG=0;
 
+    public function mount()
+{
+    $this->datoG = 0; // Inicializa la variable
+}
+    public function sumaBarra(){
+        $this->datoG =1000;
+    }
+    
     public function SeleccionCampo_id(){
         $datoCampo=campo::where('id',$this->campo_id)->get();
         foreach($datoCampo as $campo){
@@ -264,6 +273,7 @@ class CrudGuiasRecepcion extends Component
                             'stock'=>$dgrEnvID->cantidadEnvase,
                         ]);
                         $sumaCampo=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$dgrEnvID->envase_id)->increment('stock',$dgrEnvID->cantidadEnvase);
+                        $sumaAexportadora=cuentaenvase::where('empresa_id',$this->exportadora_id)->where('envase_id',$dgrEnvID->envase_id)->increment('saldo',$dgrEnvID->cantidadEnvase);
                     }
                 }
             }else{

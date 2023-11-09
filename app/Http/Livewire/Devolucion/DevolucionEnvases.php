@@ -13,6 +13,8 @@ use App\Models\devoluciontraspaso;
 use App\Models\devoluciontraspasodetalle;
 use App\Models\envaseempresa;
 use App\Models\desgloseenvasecampo;
+use App\Models\cuentaenvase;
+use App\Models\detallecuentaenvase;
 use Illuminate\Support\Facades\Session;
 class DevolucionEnvases extends Component
 {
@@ -250,16 +252,65 @@ class DevolucionEnvases extends Component
                         ]);
                     }
                 }
-                }
+            }
             Session::flash('success', 'Devolción Realizada Correctamente..');
             return redirect()->route('Devolucion.Envases');
         }else{
+            //creacion de guia de devolcion a exportadoras
             $this->destinoType='empresa';
-            
-            
+            $detalleDevolucionTraspasoss=devoluciontraspaso::with('devoluciontraspasodetalle')->where('campo_id',$this->campo_id)->where('destino_id',$this->exportadora_id)->where('destino_type',$this->destinoType)->where('fecha',$this->fechaGuia)->where('emitida',NULL)->get();
+           
+            foreach($detalleDevolucionTraspasoss as $detalleDevolucionTraspasos){
+                foreach($detalleDevolucionTraspasos->devoluciontraspasodetalle as $detalleDevolucionTraspaso){
+               
+                    $cuentaCampoEnvia=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$detalleDevolucionTraspaso->envase_id)->count();
+                    if($cuentaCampoEnvia>0){
+                        $descuentoempresaenvase=envaseempresa::where('campo_id',$this->campo_id)->where('envase_id',$detalleDevolucionTraspaso->envase_id)->decrement('stock',$detalleDevolucionTraspaso->cantidadEnvases);
+
+                    }else{
+                        envaseempresa::create([
+                            'campo_id'=>$this->campo_id,
+                            'envase_id'=>$detalleDevolucionTraspaso->envase_id,
+                            'stock'=>0,
+                        ]);
+                    }
+                    $buscarCuentaEnvaseRecibe=cuentaenvase::where('empresa_id',$this->exportadora_id)->where('envase_id',$detalleDevolucionTraspaso->envase_id)->count();
+                    if($buscarCuentaEnvaseRecibe>0){
+                        cuentaenvase::where('empresa_id',$this->exportadora_id)->where('envase_id',$detalleDevolucionTraspaso->envase_id)->decrement('saldo',$detalleDevolucionTraspaso->cantidadEnvases);
+                        $cuentaEnvaseIDrecibe=cuentaenvase::where('empresa_id',$this->exportadora_id)->where('envase_id',$detalleDevolucionTraspaso->envase_id)->get();
+                        foreach($cuentaEnvaseIDrecibe as $cuentaEnvaseIDrecibe){
+                            $detalleCuentaEnvaseRecibe=detallecuentaenvase::where('cuentaenvase_id',$cuentaEnvaseIDrecibe->id)->where('color_id',$detalleDevolucionTraspaso->color_id)->count();
+                            if($detalleCuentaEnvaseRecibe>0){
+                                detallecuentaenvase::where('cuentaenvase_id',$cuentaEnvaseIDrecibe->id)->where('color_id',$detalleDevolucionTraspaso->color_id)->decrement('stock',$detalleDevolucionTraspaso->cantidadEnvases);
+                            }else{
+                                 detallecuentaenvase::create([   
+                                    'cuentaenvase_id'=>$cuentaEnvaseIDrecibe->id,    
+                                    'color_id'=>$detalleDevolucionTraspaso->color_id,
+                                    'stock'=>0,
+                                    ]);
+                            }  
+                        }
+                    }else{
+                        $cuentaIDnueva=cuentaenvase::create([
+                            'empresa_id'=>$this->exportadora_id,
+                            'envase_id'=>$detalleDevolucionTraspaso->envase_id,
+                            'saldo'=>0,
+                        ]);
+                        detallecuentaenvase::create([
+                            'cuentaenvase_id'=>$cuentaIDnueva->id,
+                            'color_id'=>$detalleDevolucionTraspaso->color_id,
+                            'stock'=>0
+                        ]);
+                    }
+                }
+            }
         }
-       
-    }
+                    
+                Session::flash('success', 'Devolción Realizada Correctamente..');
+                return redirect()->route('Devolucion.Envases');
+               
+        }
+                                  
     public function render()
     {
         $campos=campo::all();

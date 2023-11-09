@@ -153,7 +153,7 @@
                                 class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
                             <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="#" data-te-dropdown-item-ref><i
+                                    href="{{route('Ver.graficos')}}" data-te-dropdown-item-ref><i
                                         class="fa-solid fa-file"></i>&nbsp;&nbsp;&nbsp;Informes </a>
                             </li>
                         </ul>
