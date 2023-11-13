@@ -71,12 +71,13 @@
                         <div
                             class="p-10 flex flex-col items-center text-center group   md:lg:xl:border-r hover:bg-slate-50 cursor-pointer">
                             <div class="mx-auto w-full overflow-hidden">
-                            <canvas
+                            {{-- <canvas
                                 data-te-chart="bar"
                                 data-te-dataset-label="Traffic"
                                 data-te-labels="['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday ']"
                                 data-te-dataset-data="[2112, 2343, 2545, 3423, 2365, 1985, 987]">
-                            </canvas>
+                            </canvas> --}}
+                            
                             </div>
                             {{-- <span class="p-5 rounded-full bg-lime-500 text-white shadow-lg shadow-lime-200"> --}}
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"

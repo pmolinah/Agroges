@@ -115,6 +115,7 @@ class DevolucionEnvases extends Component
                 'vehiculo_id' => $this->vehiculo_id, 
                 'tipo' => $this->seleccion,       
                 'observacion' => $this->observacion,
+                'NombreDestino'=>$this->destino,
             ]);
             $dev->update(['numero'=>$dev->id+1000]);
             $this->NumGuiaRec=$dev->id+1000;
@@ -253,6 +254,10 @@ class DevolucionEnvases extends Component
                     }
                 }
             }
+            
+            foreach ($detalleDevolucionTraspasos as $Actualizar) {
+                $Actualizar->update(['observacion'=>$this->observacion,'emitida'=>1]);        
+            }   
             Session::flash('success', 'Devolción Realizada Correctamente..');
             return redirect()->route('Devolucion.Envases');
         }else{
@@ -295,6 +300,7 @@ class DevolucionEnvases extends Component
                             'empresa_id'=>$this->exportadora_id,
                             'envase_id'=>$detalleDevolucionTraspaso->envase_id,
                             'saldo'=>0,
+                            'campo_id'=>$this->campo_id,
                         ]);
                         detallecuentaenvase::create([
                             'cuentaenvase_id'=>$cuentaIDnueva->id,
@@ -305,12 +311,12 @@ class DevolucionEnvases extends Component
                 }
             }
         }
-                    
+        $detalleDevolucionTraspasos->update(['observacion'=>$this->observacion,'emitida'=>1]);           
                 Session::flash('success', 'Devolción Realizada Correctamente..');
                 return redirect()->route('Devolucion.Envases');
                
         }
-                                  
+                             
     public function render()
     {
         $campos=campo::all();

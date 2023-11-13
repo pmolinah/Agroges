@@ -290,10 +290,22 @@ class Roleseeder extends Seeder
         }
 
         variedad::create([
+            
+            'variedad'=>'N/A',
+            'observacion'=>'N/A',
+        ]);
+        variedad::create([
             'variedad'=>'Endemica de SAntiago',
             'observacion'=>'Solo Cosechas',
         ]);
-
+        especie::create([
+            'especie'=>'N/A',
+            'variedad_id'=>1,
+            'metros2'=>0,
+            'fechaCosecha'=>'2023-06-06',
+            'distanciaPlanta'=>0,
+            'observacion'=>'N/A',
+        ]);
         especie::create([
             'especie'=>'Palta Hass',
             'variedad_id'=>1,

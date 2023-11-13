@@ -189,8 +189,8 @@
                                           
                                     </td>
                                     <td class="w-48 font-bold text-center border-dotted mt-3 border-2 border-sky-500">
-                                        <select wire:model.defer="observacion" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                            <option>Observaciòn</option>
+                                        <select wire:model.defer="observacion" wire:change="cambioEspTotKil" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                            <option>Observación</option>
                                            @foreach ($observaciones as $observacion )
                                               <option value="{{$observacion->id}}">{{$observacion->observacion}}</option> 
                                            @endforeach
@@ -198,7 +198,7 @@
                                     </td>
                                     <td class="w-96 font-bold text-center border-dotted mt-3 border-2 border-sky-500">
                                         <select wire:model.defer="especie_id"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                            <option value="0">Especie</option>
+                                            <option value="NULL"></option>
                                             @foreach ($especies as $especie )
                                                 <option value="{{$especie->id}}">{{$especie->especie}}</option>
                                             @endforeach

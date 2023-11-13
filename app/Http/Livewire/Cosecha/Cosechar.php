@@ -30,9 +30,12 @@ class Cosechar extends Component
     public $expKilosFinal=[];
     public $pivoteDetalleCosecha;
     public $exportadoraIDDetalle,$cantidadDetalle,$coloresDDetalle;
+    public $CampoID,$CuartelID,$EspecieID;
+    public $CampoNombre,$CuartelNombre,$EspecieNombre;
  
     use WithPagination;
 
+   
     
     public function agregarKilos(){
 
@@ -44,6 +47,9 @@ class Cosechar extends Component
             'kilos'=>$this->kilos,
             'exportadora_id'=>$this->exportadoraID,
             'pivote'=>$this->pivoteDetalleCosecha,
+            'campo_id'=>$this->CampoID,
+            'cuartel_id'=>$this->CuartelID,
+            'especie_id'=>$this->EspecieID,
         ]);
 
         $exportadorKilosRecolectados=exportadoraxplanificacion::where('planificacioncosecha_id',$this->planificacioncosecha_id)->where('empresa_id',$this->exportadoraID)->get();
@@ -191,7 +197,12 @@ class Cosechar extends Component
         
         $valor=$this->planificacioncosecha_id;
         $planificacion=planificacioncosecha::with('exportadoraxplanificacion.desgloseenvase','contraistaxplanificacion','detallecosecha')->where('id',$valor)->get();
-    
+        foreach($planificacion as $PlanDatos){
+            $this->CampoID=$PlanDatos->cuartel->campo_id;
+            $this->CuartelID=$PlanDatos->cuartel_id;
+            $this->EspecieID=$PlanDatos->plantacion->especie_id;
+            // $this->CampoNombre=$PlanDatos->cuartel->campo->campo;
+        }
         $colores=color::all();
 
         // $planificacion=desgloseenvase::whereHas('cuentaenvase.exportadoraxplanificacion.planificacioncosecha', function ($query) use ($valor) 
@@ -202,6 +213,6 @@ class Cosechar extends Component
 
         $this->cosechaActual=$resultado;
         $this->cosechaFinal=$resultado;
-        return view('livewire.cosecha.cosechar',compact('planificacion','detalleCo','colores'));
+        return view('livewire.cosecha.cosechar',compact('planificacion','detalleCo','colores'))->with(['CampoID',$this->CampoID,'CuartelID',$this->CuartelID,'EspecieID',$this->EspecieID]);
     }
 }

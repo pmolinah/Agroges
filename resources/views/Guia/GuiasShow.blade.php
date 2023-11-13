@@ -32,8 +32,8 @@
                                     <th>Tipo Guía</th>
                                     <th>Guía N°</th>
                                     <th>Fechas Emisión</th>
-                                    <th>Exportadora</th>
                                     <th>Campo</th>
+                                    <th>Campo/Exportadora</th>
                                     <th>Cuartel</th>
                                     <th>Especie</th>
                                     <th>Kilos Totales</th>
@@ -47,10 +47,10 @@
                                 @foreach ($guias as $guia)
                                     <tr>
                                         <td>Despacho</td>
-                                        <td>{{ $guia->numero }}</td>
+                                        <td>D-{{ $guia->numero }}</td>
                                         <td>{{ $guia->fecha}}</td>
-                                        <td>{{ $guia->empresa->razon_social}}</td>
                                         <td>{{ $guia->planificacioncosecha->cuartel->campo->campo}}</td>
+                                        <td>{{ $guia->empresa->razon_social}}</td>
                                         <td>{{ $guia->planificacioncosecha->cuartel->observaciones}}</td>
                                         <td>{{ $guia->planificacioncosecha->plantacion->especie->especie}}</td>
                                         <td>{{ $guia->cantidadKilos}}</td>
@@ -59,7 +59,7 @@
                                         <td>{{ $guia->observacion}}</td>
                                        
                                         <td>      
-                                                <a href="{{route('Guia.despacho',$guia->id)}}"
+                                                <a href="{{route('Guia.despacho',$guia->id)}}">
                                                     <button type="button"  class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-warning-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
                                                         <i class="fa-solid fa-magnifying-glass"></i> <!--&nbsp;&nbsp;&nbsp;</i> onclick="EditarCosecha({{$guia->id}})" -->
                                                     </button>
@@ -71,10 +71,10 @@
                                  @foreach ($guiasRecepcion as $guiaRecep)
                                     <tr>
                                         <td>Recepción</td>
-                                        <td>{{ $guiaRecep->numero }}</td>
+                                        <td>R-{{ $guiaRecep->numero }}</td>
                                         <td>{{ $guiaRecep->updated_at}}</td>
-                                        <td>{{ $guiaRecep->empresa->razon_social}}</td>
                                         <td>{{ $guiaRecep->campo->campo}}</td>
+                                        <td>{{ $guiaRecep->empresa->razon_social}}</td>
                                         <td>N/A</td>
                                         <td>N/A</td>
                                         <td>N/A</td>
@@ -84,6 +84,37 @@
                                        
                                         <td>      
                                                 <a href="{{route('Guia.RecepcionEmitir',$guiaRecep->id)}}">
+                                                    <button type="button"  class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-warning-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </button>
+                                                </a>      
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @foreach ($guiasDevolucion as $devolucionTraspaso)
+                                    <tr>
+                                        <td>Devolución Traspaso</td>
+                                        <td>TD-{{ $devolucionTraspaso->numero }}</td>
+                                        <td>{{ $devolucionTraspaso->updated_at}}</td>
+                                        <td>{{ $devolucionTraspaso->campo->campo}}</td>
+                                        <td>{{ $devolucionTraspaso->NombreDestino}}</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>  
+                                        <td>  
+                                        @foreach ($devolucionTraspaso->devoluciontraspasodetalle as $devolucionTraspasoDetalles)
+
+                                            <label>{{$devolucionTraspasoDetalles->envase->envase}}</label>
+                                            <label>{{$devolucionTraspasoDetalles->envase->cantidadEnvases}}</label>
+                                    
+                                        @endforeach
+                                        </td> 
+                                        <td>N/A</td> 
+                                        <td>{{ $devolucionTraspaso->observacion}}</td>
+                                       
+                                        <td>      
+                                                <a href="{{route('Guia.DevolucionEmitir',$devolucionTraspaso->id)}}">
                                                     <button type="button"  class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-warning-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">
                                                         <i class="fa-solid fa-magnifying-glass"></i>
                                                     </button>

@@ -41,6 +41,7 @@ class CrudGuiasRecepcion extends Component
     public $detCuenta,$detGuia;
     public $valorNegativo;
     public $datoG=0;
+    public $num=0;
 
     public function mount()
 {
@@ -305,6 +306,19 @@ class CrudGuiasRecepcion extends Component
 
       Session::flash('success', 'Guia Guardada Correctamente..');
         return redirect()->route('Guias.recepcion');
+    }
+    public function cambioEspTotKil(){
+        
+        // if($this->especie_id==NULL || $this->especie_id<2 ){
+        //      $this->especie_id=1;
+        //     $this->kilos=0;
+        // }
+        
+       if ($this->observacion == 1) {
+            $this->especie_id=1;
+           $this->kilos=0;
+       }
+       
     }
 
 

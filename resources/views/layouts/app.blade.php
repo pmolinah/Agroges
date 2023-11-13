@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -14,6 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/Funciones.js'])
+    {{-- ,'resources/js/GraficosDatos.js' --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -21,6 +23,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @push('scripts')
         <script src="{{ asset('js/FuncionaesEmergentes.js') }}"></script>
+        {{-- <script src="{{ asset('js/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}"></script> --}}
     @endpush
 
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/fontawesome.css') }}" rel="stylesheet">
@@ -28,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/solid.css') }}" rel="stylesheet">
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 
 
@@ -44,7 +50,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable();
+           $('#myTable').DataTable({
+                responsive:true
+            });
         });
         $(document).ready(function() {
             $('#myTable3').DataTable();
@@ -128,7 +136,7 @@
         }
      
     </script>
-
+    
 </head>
 
 <body class="font-sans antialiased">
@@ -178,5 +186,9 @@
 
     @livewireScripts
 </body>
-
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+  <!-- plugin for scrollbar  -->
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
+  <!-- main script file  -->
+  <script src="../assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
 </html>

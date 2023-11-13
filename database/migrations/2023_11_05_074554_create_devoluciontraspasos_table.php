@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('observacion',100)->nullable();
             $table->integer('numero')->unsigned()->nullable();
             $table->integer('emitida')->unsigned()->nullable();
+            $table->string('NombreDestino',100)->nullable();
         });
     }
 

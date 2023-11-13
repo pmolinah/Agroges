@@ -16,6 +16,9 @@ class detallecosecha extends Model
         'kilos',
         'exportadora_id',
         'pivote',
+        'campo_id',
+        'especie_id',
+        'cuartel_id',
     ];
 
     public function planificacioncosecha(){
@@ -27,5 +30,9 @@ class detallecosecha extends Model
     }
     public function exportadora(){
         return $this->belongsTo(empresa::class);
+    }
+
+    public function especie(){
+        return $this->belongsTo(especie::class);
     }
 }

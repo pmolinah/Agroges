@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\guia;
+use App\Models\campo;
 use App\Models\guiarecepcion;
 use App\Models\exportadoraxplanificacion;
 use App\Models\detallecosecha;
@@ -13,6 +14,9 @@ use App\Models\color;
 use App\Models\especie;
 use App\Models\observacion;
 use App\Models\guiarecepciondetalle;
+use App\Models\devoluciontraspaso;
+use App\Models\empresa;
+
 
 use PDF;
 class GuiasController extends Controller
@@ -58,8 +62,9 @@ class GuiasController extends Controller
     public function show()
     {
         $guias=guia::all();
+        $guiasDevolucion=devoluciontraspaso::with('devoluciontraspasodetalle')->where('emitida',1)->get();
         $guiasRecepcion=guiarecepcion::where('emitida',1)->get();
-        return view('Guia.GuiasShow',compact('guias','guiasRecepcion'));
+        return view('Guia.GuiasShow',compact('guias','guiasRecepcion','guiasDevolucion'));
     }
 
     public function GuiaDespacho($guia_id){
@@ -356,7 +361,7 @@ class GuiasController extends Controller
             PDF::MultiCell(31, 4, 'Color', 1, 'C', 1, 0, 61, '', true);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(11, 4, 'Suma', 1, 'C', 1, 0, 92, '', true);
-            
+            PDF::Ln(4);
             $envases=envase::all();
             foreach($envases as $envase){
                 $colores=color::all();
@@ -373,20 +378,21 @@ class GuiasController extends Controller
                             PDF::MultiCell(11, 4, $suma, 1, 'C', 1, 0, 92, '', true);
                         }
                         PDF::Ln(4);
-                        $this->lineaNegativa=$this->lineaNegativa-3;
+                        $this->lineaNegativa=$this->lineaNegativa-4;
                     }
             }
         // 
+            PDF::Ln(-8);
             PDF::Ln($this->lineaNegativa);
             PDF::SetFont('Helvetica', '', 8);
             PDF::SetFillColor(229, 231, 233);
-            PDF::Ln(-4);
+            PDF::Ln(4);
             PDF::MultiCell(50, 4, 'Especie', 1, 'C', 1, 0, 104, '', true);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(31, 4, 'Observación', 1, 'C', 1, 0, 154, '', true);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(12, 4, 'Kilos', 1, 'C', 1, 0, 185, '', true);
-            
+            PDF::Ln($this->lineaNegativa);
              //cuenta de frutas por especie
             $especies=especie::all();
             foreach($especies as $especie){
@@ -416,6 +422,180 @@ class GuiasController extends Controller
 
             PDF::Output('Guia_recepcion_numero'.$guiaRecep->numero.'pdf');
             
+        }
+    }
+
+    public function GuiaDevolucionEmitir($id){
+        $guiasDevolucion=devoluciontraspaso::with('devoluciontraspasodetalle')->where('id',$id)->get();
+        foreach($guiasDevolucion as $guiaDevTras){
+            PDF::SetTitle('Guía de Devolución');
+            PDF::AddPage();
+            //PDF::setPageFormat('letter');
+            PDF::Write(0, 'Guía de Devolución/Traspaso');
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(50, 4, 'Guía de Devolución N°', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(40, 4, $guiaDevTras->numero, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Campo', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(75, 4, $guiaDevTras->campo->campo, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Drección', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(75, 4, $guiaDevTras->campo->direccion, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Comuna', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::SetFont('Helvetica', '', 7);
+            PDF::MultiCell(75, 4, $guiaDevTras->campo->comuna->comuna, 1, 'R', 1, 0, '', '', true);
+
+            PDF::SetFont('Helvetica', '', 10);
+            PDF::Ln(2);
+            PDF::Write(0, '_______________________________________________________________________________________________');
+            PDF::Ln(5);
+            
+            if($guiaDevTras->destino_type=='empresa'){
+                PDF::Write(0, 'Datos Exportadora Devolución');
+                PDF::Ln(5);
+                $campo=empresa::where('id',$guiaDevTras->destino_id)->get();
+                foreach($campo as $datosCampo){
+                    PDF::SetFont('Helvetica', '', 8);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Rut', 1, 'L', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(20, 4, $datosCampo->rut, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(20, 4, 'Razón Social', 1, 'L', 1, 0, 43, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(80, 4, $guiaDevTras->NombreDestino, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFont('Helvetica', '', 8);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(14, 4, 'Teléfono', 1, 'L', 1, 0, 143, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(40, 4, $datosCampo->telefono, 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(4);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Comuna', 1, 'C', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(90, 4, $datosCampo->comuna->comuna, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Email', 1, 'C', 1, 0, 114, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(70, 4, $datosCampo->email, 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(4);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Giro', 1, 'C', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(90, 4, $datosCampo->giro, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Código', 1, 'C', 1, 0, 114, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(70, 4, "N/A", 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(4);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(16, 4, 'Conductor', 1, 'C', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(90, 4, $guiaDevTras->conductor->name, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Patente', 1, 'C', 1, 0, 114, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(70, 4, $guiaDevTras->vehiculo->patente, 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(3);
+                    PDF::SetFont('Helvetica', '', 10);
+                    PDF::Write(0, '_______________________________________________________________________________________________');
+                    PDF::Ln(8);
+                }
+            }
+
+            if($guiaDevTras->destino_type=='campo'){
+                $campo=campo::where('id',$guiaDevTras->destino_id)->get();
+                PDF::Write(0, 'Datos Campo Destino');
+                PDF::Ln(5);
+                foreach($campo as $datosCampo){
+                    PDF::SetFont('Helvetica', '', 8);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Rut', 1, 'L', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(20, 4, $datosCampo->rut, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(20, 4, 'Campo', 1, 'L', 1, 0, 43, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(80, 4, $guiaDevTras->NombreDestino, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFont('Helvetica', '', 8);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(14, 4, 'Teléfono', 1, 'L', 1, 0, 143, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(40, 4, "N/A", 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(4);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Comuna', 1, 'C', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(90, 4, $datosCampo->comuna->comuna, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Email', 1, 'C', 1, 0, 114, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(70, 4, "N/A", 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(4);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Giro', 1, 'C', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(90, 4, "N/A", 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Código', 1, 'C', 1, 0, 114, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(70, 4, "N/A", 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(4);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(16, 4, 'Conductor', 1, 'C', 1, 0, 11, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(90, 4, $guiaDevTras->conductor->name, 1, 'C', 1, 0, '', '', true);
+                    PDF::SetFillColor(229, 231, 233);
+                    PDF::MultiCell(13, 4, 'Patente', 1, 'C', 1, 0, 114, '', true);
+                    PDF::SetFillColor(253, 254, 254);
+                    PDF::MultiCell(70, 4, $guiaDevTras->vehiculo->patente, 1, 'C', 1, 0, '', '', true);
+                    PDF::Ln(3);
+                    PDF::SetFont('Helvetica', '', 10);
+                    PDF::Write(0, '_______________________________________________________________________________________________');
+                    PDF::Ln(8);
+                }
+            }
+            //titulo Detalle
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(50, 4, 'Envase', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(31, 4, 'Color', 1, 'C', 1, 0, 61, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(14, 4, 'Cantidad', 1, 'C', 1, 0, 92, '', true);
+            PDF::Ln(4);
+
+
+            foreach($guiaDevTras->devoluciontraspasodetalle as $detalle){
+                PDF::SetFillColor(253, 254, 254);
+                            
+                PDF::MultiCell(50, 4, $detalle->envase->envase, 1, 'L', 1, 0, 11, '', true);
+                
+                PDF::MultiCell(31, 4, $detalle->color->color, 1, 'C', 1, 0, 61, '', true);
+              
+                PDF::MultiCell(14, 4, $detalle->cantidadEnvases, 1, 'C', 1, 0, 92, '', true);
+            }
+
+
+
+
+
+
+
+
+             //titulo detalle
+
+             PDF::Output('Guia_Devolucion/Traspaso_numero'.$guiaDevTras->numero.'pdf');
         }
     }
 

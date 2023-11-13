@@ -7,15 +7,24 @@
     </x-slot>
     <!-- Add Item Ml -->
    
-    <div class="py-12">
-        <div class="mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="grid grid-cols-12 gap-5 bg-white overflow-hidden shadow-xl sm:rounded-lg">
+       
+        
                 
                 <!-- contenido -->
-                @livewire('graficos.graficos');
-                <!-- contenido -->
+                <div class="col-span-4 m-2 shadow-xl">
+                    @livewire('graficos.graficos')
                 </div>
-            </div>
-        </div>
+                <div class="col-span-4 m-2 shadow-xl">
+                    @livewire('graficos.grafico-radial')
+                </div>
+                 <div class="col-span-4 m-2 shadow-xl">
+                    @livewire('graficos.grafico-torta')
+                </div>
+                 <div class="col-span-12 m-2 shadow-xl">
+                    @livewire('graficos.grafico-lineal')
+                </div>
+                <!-- contenido -->
+       
     </div>
 </x-app-layout>

@@ -118,6 +118,7 @@ Route::get('/', function () {
 
     //Devolucion de Envases
     Route::get('/Devolucion/Envases',[DevolucionEnvaseController::class,'Devolucion'])->name('Devolucion.Envases');
+    Route::get('/Devolucion/{id}/Traspaso/Envases',[GuiasController::class, 'GuiaDevolucionEmitir'])->name('Guia.DevolucionEmitir');
 
     //ruta de graficos
     Route::get('/ver/graficos',[GraficosController::class, 'Graficos'])->name('Ver.graficos');
