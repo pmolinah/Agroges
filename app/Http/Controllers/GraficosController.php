@@ -11,4 +11,7 @@ class GraficosController extends Controller
     public function Graficos(){
         return view('graficos.graficos');
     }
+    public function graficosEnvases(){
+        return view('Graficos.GraficosEnvases');
+    }
 }

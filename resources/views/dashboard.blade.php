@@ -13,8 +13,8 @@
                 {{-- <div class="mx-auto w-3/5 overflow-hidden"> --}}
                 <!-- contenido -->
                 <!-- component -->
-                <div class="px-3 md:lg:xl:px-40   border-t border-b py-20 bg-opacity-10"
-                    style="background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png') ;">
+                <div class="px-3 md:lg:xl:px-40   border-t border-b py-20 bg-opacity-10 shadow-xl shadow-neutral-900"
+                    >
                     <div
                         class="grid grid-cols-1 md:lg:xl:grid-cols-3 group bg-white shadow-xl shadow-neutral-100 border ">
 

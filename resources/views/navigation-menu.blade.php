@@ -82,6 +82,10 @@
                             </li>
                              <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{route('CierreInicioTemporada.index')}}" data-te-dropdown-item-ref><i class="fa-solid fa-list-check"></i>&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-box-open"></i>&nbsp;&nbsp;&nbsp;Establecer Cierre e Inicio de Temporada para Stock de Envases</a>
+                            </li>
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
                                     href="{{route('Vehiculos.index')}}" data-te-dropdown-item-ref><i class="fa-solid fa-truck-fast"></i>&nbsp;&nbsp;&nbsp;Administración de Vehículos </a>
                             </li>
                         </ul>
@@ -153,8 +157,11 @@
                                 class="my-2 h-0 border border-t-0 border-solid border-neutral-700 opacity-25 dark:border-neutral-200" />
                             <li>
                                 <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
-                                    href="{{route('Ver.graficos')}}" data-te-dropdown-item-ref><i
-                                        class="fa-solid fa-file"></i>&nbsp;&nbsp;&nbsp;Informes </a>
+                                    href="{{route('Ver.graficos')}}" data-te-dropdown-item-ref><i class="fa-solid fa-chart-simple"></i>&nbsp;&nbsp;&nbsp;Grficos x Semana de Kilos por Especie,Campo,Cuartel </a>
+                            </li>
+                             <li>
+                                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                                    href="{{route('Ver.graficosEnvases')}}" data-te-dropdown-item-ref><i class="fa-solid fa-chart-simple"></i>&nbsp;&nbsp;&nbsp;Grficos de Envases por Cuenta Corriente </a>
                             </li>
                         </ul>
                     </div>

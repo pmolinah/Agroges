@@ -24,28 +24,32 @@ class Graficos extends Component
     public $detalleEspecieSemana=[];
     
     public function KilosXSemanaCampo(){
-        $this->detalleEspecieSemana=[];
-        $this->f=0;
-        $this->c=0;
-        $especies=especie::all();
-        foreach($especies as $especie){
-            $suma=detallecosecha::whereRaw('WEEK(created_at) = ?', [$this->semanaEspecie])->where('especie_id', $especie->id)->sum('kilos');
-            if($suma>0){
-                $this->detalleEspecieSemana[$this->f][0]=$especie->especie;
-                $this->detalleEspecieSemana[$this->f][1]=$suma;
+        $this->detalleEspecieSemana = [];
+        $this->f = 0;
+        $this->c = 0;
+        $especies = especie::all();
+        foreach ($especies as $especie) {
+            $suma = detallecosecha::whereRaw('WEEK(created_at) = ?', [$this->semanaEspecie])
+                ->where('especie_id', $especie->id)
+                ->sum('kilos');
+            if ($suma > 0) {
+                $this->detalleEspecieSemana[$this->f]['especie'] = $especie->especie;
+                $this->detalleEspecieSemana[$this->f]['kilos'] = $suma;
                 $this->f++;
-            }     
+            }
         }
+    
         $this->labels = [];
-        $this->data = [];
-        $conteo=count($this->detalleEspecieSemana);
-        for($i=0;$i<$conteo;$i++){
-            $this->label[] = $this->detalleEspecieSemana[$i][0];
-            $this->labels[] = $this->detalleEspecieSemana[$i][0];
-            $this->data [] = $this->detalleEspecieSemana[$i][1];
+        $this->datasets = [];
+        $legendLabels = [];
+    
+        foreach ($this->detalleEspecieSemana as $detalle) {
+            $this->labels[] = $detalle['especie'];
+            $legendLabels[] = $detalle['especie'];
+            $this->datasets[] = $detalle['kilos'];
         }
-       
-        $this->emit('updateChart', $this->labels, $this->data,  $this->label);
+    
+        $this->emit('updateChart', $this->labels, $this->datasets, $legendLabels);
     }
     public function render()
     {

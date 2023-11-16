@@ -32,4 +32,7 @@ class cuentaenvase extends Model
     public function campo(){
         return $this->belongsTo(campo::class);
     }
+    public function temporadaexpo(){
+        return $this->hasMany(temporadaexpo::class);
+    }
 }

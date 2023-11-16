@@ -11,16 +11,15 @@
     <canvas class="shadow-xl m-2" id="myChart" width="50" height="200"></canvas>
     </div>
 </div>
-<script >
+<script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['', '', '', '', '', ''],
+            labels: [],
             datasets: [{
-                label: ['Grafico de Especies x Semana'],
-
-                data: [1, 1, 1, 1, 1, 1],
+                label: 'Grafico de Especies x Semana',
+                data: [],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -48,26 +47,30 @@
                     }
                 }]
             },
-             maintainAspectRatio: false, // Desactivar la relación de aspecto
+            maintainAspectRatio: false,
             responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                }
+            }
         }
-    })
-    //actualizaciones
+    });
+
+    // Livewire listener
     document.addEventListener('livewire:load', function() {
-        Livewire.on('updateChart', function(labels, data, label) {
+        Livewire.on('updateChart', function(labels, data) {
             // Limpiar datos antiguos
-            myChart.data.label = [];
             myChart.data.labels = [];
             myChart.data.datasets[0].data = [];
 
             // Llenar con nuevos datos
-            myChart.data.labels = label;
             myChart.data.labels = labels;
             myChart.data.datasets[0].data = data;
 
             // Actualizar el gráfico
             myChart.update();
-        })
-    })
-    //fin
+        });
+    });
 </script>

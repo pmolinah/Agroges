@@ -27,6 +27,8 @@
         <script src="{{ asset('js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}"></script> --}}
     @endpush
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/fontawesome.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/brands.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/solid.css') }}" rel="stylesheet">

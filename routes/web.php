@@ -16,6 +16,7 @@ use App\Http\Controllers\CertificacionController;
 use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\DevolucionEnvaseController;
 use App\Http\Livewire\Graficos\Graficos;
+use App\Http\Controllers\CierreInicioTemporadaController;
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -122,6 +123,9 @@ Route::get('/', function () {
 
     //ruta de graficos
     Route::get('/ver/graficos',[GraficosController::class, 'Graficos'])->name('Ver.graficos');
+    Route::get('/ver/graficos/envases',[GraficosController::class, 'graficosEnvases'])->name('Ver.graficosEnvases');
+
+    Route::get('/Cierre/Inicio/Temporada',[CierreInicioTemporadaController::class,'CierreInicioTemporada'])->name('CierreInicioTemporada.index');
 
     //Rutas de Organización
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');
