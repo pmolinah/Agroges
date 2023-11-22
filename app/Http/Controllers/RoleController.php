@@ -25,8 +25,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions=Permission::all();
-        return view('RolPermisos.create',compact(['permissions']));
+        $permissions=Permission::all();//where('name','LIKE','%'.'adm.'.'%')->get();
+        $permissionsProd=Permission::where('name','LIKE','%'.'prod.'.'%')->get();
+        return view('RolPermisos.create',compact(['permissions','permissionsProd']));
     }
 
     /**
@@ -67,9 +68,10 @@ class RoleController extends Controller
      */
     public function edit(Role $rol)
     {
-        
-        $permissions = Permission::get();
-        return view('RolPermisos.edit',compact('rol','permissions'));
+   
+        $permissions = Permission::where('name','LIKE','%'.'adm.'.'%')->get();
+        $permissionsProd = Permission::where('name','LIKE','%'.'prod.'.'%')->get();
+        return view('RolPermisos.edit',compact('rol','permissions','permissionsProd'));
     }
 
     /**

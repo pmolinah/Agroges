@@ -58,7 +58,7 @@ class CreateCampoCuartel extends Component
             'rut'=>$this->rut,
             'codigoSag'=>$this->codigoSag,
         ]);
-        $this->reset(['direccion','superficie','rut','campo']);
+        $this->reset(['direccion','superficie','rut','campo','codigoSag']);
   
 
         $this->dispatchBrowserEvent('swal', [

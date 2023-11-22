@@ -1,5 +1,5 @@
 <div>
-    <div class="ml-5 mr-5 inline-block">Semana
+    <div class="z-0 ml-5 mr-5 inline-block">Semana
         <select wire:model.defer="semanaEspecie" wire:change="KilosXSemanaCampo">
             <option></option>
             @for ($i = 1; $i < 53; $i++)
@@ -7,8 +7,8 @@
             @endfor
         </select>
     </div>
-    <div class="border-solid border-2 border-sky-500">
-    <canvas class="shadow-xl m-2" id="myChart" width="50" height="200"></canvas>
+    <div class="border-solid border-2 border-transparent rounded-lg ">
+    <canvas class=" m-2" id="myChart" width="50" height="200"></canvas>
     </div>
 </div>
 <script>

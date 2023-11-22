@@ -1,10 +1,10 @@
 <div>
     <!-- component -->
     <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-        <thead class="bg-gray-50">
+        <thead class="bg-gray-300">
             <tr>
-                <th scope="col" class="px-6 py-4 font-medium text-gray-900">Empresa dueña del campo</th>
-                <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nombre Campo</th>
+                <th scope="col" class="px-6 py-4 font-medium text-gray-900">Propietario</th>
+                <th scope="col" class="px-6 py-4 font-medium text-gray-900">Campo</th>
                 <th scope="col" class="px-6 py-4 font-medium text-gray-900">Dirección</th>
                 <th scope="col" class="px-6 py-4 font-medium text-gray-900">Cuarteles</th>
                 {{-- <th scope="col" class="px-6 py-4 font-medium text-gray-900">Modificar/Eliminar</th> --}}

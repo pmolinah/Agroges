@@ -70,10 +70,18 @@ class UserController extends Controller
     public function edit($id)
     {
        
-       $user=User::where('id',$id)->get();
-       $roles=Role::all();
+        $user=User::where('id',$id)->first();
+        $roles=Role::all();
+        $tipos=tipousuario::all();
+        $rol = $user->getRoleNames();
+        foreach ($rol as $rol) {
+            $roleModel = Role::where('name', $rol)->first();
+            $roleId = $roleModel->id;
+            $roleDescription = $roleModel->description;
+        }
+
        
-        return view('User.edit',compact('user','roles'));
+        return view('User.edit',compact('user','roles','tipos','rol','roleId','roleDescription'));
     }
 
     /**

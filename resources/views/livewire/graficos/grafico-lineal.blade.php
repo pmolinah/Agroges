@@ -16,7 +16,7 @@
             </select>
         </div>
 
-         <div class="col-span-5 shadow-xl border-solid border-2 border-sky-500" >
+         <div class="col-span-5 " >
             <canvas id="myChartline" width="50" height="250"></canvas>
         </div>
          {{-- <div class="col-span-3 shadow-xl" style="position: relative; height:40vh; width:150vw ">

@@ -1,17 +1,86 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestión de Usuarios') }}
-        </h2>
-    </x-slot>
+<x-dashBoard>
+   
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="mx-auto w-5/5 p-3 px-3 overflow-hidden flex justify-center">
-                    
+       
+
+                {{-- formulario --}}
+     <form action="{{route('User.store')}}" method="post">
+                            @csrf
+  <div class="container text-left max-w-screen-lg mx-auto">
+    <div>
+      <h2 class="font-semibold text-xl text-gray-600">Formulario Registro de Usuarios</h2>
+      <p class="text-gray-500">Administrador, Capataz, Conductor, Bodeguero...</p>
+
+      <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-20">
+        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+          <div class="text-gray-600">
+            <p class="font-medium text-lg">Datos</p>
+            <p>Campos con (*) son obligatorios.</p>
+          </div>
+        
+          <div class="lg:col-span-2">
+            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+            <div class="md:col-span-2">
+                <label for="full_name">Rut.(*) <label>
+                <input type="text" id="rut" required name="rut" placeholder="Ej:12345678-K" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+              </div>
+              <div class="md:col-span-4">
+                <label for="full_name">Nombre.(*)</label>
+                <input type="text" required name="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+              </div> 
+     
+
+              <div class="md:col-span-6">
+                <label for="email">Email .(*)</label>
+                <input type="text" name="email" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+              </div>
+
+             <div class="md:col-span-4">
+                <label for="state">Tipo Usuario .(*)</label>
+                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                    {{-- <input name="state" id="state" placeholder="State" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" /> --}}
+                        <select  name="tipo_id" id="tipo" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" required>
+                            <option value="">Seleccione un Tipo de Usuario</option>
+                            @foreach ($tipos as $tipo)
+                            <option value="{{$tipo->id}}">{{$tipo->tipousuario}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+            </div>
+                <div class="md:col-span-6 ">
+                        <label for="full_name">Rol Usuario. (*)</label>
+                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                        <select class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" required name="rol">
+                            <option value="">Seleccione Rol de Usuario</option>
+                            @foreach($roles as $rol)
+                                <option value="{{$rol->id}}">{{ $rol->name }}, {{ $rol->description }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                 <div class="md:col-span-3">
+                    <label for="full_name">Password . (*)</label>
+                    <input type="text" id="password" name="password" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                </div>
+             
+
+      
+              <div class="md:col-span-5 text-right">
+                <div class="inline-flex items-end">
+                  <button type="submit" class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Guardar Información</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+                    {{-- fin formulario --}}
                     <!-- nuevos Usuarios -->
-                    <div class="block max-w-4xl rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                    {{-- <div class="block max-w-4xl rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
                         <form action="{{route('User.store')}}" method="post">
                             @csrf
                             
@@ -124,5 +193,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-app-layout>
+    </div> --}}
+</x-dashBoard>

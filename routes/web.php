@@ -33,7 +33,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::middleware(['web','auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
 
     Route::get('/dashboard',function(){return view('dashboard');})->name('dashboard');
     Route::get('/Role', [RoleController::class, 'show']);
@@ -49,7 +49,7 @@ Route::get('/', function () {
     Route::get('/Create/Rol',[RoleController::class,'create'])->name('Rol.create');
     Route::post('/Guardar/Rol',[RoleController::class,'store'])->name('Rol.store');
     route::get('Edit/{rol}/Rol',[RoleController::class,'edit'])->name('roles.edit');
-    route::put('Update/{role}/Rol',[RoleController::class,'update'])->name('roles.update');
+    route::post('Update/{role}/Rol',[RoleController::class,'update'])->name('roles.update');
     route::delete('Delete/{role}/Rol',[RoleController::class, 'delete'])->name('roles.destroy');
 
     //Rutas de Empresa
@@ -129,10 +129,7 @@ Route::get('/', function () {
 
     //Rutas de Organización
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');
-    Route::get('/Organizacion/Campos/Cuarteles', function () {
-        
-        return view('Organizacion.index');
+    Route::get('/Organizacion/Campos/Cuarteles',[CampoController::class, 'organizacion'])->name('organizacion.index');
     
-    });
-     
+
 });

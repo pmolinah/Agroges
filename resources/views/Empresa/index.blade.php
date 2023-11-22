@@ -1,16 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestión de Empresas') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
+<x-dashBoard>
+    <div class="py-10 mt-20 mb-20">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div  class="text-left m-1">
+        <div class="p-1 w-48 rounded-full bg-white shadow"><i class="fa-solid fa-building mr-3 ml-3"></i><label class="font-bold">Lista de Empresas</label></div>
+                                        
+    </div>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="mx-auto w-5/5 p-3 px-3 overflow-hidden">
                     <a href="{{route('Empresa.create')}}">
-                        <button type="button" class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
+                        <button type="button" class="bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-600">
                             Nueva Empresa
                         </button>
                         <!-- @can('Admin.Usuario.Nuevo') -->
@@ -23,9 +21,9 @@
                             <div class="overflow-hidden">
                                 <table class="min-w-full text-left text-sm font-light">
                                 <thead
-                                    class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-500">
+                                    class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-300">
                                     <tr class="font-light">
-                                    <th scope="col" class="px-6 py-4"><p class="text-neutral-800">#</p></th>
+                                    <th scope="col" class="px-6 py-4"><p class="text-neutral-700">#</p></th>
                                     <th scope="col" class="px-6 py-4">Nombre</th>
                                     <th scope="col" class="px-6 py-4">Rut</th>
                                     <th scope="col" class="px-6 py-4">Razón Social</th>
@@ -44,8 +42,8 @@
                                             <td class="whitespace-nowrap px-6 py-4">{{ $empresa->razon_social }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">{{ $empresa->tipo->tipo }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">
-                                                <button type="button" class="inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]">
-                                                <a href="{{ route('Empresa.edit',$empresa->id)}}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>Editar </a>
+                                                <button type="button" class="inline-block rounded bg-warning-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]">
+                                                <a href="{{ route('Empresa.edit',$empresa->id)}}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
                                                 </button>
                                             </td>
                                             {{-- <td class="whitespace-nowrap px-6 py-4">
@@ -66,4 +64,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-dashBoard>

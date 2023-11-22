@@ -1,5 +1,5 @@
 <div>
-    <div class=" p-2 rounded-2 bg-secondary-800">
+    <div class=" p-2 rounded-2 bg-white">
         <div id="accordionExample5" hidden>
             <div class="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 ">
                 <h2 class="mb-0" id="headingOne5">
@@ -30,10 +30,10 @@
             @foreach ($campos as $campo)
                 {{-- acordeon --}}
 
-                <div class="border border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+                <div class="border p-1  border-neutral-200 bg-white border-neutral-600 dark:bg-white rounded-lg">
                     <h2 class="mb-0" id="headingTwo5">
                         <button
-                            class="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+                            class="group relative flex w-full items-center rounded-lg border-0 p-1 bg-neutral-400 text-black font-bold"
                             type="button" data-te-collapse-init data-te-collapse-collapsed
                             data-te-target="#collapsed<?php echo $campo->id; ?>" aria-expanded="false"
                             aria-controls="collapseTwo5">
@@ -52,93 +52,68 @@
                     <div id="collapsed<?php echo $campo->id; ?>" class="!visible hidden" data-te-collapse-item
                         aria-labelledby="headingTwo5">
                         
-                        <div class="px-5 py-4">
+                        <div class="px-2 py-4 text-left">
                             {{-- campos --}}
                             {!! Form::model($campo, ['route' => ['Campo.update', $campo->id], 'method' => 'PUT']) !!}
                             @csrf
-                            <div class="grid gap-2 grid-cols-5 xs:grid-cols-1">
-                                <div clas="col-start-1 col-end-1 grid grid-cols-5">
-                                    
-                                     <div class="text-neutral-100">
-                                        Codigo SAG,
-                                    </div>
-                                    <div class="">
-                                        {{ Form::text('codigoSag', null, ['class' => 'peer block min-h-[auto]  rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
-                                    </div>
-                                    <div class="text-neutral-100">
-                                        Rut,
-                                    </div>
-                                    <div class="">
-                                        {{ Form::text('rut', null, ['class' => 'peer block min-h-[auto]  rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
-                                    </div>
+                            <div class="grid gap-2 grid-cols-5 xs:grid-cols-1 bg-white rounded-lg p-2 text-left">
+                                <div class="">
+                                    Codigo SAG,
                                 </div>
-                                <div class="text-neutral-100">
+                                <div class="">
+                                    {{ Form::text('codigoSag', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                </div>
+                                <div class="">
+                                    Rut,
+                                </div>
+                                <div class="">
+                                    {{ Form::text('rut', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                </div>
+                                
+                                <div class="">
                                     Campo
                                 </div>
-                                <div clas="col-start-1 col-end-1">
-                                    {{ Form::text('campo', null, ['class' => 'peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
+                                <div clas="">
+                                    {{ Form::text('campo', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
-                                <div class="text-neutral-100">
+                                <div class="">
                                     Dirección
                                 </div>
-                                <div clas="col-start-1 col-end-1 ">
-                                    {{ Form::text('direccion', null, ['class' => 'peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
+                                <div clas="">
+                                    {{ Form::text('direccion', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
-                                <div class="text-neutral-100">
+                                <div class="">
                                     Superficie en Ha
                                 </div>
-                                <div clas="col-start-1 col-end-1">
-                                    {{ Form::text('superficie', null, ['class' => 'peer block min-h-[auto] rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0', 'required']) }}
+                                <div clas="">
+                                    {{ Form::text('superficie', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
-                                <div class="text-neutral-100">
+                                <div class="">
                                     Comuna
                                 </div>
-                                <div clas="col-start-1 col-end-1 grid grid-cols-5">
-                                    <div class="col-start-1 col-end-1">
-                                        {{ Form::select('comuna_id', $comunas->pluck('comuna', 'id')->all(), null, ['class' => 'p-2', 'style' => 'width: 500px;']) }}
-                                    </div>
+                                <div clas="">
+                                    
+                                        {{ Form::select('comuna_id', $comunas->pluck('comuna', 'id')->all(), null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50']) }}
+                                    
                                 </div>
-                                <div class="text-neutral-100">
+                                <div class="">
                                     Administrador
                                 </div>
-                                <div clas="col-start-1 col-end-1 grid grid-cols-5">
-                                    <div class="col-start-1 col-end-1">
-                                        {{ Form::select('comuna_id', $administradores->pluck('name', 'id')->all(), null, ['class' => 'p-2', 'style' => 'width: 500px;']) }}
-                                    </div>
+                                <div clas="">
+                                        {{ Form::select('comuna_id', $administradores->pluck('name', 'id')->all(), null, ['class' => ' h-10 border mt-1 rounded px-4 w-full bg-gray-50']) }}
                                 </div>
-                                {{-- <div class="text-neutral-100">
-                                    Capataz
-                                </div>
-                                <div clas="col-start-1 col-end-1 grid grid-cols-5">
-                                    <div class="col-start-1 col-end-1">
-                                        {{ Form::select('comuna_id', $capataz->pluck('name', 'id')->all(), null, ['class' => 'p-2', 'style' => 'width: 500px;']) }}
-                                    </div>
-                                </div> --}}
-                            </div>
-
-
-                            {{-- fin campos --}}
-                            {{-- Botones --}}
-                            <div class="grid grid-cols-3 mt-5">
-                                <div class="mx-auto">
-                                    {{ Form::submit('Actualizar Campo', ['class' => 'mb-2 block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]']) }}
+                                {{-- fin campos --}}
+                                {{-- Botones --}}
+                                <div class=" mt-2">
+                                    {{ Form::submit('Actualizar Campo', ['class' => 'w-full mb-2 bg-gray-700 text-white  py-2 px-4 w-full rounded hover:bg-gray-600']) }}
                                     {!! Form::close() !!}
-                                </div>
-                                <div class="mx-auto">
-                                    <button type="button" data-te-ripple-init data-te-ripple-color="light" wire:click="EliminarCampo({{$campo->id}})"
-                                        class="flex items-center rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                              
+                                    <button type="button" wire:click="EliminarCampo({{$campo->id}})"
+                                        class=" w-full bg-red-800 text-white  py-2 px-4 w-full rounded hover:bg-gray-600">
                                         Eliminar Campo
                                     </button>
                                 </div>
-                                {{-- <div class="mx-auto">
-                                     
-                                    <button wire:click="EnviarCampo_id('{{ $campo->id }}')" type="button" data-te-ripple-init data-te-ripple-color="light"
-                                        class="flex items-center rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                                        Añadir Cuarteles
-                                    </button>
-                                </div> --}}
                             </div>
-                              
                             {{-- fin botones --}}
                         </div>
                     </div>

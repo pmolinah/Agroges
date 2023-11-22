@@ -9,7 +9,8 @@
             </select>
         </div>
     </div>
-    <div class="border-solid border-2 border-sky-500">
+    
+    <div class="border-solid border-2 border-transparent rounded-lg ">
         <canvas id="myChartdoughnut" class="m-2" width="50" height="200"></canvas>
     </div>
 

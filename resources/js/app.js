@@ -11,9 +11,10 @@ import {
     Datepicker,
     Tab,
     Datatable,
+    Sidenav,
   } from "tw-elements";
   
-  initTE({  Datepicker, Collapse, Modal, Dropdown, Ripple, Input, Timepicker, Chart, Select,Datatable,Tab });
+  initTE({  Datepicker, Collapse, Modal, Dropdown, Ripple, Input, Timepicker, Chart, Select,Datatable,Tab,Sidenav });
 
 import './bootstrap';
 

@@ -72,4 +72,8 @@ class CampoController extends Controller
     {
         //
     }
+
+    public function organizacion(){
+        return view('organizacion.index');
+    }
 }

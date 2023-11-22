@@ -23,14 +23,6 @@ class Roleseeder extends Seeder
      */
     public function run(): void
     {
-        //botones
-        // Permission::create([
-        //     'name'=>'Admin.Boton.admin',
-        //     'description'=>'Boton de Administración de sistema',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-
         //
         color::create(['color'=>'AZUL']);
         color::create(['color'=>'AMARILLO']);
@@ -45,177 +37,97 @@ class Roleseeder extends Seeder
         $role1= Role::create(['name'=>'Admin','description'=>'Rol con todas los permiso del sistema, Administrador de Sistema']);
         $role2= Role::create(['name'=>'Capat','description'=>'Rol capataz']);
        
-                Permission::create(['name'=>'capataz.crear.cosecha'])->assignRole([$role1]);
-                Permission::create(['name'=>'capataz.modificar.cosecha'])->assignRole([$role2]);
-               
-        // Permission::create([
-        //     'name'=>'user.index',
-        //     'guard_name'=>'usuarios.index',
-        // ]);
-        // Permission::create([
-        //     'name'=>'Admin.Usuario.Nuevo',
-        //     'description'=>'Permite Agreagr un nuevo usuario'
-            
-        //     ])->syncRoles(['Admin']);
-
-               
-                // Permission::create(['name'=>'Admin.Roles']);
-                // Permission::create(['name'=>'Admin.Permisos']);
-
-        // permisos para creacion campos/agricolas
-        // Permission::create([
-        //     'name'=>'Admin.CamposAgricolas.New',
-        //     'description'=>'Crear nuevos, Campos, Agrícolas',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.CamposAgricolas.Edit',
-        //     'description'=>'Edita, Campos, Agrícolas',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.CamposAgricolas.Delete',
-        //     'description'=>'Elimina, Campos, Agrícolas, sin movimientos',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.CamposAgricolas.Update',
-        //     'description'=>'Actualiza, Campos, Agrícolas.',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // permisos para cuarteles
-
-        // Permission::create([
-        //     'name'=>'Admin.Cuartel.New',
-        //     'description'=>'Crear nuevos, Cuarteles',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Cuartel.Edit',
-        //     'description'=>'Edita, Cuartel',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Cuartel.Delete',
-        //     'description'=>'Elimina, Cuartel, sin movimientos',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Cuartel.Update',
-        //     'description'=>'Actualización de Datos, Cuartel.',
-        //     'guard_name'=>'sanctum',
-        // ]);
-   
-        // especies
-
-        // Permission::create([
-        //     'name'=>'Admin.Especie.New',
-        //     'description'=>'Crear nuevos, Especie',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Especie.Edit',
-        //     'description'=>'Edita, Especie',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Especie.Delete',
-        //     'description'=>'Elimina, Especie, sin movimientos',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Especie.Update',
-        //     'description'=>'Actualización de Datos, Especie.',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // TAREAS
+                Permission::create(['name'=>'capataz.crear.cosecha','description'=>'Admintrador Sistema'])->assignRole([$role1]);
+                Permission::create(['name'=>'capataz.modificar.cosecha','description'=>'Permiso de Cosecha'])->assignRole([$role2]);
+          
+                // Permisos de Sistema
+                //usuario
+                Permission::create(['name'=>'adm.ver.usuarios','description'=>'Ver Lista de Usuarios']);
+                Permission::create(['name'=>'adm.crear.usuarios','description'=>'Crear Usuarios']);
+                Permission::create(['name'=>'adm.editar.usuarios','description'=>'Editar, Actualizar Usuarios']);
+                Permission::create(['name'=>'adm.eliminar.usuarios','description'=>'Eliminar, Dehabilitar Usuarios']);
+                //roles
+                Permission::create(['name'=>'adm.ver.roles','description'=>'Ver Lista de Roles']);
+                Permission::create(['name'=>'adm.crear.roles','description'=>'Crear Roles']); 
+                Permission::create(['name'=>'adm.editar.roles','description'=>'Editar, Actualizar Roles']);
+                Permission::create(['name'=>'adm.eliminar.roles','description'=>'Eliminar Roles']); 
+                //empresas
+                Permission::create(['name'=>'adm.ver.empresas','description'=>'Ver Lista de Empresas']);
+                Permission::create(['name'=>'adm.crear.empresas','description'=>'Crear Empresas']); 
+                Permission::create(['name'=>'adm.editar.empresas','description'=>'Editar, Actualizar Empresas']);
+                Permission::create(['name'=>'adm.eliminar.empresas','description'=>'Eliminar Empresas']); 
+                //Campos
+                Permission::create(['name'=>'adm.ver.campos','description'=>'Ver Lista de Campos']);
+                Permission::create(['name'=>'adm.crear.campos','description'=>'Crear Campos']); 
+                Permission::create(['name'=>'adm.editar.campos','description'=>'Editar, Actualizar Campos']);
+                Permission::create(['name'=>'adm.eliminar.campos','description'=>'Eliminar Campos']); 
+                //Cuarteles
+                Permission::create(['name'=>'adm.ver.cuarteles','description'=>'Ver Lista de Cuarteles']);
+                Permission::create(['name'=>'adm.crear.cuarteles','description'=>'Crear Cuarteles']); 
+                Permission::create(['name'=>'adm.editar.cuarteles','description'=>'Editar, Actualizar Cuarteles']);
+                Permission::create(['name'=>'adm.eliminar.cuarteles','description'=>'Eliminar Cuarteles']);
+                //Configiración //variedades
+                Permission::create(['name'=>'adm.ver.variedades','description'=>'Ver Lista de Variedades']);
+                Permission::create(['name'=>'adm.crear.variedades','description'=>'Crear Variedades']); 
+                Permission::create(['name'=>'adm.editar.variedades','description'=>'Editar, Actualizar Variedades']);
+                Permission::create(['name'=>'adm.eliminar.variedades','description'=>'Eliminar Variedades']);
+                //Configiración //especies
+                Permission::create(['name'=>'adm.ver.especies','description'=>'Ver Lista de Especies']);
+                Permission::create(['name'=>'adm.crear.especies','description'=>'Crear Especies']); 
+                Permission::create(['name'=>'adm.editar.especies','description'=>'Editar, Actualizar Especies']);
+                Permission::create(['name'=>'adm.eliminar.especies','description'=>'Eliminar Especies']); 
+                 //Configiración //envases
+                 Permission::create(['name'=>'adm.ver.envases','description'=>'Ver Lista de Envases']);
+                 Permission::create(['name'=>'adm.crear.envases','description'=>'Crear Envases']); 
+                 Permission::create(['name'=>'adm.editar.envases','description'=>'Editar, Actualizar Envases']);
+                 Permission::create(['name'=>'adm.eliminar.envases','description'=>'Eliminar Envases']); 
+                 //Cuenta corriente envases
+                 Permission::create(['name'=>'adm.ver.cuentacorriente','description'=>'Ver Lista de Cuenta Corriente Envases']);
+                 Permission::create(['name'=>'adm.crear.cuentacorriente','description'=>'Crear Cuenta Corriente Envases']); 
+                 Permission::create(['name'=>'adm.editar.cuentacorriente','description'=>'Editar, Actualizar Cuenta Corriente Envases']);
+                 Permission::create(['name'=>'adm.eliminar.cuentacorriente','description'=>'Eliminar Cuenta Corriente Envases']); 
+                 //plantacion
+                 Permission::create(['name'=>'adm.ver.plantacion','description'=>'Ver Lista Plantacion']);
+                 Permission::create(['name'=>'adm.crear.plantacion','description'=>'Crear Plantacion']); 
+                 Permission::create(['name'=>'adm.editar.plantacion','description'=>'Editar, Actualizar Plantacion']);
+                 Permission::create(['name'=>'adm.eliminar.plantacion','description'=>'Eliminar Plantacion']);
+                 //planificacion
+                 Permission::create(['name'=>'adm.ver.planificacion','description'=>'Ver Lista Planificacion']);
+                 Permission::create(['name'=>'adm.crear.planificacion','description'=>'Crear Planificacion']); 
+                 Permission::create(['name'=>'adm.editar.planificacion','description'=>'Editar, Actualizar Planificacion']);
+                 Permission::create(['name'=>'adm.eliminar.planificacion','description'=>'Eliminar Planificacion']);
+                 //cosechar
+                 Permission::create(['name'=>'adm.ver.cosechar','description'=>'Ver Lista Cosechas Asignadas']);
+                 Permission::create(['name'=>'adm.crear.cosechar','description'=>'Permiso de Cosechar']); 
+                 Permission::create(['name'=>'adm.editar.cosechar','description'=>'Editar, Actualizar Cosechas']);
+                 Permission::create(['name'=>'adm.eliminar.cosechar','description'=>'Eliminar Cosechas']);
+                 Permission::create(['name'=>'adm.ver.cosechas.finalizadas','description'=>'Ver Lista Cosechas Finalizadas']);
+                 //Certificación
+                 Permission::create(['name'=>'adm.ver.certificados','description'=>'Ver Lista Certificación']);
+                 Permission::create(['name'=>'adm.crear.certificados','description'=>'Crear Certificación']); 
+                 Permission::create(['name'=>'adm.editar.certificados','description'=>'Editar, Actualizar Certificación']);
+                 Permission::create(['name'=>'adm.eliminar.certificados','description'=>'Eliminar Certificación']);
+                  //Producción
+                  Permission::create(['name'=>'prod.ver.despacho','description'=>'Ver Lista Despacho']);
+                  Permission::create(['name'=>'prod.crear.despacho','description'=>'Crear Despacho']); 
+                  Permission::create(['name'=>'prod.editar.despacho','description'=>'Editar, Actualizar Despacho']);
+                  Permission::create(['name'=>'prod.eliminar.despacho','description'=>'Eliminar Despacho']);
+                  //recepcion
+                  Permission::create(['name'=>'prod.ver.recepcion','description'=>'Ver Lista Recepción']);
+                  Permission::create(['name'=>'prod.crear.recepcion','description'=>'Crear Recepción']); 
+                  Permission::create(['name'=>'prod.editar.recepcion','description'=>'Editar, Actualizar Recepción']);
+                  Permission::create(['name'=>'prod.eliminar.recepcion','description'=>'Eliminar Recepción']);
+                  //recepcion
+                  Permission::create(['name'=>'prod.ver.devtras','description'=>'Ver Lista Devolución o Traspaso']);
+                  Permission::create(['name'=>'prod.crear.devtras','description'=>'Crear Devolución o Traspaso']); 
+                  Permission::create(['name'=>'prod.editar.devtras','description'=>'Editar, Actualizar Devolución o Traspaso']);
+                  Permission::create(['name'=>'prod.eliminar.devtras','description'=>'Eliminar Devolución o Traspaso']);
+                  Permission::create(['name'=>'prod.guias.finalizadas','description'=>'Ver Guías Finalizadas']);
 
 
-        // Permission::create([
-        //     'name'=>'Admin.Tarea.New',
-        //     'description'=>'Crear Tarea',
-        //     'guard_name'=>'sanctum',
-        // ]);
 
-        // Permission::create([
-        //     'name'=>'Admin.Tarea.Edit',
-        //     'description'=>'Edita, Tarea',
-        //     'guard_name'=>'sanctum',
-        // ]);
 
-        // Permission::create([
-        //     'name'=>'Admin.Tarea.Delete',
-        //     'description'=>'Elimina, Tarea, sin movimientos',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Tarea.Update',
-        //     'description'=>'Actualización Datos, Tarea.',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // //plantaciones
-        // Permission::create([
-        //     'name'=>'Admin.Plantacion.New',
-        //     'description'=>'Crear Plantación',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Plantacion.Edit',
-        //     'description'=>'Edita, Plantación',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Plantacion.Delete',
-        //     'description'=>'Elimina, Plantación, sin movimientos',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Plantacion.Update',
-        //     'description'=>'Actualización datos, Plantación.',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // // cosechas
-
-        // Permission::create([
-        //     'name'=>'Admin.Cosecha.New',
-        //     'description'=>'Crear Cosecha',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Cosecha.Edit',
-        //     'description'=>'Edita, Cosecha',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Cosecha.Delete',
-        //     'description'=>'Elimina, Cosecha, sin movimientos',
-        //     'guard_name'=>'sanctum',
-        // ]);
-
-        // Permission::create([
-        //     'name'=>'Admin.Cosecha.Update',
-        //     'description'=>'Actualización datos, Cosecha.',
-        //     'guard_name'=>'sanctum',
-        // ]);
+       
 
 
         

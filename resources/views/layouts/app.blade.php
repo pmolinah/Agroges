@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -32,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/fontawesome.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/brands.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/solid.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/css/main.ad49aa9b.css" />
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
@@ -39,8 +39,8 @@
 
 
 
-        @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <!-- Styles -->
     @livewireStyles
     <!-- @include('sweetalert::alert') -->
@@ -52,8 +52,8 @@
 
     <script>
         $(document).ready(function() {
-           $('#myTable').DataTable({
-                responsive:true
+            $('#myTable').DataTable({
+                responsive: true
             });
         });
         $(document).ready(function() {
@@ -65,7 +65,7 @@
             $('#myTable2').DataTable();
         });
     </script>
-     <script>
+    <script>
         $(document).ready(function() {
             $('#myTable55').DataTable();
         });
@@ -104,62 +104,61 @@
             )
         }
     </script>
-     <script>
-        function EliminarColorEnvase(id,cantidad) {
+    <script>
+        function EliminarColorEnvase(id, cantidad) {
             //alert(cantidad);
             var saldoInicial = $('#saldoInicial').val();
-            resta = parseInt(saldoInicial)-parseInt(cantidad);
+            resta = parseInt(saldoInicial) - parseInt(cantidad);
             $('#saldoInicial').val(resta);
             $('#cantidadColor').val(0);
             $('#filaColor' + id).remove();
-           
+
             Swal.fire(
                 'Envase',
                 'Envase  Eliminada de la lista!',
                 'success'
             )
         }
-     
     </script>
     <script>
-        function EliminarColorEnvaseDos(idDos,cantidadDos) {
+        function EliminarColorEnvaseDos(idDos, cantidadDos) {
             //alert(cantidad);
             var saldoInicialDos = $('#saldoInicialDos').val();
-            restaDos = parseInt(saldoInicialDos)-parseInt(cantidadDos);
+            restaDos = parseInt(saldoInicialDos) - parseInt(cantidadDos);
             $('#saldoInicialDos').val(restaDos);
             $('#cantidadColorDos').val(0);
             $('#filaColorDos' + idDos).remove();
-           
+
             Swal.fire(
                 'Envase',
                 'Envase  Eliminada de la lista!',
                 'success'
             )
         }
-     
     </script>
-    
+
 </head>
 
 <body class="font-sans antialiased">
 
     <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+    <div class="text-right min-h-screen bg-gray-100">
+        {{-- @livewire('navigation-menu') --}}
 
         <!-- Page Heading -->
         @if (isset($header))
             <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl w-full  px-4 sm:px-6 lg:px-8">
                     {{ $header }}
+
                 </div>
             </header>
         @endif
 
         <!-- Page Content -->
         <main>
-            {{ $slot }}
+             {{ $slot }}
         </main>
     </div>
     @if (Session::has('success'))
@@ -189,8 +188,9 @@
     @livewireScripts
 </body>
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-  <!-- plugin for scrollbar  -->
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
-  <!-- main script file  -->
-  <script src="../assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
+<!-- plugin for scrollbar  -->
+<script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
+<!-- main script file  -->
+<script src="../assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
+
 </html>

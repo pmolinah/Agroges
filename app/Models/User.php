@@ -32,6 +32,9 @@ class User extends Authenticatable
         'tipo_id',
     ];
 
+    public function tipo(){
+        return $this->belongsTo(tipousuario::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

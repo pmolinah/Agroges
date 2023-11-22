@@ -49,14 +49,14 @@
         </form> 
 
     </x-authentication-card>--}}
-                    <div
+                    {{-- <div
                         class="ml-20 mt-10 bg-neutral-100 p-3 rounded-full shadow-xl bg-no-repeat w-full h-full object-cover"  style="width: 450px; height: 200px; background-image: url('{{ asset('storage/logoComercialCaro.png') }}');">
                         {{-- <a class="py-2.375 text-sm mr-4 ml-4 whitespace-nowrap font-bold text-slate-700 lg:ml-0"
                             href="../pages/dashboard.html"> Comercial Caro Hmnos. SpA </a> --}}
                        
                         
                
-                    </div>
+                    {{-- </div>
    
        
                         <div class="grid grid-cols-12">
@@ -132,6 +132,45 @@
                   
      
    
-    </body>
-
+    </body> --}} 
+            <!-- component -->
+<div class="py-20 mt-20 p-5 bg-neutral-100">
+  <div class="flex bg-white p-5 rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+        <div class=" mt-20 p-5 bg-neutral-100 rounded-full shadow-lg hidden lg:block lg:w-1/2 bg-cover" style="width: 450px; height: 200px; background-image: url('{{ asset('storage/logoComercialCaro.png') }}');"></div>
+        <div class="w-full p-8 mb-5 lg:w-1/2">
+            <h2 class="text-2xl font-semibold text-gray-700 text-center">CCampos</h2>
+            <p class="text-xl text-gray-600 text-center">Sistema Administración de Campos</p>
+           
+            <div class="mt-4 flex items-center justify-between">
+                <span class="border-b w-1/5 lg:w-1/4"></span>
+                <a href="#" class="text-xs text-center text-gray-500 uppercase">Login con Correo y contraseña</a>
+                <span class="border-b w-1/5 lg:w-1/4"></span>
+            </div>
+            <form method="POST" action="{{ route('login') }}">
+            @csrf
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Dirección Email </label>
+                        <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" id="email" type="email" name="email" :value="old('email')"
+                                                required>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex justify-between">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                            <a href="#" class="text-xs text-gray-500">Perdió su Password?</a>
+                        </div>
+                        <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" id="password" type="password" name="password" required type="password">
+                    </div>
+                    <div class="mt-8">
+                        <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Ingresar</button>
+                    </div>
+            </form>
+            <div class="mt-4 flex items-center justify-between">
+                <span class="border-b w-1/5 md:w-1/4"></span>
+                <a href="#" class="text-xs text-gray-500 uppercase">or sign up</a>
+                <span class="border-b w-1/5 md:w-1/4"></span>
+            </div>
+            <div> <x-validation-errors class="mb-4" /></div>
+        </div>
+    </div>
+</div>
 </x-guest-layout>

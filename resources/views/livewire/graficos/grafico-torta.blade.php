@@ -1,19 +1,19 @@
 <div>
-    <div>
-    <div>
-        <div class="ml-5 inline-block">Kilos x Semana, Por Campos
-            <select wire:model.defer="semanaEspecieCampo" wire:change="KilosXSemanaCampo">
-                <option></option>
-                @for ($i = 1; $i < 53; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                @endfor
-            </select>
-        </div>
-    </div>
-     <div class="text-center col-span-3 shadow-xl border-solid border-2 border-sky-500">
+   
+    <div class="">
+            <div class="ml-5 inline-block ">Kilos x Semana, Por Campos
+                <select wire:model.defer="semanaEspecieCampo" wire:change="KilosXSemanaCampo">
+                    <option></option>
+                    @for ($i = 1; $i < 53; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
+       
+        <div class="text-center col-span-3 border-2 border-transparent rounded-lg ">
             <canvas id="myChartpie" class="m-2"  width="50" height="200"></canvas>
         </div>
-
+    </div>
 </div>
 <script >
      var ctx = document.getElementById('myChartpie').getContext('2d');
