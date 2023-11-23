@@ -4,21 +4,19 @@
     <div class="space-y-2">
         <!-- Button trigger vertically centered modal-->
         <div class="grid sm:grid-cols-1 md:grid-cols-3 borde-neutral-800">
-            <div class="">
+            <div class="mt-1">
                 <button type="button"
-                    class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    data-te-toggle="modal" data-te-target="#exampleModalCenterEspecie" data-te-ripple-init
-                    data-te-ripple-color="light">
+                    class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
+                    data-te-toggle="modal" data-te-target="#exampleModalCenterEspecie">
                     Agregar Nueva Especie
                 </button>
             </div>
             <div class="">
-                <h6 class="text-3xl  font-medium leading-tight">Buscar Especie</h6>
+                <h6 class="text-xl mt-3 mr-2 font-medium leading-tight">Filtrar</h6>
             </div>
             <div class="">
-
                 <input type="text" wire:model="search"
-                    class="  peer block min-h-[auto]  rounded bg-info-300 px-3 py-[0.32rem] leading-[1.6] transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]"
+                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
                     id="exampleFormControlInput1" />
             </div>
         </div>
@@ -32,12 +30,11 @@
             <div data-te-modal-dialog-ref
                 class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
                 <div
-                    class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-info-900">
+                    class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none bg-neutral-200">
                     <div
-                        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
+                        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-2 dark:border-opacity-50 bg-neutral-200">
                         <!--Modal title-->
-                        <h5 class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
-
+                        <h5 class="text-xl font-medium leading-normal ">
                             Nueva Especie
                         </h5>
                         <!--Close button-->
@@ -52,15 +49,15 @@
                     </div>
 
                     <!--Modal body-->
-                    <div class="relative p-4 text-neutral-50">
+                    <div class="relative p-4 text-left">
                         Especie
-                        <div class="relative mb-3" data-te-input-wrapper-init>
+                        <div class="relative mb-1" >
                             <input type="text" wire:model.defer="especie"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
 
                         </div>
                     </div>
-                    <div class="relative p-4 text-neutral-50">
+                    <div class="relative p-4 text-left">
                         Seleccione Variedad
                         {{-- select --}}
                         <select  wire:model.defer="variedad_id" class="text-neutral-900 w-full block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
@@ -71,47 +68,39 @@
                         </select>
                         {{-- select --}}
                     </div>
-                    <div class="relative p-4 text-neutral-50">
+                    <div class="relative p-4 text-left">
                         Fecha de Cosecha de la Especie
                         <div class="relative mb-3" >
                             <input type="date" wire:model.defer="fechaCosecha"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
 
                         </div>
                     </div>
                     <div class="grid sm:grid-cols-1 md:grid-cols-3">
-                        <div class="text-neutral-50 mt-11 ml-4">Distancia Plantación</div>
-                        <div class="relative p-4 text-neutral-50 text-center">
+                        <div class="mt-11 ml-4">Distancia Plantación</div>
+                        <div class="relative p-4 text-center">
                         Sobre Hilera
-                            <div class="relative mb-3" data-te-input-wrapper-init>
+                            <div class="relative mb-3" t>
                                 <input type="text" wire:model.defer="metros2"
-                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
                             </div>
                         </div>
-                        <div class="relative p-4 text-neutral-50 text-center">
+                        <div class="relative p-4 text-center">
                         Entre Hilera
-                            <div class="relative mb-3" data-te-input-wrapper-init>
+                            <div class="relative mb-3" >
                                 <input type="text" wire:model.defer="distanciaPlanta"
-                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
                             </div>
                         </div>
                     </div>
                            
                            
 
-                    {{-- <div class="relative p-4 text-neutral-50">
-                        Distancia Entre Plantas
-                        <div class="relative mb-3" data-te-input-wrapper-init>
-                            <input type="text" wire:model.defer="distanciaPlanta"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
-
-                        </div>
-                    </div> --}}
-                    <div class="relative p-4 text-neutral-50">
+                    <div class="relative p-4 text-left">
                         Observación
-                        <div class="relative mb-3" data-te-input-wrapper-init>
+                        <div class="relative mb-3">
                             <textarea wire:model.defer="observacion"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
                                 rows="3"></textarea>
 
                         </div>
@@ -122,13 +111,13 @@
                     <div
                         class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                         <button type="button" wire:click="Limpiar"
-                            class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-                            data-te-modal-dismiss data-te-ripple-init data-te-ripple-color="light">
+                            class="inline-block bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-600"
+                            data-te-modal-dismiss >
                             Cerrar
                         </button>
                         <button type="button" wire:click="GuardarEspecie"
-                            class="ml-1 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                            data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
+                            class="inline-block bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-600 ml-3"
+                             data-te-modal-dismiss>
                             Guardar Especie
                         </button>
                     </div>
@@ -142,19 +131,17 @@
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow-xl m-1">
+                    <div class="overflow-hidden shadow-xl m-1 bg-neutral-100 rounded-lg">
                         <table class="min-w-full text-center text-sm font-light ">
                             <thead
-                                class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+                                class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-600">
                                 <tr>
 
-                                    <th scope="col" class=" px-6 py-4">Especie</th>
-                                    <th scope="col" class=" px-6 py-4">Variedad</th>
-                                    {{-- <th scope="col" class=" px-6 py-4">M2</th> --}}
-                                    {{-- <th scope="col" class=" px-6 py-4">Distancia</th> --}}
-                                    <th scope="col" class="hidden sm:hidden md:block xl:block px-6 py-4">Observacion
+                                    <th scope="col" class=" px-6 py-3">Especie</th>
+                                    <th scope="col" class=" px-6 py-3">Variedad</th>
+                                    <th scope="col" class="hidden sm:hidden md:block xl:block px-6 py-3">Observacion
                                     </th>
-                                    <th scope="col" class=" px-6 py-4">Acción</th>
+                                    <th scope="col" class=" px-6 py-3">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -163,22 +150,23 @@
 
                                         <td class="whitespace-nowrap">{{ $especie->especie }}</td>
                                         <td class="whitespace-nowrap">{{ $especie->variedad->variedad }}</td>
-                                        {{-- <td class="whitespace-nowrap">{{ $especie->metros2 * $especie->distanciaPlanta }}</td> --}}
-                                        {{-- <td class="whitespace-nowrap">{{ $especie->distanciaPlanta }}</td> --}}
-                                        <td class="whitespace-nowrap hidden sm:hidden md:block xl:block  px-6 py-11">
+                                        <td class="whitespace-nowrap hidden sm:hidden md:block xl:block  px-6 py-3 pt-7">
                                             {{ $especie->observacion }}</td>
                                         <td class="whitespace-nowrap  px-6 py-4">
-                                            <center><button type="button"
-                                                    wire:click="EliminarEspecie({{ $especie->id }})"
-                                                    class="mb-1 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
-                                                        class="far fa-trash-alt"></i></button>
-                                            </center>
-                                            <center><button type="button"
-                                                    wire:click="EditarEspecie({{ $especie }})"
-                                                    class="mb-1inline-block rounded bg-warning px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
-                                                        class="far fa-edit"></i></button>
-                                            </center>
-
+                                            <div class="inline-block">
+                                                <center><button type="button"
+                                                        wire:click="EliminarEspecie({{ $especie->id }})"
+                                                        class="mb-1 inline-block rounded bg-red-900 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
+                                                            class="far fa-trash-alt"></i></button>
+                                                </center>
+                                            </div>
+                                            <div class="inline-block">
+                                                <center><button type="button"
+                                                        wire:click="EditarEspecie({{ $especie }})"
+                                                        class="mb-1inline-block rounded bg-yellow-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
+                                                            class="far fa-edit"></i></button>
+                                                </center>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -196,26 +184,22 @@
             
         <x-modal wire:model="open_edit_especie" @click.away="false">
             @foreach ($especieDB as $especieDB)
-                        
-
                 <h5
-                    class=" p-3 text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200 dark:bg-info-900">
+                    class=" p-3 text-left font-medium leading-normal bg-neutral-200">
 
                     Edición de Especie 
                     {{-- {{$especieDB}} --}}
                 </h5>
                 <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
-                <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                <div class="relative p-4 text-left">
                     Especie <input type="hidden" wire:model.defer="edit_id">
-                    <div class="relative mb-3" data-te-input-wrapper-init>
+                    <div class="relative" >
                         <input type="text" wire:model.defer="especie" value="{{$especie}}"
-                            class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                            class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
 
                     </div>
                 </div>
-
-                <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
-                <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+                <div class="relative p-4 text-left">
                     Variedad
                     <select data-te-select-init data-te-select-filter="true" class="text-neutral-900 text-neutral-900 w-full block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"" wire:model.defer="variedad_id">
                         <option value="{{$especieDB->variedad_id}}">{{$especieDB->variedad->variedad}}</option>
@@ -231,51 +215,51 @@
            
 
             {{-- selct pluck --}}
-             <div data-te-select-init class="grid sm:grid-cols-1 md:grid-cols-3 dark:bg-info-900">
-                <div class="text-neutral-50 mt-11 ml-4">Distancia Plantación</div>
-                 <div class="relative p-4 text-neutral-50 text-center">
-                        M
+             <div data-te-select-init class="text-left grid sm:grid-cols-1 md:grid-cols-3">
+                <div class="mt-11 ml-4">Distancia Plantación</div>
+                 <div class="relative p-4 text-center">
+                        Metros
                             <div class="relative mb-3" data-te-input-wrapper-init>
                                 <input type="text" wire:model.defer="metros2"
-                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
                             </div>
                         </div>
-                        <div class="relative p-4 text-neutral-50 text-center">
-                        M
+                        <div class="relative p-4  text-center">
+                        Metros
                             <div class="relative mb-3" data-te-input-wrapper-init>
                                 <input type="text" wire:model.defer="distanciaPlanta"
-                                    class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
                             </div>
                         </div>
              </div>
             
-             <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+             <div class="relative p-4 text-left">
                 Fecha Cosecha
                 <div class="relative mb-3" data-te-input-wrapper-init>
                     <input type="date" wire:model.defer="fechaCosecha" 
-                        class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                        class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200" />
 
                 </div>
             </div>
 
-            <div class="relative p-4 text-neutral-50 dark:bg-info-900">
+            <div class="relative p-4 text-left">
                 Observación
                 <div class="relative mb-3" data-te-input-wrapper-init>
                     <textarea wire:model.defer="observacion" 
-                        class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
                         rows="3"></textarea>
 
                 </div>
             </div>
             <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
-            <div class="dark:bg-info-900 p-3">
+            <div class=" p-3">
                 <button type="button" wire:click="ActualizarEspecie"
-                    class="ml-1 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    class="inline-block bg-gray-700 text-white font-bold ml-2 py-2 px-4 rounded hover:bg-gray-600"
                     data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
                     Actualizar Especie
                 </button>
                 <button type="button" wire:click="Limpiar"
-                    class="ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    class="inline-block bg-gray-500 text-white font-bold ml-2 py-2 px-4 rounded hover:bg-gray-600 mr-3"
                     data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
                     Cerrar
                 </button>

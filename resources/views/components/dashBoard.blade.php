@@ -324,12 +324,12 @@
                                 </li>
                             </ul>
                             <div class="space-y-2 pt-2">
-                                <a href="#"
+                                <a href="{{route('Parametros.index')}}"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2">
                                     <i class="fa-solid fa-sliders"></i>
                                     <span class="ml-4">Configuración</span>
                                 </a>
-                                <a href="#" target="_blank"
+                                <a href="{{route('CuentaCorriente.index')}}"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2">
                                     <i class="fa-solid fa-inbox"></i>
                                     <span class="ml-3">Cuenta Envases</span>
