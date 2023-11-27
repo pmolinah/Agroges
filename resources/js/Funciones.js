@@ -37,20 +37,20 @@ $(document).ready(function(){
         }
 
         if (dv.toString().trim().toUpperCase() == dig.toString().trim().toUpperCase()){
-        
-            // $.get('/api/datos/'+rut+'/Empresa/',function(array){
-                
             
-            
-                // Swal.fire({
-                // 	type: 'error',
-                // 	title: 'Empresa ya Creada...',
-                // 	text: 'Something went wrong!',
-                    
-                //   })
-                
-            
-        // });
+            $.get('/api/datos/'+rut+'-'+dv+'/Empresa/',function(res){
+              
+                if(res==1){
+                    Swal.fire({
+                        icon: 'error',
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Empresa ya Existe!',
+                        footer: '<a href>Verificque Rut</a>'
+                    })
+                    document.getElementById('rut').value='';
+                }
+            });
         }else{
         //inicio
         Swal.fire({
@@ -280,7 +280,7 @@ $(document).ready(function(){
                             }
                             if (detenerCiclo) {
                             }else{
-                                $("#grilla tbody").append('<tr id="fila'+selectedValue+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+selectedValue+'" id="matrizdatos" name="exportadora_id[]" class="input-element bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">'+selectedText+'</label></td><td><input value="'+kilos+'" name="kilosexportadora[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900"></td><td><label class="text-neutral-900">'+stockEnv+'</label></td><td><center><button type="button" onclick="EliminarSolicitudCliente('+selectedValue+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')
+                                $("#grilla tbody").append('<tr class="border-2" id="fila'+selectedValue+'"><td class="border-2"><input type="hidden" value="'+selectedValue+'" id="matrizdatos" name="exportadora_id[]"><label class="bg-transparent text-neutral-900 w-full">'+selectedText+'</label></td><td class="border-2"><input value="'+kilos+'" name="kilosexportadora[]" id="valoreskilos" class="bg-transparent text-center text-neutral-900"></td><td class="border-2"><label class="text-neutral-900">'+stockEnv+'</label></td><td class="border-2"><center><button type="button" onclick="EliminarSolicitudCliente('+selectedValue+')" class="inline-block rounded bg-red-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')
 
                             }
                     
@@ -322,7 +322,7 @@ $(document).ready(function(){
             }
             if (detenerCiclo) {
             }else{
-                $("#grilla2 tbody").append(`<tr id="filas${cont_id}"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="${cont_id}" id="matrizdatoscontratista" name="id[]" class="input-contratista bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">${cont_nm}</label></td><td><input class="text-neutral-900" type="num" name="tratoxcosecha[]" value="${tratoxcosecha}"></td><td><center><button type="button" onclick="EliminarContratista(${cont_id})" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>`)
+                $("#grilla2 tbody").append(`<tr id="filas${cont_id}"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="${cont_id}" id="matrizdatoscontratista" name="id[]" class="input-contratista bg-transparent text-center text-neutral-900"></td><td><label class="bg-transparent text-neutral-900 w-full">${cont_nm}</label></td><td><input class="text-neutral-900" type="num" name="tratoxcosecha[]" value="${tratoxcosecha}"></td><td><center><button type="button" onclick="EliminarContratista(${cont_id})" class="inline-block rounded bg-red-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>`)
                 
             };
             
@@ -446,7 +446,7 @@ $(document).ready(function(){
             document.getElementById('saldoInicialDos').value=suma;
                        
             if(verdadDos){
-            $("#grillaColorDos tbody").append('<tr id="filaColorDos'+color_idDos+'"><td class="justify-center p-1 hidden sm:hidden md:block xl:block"><input value="'+cantidadColorDos+'" name="CantidadEnvaseColorDos[]"  class="input-element bg-transparent text-center text-neutral-900"></td><td><input value="'+dato+'" id="colores_idDos"  name="colores_nomDos[]" class="bg-transparent text-center text-neutral-900"></td><td><center><button type="button" onclick="EliminarColorEnvaseDos('+color_idDos+','+cantidadColorDos+')" class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')   
+            $("#grillaColorDos tbody").append('<tr id="filaColorDos'+color_idDos+'"><td class="border-2 justify-center p-2 hidden sm:hidden md:block xl:block"><input value="'+cantidadColorDos+'" name="CantidadEnvaseColorDos[]"  class="input-element bg-transparent text-center text-neutral-900"></td><td class="border-2"><input value="'+dato+'" id="colores_idDos"  name="colores_nomDos[]" class="bg-transparent text-center text-neutral-900"></td><td class="border-2"><center><button type="button" onclick="EliminarColorEnvaseDos('+color_idDos+','+cantidadColorDos+')" class="inline-block rounded bg-red-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i class="far fa-trash-alt"></i></button></center></td></tr>')   
             };
         });
     });

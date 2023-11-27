@@ -101,14 +101,14 @@ Route::get('/', function () {
 
     //rutas de Cuenta Corriente de Envases
     Route::get('Cuenta/Corriente/Envases',[CuentaCorrienteController::class, 'index'])->name('CuentaCorriente.index');
-
+    Route::get('Cuenta/Corriente/Envases/Exportadoras',[CuentaCorrienteController::class, 'indexExportadoras'])->name('CuentaCorrienteExportadoras.index'); 
     // rutas de certificacion
     Route::get('Index/Certificacion',[CertificacionController::class, 'index'])->name('Certificacion.index');
     Route::get('Index/Certificacion/Cuarteles',[CertificacionController::class, 'indexCertificacionCuartel'])->name('CertificacionCuartel.index');
 
     //cuenta corriente
     Route::post('/store/cuentacorriente/exportadora',[CuentaCorrienteController::class, 'store'])->name('cuentacorriente.store');
-    Route::post('store/cuentacorriente/campo',[CuentaCorrienteController::class, 'storeCampo'])->name('CuenEnvaseCampo.store');
+    Route::post('/store/cuentacorriente/campo',[CuentaCorrienteController::class, 'storeCampo'])->name('CuenEnvaseCampo.store');
     
     //rutas de Administración de Vehiculos
     Route::get('/Administracion/Vehiculos',[VehiculosController::class, 'index'])->name('Vehiculos.index');

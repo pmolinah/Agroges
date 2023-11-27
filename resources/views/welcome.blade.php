@@ -25,9 +25,9 @@
     <nav class="bg-white shadow-lg">
         <div class="md:flex items-center justify-between py-2 px-8 md:px-12">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-gray-800 md:text-3xl">
-                    <img src="{{ asset('storage/logoComercialCaro.png') }}" width="100" height="50">
-                <a href="#" class="ml-2 text-orange-600">Comercial Caro Hnos. SpA</a>
+                <div class="text-2xl font-bold text-gray-800 md:text-3xl shadow-xl shadow-neutral-400 rounded-full">
+                    <img src="{{ asset('storage/logoComercialCaro.png') }}" width="200" height="150">
+                {{-- <a href="#" class="ml-2 text-orange-600">Comercial Caro Hnos. SpA</a> --}}
                 </div>
                 <div class="md:hidden">
                     <button type="button"
@@ -59,26 +59,32 @@
             </div>
         </div>
     </nav>
-    <div class="flex bg-white" style="height:600px;">
+    <div class="flex bg-white" style="height:460px;">
         <div class="flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2">
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800 md:text-4xl">Administre y Controle sus Campos con <span
-                        class="text-orange-600">CCampos</span></h2>
+                        class="text-green-600">AgroGes.</span></h2>
                 <p class="mt-2 text-sm text-gray-500 md:text-base">sistema enfocado a la gestión de Campos, Cuarteles y
                     especies para el desarrollo y manejo de sus cosechas</p>
-                <div class="flex justify-center lg:justify-start mt-6">
+                {{-- <div class="flex justify-center lg:justify-start mt-6">
                     <a class="px-4 py-3 bg-gray-900 text-gray-200 text-xs font-semibold rounded hover:bg-gray-800"
                         href="#">Comocer Más</a>
-                    {{-- <a class="mx-4 px-4 py-3 bg-gray-300 text-gray-900 text-xs font-semibold rounded hover:bg-gray-400" href="#">Learn More</a> --}}
-                </div>
+                    {{-- <a class="mx-4 px-4 py-3 bg-gray-300 text-gray-900 text-xs font-semibold rounded hover:bg-gray-400" href="#">Learn More</a> -}}
+                </div> --}}
             </div>
         </div>
         <div class="hidden lg:block lg:w-1/2" style="clip-path:polygon(10% 0, 100% 0%, 100% 100%, 0 100%)">
-            <div class="h-full object-cover"
-                style="background-image: url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80)">
-                <div class="h-full bg-black opacity-25"></div>
+            <div class="h-full object-cover bg-cover"
+                style="background-image: url({{ asset('storage/logoAgrogesFondo.png') }})">
+                <div class="bg-black opacity-25"></div>
             </div>
         </div>
+         {{-- <div class="hidden lg:block lg:w-1/2" style="clip-path:polygon(10% 0, 100% 0%, 100% 100%, 0 100%)">
+            <div class="h-full w-full object-cover  bg-no-repeat  bg-cover"
+                style="background-image: url({{ asset('storage/logoAgroges.png') }})">
+                {{-- <div class="h-full bg-black opacity-25"></div> -}}
+            </div>
+        </div> --}}
 
     </div>
     <!-- component -->

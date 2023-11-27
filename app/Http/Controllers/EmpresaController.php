@@ -78,4 +78,14 @@ class EmpresaController extends Controller
     {
         //
     }
+
+    public function verificarRut($rut){
+      
+        $existeEmpresa=empresa::where('rut',$rut)->count();
+        if($existeEmpresa>0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }

@@ -1,5 +1,8 @@
 <div>
     <div class=" p-2 rounded-2 bg-white">
+     <div class="w-full rounded-xl border border-gray-200 bg-white py-2 mt-2 px-2 shadow-xl">
+        <div class="mt-2">
+            <div class="flex max-h-[450px] w-full flex-col overflow-y-scroll">
         <div id="accordionExample5" hidden>
             <div class="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 ">
                 <h2 class="mb-0" id="headingOne5">
@@ -61,46 +64,46 @@
                                     Codigo SAG,
                                 </div>
                                 <div class="">
-                                    {{ Form::text('codigoSag', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                    {{ Form::text('codigoSag', null, ['class' => 'h-10 border rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
                                 <div class="">
                                     Rut,
                                 </div>
                                 <div class="">
-                                    {{ Form::text('rut', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                    {{ Form::text('rut', null, ['class' => 'h-10 border  rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
                                 
                                 <div class="">
                                     Campo
                                 </div>
                                 <div clas="">
-                                    {{ Form::text('campo', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                    {{ Form::text('campo', null, ['class' => 'h-10 border rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
                                 <div class="">
                                     Dirección
                                 </div>
                                 <div clas="">
-                                    {{ Form::text('direccion', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                    {{ Form::text('direccion', null, ['class' => 'h-10 border rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
                                 <div class="">
                                     Superficie en Ha
                                 </div>
                                 <div clas="">
-                                    {{ Form::text('superficie', null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50', 'required']) }}
+                                    {{ Form::text('superficie', null, ['class' => 'h-10 border  rounded px-4 w-full bg-gray-50', 'required']) }}
                                 </div>
                                 <div class="">
                                     Comuna
                                 </div>
                                 <div clas="">
                                     
-                                        {{ Form::select('comuna_id', $comunas->pluck('comuna', 'id')->all(), null, ['class' => 'h-10 border mt-1 rounded px-4 w-full bg-gray-50']) }}
+                                        {{ Form::select('comuna_id', $comunas->pluck('comuna', 'id')->all(), null, ['class' => 'h-10 border rounded px-4 w-full bg-gray-50']) }}
                                     
                                 </div>
                                 <div class="">
                                     Administrador
                                 </div>
                                 <div clas="">
-                                        {{ Form::select('comuna_id', $administradores->pluck('name', 'id')->all(), null, ['class' => ' h-10 border mt-1 rounded px-4 w-full bg-gray-50']) }}
+                                        {{ Form::select('comuna_id', $administradores->pluck('name', 'id')->all(), null, ['class' => ' h-10 border rounded px-4 w-full bg-gray-50']) }}
                                 </div>
                                 {{-- fin campos --}}
                                 {{-- Botones --}}
@@ -121,6 +124,9 @@
 
                 {{-- fin --}}
             @endforeach
+        </div>
+        </div>
+        </div>
         </div>
     </div>
      <script>

@@ -348,6 +348,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                {{-- fin cuenta usuario --}}
             </div>
 
             <!-- Hamburger -->

@@ -42,7 +42,20 @@ class CuentaCorrienteController extends Controller
         return view('CuentaCorriente.index',compact('exportadoras','envase','colores','cuentaenvases','empresas','envaseCampo','envaseempresa'));
         
     }
-
+    public function indexExportadoras()
+    {
+        $exportadoras=empresa::where('tipo_id',4)->get();
+        $empresas=empresa::where('tipo_id',1)->get();
+        $envase=envase::all();
+        $envaseCampo=envase::all();
+        $colores=color::all();
+        $cuentaenvases=cuentaenvase::all();
+        $envaseempresa=envaseempresa::with('desgloseenvasecampo')->get();
+        
+        return view('CuentaCorriente.indexExportadora',compact('exportadoras','envase','colores','cuentaenvases','empresas','envaseCampo','envaseempresa'));
+        
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

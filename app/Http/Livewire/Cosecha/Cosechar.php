@@ -208,7 +208,7 @@ class Cosechar extends Component
         // $planificacion=desgloseenvase::whereHas('cuentaenvase.exportadoraxplanificacion.planificacioncosecha', function ($query) use ($valor) 
         //     {$query->where('id', $valor);})->get();
         
-        $detalleCo=detallecosecha::where('planificacioncosecha_id',$valor)->paginate(10);
+        $detalleCo=detallecosecha::where('planificacioncosecha_id',$valor)->paginate(8);
         $resultado = detallecosecha::where('planificacioncosecha_id', $this->planificacioncosecha_id)->sum('kilos');
 
         $this->cosechaActual=$resultado;

@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SelectController;
 use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\CuentaCorrienteController;
+use App\Http\Controllers\EmpresaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,4 +41,5 @@ Route::get('/stock/{exID}/envase/{enID}/exportadora',[CosechaController::class, 
 Route::get('/recuperar/{color_id}/color',[SelectController::class, 'RecuperarColor']);
 Route::get('/Eliminar/Cuenta/{valorPersonalizado}/Envases',[CuentaCorrienteController::class, 'destroy']);
 Route::get('/Eliminar/Cuenta/{valorPersonalizado}/Envases/Campo',[CuentaCorrienteController::class, 'destroyCampo']);
+Route::get('/datos/{rut}/Empresa/',[EmpresaController::class, 'verificarRut']);
 // Route::get('/btn/{solicitud_id}/zip/','ComprimirDescargar@ComprimirDocumentoSolicitud');
