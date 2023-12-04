@@ -129,24 +129,12 @@ class CuentaCorrienteController extends Controller
                     ]);
                 }
 
-                //proceso de creacion de envases si faltaba en campo o agragaba si existia, no debe ser asi porque modifica el stock original detallado
-                // $verificaExistenciaEnvase=desgloseenvasecampo::where('envaseempresa_id',$this->empresaenvaseID)->where('color_id',$colorID->id)->count();  //verifica que el tipo de envase exista para agregar el detalle sino, debe crearse ///////////////******* */
-                // if($verificaExistenciaEnvase>0){
-                //     $actualizaDetalleEmpresa=desgloseenvasecampo::where('envaseempresa_id',$this->empresaenvaseID)->where('color_id',$colorID->id)->increment('stock',$this->colorCantidad[$i]);
-                //     envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->increment('stock',$this->colorCantidad[$i]);
-                // }else{
-                //     envaseempresa::where('campo_id',$request->campo_id)->where('envase_id',$request->envase_id)->increment('stock',$this->colorCantidad[$i]);
-                //     desgloseenvasecampo::create([
-                //         'envaseempresa_id'=>$this->empresaenvaseID,
-                //         'color_id'=>$colorID->id,
-                //         'stock'=>$this->colorCantidad[$i],
-                //     ]);
-                // }
+             
             }
         }
        
         Session::flash('success', 'Cuenta Corriente iniciada Correctamente');
-        return redirect()->route('CuentaCorriente.index');
+        return redirect()->route('CuentaCorrienteExportadoras.index');
     }
 
     public function storeCampo(Request $request){

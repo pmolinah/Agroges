@@ -71,6 +71,7 @@ class DevolucionEnvases extends Component
         }
     }
     public function AgregarDetalleCampo(){
+        
         $this->destinoType='campo';
 
         $devoluciontraspaso=devoluciontraspaso::where('destino_id',$this->campoID)->where('destino_type',$this->destinoType)->where('fecha',$this->fechaGuia)->where('campo_id',$this->campo_id)->where('emitida',NULL)->count();
@@ -101,6 +102,14 @@ class DevolucionEnvases extends Component
 
     }
     public function AgregarDetalleExportadora(){
+        if($this->conductor_id==NULL || $this->vehiculo_id==NULL){
+            $this->dispatchBrowserEvent('ErrorCampoVacio', [
+                'title' => 'Error, Falta Vehículo o Conductor.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
         $this->destinoType='empresa';
 
         $devoluciontraspaso=devoluciontraspaso::where('destino_id',$this->exportadora_id)->where('destino_type',$this->destinoType)->where('fecha',$this->fechaGuia)->where('campo_id',$this->campo_id)->where('emitida',NULL)->count();

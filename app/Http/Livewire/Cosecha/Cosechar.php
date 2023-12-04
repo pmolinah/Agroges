@@ -12,6 +12,7 @@ use App\Models\desgloseenvase;
 use App\Models\envaseempresa;
 use App\Models\color;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Session;
 
 class Cosechar extends Component
 {
@@ -39,6 +40,24 @@ class Cosechar extends Component
     
     public function agregarKilos(){
 
+        
+        if($this->contratista_id==null || $this->kilos==null || $this->tarjaenvase==null || $this->exportadoraID==null ){
+            $this->dispatchBrowserEvent('ErrorCampoVacioCosecha', [
+                'title' => 'Faltan Datos...',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
+
+        if(!filter_var($this->kilos, FILTER_VALIDATE_FLOAT)){
+            $this->dispatchBrowserEvent('ErrorCampoVacioCosecha', [
+                'title' => 'Faltan Datos...',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
         $this->pivoteDetalleCosecha=$this->planificacioncosecha_id.'-'.$this->contratista_id.'-'.$this->exportadoraID;
         detallecosecha::create([
             'planificacioncosecha_id'=>$this->planificacioncosecha_id,

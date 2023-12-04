@@ -17,6 +17,7 @@ use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\DevolucionEnvaseController;
 use App\Http\Livewire\Graficos\Graficos;
 use App\Http\Controllers\CierreInicioTemporadaController;
+use App\Http\Controllers\PlanEstimadoController;
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -130,6 +131,9 @@ Route::get('/', function () {
     //Rutas de Organización
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');
     Route::get('/Organizacion/Campos/Cuarteles',[CampoController::class, 'organizacion'])->name('organizacion.index');
-    
 
+    //planEstimado de especies
+    Route::get('/Plan/Estimado/Index',[PlanEstimadoController::class, 'index'])->name('PanEstimado.index');
+    Route::get('/Plan/Estimado',[PlanEstimadoController::class, 'CreatePlan'])->name('Create.plan');
+    Route::post('/Store/PlanEstimado',[PlanEstimadoController::class, 'store'])->name('PlanEstimacion.store');
 });

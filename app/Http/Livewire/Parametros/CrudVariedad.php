@@ -28,6 +28,7 @@ class CrudVariedad extends Component
     
     public function GuardarVariedad(){
         // $this->validate();
+    
         variedad::create([
             'variedad'=>$this->variedad,
             'observacion'=>$this->observacion,
@@ -66,6 +67,8 @@ class CrudVariedad extends Component
             'iconColor'=>'blue',
         ]);
         $this->reset(['variedad','observacion']);
+        $this->open_edit=false;
+        
     }
     
     public function render()

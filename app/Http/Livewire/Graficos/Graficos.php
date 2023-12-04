@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\especie;
 use App\Models\campo;
 use App\Models\detallecosecha;
-
+use Carbon\Carbon;
 use Livewire\Component;
 
 
@@ -22,6 +22,13 @@ class Graficos extends Component
     public $detalleEspecieSemanados=[];
     public $detalleEspecieSemanatres=[];
     public $detalleEspecieSemana=[];
+    public $numeroSemana;
+    
+    
+    public function mount(){
+        $this->numeroSemana = Carbon::now()->weekOfYear;
+        $this->semanaEspecie=$this->numeroSemana;
+    }
     
     public function KilosXSemanaCampo(){
         $this->detalleEspecieSemana = [];
@@ -53,6 +60,7 @@ class Graficos extends Component
     }
     public function render()
     {
+        
         $especies=especie::all();
         $campos=campo::all();
         return view('livewire.graficos.graficos',compact('especies','campos'));

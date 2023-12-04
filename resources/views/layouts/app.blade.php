@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/fontawesome.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/brands.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/solid.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/css/main.ad49aa9b.css" />
+    <link rel="stylesheet"
+        href="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/css/main.ad49aa9b.css" />
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
@@ -51,6 +52,24 @@
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
 
     <script>
+        window.addEventListener('ErrorCampoVacio', function(e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error, Falta Conductor o Vehículo..',
+                text: '{{ Session::get('success') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
+        window.addEventListener('ErrorCampoVacioCosecha', function(e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error, Falta Datos, Revisar Contratista, Exportadora, Tarja o Kilos..',
+                text: '{{ Session::get('success') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
         $(document).ready(function() {
             $('#myTable').DataTable({
                 responsive: true
@@ -158,7 +177,7 @@
 
         <!-- Page Content -->
         <main>
-             {{ $slot }}
+            {{ $slot }}
         </main>
     </div>
     @if (Session::has('success'))
@@ -189,8 +208,8 @@
 </body>
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 <!-- plugin for scrollbar  -->
-<script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
+{{-- <script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script> --}}
 <!-- main script file  -->
-<script src="../assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
+{{-- <script src="../assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script> --}}
 
 </html>

@@ -4,18 +4,16 @@
         <!-- Button trigger vertically centered modal-->
         <div class="grid sm:grid-cols-1 md:grid-cols-3 borde-neutral-800">
             <div class="mt-1">
-                <button type="button"
-                    class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
+                <button type="button" class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
                     data-te-toggle="modal" data-te-target="#exampleModalCenter">
                     Agregar Nueva Variedad
-                </button> 
+                </button>
             </div>
             <div class="">
                 <h6 class="text-xl mt-3 mr-2 font-medium leading-tight">Filtrar</h6>
             </div>
             <div class="">
-                <input type="text" wire:model="search"
-                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
+                <input type="text" wire:model="search" class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
                     id="exampleFormControlInput1" />
             </div>
         </div>
@@ -72,7 +70,7 @@
                         class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                         <button type="button" wire:click="GuardarVariedad"
                             class=" inline-block bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-600"
-                             data-te-modal-dismiss>
+                            data-te-modal-dismiss>
                             Guardar Variedad
                         </button>
                         <button type="button" wire:click="Limpiar"
@@ -91,7 +89,7 @@
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow-xl m-1 bg-neutral-100 rounded-lg" >
+                    <div class="overflow-hidden shadow-xl m-1 bg-neutral-100 rounded-lg">
                         <table class="min-w-full text-center text-sm font-light ">
                             <thead
                                 class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-600">
@@ -135,43 +133,39 @@
             </div>
         </div>
         <!--Modal title-->
-        <x-modal wire:model="open_edit" @click.away="false">
-        <div class="bg-neutral-200">
-            <h5 class=" p-3 text-xl font-medium leading-normal text-neutral-800 text-left bg-neutral-300">
-                Edición Variedad
-            </h5>
-            <hr/>
-            <div class="text-left p-4 ">
-                Variedad <input type="hidden" wire:model.defer="edit_id">
-                <div>
-                    <input type="text" wire:model.defer="variedad"
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+        <x-modal wire:model="open_edit">
+            <div class="bg-neutral-200">
+                <h5 class=" p-3 text-xl font-medium leading-normal text-neutral-800 text-left bg-neutral-300">
+                    Edición Variedad
+                </h5>
+                <hr />
+                <div class="text-left p-4 ">
+                    Variedad <input type="hidden" wire:model.defer="edit_id">
+                    <div>
+                        <input type="text" wire:model.defer="variedad"
+                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
+                    </div>
+                </div>
+                <div class="relative p-4 text-left">
+                    Observación
+                    <div class="relative mb-3">
+                        <textarea wire:model.defer="observacion" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" rows="3"></textarea>
+
+                    </div>
+                </div>
+
+                <div class=" p-3">
+                    <button type="button" wire:click="ActualizarVariedad"
+                        class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600">
+                        Actualizar Variedad
+                    </button>
+                    <button type="button" wire:click="Limpiar"
+                        class="ml-1 inline-block rounded bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-300">
+                        Cerrar
+                    </button>
                 </div>
             </div>
-            <div class="relative p-4 text-left">
-                Observación
-                <div class="relative mb-3" >
-                    <textarea wire:model.defer="observacion"
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        rows="3"></textarea>
-
-                </div>
-            </div>
-       
-            <div class=" p-3">
-                <button type="button" wire:click="ActualizarVariedad"
-                    class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600"
-                     data-te-modal-dismiss>
-                    Actualizar Variedad
-                </button>
-                 <button type="button" wire:click="Limpiar"
-                    class="ml-1 inline-block rounded bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-300"
-                     data-te-modal-dismiss>
-                    Cerrar
-                </button>
-            </div>
-        </div>   
 
         </x-modal>
         {{-- modal --}}
@@ -206,6 +200,6 @@
             });
         </script>
         {{-- fin caja --}}
-        </div>
-        
     </div>
+
+</div>

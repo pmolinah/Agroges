@@ -46,7 +46,7 @@ class CrudGuias extends Component
     }
 
     public function CargarInformacion(){
-        $this->exportadoraxplanificacion=exportadoraxplanificacion::with('desgloseenvase')->where('id',$this->exportadorxplanificacionID)->get();
+        $this->exportadoraxplanificacion=exportadoraxplanificacion::with('desgloseenvase')->where('id',$this->exportadorxplanificacionID)->where('KilosRecolectados','!=',NULL)->get();
         foreach($this->exportadoraxplanificacion as $expxcos){
             $this->detalleCosecha=detallecosecha::where('planificacioncosecha_id',$expxcos->planificacioncosecha_id)->where('exportadora_id',$expxcos->empresa_id)->get();
         }
@@ -54,6 +54,15 @@ class CrudGuias extends Component
     }
 
     public function generarGuiaDespacho(){
+        
+        if($this->conductor_id==NULL || $this->vehiculo_id==NULL){
+            $this->dispatchBrowserEvent('ErrorCampoVacio', [
+                'title' => 'Error, Falta Vehículo o Conductor.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
         
         $exportPlan=exportadoraxplanificacion::with('desgloseenvase')->where('id',$this->exportadorxplanificacionID)->get();
         foreach ($exportPlan as $exportadoraxpla){
@@ -130,7 +139,7 @@ class CrudGuias extends Component
     public function render()
     {
     
-        $planificacioncosecha=planificacioncosecha::with('exportadoraxplanificacion.desgloseenvase','contraistaxplanificacion','detallecosecha')->whereBetween('updated_at', [$this->fechainicial . ' 00:00:00', $this->fechafinal . ' 23:59:59'])->get();
+        $planificacioncosecha=planificacioncosecha::with('exportadoraxplanificacion.desgloseenvase','contraistaxplanificacion','detallecosecha')->whereBetween('updated_at', [$this->fechainicial . ' 00:00:00', $this->fechafinal . ' 23:59:59'])->where('finalizada','!=',NULL)->get();
         $vehiculos=vehiculo::all();
         $conductores=User::where('tipo_id',6)->get();          
         return view('livewire.guias.crud-guias',compact('planificacioncosecha','conductores','vehiculos'));

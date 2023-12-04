@@ -73,7 +73,14 @@ class CrudGuiasRecepcion extends Component
     }
     
     public function AgregarGuiaRecepcion(){
-
+        if($this->conductor_id==NULL || $this->vehiculo_id==NULL){
+            $this->dispatchBrowserEvent('ErrorCampoVacio', [
+                'title' => 'Error, Falta Vehículo o Conductor.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
         $this->matrizEnvaseColor=[];
         $this->matrizEspecieKilos=[];
         $conteo=guiarecepcion::with('guiarecepciondetalle')->where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('emitida',NULL)->where('fecha',$this->fechaGuia)->count();    

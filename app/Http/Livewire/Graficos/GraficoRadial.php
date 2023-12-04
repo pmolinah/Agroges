@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Graficos;
 use Livewire\Component;
 use App\Models\cuartel;
 use App\Models\detallecosecha;
+use Carbon\Carbon;
 class GraficoRadial extends Component
 {
     public $detalleSemanaCuartel=[];
@@ -13,6 +14,11 @@ class GraficoRadial extends Component
     public $labels = [];
     public $data = [];
     public $f=0,$c=0;
+
+    public function mount(){
+        $this->numeroSemana = Carbon::now()->weekOfYear;
+        $this->semanaEspecieCuartel=$this->numeroSemana;
+    }
 
     public function KilosXSemanaCuartel(){
         $this->detalleSemanaCuartel=[];
