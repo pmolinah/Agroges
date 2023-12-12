@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('documento',100);
             $table->bigInteger('cuartel_id')->unsigned();
             $table->foreign('cuartel_id')->references('id')->on('cuartels');
-         
+            $table->string('codigoCertificacion',50)->nullable();
             $table->string('casaCertificadora',30);
             $table->integer('alertaTempranaCaducidad');
         });

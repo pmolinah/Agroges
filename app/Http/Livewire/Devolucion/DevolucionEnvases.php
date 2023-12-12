@@ -71,9 +71,17 @@ class DevolucionEnvases extends Component
         }
     }
     public function AgregarDetalleCampo(){
-        
-        $this->destinoType='campo';
+        if($this->fechaGuia==NULL || $this->campo_id==NULL || $this->campoID==NULL  || $this->conductor_id==NULL || $this->vehiculo_id==NULL){
+            $this->dispatchBrowserEvent('ErrorFaltanDatos', [
+                'title' => 'Error, Faltan Datos.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
 
+
+        $this->destinoType='campo';
         $devoluciontraspaso=devoluciontraspaso::where('destino_id',$this->campoID)->where('destino_type',$this->destinoType)->where('fecha',$this->fechaGuia)->where('campo_id',$this->campo_id)->where('emitida',NULL)->count();
         //dd($devoluciontraspaso);
         if($devoluciontraspaso<1){
@@ -142,6 +150,14 @@ class DevolucionEnvases extends Component
     }
 
     public function AgregarLinea(){
+        if($this->Cantidad==NULL || $this->envase_id==NULL || $this->color_id==NULL){
+            $this->dispatchBrowserEvent('ErrorFaltanDatos', [
+                'title' => 'Error, Faltan Datos.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
         if($this->seleccion==1){
             $this->destinoType='campo';
             $this->destino=$this->campoID;

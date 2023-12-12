@@ -134,9 +134,9 @@ class GuiasController extends Controller
             PDF::SetFillColor(253, 254, 254);
             PDF::MultiCell(90, 4, $GuiaDespacho->empresa->giro, 1, 'C', 1, 0, '', '', true);
             PDF::SetFillColor(229, 231, 233);
-            PDF::MultiCell(13, 4, 'Código', 1, 'C', 1, 0, 114, '', true);
+            PDF::MultiCell(13, 4, 'C.SAG', 1, 'C', 1, 0, 114, '', true);
             PDF::SetFillColor(253, 254, 254);
-            PDF::MultiCell(70, 4, $GuiaDespacho->empresa->email, 1, 'C', 1, 0, '', '', true);
+            PDF::MultiCell(70, 4, $GuiaDespacho->planificacioncosecha->cuartel->codigoSag, 1, 'C', 1, 0, '', '', true);
             PDF::Ln(4);
             PDF::SetFillColor(229, 231, 233);
             PDF::MultiCell(16, 4, 'Conductor', 1, 'C', 1, 0, 11, '', true);

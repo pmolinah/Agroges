@@ -20,6 +20,7 @@ class certificacionasignadacuartel extends Model
         'documento',
         'casaCertificadora',
         'alertaTempranaCaducidad',
+        'codigoCertificacion',
     ];
 
     public function certificacion(){

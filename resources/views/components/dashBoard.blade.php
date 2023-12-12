@@ -98,12 +98,13 @@
                         <!-- Notification button -->
                         <button @click="openNotificationsPanel"
                             class="p-2 text-neutral-400 transition-colors duration-200 rounded-full bg-neutral-50 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:text-light dark:hover:bg-neutral-700 dark:bg-dark focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-700 focus:ring-neutral-800">
-                            <span class="sr-only">Open Notification panel</span>
+                            {{-- <span class="sr-only">Open Notification panel</span>
                             <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
+                            </svg> --}}
+                            @livewire('notificacion.campana')
                         </button>
 
                         <!-- Search button -->
@@ -165,7 +166,14 @@
                                 tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
                                 <a href="{{ route('profile.show') }}" role="menuitem"
                                     class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-neutral-600">
-                                    {{ Auth::user()->name }}
+                                    @if (auth()->check())
+                                        {{ Auth::user()->name }}
+                                    @else
+                                        {{-- Código para mostrar cuando el usuario no está autenticado --}}
+                                        Usuario no autenticado
+                                    @endif
+
+                                    {{-- {{ Auth::user()->name }} --}}
                                 </a>
                                 {{-- <a
                     href="#"
@@ -192,126 +200,154 @@
                 <nav aria-label="Main"
                     class="bg-gray-400 flex-1 w-64 px-1 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto ">
                     <!-- Dashboards links -->
-                    <div x-data="{ isActive: false, open: false }">
-                        <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
-                        <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-600 dark:bg-neutral-600': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                            <span aria-hidden="true">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                </svg>
-                            </span>
-                            <span class="ml-2 text-sm"> Producción </span>
-                            <span class="ml-auto" aria-hidden="true">
-                                <!-- active class 'rotate-180' -->
-                                <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </span>
-                        </a>
-                        <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                            <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                            <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                            <a href="{{ route('Guias.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Despacho&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>
+                    @can('prod.menu.btn')
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
+                                :class="{ 'bg-neutral-600 dark:bg-neutral-600': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> Producción </span>
+                                <span class="ml-auto" aria-hidden="true">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
                             </a>
-                            <a href="{{ route('Guias.recepcion') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Recepción&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-left"></i>
-                            </a>
-                            <a href="{{ route('Devolucion.Envases') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Traspaso/Devolucion&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrows-turn-to-dots"></i>
-                            </a>
-                            <a href="{{ route('Guias.show') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Guías Emitidas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-clipboard"></i>
-                            </a>
-                            <hr>
-                            <a href="{{ route('Cosecha.planificacionCreate') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-calendar-days"></i>
-                            </a>
-                            <a href="{{ route('Cosecha.planificacion') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Ver Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
-                            </a>
-                            <a href="{{ route('Plantacion.create') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Plantaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-tree"></i>
-                            </a>
-                            <a href="{{ route('Plantacion.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Ver Plantaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
-                            </a>
-                            <hr>
-                            <a href="{{ route('Cosecha.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Cosechar&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-apple-whole"></i>
-                            </a>
-                            <a href="{{ route('CosechasCerradas.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Cosechas Realizadas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-carrot"></i>
-                            </a>
-
+                            <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                @can('prod.crear.despacho')
+                                    <a href="{{ route('Guias.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Despacho&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                @endcan
+                                @can('prod.crear.recepcion')
+                                    <a href="{{ route('Guias.recepcion') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Recepción&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-left"></i>
+                                    </a>
+                                @endcan
+                                @can('prod.crear.devtras')
+                                    <a href="{{ route('Devolucion.Envases') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Traspaso/Devolucion&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrows-turn-to-dots"></i>
+                                    </a>
+                                @endcan
+                                @can('prod.guias.finalizadas')
+                                    <a href="{{ route('Guias.show') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Guías Emitidas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-clipboard"></i>
+                                    </a>
+                                @endcan
+                                <hr>
+                                @can('adm.crear.planificacion')
+                                    <a href="{{ route('Cosecha.planificacionCreate') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-calendar-days"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.ver.planificacion')
+                                    <a href="{{ route('Cosecha.planificacion') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Ver Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.crear.plantacion')
+                                    <a href="{{ route('Plantacion.create') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Plantaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-tree"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.ver.plantacion')
+                                    <a href="{{ route('Plantacion.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Ver Plantaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.crear.cosechar')
+                                    <hr>
+                                    <a href="{{ route('Cosecha.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Ver Cosechas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-apple-whole"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.ver.cosechas.finalizadas')
+                                    <a href="{{ route('CosechasCerradas.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Cosechas Realizadas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-carrot"></i>
+                                    </a>
+                                @endcan
+                            </div>
                         </div>
-                    </div>
+                    @endcan
+                    @can('Adm.menu.btn')
+                        <!-- Components links -->
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-neutral-100 dark:bg-neutral-600' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
+                                :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                    </svg>
+                                </span>
+                                <span class="ml-2 text-sm"> Usuario y Roles </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                @can('adm.crear.usuarios')
+                                    <a href="{{ route('User.create') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Crear Usuarios&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-plus"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.ver.usuarios')
+                                    <a href="{{ route('User.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Ver Usuarios&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-users"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.crear.roles')
+                                    <a href="{{ route('Rol.create') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Roles y Permisos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
 
-                    <!-- Components links -->
-                    <div x-data="{ isActive: false, open: false }">
-                        <!-- active classes 'bg-neutral-100 dark:bg-neutral-600' -->
-                        <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                            <span aria-hidden="true">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                </svg>
-                            </span>
-                            <span class="ml-2 text-sm"> Usuario y Roles </span>
-                            <span aria-hidden="true" class="ml-auto">
-                                <!-- active class 'rotate-180' -->
-                                <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </span>
-                        </a>
-                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                            <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                            <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                            <a href="{{ route('User.create') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Crear Usuarios&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-plus"></i>
-                            </a>
-                            <a href="{{ route('User.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Ver Usuarios&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-users"></i>
-                            </a>
-                            <a href="{{ route('Rol.create') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Roles y Permisos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
-
-                            </a>
-                            <a href="{{ route('RolePermisos.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Ver Roles/Permisos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-table-list"></i>
-
-                            </a>
-                            {{-- <a
+                                    </a>
+                                @endcan
+                                @can('adm.ver.roles')
+                                    <a href="{{ route('RolePermisos.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Ver Roles/Permisos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-table-list"></i>
+                                    </a>
+                                @endcan
+                                {{-- <a
                   href="#"
                   role="menuitem"
                   class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
@@ -346,18 +382,19 @@
                 >
                   Modals
                 </a> --}}
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Pages links -->
-                    <div x-data="{ isActive: false, open: false }">
-                        <!-- active classes 'bg-neutral-100 dark:bg-neutral-600' -->
-                        <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                            <span aria-hidden="true">
-                                {{-- <svg
+                    @endcan
+                    @can('Adm.emp.btn')
+                        <!-- Pages links -->
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-neutral-100 dark:bg-neutral-600' -->
+                            <a href="#" @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
+                                :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
+                                aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                <span aria-hidden="true">
+                                    {{-- <svg
                     class="w-5 h-5"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -372,30 +409,34 @@
                     />
                   </svg> --}}<i class="fa-solid fa-building ml-1 mr-1"></i>
 
-                            </span>
-                            <span class="ml-2 text-sm"> Empresas </span>
-                            <span aria-hidden="true" class="ml-auto">
-                                <!-- active class 'rotate-180' -->
-                                <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </span>
-                        </a>
-                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                            <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                            <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                            <a href="{{ route('Empresa.create') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Crear Empresa&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus ml-1 mr-1"></i>
+                                </span>
+                                <span class="ml-2 text-sm"> Empresas </span>
+                                <span aria-hidden="true" class="ml-auto">
+                                    <!-- active class 'rotate-180' -->
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
                             </a>
-                            <a href="{{ route('Empresa.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
-                                Ver Empresas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search ml-1 mr-1"></i>
-                            </a>
-                            {{-- <a
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                @can('adm.crear.empresas')
+                                    <a href="{{ route('Empresa.create') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Crear Empresa&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus ml-1 mr-1"></i>
+                                    </a>
+                                @endcan
+                                @can('adm.ver.empresas')
+                                    <a href="{{ route('Empresa.index') }}" role="menuitem"
+                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                        Ver Empresas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search ml-1 mr-1"></i>
+                                    </a>
+                                @endcan
+                                {{-- <a
                   href="#"
                   role="menuitem"
                   class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
@@ -416,9 +457,9 @@
                 >
                   Feed
                 </a> --}}
+                            </div>
                         </div>
-                    </div>
-
+                    @endcan
                     <!-- Authentication links -->
                     <div x-data="{ isActive: false, open: false }">
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
@@ -585,6 +626,7 @@
                     </div>
                     {{-- boton planificacion estimada --}}
                     <!-- Layouts links -->
+                    {{-- @can('Adm.plan.est.btn') --}}
                     <div x-data="{ isActive: false, open: false }">
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                         <a href="#" @click="$event.preventDefault(); open = !open"
@@ -607,7 +649,7 @@
                     />
                   </svg> --}}<i class="fa-solid fa-paperclip"></i>
                             </span>
-                            <span class="ml-2 text-sm"> Planificacion Estimada</span>
+                            <span class="ml-2 text-sm">Estimación Producción</span>
                             <span aria-hidden="true" class="ml-auto">
                                 <!-- active class 'rotate-180' -->
                                 <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -621,14 +663,18 @@
                         <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                            {{-- @can('prod.plan.estimada.crear') --}}
                             <a href="{{ route('Create.plan') }}" role="menuitem"
                                 class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
                                 Planificar&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-paperclip"></i>
                             </a>
-                            <a href="{{ route('PanEstimado.index') }}" role="menuitem"
+                            {{-- @endcan --}}
+                            {{-- @can('prod.plan.estimada.ver') --}}
+                            <a href="{{ route('PlanEstimado.index') }}" role="menuitem"
                                 class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
                                 Ver Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
                             </a>
+                            {{-- @endcan --}}
                             {{-- <a
                   href="#"
                   role="menuitem"
@@ -639,6 +685,62 @@
                         </div>
                     </div>
                     {{-- fin boton --}}
+                    {{-- @endcan --}}
+                    <!-- Layouts links -->
+                    <div x-data="{ isActive: false, open: false }">
+                        <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
+                        <a href="#" @click="$event.preventDefault(); open = !open"
+                            class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
+                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
+                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            <span aria-hidden="true">
+                                {{-- <svg
+                    class="w-5 h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg> --}}<i class="fa-solid fa-truck"></i>
+                            </span>
+                            <span class="ml-2 text-sm"> Registro Vehículos</span>
+                            <span aria-hidden="true" class="ml-auto">
+                                <!-- active class 'rotate-180' -->
+                                <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </span>
+                        </a>
+                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
+                            <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                            <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                            <a href="{{ route('Vehiculos.index') }}" role="menuitem"
+                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                Registrar Vehículos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-truck"></i>
+                            </a>
+                            {{-- <a href="{{ route('CertificacionCuartel.index') }}" role="menuitem"
+                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white">
+                                Cuarteles&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-hashtag"></i>
+                            </a> --}}
+                            {{-- <a
+                  href="#"
+                  role="menuitem"
+                  class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700"
+                >
+                  Mini + One Columns Sidebar
+                </a> --}}
+                        </div>
+                    </div>
+                    {{-- boton planificacion estimada --}}
                 </nav>
             </aside>
 
@@ -1004,6 +1106,65 @@
                                     </div>
                                 </div>
                                 {{-- fin boton nuevo --}}
+                                <!-- Layouts links -->
+                                <div x-data="{ isActive: false, open: false }">
+                                    <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
+                                    <a href="#" @click="$event.preventDefault(); open = !open"
+                                        class="mb-2 flex items-center border-2 p-2 text-gray-900 transition-colors rounded-md w-full hover:bg-neutral-600 dark:hover:bg-neutral-900 hover:text-white"
+                                        :class="{ 'bg-neutral-100 dark:bg-neutral-500': isActive || open }"
+                                        role="button" aria-haspopup="true"
+                                        :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                                        <span aria-hidden="true">
+                                            {{-- <svg
+                    class="w-5 h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg> --}}<i class="fa-solid fa-warehouse"></i>
+                                        </span>
+                                        <span class="ml-2 text-sm">Administracion Bodega e Items</span>
+                                        <span aria-hidden="true" class="ml-auto">
+                                            <!-- active class 'rotate-180' -->
+                                            <svg class="ml-5 w-4 h-4 transition-transform transform"
+                                                :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu"
+                                        aria-label="Authentication">
+                                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                        <a href="{{ route('BodegaItem.show') }}" role="menuitem"
+                                            class="text-left block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white hover:bg-gray-500">
+                                            <i class="fa-solid fa-warehouse"></i>&nbsp;&nbsp;&nbsp;Bodega e Items
+                                        </a>
+                                        {{-- <a
+                        href="{{ route('CuentaCorrienteExportadoras.index')}}"
+                        role="menuitem"
+                        class="text-left block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 dark:hover:text-light hover:text-white hover:bg-gray-500">
+                        <i class="fa-solid fa-hashtag"></i>&nbsp;&nbsp;&nbsp;Exportadoras
+                     </a> --}}
+                                        {{-- <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700"
+                     >
+                        Mini + One Columns Sidebar
+                     </a> --}}
+                                    </div>
+                                </div>
+                                {{-- fin boton nuevo --}}
                             </div>
                         </div>
                     </div>
@@ -1042,7 +1203,7 @@
                     <div class="flex-shrink-0">
                         <div class="flex items-center justify-between px-4 pt-4 border-b dark:border-neutral-800">
                             <h2 id="notificationPanelLabel" class="pb-4 font-semibold">Notificationes</h2>
-                            <div class="space-x-2">
+                            <div class="space-x-2 p-1">
                                 <button @click.prevent="activeTabe = 'action'"
                                     class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
                                     :class="{
@@ -1050,9 +1211,9 @@
                                             'action',
                                         'border-transparent': activeTabe != 'action'
                                     }">
-                                    Tareas
+                                    Notificaciones Pendientes
                                 </button>
-                                <button @click.prevent="activeTabe = 'user'"
+                                {{-- <button @click.prevent="activeTabe = 'user'"
                                     class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
                                     :class="{
                                         'border-neutral-700 dark:border-neutral-600': activeTabe ==
@@ -1060,7 +1221,7 @@
                                         'border-transparent': activeTabe != 'user'
                                     }">
                                     Información para el Usuario
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     </div>
@@ -1069,7 +1230,10 @@
                     <div class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
                         <!-- Action tab -->
                         <div class="space-y-4" x-show.transition.in="activeTabe == 'action'">
-                            <p class="px-4">Tarea 1</p>
+                            <p class="px-4">
+                                @livewire('notificacion.notificaciones')
+
+                            </p>
                             <!--  -->
                             <!-- Action tab content -->
                             <!--  -->

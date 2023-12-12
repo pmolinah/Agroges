@@ -18,6 +18,7 @@ use App\Http\Controllers\DevolucionEnvaseController;
 use App\Http\Livewire\Graficos\Graficos;
 use App\Http\Controllers\CierreInicioTemporadaController;
 use App\Http\Controllers\PlanEstimadoController;
+use App\Http\Controllers\BodegaItemsController;
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -34,7 +35,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::middleware(['web',config('jetstream.auth_session')])->group(function () {
+        // Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
+
 
     Route::get('/dashboard',function(){return view('dashboard');})->name('dashboard');
     Route::get('/Role', [RoleController::class, 'show']);
@@ -132,8 +135,11 @@ Route::get('/', function () {
     // Route::get('/Organizacion/Campos', [CamposController::class, 'index'])->name('Organizacion.index');
     Route::get('/Organizacion/Campos/Cuarteles',[CampoController::class, 'organizacion'])->name('organizacion.index');
 
+    //Bodega Items
+    Route::get('/Bodega/Items',[BodegaItemsController::class,'BodegaItems'])->name('BodegaItem.show');
+
     //planEstimado de especies
-    Route::get('/Plan/Estimado/Index',[PlanEstimadoController::class, 'index'])->name('PanEstimado.index');
+    Route::get('/Plan/Estimado/Index',[PlanEstimadoController::class, 'index'])->name('PlanEstimado.index');
     Route::get('/Plan/Estimado',[PlanEstimadoController::class, 'CreatePlan'])->name('Create.plan');
     Route::post('/Store/PlanEstimado',[PlanEstimadoController::class, 'store'])->name('PlanEstimacion.store');
 });

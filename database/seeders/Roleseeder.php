@@ -35,103 +35,98 @@ class Roleseeder extends Seeder
         observacion::create(['observacion'=>'Sobras']);
        
         $role1= Role::create(['name'=>'Admin','description'=>'Rol con todas los permiso del sistema, Administrador de Sistema']);
-        $role2= Role::create(['name'=>'Capat','description'=>'Rol capataz']);
-       
-                Permission::create(['name'=>'capataz.crear.cosecha','description'=>'Admintrador Sistema'])->assignRole([$role1]);
-                Permission::create(['name'=>'capataz.modificar.cosecha','description'=>'Permiso de Cosecha'])->assignRole([$role2]);
           
                 // Permisos de Sistema
                 //usuario
-                Permission::create(['name'=>'adm.ver.usuarios','description'=>'Ver Lista de Usuarios']);
-                Permission::create(['name'=>'adm.crear.usuarios','description'=>'Crear Usuarios']);
-                Permission::create(['name'=>'adm.editar.usuarios','description'=>'Editar, Actualizar Usuarios']);
-                Permission::create(['name'=>'adm.eliminar.usuarios','description'=>'Eliminar, Dehabilitar Usuarios']);
+                Permission::create(['name'=>'adm.ver.usuarios','description'=>'Ver Lista de Usuarios'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.usuarios','description'=>'Crear Usuarios'])->assignRole([$role1]); //ok
+                Permission::create(['name'=>'adm.editar.usuarios','description'=>'Editar, Actualizar Usuarios'])->assignRole([$role1]);
+                // Permission::create(['name'=>'adm.eliminar.usuarios','description'=>'Eliminar, Dehabilitar Usuarios']);
                 //roles
-                Permission::create(['name'=>'adm.ver.roles','description'=>'Ver Lista de Roles']);
-                Permission::create(['name'=>'adm.crear.roles','description'=>'Crear Roles']); 
-                Permission::create(['name'=>'adm.editar.roles','description'=>'Editar, Actualizar Roles']);
-                Permission::create(['name'=>'adm.eliminar.roles','description'=>'Eliminar Roles']); 
+                Permission::create(['name'=>'adm.ver.roles','description'=>'Ver Lista de Roles'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.roles','description'=>'Crear Roles'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.editar.roles','description'=>'Editar, Actualizar Roles'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.eliminar.roles','description'=>'Eliminar Roles'])->assignRole([$role1]);
                 //empresas
-                Permission::create(['name'=>'adm.ver.empresas','description'=>'Ver Lista de Empresas']);
-                Permission::create(['name'=>'adm.crear.empresas','description'=>'Crear Empresas']); 
-                Permission::create(['name'=>'adm.editar.empresas','description'=>'Editar, Actualizar Empresas']);
-                Permission::create(['name'=>'adm.eliminar.empresas','description'=>'Eliminar Empresas']); 
+                Permission::create(['name'=>'adm.ver.empresas','description'=>'Ver Lista de Empresas'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.empresas','description'=>'Crear Empresas'])->assignRole([$role1]); 
+                Permission::create(['name'=>'adm.editar.empresas','description'=>'Editar, Actualizar Empresas'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.eliminar.empresas','description'=>'Eliminar Empresas'])->assignRole([$role1]); 
                 //Campos
-                Permission::create(['name'=>'adm.ver.campos','description'=>'Ver Lista de Campos']);
-                Permission::create(['name'=>'adm.crear.campos','description'=>'Crear Campos']); 
-                Permission::create(['name'=>'adm.editar.campos','description'=>'Editar, Actualizar Campos']);
-                Permission::create(['name'=>'adm.eliminar.campos','description'=>'Eliminar Campos']); 
+                Permission::create(['name'=>'adm.ver.campos','description'=>'Ver Lista de Campos'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.campos','description'=>'Crear Campos'])->assignRole([$role1]); 
+                Permission::create(['name'=>'adm.editar.campos','description'=>'Editar, Actualizar Campos'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.eliminar.campos','description'=>'Eliminar Campos'])->assignRole([$role1]); 
                 //Cuarteles
-                Permission::create(['name'=>'adm.ver.cuarteles','description'=>'Ver Lista de Cuarteles']);
-                Permission::create(['name'=>'adm.crear.cuarteles','description'=>'Crear Cuarteles']); 
-                Permission::create(['name'=>'adm.editar.cuarteles','description'=>'Editar, Actualizar Cuarteles']);
-                Permission::create(['name'=>'adm.eliminar.cuarteles','description'=>'Eliminar Cuarteles']);
+                Permission::create(['name'=>'adm.ver.cuarteles','description'=>'Ver Lista de Cuarteles'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.cuarteles','description'=>'Crear Cuarteles'])->assignRole([$role1]); 
+                Permission::create(['name'=>'adm.editar.cuarteles','description'=>'Editar, Actualizar Cuarteles'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.eliminar.cuarteles','description'=>'Eliminar Cuarteles'])->assignRole([$role1]);
                 //Configiración //variedades
-                Permission::create(['name'=>'adm.ver.variedades','description'=>'Ver Lista de Variedades']);
-                Permission::create(['name'=>'adm.crear.variedades','description'=>'Crear Variedades']); 
-                Permission::create(['name'=>'adm.editar.variedades','description'=>'Editar, Actualizar Variedades']);
-                Permission::create(['name'=>'adm.eliminar.variedades','description'=>'Eliminar Variedades']);
+                Permission::create(['name'=>'adm.ver.variedades','description'=>'Ver Lista de Variedades'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.variedades','description'=>'Crear Variedades'])->assignRole([$role1]); 
+                Permission::create(['name'=>'adm.editar.variedades','description'=>'Editar, Actualizar Variedades'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.eliminar.variedades','description'=>'Eliminar Variedades'])->assignRole([$role1]);
                 //Configiración //especies
-                Permission::create(['name'=>'adm.ver.especies','description'=>'Ver Lista de Especies']);
-                Permission::create(['name'=>'adm.crear.especies','description'=>'Crear Especies']); 
-                Permission::create(['name'=>'adm.editar.especies','description'=>'Editar, Actualizar Especies']);
-                Permission::create(['name'=>'adm.eliminar.especies','description'=>'Eliminar Especies']); 
+                Permission::create(['name'=>'adm.ver.especies','description'=>'Ver Lista de Especies'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.crear.especies','description'=>'Crear Especies'])->assignRole([$role1]); 
+                Permission::create(['name'=>'adm.editar.especies','description'=>'Editar, Actualizar Especies'])->assignRole([$role1]);
+                Permission::create(['name'=>'adm.eliminar.especies','description'=>'Eliminar Especies'])->assignRole([$role1]); 
                  //Configiración //envases
-                 Permission::create(['name'=>'adm.ver.envases','description'=>'Ver Lista de Envases']);
-                 Permission::create(['name'=>'adm.crear.envases','description'=>'Crear Envases']); 
-                 Permission::create(['name'=>'adm.editar.envases','description'=>'Editar, Actualizar Envases']);
-                 Permission::create(['name'=>'adm.eliminar.envases','description'=>'Eliminar Envases']); 
+                 Permission::create(['name'=>'adm.ver.envases','description'=>'Ver Lista de Envases'])->assignRole([$role1]);
+                 Permission::create(['name'=>'adm.crear.envases','description'=>'Crear Envases'])->assignRole([$role1]); 
+                 Permission::create(['name'=>'adm.editar.envases','description'=>'Editar, Actualizar Envases'])->assignRole([$role1]);
+                 Permission::create(['name'=>'adm.eliminar.envases','description'=>'Eliminar Envases'])->assignRole([$role1]); 
                  //Cuenta corriente envases
-                 Permission::create(['name'=>'adm.ver.cuentacorriente','description'=>'Ver Lista de Cuenta Corriente Envases']);
-                 Permission::create(['name'=>'adm.crear.cuentacorriente','description'=>'Crear Cuenta Corriente Envases']); 
-                 Permission::create(['name'=>'adm.editar.cuentacorriente','description'=>'Editar, Actualizar Cuenta Corriente Envases']);
+                 Permission::create(['name'=>'adm.ver.cuentacorriente','description'=>'Ver Lista de Cuenta Corriente Envases'])->assignRole([$role1]);
+                 Permission::create(['name'=>'adm.crear.cuentacorriente','description'=>'Crear Cuenta Corriente Envases'])->assignRole([$role1]); 
+                 Permission::create(['name'=>'adm.editar.cuentacorriente','description'=>'Editar, Actualizar Cuenta Corriente Envases'])->assignRole([$role1]);
                  Permission::create(['name'=>'adm.eliminar.cuentacorriente','description'=>'Eliminar Cuenta Corriente Envases']); 
                  //plantacion
-                 Permission::create(['name'=>'adm.ver.plantacion','description'=>'Ver Lista Plantacion']);
-                 Permission::create(['name'=>'adm.crear.plantacion','description'=>'Crear Plantacion']); 
-                 Permission::create(['name'=>'adm.editar.plantacion','description'=>'Editar, Actualizar Plantacion']);
-                 Permission::create(['name'=>'adm.eliminar.plantacion','description'=>'Eliminar Plantacion']);
+                 Permission::create(['name'=>'adm.ver.plantacion','description'=>'Ver Lista Plantacion'])->assignRole([$role1]); //ok
+                 Permission::create(['name'=>'adm.crear.plantacion','description'=>'Crear Plantacion'])->assignRole([$role1]); //ok
+                //  Permission::create(['name'=>'adm.editar.plantacion','description'=>'Editar, Actualizar Plantacion']);
+                 Permission::create(['name'=>'adm.eliminar.plantacion','description'=>'Eliminar Plantacion'])->assignRole([$role1]);  //ok
                  //planificacion
-                 Permission::create(['name'=>'adm.ver.planificacion','description'=>'Ver Lista Planificacion']);
-                 Permission::create(['name'=>'adm.crear.planificacion','description'=>'Crear Planificacion']); 
-                 Permission::create(['name'=>'adm.editar.planificacion','description'=>'Editar, Actualizar Planificacion']);
-                 Permission::create(['name'=>'adm.eliminar.planificacion','description'=>'Eliminar Planificacion']);
+                 Permission::create(['name'=>'adm.ver.planificacion','description'=>'Ver Lista Planificacion'])->assignRole([$role1]);                //ok
+                 Permission::create(['name'=>'adm.crear.planificacion','description'=>'Crear Planificacion'])->assignRole([$role1]);                  //ok
+                 Permission::create(['name'=>'adm.editar.planificacion','description'=>'Editar, Actualizar Planificacion'])->assignRole([$role1]);    //ok
+                 Permission::create(['name'=>'adm.eliminar.planificacion','description'=>'Eliminar Planificacion'])->assignRole([$role1]);            //ok 
                  //cosechar
-                 Permission::create(['name'=>'adm.ver.cosechar','description'=>'Ver Lista Cosechas Asignadas']);
-                 Permission::create(['name'=>'adm.crear.cosechar','description'=>'Permiso de Cosechar']); 
-                 Permission::create(['name'=>'adm.editar.cosechar','description'=>'Editar, Actualizar Cosechas']);
-                 Permission::create(['name'=>'adm.eliminar.cosechar','description'=>'Eliminar Cosechas']);
-                 Permission::create(['name'=>'adm.ver.cosechas.finalizadas','description'=>'Ver Lista Cosechas Finalizadas']);
+                 Permission::create(['name'=>'adm.ver.cosechar','description'=>'Ver Lista Cosechas Asignadas'])->assignRole([$role1]);    //ok
+                 Permission::create(['name'=>'adm.crear.cosechar','description'=>'Permiso de Cosechar'])->assignRole([$role1]);   //ok
+                //  Permission::create(['name'=>'adm.editar.cosechar','description'=>'Editar, Actualizar Cosechas']);  //ok
+                //  Permission::create(['name'=>'adm.eliminar.cosechar','description'=>'Eliminar Cosechas']);
+                 Permission::create(['name'=>'adm.ver.cosechas.finalizadas','description'=>'Ver Lista Cosechas Finalizadas'])->assignRole([$role1]);
                  //Certificación
-                 Permission::create(['name'=>'adm.ver.certificados','description'=>'Ver Lista Certificación']);
-                 Permission::create(['name'=>'adm.crear.certificados','description'=>'Crear Certificación']); 
-                 Permission::create(['name'=>'adm.editar.certificados','description'=>'Editar, Actualizar Certificación']);
-                 Permission::create(['name'=>'adm.eliminar.certificados','description'=>'Eliminar Certificación']);
+                 Permission::create(['name'=>'adm.ver.certificados','description'=>'Ver Lista Certificación'])->assignRole([$role1]);
+                 Permission::create(['name'=>'adm.crear.certificados','description'=>'Crear Certificación'])->assignRole([$role1]); 
+                 Permission::create(['name'=>'adm.editar.certificados','description'=>'Editar, Actualizar Certificación'])->assignRole([$role1]);
+                 Permission::create(['name'=>'adm.eliminar.certificados','description'=>'Eliminar Certificación'])->assignRole([$role1]);
                   //Producción
-                  Permission::create(['name'=>'prod.ver.despacho','description'=>'Ver Lista Despacho']);
-                  Permission::create(['name'=>'prod.crear.despacho','description'=>'Crear Despacho']); 
-                  Permission::create(['name'=>'prod.editar.despacho','description'=>'Editar, Actualizar Despacho']);
-                  Permission::create(['name'=>'prod.eliminar.despacho','description'=>'Eliminar Despacho']);
+                //   Permission::create(['name'=>'prod.ver.despacho','description'=>'Ver Lista Despacho']);
+                 Permission::create(['name'=>'prod.crear.despacho','description'=>'Crear Despacho'])->assignRole([$role1]); 
+                //   Permission::create(['name'=>'prod.editar.despacho','description'=>'Editar, Actualizar Despacho']);
+                //   Permission::create(['name'=>'prod.eliminar.despacho','description'=>'Eliminar Despacho']);
                   //recepcion
-                  Permission::create(['name'=>'prod.ver.recepcion','description'=>'Ver Lista Recepción']);
-                  Permission::create(['name'=>'prod.crear.recepcion','description'=>'Crear Recepción']); 
-                  Permission::create(['name'=>'prod.editar.recepcion','description'=>'Editar, Actualizar Recepción']);
-                  Permission::create(['name'=>'prod.eliminar.recepcion','description'=>'Eliminar Recepción']);
+                //   Permission::create(['name'=>'prod.ver.recepcion','description'=>'Ver Lista Recepción']);
+                  Permission::create(['name'=>'prod.crear.recepcion','description'=>'Crear Recepción'])->assignRole([$role1]); 
+                //   Permission::create(['name'=>'prod.editar.recepcion','description'=>'Editar, Actualizar Recepción']);
+                //   Permission::create(['name'=>'prod.eliminar.recepcion','description'=>'Eliminar Recepción']);
                   //recepcion
-                  Permission::create(['name'=>'prod.ver.devtras','description'=>'Ver Lista Devolución o Traspaso']);
-                  Permission::create(['name'=>'prod.crear.devtras','description'=>'Crear Devolución o Traspaso']); 
-                  Permission::create(['name'=>'prod.editar.devtras','description'=>'Editar, Actualizar Devolución o Traspaso']);
-                  Permission::create(['name'=>'prod.eliminar.devtras','description'=>'Eliminar Devolución o Traspaso']);
-                  Permission::create(['name'=>'prod.guias.finalizadas','description'=>'Ver Guías Finalizadas']);
-
-
-
-
-       
-
-
-        
-
+                //   Permission::create(['name'=>'prod.ver.devtras','description'=>'Ver Lista Devolución o Traspaso']);
+                  Permission::create(['name'=>'prod.crear.devtras','description'=>'Crear Devolución o Traspaso'])->assignRole([$role1]); 
+                //   Permission::create(['name'=>'prod.editar.devtras','description'=>'Editar, Actualizar Devolución o Traspaso']);
+                //   Permission::create(['name'=>'prod.eliminar.devtras','description'=>'Eliminar Devolución o Traspaso']);
+                   Permission::create(['name'=>'prod.guias.finalizadas','description'=>'Ver Guías Finalizadas'])->assignRole([$role1]);
+                //Planificacion estimada
+                Permission::create(['name'=>'prod.plan.estimada.ver','description'=>'Ver Planificaciones Estimadas'])->assignRole([$role1]);
+                Permission::create(['name'=>'prod.plan.estimada.crear','description'=>'Crear Planificaciones Estimadas'])->assignRole([$role1]);
+                   //botones
+                Permission::create(['name'=>'prod.menu.btn','description'=>'Boton para Acceder a Opciones Produccion'])->assignRole([$role1]);
+                Permission::create(['name'=>'Adm.menu.btn','description'=>'Boton para Acceder a Opciones Roles'])->assignRole([$role1])->assignRole([$role1]);
+                Permission::create(['name'=>'Adm.emp.btn','description'=>'Boton para Acceder a Opciones Empresas'])->assignRole([$role1]);
+                Permission::create(['name'=>'Adm.plan.est.btn','description'=>'Boton para Acceder a Opciones Estimaciones'])->assignRole([$role1]);
 
         $tipousuario=tipousuario::create([
             'tipousuario'=>'Administrador',
@@ -162,12 +157,6 @@ class Roleseeder extends Seeder
             'tipo_id'=>1,
         ])->assignRole($role1);
 
-        $user = User::create([
-            'name'=>'Capataz',
-            'email'=>'r@r.cl',
-            'password'=>Hash::make('11111111'),
-            'tipo_id'=>2,
-        ])->assignRole($role2);
 
         Tipo::create(['tipo'=>'Campo']);
         Tipo::create(['tipo'=>'Proveedor']);

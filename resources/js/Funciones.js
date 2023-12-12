@@ -81,7 +81,7 @@ $(document).ready(function(){
         $('#empresaPlan_id').on('change', Cambio_empresa_plan);
         $('#campoPlan_id').on('change', Cambio_campo_plan);
         $('#envase_id').on('change',Cambio_envase_plan);
-       
+  
     });
 
    
@@ -218,6 +218,8 @@ $(document).ready(function(){
     });
 
     $(document).ready(function(){
+        
+        $("#btnGbr").prop("disabled", true);
         $('#Agregar').click(function(){
             var selectedOption = $('#exportadora_id option:selected');
             var valores = [];
@@ -234,6 +236,14 @@ $(document).ready(function(){
                 var kilos = $('#nuevoskilos').val();
                 var capacidadTotal=parseInt(stockEnv)*parseInt(capacidad);
                 var resul = parseInt(capacidadTotal)/parseFloat(kilos);
+                if(isNaN(resul)){
+                    Swal.fire({
+                        icon: 'error',
+                    
+                        title: 'Error...',
+                        text: 'No puede Continuar, Exportadora no Tiene Cuenta Corriente en ese Tipo de Envase!!',
+                    })
+                }
                 if(resul<1){
                     alert('La cantidad de Envases en cuenta corriente podria no cubrir la necesidad de la exportador, favor revisar stock de envases');
                     //alert(resul);
@@ -297,6 +307,7 @@ $(document).ready(function(){
         });
 
         $('#AgregarContratista').click(function(){
+            $("#btnGbr").prop("disabled", false);
             var contratista_id = $('#contratista_id option:selected');
             var cont_id = contratista_id.val();
             var cont_nm = contratista_id.text();
@@ -483,7 +494,15 @@ $('#btnEliminarCampo').click(function(){
         }
         })
 });
+$("#btnGbr").click(function(){
+    $("#totadekilos").prop("disabled", false);
+});
+
+
+
+
 // fin
+
 
       
 // JavaScript to toggle the dropdown

@@ -22,9 +22,11 @@ class EspecieXanio extends Component
             $this->estimadoEspecie[$this->i][0]=$especie->especie;
             $this->estimadoEspecie[$this->i][1]=$sumarEstimado;
             $this->estimadoEspecie[$this->i][2]=$sumaKilosCosechados;
+            $this->estimadoEspecie[$this->i][3]=$especie->id;
             $this->i++;
         }
 
-        return view('livewire.graficos.especie-xanio')->with('Estimado',$this->estimadoEspecie);
+        $especies=especie::all();
+        return view('livewire.graficos.especie-xanio',compact('especies'))->with('Estimado',$this->estimadoEspecie);
     }
 }

@@ -1,21 +1,21 @@
 <div>
     <button type="button" wire:click="nuevoVehiculo"
-        class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-        Nuevo Vehículo
+        class="bg-gray-700 text-white  py-2 px-4 w-full rounded hover:bg-gray-600">
+        Nuevo Vehículos
     </button>
- 
+
     <!-- tabla Usuarios -->
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <table class="min-w-full text-left text-sm font-light">
-                        <thead class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-500">
+                        <thead class="border-b bg-neutral-400">
                             <tr class="font-light">
                                 <th scope="col" class="px-6 py-4">
                                     <p class="text-neutral-800">#</p>
                                 </th>
-                                <th scope="col" class="px-6 py-4">Empresa</th>
+                                <th scope="col" class="px-6 py-4">Empresa.</th>
                                 <th scope="col" class="px-6 py-4">Patente</th>
                                 <th scope="col" class="px-6 py-4">Conductor</th>
                                 <th scope="col" class="px-6 py-4">Editar</th>
@@ -41,7 +41,7 @@
                                         </button>
                                 @endforeach
                                 </td>
-                              
+
                             </tr>
 
                         </tbody>

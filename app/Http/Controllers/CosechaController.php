@@ -27,6 +27,7 @@ class CosechaController extends Controller
 
     public $expid=array();
     public $expki=array();
+    public $mesCosecha=[];
     public $saldoCapacidad=array();
     public $planificacioncosecha_id;
     public $cuenEnv;
@@ -35,11 +36,15 @@ class CosechaController extends Controller
     public function index()
     {
         
-       
-        $user = auth()->User()->id;
-        $planificaciones = planificacioncosecha::whereHas('cuartel', function ($query) use ($user) {
+        if(auth()->User()->tipo_id==1){
+            $planificaciones = planificacioncosecha::all();
+        }else{
+            $user = auth()->User()->id;
+            $planificaciones = planificacioncosecha::whereHas('cuartel', function ($query) use ($user) {
             $query->where('capataz_id', $user);
-        })->where('finalizada', '=', NULL)->get();
+            })->where('finalizada', '=', NULL)->get();
+        }
+        
        
         
         return view('Cosecha.index',compact('planificaciones'));
@@ -68,7 +73,12 @@ class CosechaController extends Controller
 
     public function planificacionStore(Request $request){
         // dd($request);
-
+        if(!isset($request->exportadora_id) || !isset($request->tratoxcosecha)){
+            
+            Session::flash('error', 'Faltan Datos...');
+            return back();
+        }
+        
         $planificacioncosecha=planificacioncosecha::create([
             'fechai'=>$request->fechai,
             'fechaf'=>$request->fechaf,
@@ -880,4 +890,21 @@ class CosechaController extends Controller
             PDF::Output('informe_cosecha_contratista.pdf');
         }
     }
+
+    public function EstimacionCosecha($id){
+        $anio = 2023;
+        $mesCosecha = [];
+    
+        for ($i = 1; $i <= 12; $i++) {
+            $kilosPorMesAnio = detallecosecha::where('especie_id', $id)
+                ->whereYear('created_at', $anio)
+                ->whereMonth('created_at', $i)
+                ->sum('kilos');
+    
+            $mesCosecha[] = $kilosPorMesAnio;
+        }
+    
+        return response()->json(['data' => $mesCosecha]);
+    }
+    
 }

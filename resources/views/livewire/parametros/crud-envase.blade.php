@@ -1,21 +1,19 @@
 <div>
-   
+
     <div class="space-y-2">
         <!-- Button trigger vertically centered modal-->
         <div class="grid sm:grid-cols-1 md:grid-cols-3 borde-neutral-800">
             <div class="mt-1">
-                <button type="button"
-                    class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
+                <button type="button" class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
                     data-te-toggle="modal" data-te-target="#exampleModalCenterEnvase">
                     Agregar Nuevo Envase
-                </button> 
+                </button>
             </div>
             <div class="">
                 <h6 class="text-xl mt-3 mr-2 font-medium leading-tight">Filtrar</h6>
             </div>
             <div class="">
-                <input type="text" wire:model="search"
-                    class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
+                <input type="text" wire:model="search" class="h-10 border mt-1 rounded px-4 py-2 w-full bg-gray-200"
                     id="exampleFormControlInput1" />
             </div>
         </div>
@@ -50,34 +48,32 @@
                     <!--Modal body-->
                     <div class="relative p-4 text-left">
                         Envase
-                        <div class="relative mb-3" data-te-input-wrapper-init>
+                        <div class="relative mb-3">
                             <input type="text" wire:model.defer="envase"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
                         </div>
                     </div>
                     <div class="relative p-4 text-left">
                         Capacidad
-                        <div class="relative mb-3" data-te-input-wrapper-init>
+                        <div class="relative mb-3">
                             <input type="text" wire:model.defer="capacidad"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
                         </div>
                     </div>
                     <div class="relative p-4 text-left">
                         Tara
-                        <div class="relative mb-3" data-te-input-wrapper-init>
+                        <div class="relative mb-3">
                             <input type="text" wire:model.defer="tara"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" />
+                                class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
                         </div>
                     </div>
                     <div class="relative p-4 text-left">
                         Observación
-                        <div class="relative mb-3" data-te-input-wrapper-init>
-                            <textarea wire:model.defer="observacion"
-                                class="peer block min-h-[auto] w-full rounded border-0  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-900 dark:placeholder:text-neutral-900 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                rows="3"></textarea>
+                        <div class="relative mb-3">
+                            <textarea wire:model.defer="observacion" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" rows="3"></textarea>
 
                         </div>
                     </div>
@@ -92,7 +88,7 @@
                         </button>
                         <button type="button" wire:click="GuardarEnvase"
                             class="inline-block bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-600"
-                             data-te-modal-dismiss>
+                            data-te-modal-dismiss>
                             Guardar Envase
                         </button>
                     </div>
@@ -111,7 +107,6 @@
                             <thead
                                 class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-600">
                                 <tr>
-
                                     <th scope="col" class=" px-6 py-3">Envase</th>
                                     <th scope="col" class=" px-6 py-3">Tara</th>
                                     <th scope="col" class=" px-6 py-3">Capacidad</th>
@@ -137,7 +132,7 @@
                                                         class="mb-1 inline-block rounded bg-red-900 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-900 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]"><i
                                                             class="far fa-trash-alt"></i></button>
                                                 </center>
-                                                </div>
+                                            </div>
                                             <div class="inline-block">
                                                 <center><button type="button"
                                                         wire:click="EditarEnvase({{ $Envase }})"
@@ -158,54 +153,51 @@
         </div>
         <!--Modal title-->
         <x-modal wire:model="open_editEnvase" @click.away="false">
-        <div class="bg-neutral-200">
-            <h5 class="p-3 text-xl font-medium leading-normal text-neutral-800 text-left bg-neutral-300">
-                Edición de Envase
-            </h5>
-            <hr/>
-            <div class="text-left p-4">
-                Envase <input type="hidden" wire:model.defer="edit_idEnvase">
-                <div>
-                    <input type="text" wire:model.defer="envase"
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+            <div class="bg-neutral-200">
+                <h5 class="p-3 text-xl font-medium leading-normal text-neutral-800 text-left bg-neutral-300">
+                    Edición de Envase
+                </h5>
+                <hr />
+                <div class="text-left p-4">
+                    Envase <input type="hidden" wire:model.defer="edit_idEnvase">
+                    <div>
+                        <input type="text" wire:model.defer="envase"
+                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
+                    </div>
                 </div>
-            </div>
-             <div class="relative p-4 text-left">
-                Tara 
-                <div>
-                    <input type="text" wire:model.defer="tara"
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                <div class="relative p-4 text-left">
+                    Tara
+                    <div>
+                        <input type="text" wire:model.defer="tara"
+                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                    </div>
                 </div>
-            </div>
-            <div class="relative p-4 text-left">
-                Capacidad 
-                <div>
-                    <input type="text" wire:model.defer="capacidad"
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                <div class="relative p-4 text-left">
+                    Capacidad
+                    <div>
+                        <input type="text" wire:model.defer="capacidad"
+                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                    </div>
                 </div>
-            </div>
-            <div class="relative p-4 text-left">
-                Observación
-                <div>
-                    <textarea wire:model.defer="observacion"
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        rows="3"></textarea>
+                <div class="relative p-4 text-left">
+                    Observación
+                    <div>
+                        <textarea wire:model.defer="observacion" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" rows="3"></textarea>
 
+                    </div>
                 </div>
-            </div>
-            <div class="p-3">
-                <button type="button" wire:click="ActualizarEnvase"
-                    class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600"
-                    data-te-modal-dismiss>
-                    Actualizar Envase
-                </button>
-                 <button type="button" wire:click="Limpiar"
-                    class="ml-1 inline-block rounded bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-300"
-                    data-te-modal-dismiss>
-                    Cerrar
-                </button>
-            </div>
+                <div class="p-3">
+                    <button type="button" wire:click="ActualizarEnvase"
+                        class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600" data-te-modal-dismiss>
+                        Actualizar Envase
+                    </button>
+                    <button type="button" wire:click="Limpiar"
+                        class="ml-1 inline-block rounded bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-300"
+                        data-te-modal-dismiss>
+                        Cerrar
+                    </button>
+                </div>
         </x-modal>
         {{-- modal --}}
 
@@ -239,8 +231,8 @@
             });
         </script>
         {{-- fin caja --}}
-        </div>
-        
     </div>
+
+</div>
 
 </div>

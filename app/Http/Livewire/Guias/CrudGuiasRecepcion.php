@@ -81,6 +81,15 @@ class CrudGuiasRecepcion extends Component
             ]);
             return back();
         }
+        if($this->campo_id==NULL || $this->exportadora_id==NULL || $this->fechaGuia==NULL){
+            $this->dispatchBrowserEvent('ErrorFaltanDatos', [
+                'title' => 'Error, Faltan Datos.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
+
         $this->matrizEnvaseColor=[];
         $this->matrizEspecieKilos=[];
         $conteo=guiarecepcion::with('guiarecepciondetalle')->where('campo_id',$this->campo_id)->where('empresa_id',$this->exportadora_id)->where('emitida',NULL)->where('fecha',$this->fechaGuia)->count();    
@@ -149,6 +158,14 @@ class CrudGuiasRecepcion extends Component
     }
 
     public function AgregarLinea(){
+        if($this->Cantidad==NULL || $this->color_id==NULL || $this->observacion==NULL  || $this->especie_id==NULL || $this->kilos==NULL && $this->observacion>1){
+            $this->dispatchBrowserEvent('ErrorFaltanDatos', [
+                'title' => 'Error, Faltan Datos.',
+                'icon'=>'error',
+                'iconColor'=>'blue',
+            ]);
+            return back();
+        }
         $this->matrizEnvaseColor=[];
         $this->matrizEspecieKilos=[];
         $guardarLinea=guiarecepciondetalle::create([

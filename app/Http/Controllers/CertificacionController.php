@@ -69,7 +69,7 @@ class CertificacionController extends Controller
             // Check extension
 
             if(in_array(strtolower($extension), $validextensions)){
-    
+        
 
                 $nombreFile = $nombreFile."_".$this->campo_id.".".$extension;
                 $request->file('file')->move($destinationPath, $nombreFile); 
@@ -81,6 +81,7 @@ class CertificacionController extends Controller
                     'rutaDocumento'=>$destinationPath,
                     'campo_id'=>$request->campo_id,
                     'casaCertificadora'=>$request->casaCertificadora,
+                    
                     'alertaTempranaCaducidad'=>$request->alerta,
                     'documento'=>$nombreFile,
                      ]);
@@ -128,6 +129,7 @@ class CertificacionController extends Controller
                     'cuartel_id'=>$request->cuartel_id,
                     'casaCertificadora'=>$request->casaCertificadora,
                     'alertaTempranaCaducidad'=>$request->alerta,
+                    'codigoCertificacion'=>$request->codigoCertificado,
                     'documento'=>$nombreFile,
                      ]);
             }

@@ -10,7 +10,7 @@
                 class="fa-solid fa-magnifying-glass"></i></button>
     </div>
     <div class="border-solid border-2 border-transparent rounded-lg ">
-        <canvas class=" m-1" id="myChart" width="50" height="200"></canvas>
+        <canvas class=" m-1" id="myChart" width="50" height="150"></canvas>
     </div>
 
     <script>
@@ -76,24 +76,9 @@
             });
         });
         window.onload = function() {
-            // Definir nombres de botones
-            var nombresBotones = ['btnChar', 'btnCharCuartel'];
-
-            // Simular clics en los botones
+            var nombresBotones = ['btnChar', 'btnCharCuartel', 'btnCharPilaCampo', 'btnCharApxTorta'];
             for (var i = 0; i < nombresBotones.length; i++) {
-                // Obtener referencia al botón
                 var boton = document.getElementById(nombresBotones[i]);
-
-                // Asignar evento al botón
-
-
-                // Cambiar el nombre del botón
-
-
-                // Mostrar el botón
-
-
-                // Simular clic en el botón
                 boton.click();
             }
         };

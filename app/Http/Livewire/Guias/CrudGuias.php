@@ -113,11 +113,11 @@ class CrudGuias extends Component
                     $this->saldoNegativo=$this->saldoNegativo - $desgloseenvase->stock;
                     foreach($campodescuentos as $campodescuento)
                     {
-                        desgloseenvasecampo::create([
-                            'envaseempresa_id'=>$campodescuento->id,
-                            'color_id'=>$desgloseenvase->color_id,
-                            'stock'=>$this->saldoNegativo,
-                        ]);   
+                        // desgloseenvasecampo::create([
+                        //     'envaseempresa_id'=>$campodescuento->id,         // si noi tiene cuenta de este color el campo no se le crea en megativo, consultar
+                        //     'color_id'=>$desgloseenvase->color_id,
+                        //     'stock'=>$this->saldoNegativo,
+                        // ]);   
                     }
                     //$cuentaEnvase=cuentaenvase::where('id',$exportadoraxpla->cuentaenvase_id)->decrement('saldo',$desgloseenvase->stock);
                     $this->saldoNegativo=0;

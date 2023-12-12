@@ -100,7 +100,7 @@ class CrudBodega extends Component
 
     public function render()
     {
-        $bodegas=bodega::where('bodega','like','%'.$this->search.'%')->paginate(3);
+        $bodegas=bodega::where('bodega','like','%'.$this->search.'%')->paginate(2);
         
         $empresas=empresa::where('tipo_id',1)->get();
         $encargados=User::where('tipo_id',5)->get();

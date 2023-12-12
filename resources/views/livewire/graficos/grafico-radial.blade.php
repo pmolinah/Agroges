@@ -9,7 +9,7 @@
                 class="fa-solid fa-magnifying-glass"></i></button>
     </div>
     <div class="border-solid border-2 border-transparent rounded-lg ">
-        <canvas id="myChartdoughnut" width="50" height="200"></canvas>
+        <canvas id="myChartdoughnut" width="50" height="150"></canvas>
     </div>
     <script>
         var ctx = document.getElementById('myChartdoughnut').getContext('2d');

@@ -50,13 +50,27 @@
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
 
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".soloNumeros").on("input", function() {
+                // Obtener el valor actual del campo
+                var valor = $(this).val();
 
+                // Verificar si el valor es NaN (no es un número)
+                if (isNaN(valor)) {
+                    alert("Por favor, ingrese solo números.");
+                    // Puedes limpiar el campo o tomar alguna otra acción según tus necesidades
+                    $(this).val('');
+                }
+            });
+        });
+    </script>
     <script>
         window.addEventListener('ErrorCampoVacio', function(e) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error, Falta Conductor o Vehículo..',
-                text: '{{ Session::get('success') }}',
+                text: '{{ Session::get('error') }}',
                 timer: 5000,
                 showConfirmButton: false
             });
@@ -65,7 +79,16 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Error, Falta Datos, Revisar Contratista, Exportadora, Tarja o Kilos..',
-                text: '{{ Session::get('success') }}',
+                text: '{{ Session::get('error') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
+        window.addEventListener('ErrorFaltanDatos', function(e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error, Falta Datos..',
+                text: '{{ Session::get('error') }}',
                 timer: 5000,
                 showConfirmButton: false
             });
@@ -112,6 +135,8 @@
                 'success'
             )
         }
+
+
 
         function EliminarContratista(id) {
             //alert(id);

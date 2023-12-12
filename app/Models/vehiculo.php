@@ -19,4 +19,11 @@ class vehiculo extends Model
         'marca',
         'anio',
     ];
+
+    public function empresa(){
+        return $this->belongsTo(empresa::class);
+    }
+    public function conductor(){
+        return $this->belongsTo(User::class);
+    }
 }

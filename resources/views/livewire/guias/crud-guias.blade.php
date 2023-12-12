@@ -119,9 +119,16 @@
                         <div class="col-span-1 mt-2 p-1 text-left">
                             <label class="borp-1 font-medium">Giro</label>
                         </div>
-                        <div class="col-span-6 mt-1">
+                        <div class="col-span-5 mt-1">
                             <input type="text" class="uppercase h-10 border mt-1 rounded px-4 w-full bg-gray-200"
                                 value="{{ $expplan->empresa->giro }}">
+                        </div>
+                        <div class="col-span-1 mt-2 p-1 text-left">
+                            <label class="borp-1 font-medium">CodSag</label>
+                        </div>
+                        <div class="col-span-5 mt-1">
+                            <input type="text" class="uppercase h-10 border mt-1 rounded px-4 w-full bg-gray-200"
+                                value="{{ $expplan->planificacioncosecha->cuartel->codigoSag }}">
                         </div>
                         <div
                             class="col-span-6 p-2 ml-1 mt-2 h-10 bg-gray-100 flex border border-gray-200 rounded items-center mt-1">
@@ -245,7 +252,7 @@
                             <a href="{{ route('Cosechar.cosecha', $expplan->planificacioncosecha_id) }}">
                                 <button type="button" wire:click="editarGuia"
                                     class="mb-2 block w-full rounded bg-red-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                                    Editar Cosecha, {{ $expplan->planificacioncosecha_id }}
+                                    Editar Cosecha
                                 </button>
                             </a>
                         </div>
