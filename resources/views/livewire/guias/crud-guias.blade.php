@@ -7,23 +7,23 @@
             <div class="flex max-h-[600px] w-full flex-col overflow-y-scroll">
                 {{-- inicio guia --}}
                 <div class="grid sm:grid-cols-1 md:grid-cols-12 bg-neutral-100 mt-3 shadow-2xl">
-                    <div class="col-span-2 font-bold p-2 mt-3">
+                    <div class="col-span-2 font-bold p-2 mt-3 text-gray-700">
                         Guía de Despacho
                     </div>
-                    <div class="col-span-1 p-2 mt-3 ml-2">
+                    <div class="col-span-1 p-2 mt-3 ml-2 text-gray-700">
                         Fecha/Inicial
                     </div>
-                    <div class="text-center col-span-2 p-2">
+                    <div class="text-center col-span-2 p-2 text-gray-700">
                         <input type="date" wire:model.defer="fechainicial"
                             class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                     </div>
                     <div class="text-center col-span-2 p-2">
                         <input type="date" wire:model="fechafinal"
-                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                            class="text-gray-700 h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                     </div>
-                    <div class="col-span-3 p-2 ml-4 mt-2">
+                    <div class="col-span-3 p-2 ml-4 mt-2 ">
                         <select wire:model.defer="exportadorxplanificacionID"
-                            class=" block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            class="text-gray-700 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option>Seleccionar Empresa Exportadora</option>
                             @foreach ($planificacioncosecha as $planificacion)
                                 @foreach ($planificacion->exportadoraxplanificacion as $exportadora)

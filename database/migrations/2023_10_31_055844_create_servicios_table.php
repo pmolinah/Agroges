@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('vehiculo_id')->unsigned();
             $table->foreign('vehiculo_id')->references('id')->on('vehiculos');
             $table->bigInteger('conductor_id')->unsigned();
-            $table->foreign('conductor_id')->references('id')->on('Users');
+            $table->foreign('conductor_id')->references('id')->on('users');
             $table->date('fechaServicio');
             $table->integer('tipoFlete_id')->unsigned();
             $table->integer('tratoXservicio')->unsigned();

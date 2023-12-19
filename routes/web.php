@@ -35,8 +35,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::middleware(['web',config('jetstream.auth_session')])->group(function () {
-        // Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
+    // Route::middleware(['web',config('jetstream.auth_session')])->group(function () {
+    Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
 
 
     Route::get('/dashboard',function(){return view('dashboard');})->name('dashboard');
@@ -137,6 +137,8 @@ Route::get('/', function () {
 
     //Bodega Items
     Route::get('/Bodega/Items',[BodegaItemsController::class,'BodegaItems'])->name('BodegaItem.show');
+    Route::post('Store/item',[BodegaItemsController::class,'itemStore'])->name('item.store');
+    Route::post('Update/item',[BodegaItemsController::class,'itemUpdate'])->name('item.update');
 
     //planEstimado de especies
     Route::get('/Plan/Estimado/Index',[PlanEstimadoController::class, 'index'])->name('PlanEstimado.index');

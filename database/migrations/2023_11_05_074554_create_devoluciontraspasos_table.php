@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('destino_type');
             $table->date('fecha');
             $table->bigInteger('conductor_id')->unsigned();
-            $table->foreign('conductor_id')->references('id')->on('Users');
+            $table->foreign('conductor_id')->references('id')->on('users');
             $table->bigInteger('vehiculo_id')->unsigned();
             $table->foreign('vehiculo_id')->references('id')->on('vehiculos');
             $table->integer('tipo')->unsigned();

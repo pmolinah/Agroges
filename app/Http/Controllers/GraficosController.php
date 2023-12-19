@@ -9,7 +9,7 @@ class GraficosController extends Controller
 {
     
     public function Graficos(){
-        return view('graficos.graficos');
+        return view('Graficos.Graficos');
     }
     public function graficosEnvases(){
         return view('Graficos.GraficosEnvases');

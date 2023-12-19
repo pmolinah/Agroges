@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('cantidadPlantas');
             $table->date('fechaPlantacion');
             $table->BigInteger('contratista_id')->unsigned();
-            $table->foreign('contratista_id')->references('id')->on('Users');
+            $table->foreign('contratista_id')->references('id')->on('users');
             $table->integer('cantidadPlantada')->unsigned();
             $table->string('observacion',200);
             $table->bigInteger('pivote')->nullable()->unique()->unsigned();

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->bigInteger('envase_id')->unsigned();
             $table->foreign('envase_id')->references('id')->on('envases');
             $table->bigInteger('conductor_id')->unsigned();
-            $table->foreign('conductor_id')->references('id')->on('Users');
+            $table->foreign('conductor_id')->references('id')->on('users');
         });
     }
 

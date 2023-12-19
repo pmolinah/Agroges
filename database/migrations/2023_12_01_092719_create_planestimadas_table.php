@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('especie_id')->unsigned();
             $table->foreign('especie_id')->references('id')->on('especies');
             $table->bigInteger('responsable_id')->unsigned();
-            $table->foreign('responsable_id')->references('id')->on('Users');
+            $table->foreign('responsable_id')->references('id')->on('users');
             $table->bigInteger('campo_id')->unsigned();
             $table->foreign('campo_id')->references('id')->on('campos');
             $table->bigInteger('cuartel_id')->unsigned();

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('observacion',100)->nullable();
             $table->integer('emitida')->unsigned()->nullable();
             $table->bigInteger('conductor_id')->unsigned();
-            $table->foreign('conductor_id')->references('id')->on('Users');
+            $table->foreign('conductor_id')->references('id')->on('users');
         });
     }
 

@@ -9,10 +9,13 @@ use App\Models\bodega;
 use App\Models\empresa;
 use App\Models\campo;
 use App\Models\User;
+use App\Models\item;
+use Illuminate\Support\Facades\Session;
+use Livewire\WithFileUploads;
 class CrudBodega extends Component
 {
     use WithPagination;
-
+    use WithFileUploads;
     public $bodega,$campoxbodega,$campo_id,$campoId,$campo_nombre,$encargado_id,$observacion,$bodegaEditar,$edit_id;
     public $campoBodega=array();
     public $encargado=array();
@@ -21,6 +24,10 @@ class CrudBodega extends Component
     public $selectedId;
     public $campos=array();
     public $empresa_id;
+    public $nombre,$QrBarra,$marca,$ingredienteActivo,$etiqueta;
+    public int $tipo_id,$clasificacion_id,$categoria_id,$unidadMedida,$stockMinimo;
+    public float $presentacion,$contenido,$capacidad;
+
 
     protected $listeners=['SelectEncargadoId'];
 
@@ -69,6 +76,15 @@ class CrudBodega extends Component
         ]);
     }
 
+    public function EliminarItem($id){
+        item::where('id',$id)->delete();
+        $this->dispatchBrowserEvent('Eliminar', [
+            'title' => 'Registro Eliminado correctamente.',
+            'icon'=>'success',
+            'iconColor'=>'blue',
+        ]);
+    }
+
     public function EditarBodega($bodega){
 
 
@@ -95,15 +111,14 @@ class CrudBodega extends Component
             'icon'=>'success',
             'iconColor'=>'blue',
         ]);
- 
     }
-
+  
     public function render()
     {
         $bodegas=bodega::where('bodega','like','%'.$this->search.'%')->paginate(2);
-        
+        $items=item::paginate(2);
         $empresas=empresa::where('tipo_id',1)->get();
         $encargados=User::where('tipo_id',5)->get();
-        return view('livewire.parametros.crud-bodega',compact('bodegas','empresas','encargados'));
+        return view('livewire.parametros.crud-bodega',compact('bodegas','empresas','encargados','items'));
     }
 }

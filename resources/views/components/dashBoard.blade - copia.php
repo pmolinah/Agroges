@@ -5,17 +5,12 @@
         /* This example part of kwd-dashboard see https://kamona-wd.github.io/kwd-dashboard/ */
         /* So here we will write some classes to simulate dark mode and some of tailwind css config in our project */
         :root {
-            /* --light: #edf2f9;
+            --light: #edf2f9;
             --dark: #152e4d;
-            --darker: #12263f;*/
+            --darker: #12263f;
         }
 
-        label {
-            color: #34495e;
-            /* Puedes cambiar a otro color seg�n tus preferencias */
-        }
-
-        .dark .dark\:text-light {
+        /*    .dark .dark\:text-light {
             color: var(--light);
         }
 
@@ -61,7 +56,7 @@
 
         .dark .dark\:border-neutral-500 {
             border-color: #6366f1;
-        }
+        } */
 
         .hover\:overflow-y-auto:hover {
             overflow-y: auto;
@@ -88,7 +83,7 @@
                 x-transition:leave-start="translate-x-0 opacity-100"
                 x-transition:leave-end="-translate-x-full opacity-0" x-ref="sidebar"
                 @keydown.escape="window.innerWidth <= 1024 ? isSidebarOpen = false : ''" tabindex="-1"
-                class="fixed inset-y-0 z-10 flex flex-shrink-0 overflow-hidden bg-white border-r lg:static dark:border-neutral-800  focus:outline-none">
+                class="fixed inset-y-0 z-10 flex flex-shrink-0 overflow-hidden bg-white border-r lg:static dark:border-neutral-800 dark:bg-darker focus:outline-none">
                 <!-- Mini column -->
                 <div class="flex flex-col flex-shrink-0 h-full px-2 py-4 border-r dark:border-neutral-800 bg-gray-300">
                     <!-- Brand -->
@@ -167,7 +162,7 @@
                                 x-transition:leave-start="translate-y-0 opacity-100"
                                 x-transition:leave-end="-translate-y-1/2 opacity-0" @click.away="open = false"
                                 @keydown.escape="open = false"
-                                class="absolute w-56 py-1 mb-4 bg-white rounded-md shadow-lg min-w-max left-5 bottom-full ring-1 ring-black ring-opacity-5 bg-dark focus:outline-none"
+                                class="absolute w-56 py-1 mb-4 bg-white rounded-md shadow-lg min-w-max left-5 bottom-full ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
                                 tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
                                 <a href="{{ route('profile.show') }}" role="menuitem"
                                     class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-neutral-600">
@@ -210,7 +205,7 @@
                             <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                                :class="{ 'bg-neutral-600 bg-neutral-600': isActive || open }" role="button"
+                                :class="{ 'bg-neutral-600 dark:bg-neutral-600': isActive || open }" role="button"
                                 aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                                 <span aria-hidden="true">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -304,7 +299,7 @@
                             <!-- active classes 'bg-neutral-100 dark:bg-neutral-600' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                                :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                                :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                                 aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                                 <span aria-hidden="true">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -396,7 +391,7 @@
                             <!-- active classes 'bg-neutral-100 dark:bg-neutral-600' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                                :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                                :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                                 aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                                 <span aria-hidden="true">
                                     {{-- <svg
@@ -470,7 +465,7 @@
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                             aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 {{-- <svg
@@ -530,7 +525,7 @@
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                             aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 {{-- <svg
@@ -580,7 +575,7 @@
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                             aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 {{-- <svg
@@ -636,7 +631,7 @@
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                             aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 {{-- <svg
@@ -696,7 +691,7 @@
                         <!-- active & hover classes 'bg-neutral-100 dark:bg-neutral-600' -->
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-100 transition-colors rounded-md dark:text-white hover:bg-neutral-600 dark:hover:bg-neutral-900"
-                            :class="{ 'bg-neutral-100 bg-neutral-600': isActive || open }" role="button"
+                            :class="{ 'bg-neutral-100 dark:bg-neutral-600': isActive || open }" role="button"
                             aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 {{-- <svg
@@ -778,7 +773,7 @@
           >
             <h1 class="mb-4 text-2xl font-semibold text-center md:text-3xl">Mini + One Columns Sidebar</h1>
             <div class="mb-4">
-              <div class="relative flex p-1 space-x-1 bg-white shadow-md w-80 h-72 ">
+              <div class="relative flex p-1 space-x-1 bg-white shadow-md w-80 h-72 dark:bg-darker">
                 <div class="w-6 h-full bg-gray-200 dark:bg-dark"></div>
                 <div class="w-16 h-full bg-gray-200 dark:bg-dark"></div>
                 <div class="flex-1 h-full bg-gray-100 dark:bg-dark"></div>
@@ -847,7 +842,7 @@
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
                 x-ref="settingsPanel" tabindex="-1" x-show="isSettingsPanelOpen"
                 @keydown.escape="isSettingsPanelOpen = false"
-                class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl  dark:text-light sm:max-w-md focus:outline-none"
+                class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
                 aria-labelledby="settinsPanelLabel">
                 <div class="absolute left-0 p-2 transform -translate-x-full">
                     <!-- Close button -->
@@ -872,14 +867,14 @@
                                     d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             </svg>
                         </span>
-                        <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-900">
+                        <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-light">
                             Configuración del Sistema</h2>
                     </div>
                     <!-- Content -->
                     <div class="flex-1 overflow-hidden hover:overflow-y-auto">
                         <!-- Theme -->
                         <div class="p-4 space-y-4 md:p-8">
-                            <h6 class="mb-5 text-center text-lg font-medium text-gray-400">Menu
+                            <h6 class="mb-5 text-center text-lg font-medium text-gray-400 dark:text-light">Menu
                                 Administrador</h6>
                             <div class="flex flex-col">
                                 <!-- Light button -->
@@ -1191,7 +1186,7 @@
                 x-ref="notificationsPanel" x-show="isNotificationsPanelOpen"
                 @keydown.escape="isNotificationsPanelOpen = false" tabindex="-1"
                 aria-labelledby="notificationPanelLabel"
-                class="fixed inset-y-0 z-20 w-full max-w-xs bg-white dark:text-light sm:max-w-md focus:outline-none">
+                class="fixed inset-y-0 z-20 w-full max-w-xs bg-white dark:bg-darker dark:text-light sm:max-w-md focus:outline-none">
                 <div class="absolute right-0 p-2 transform translate-x-full">
                     <!-- Close button -->
                     <button @click="isNotificationsPanelOpen = false"
@@ -1206,9 +1201,8 @@
                 <div class="flex flex-col h-screen" x-data="{ activeTabe: 'action' }">
                     <!-- Panel header -->
                     <div class="flex-shrink-0">
-                        <div
-                            class="flex items-center justify-between px-4 pt-4 border-b text-neutral-800 dark:border-neutral-800">
-                            <h2 id="notificationPanelLabel" class="pb-4 font-semibold text">Notificationes</h2>
+                        <div class="flex items-center justify-between px-4 pt-4 border-b dark:border-neutral-800">
+                            <h2 id="notificationPanelLabel" class="pb-4 font-semibold">Notificationes</h2>
                             <div class="space-x-2 p-1">
                                 <button @click.prevent="activeTabe = 'action'"
                                     class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
@@ -1269,7 +1263,7 @@
                 x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
                 x-show="isSearchPanelOpen" @keydown.escape="isSearchPanelOpen = false"
-                class="fixed inset-y-0 z-20 w-full max-w-xs bg-white shadow-xl  dark:text-light sm:max-w-md focus:outline-none">
+                class="fixed inset-y-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none">
                 <div class="absolute right-0 p-2 transform translate-x-full">
                     <!-- Close button -->
                     <button @click="isSearchPanelOpen = false"

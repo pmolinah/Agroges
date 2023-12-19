@@ -1,7 +1,7 @@
 <x-dashBoard>
     <div class="py-2">
         <div class="sm:col-span-1 md:col-span-12">
-            <h1 class="text-left mb-1 mt-0 text-xl font-medium ">
+            <h1 class="text-center mb-1 mt-0 text-xl font-medium ">
                 Formulario de Planificación de Cosechas
             </h1>
         </div>
@@ -214,7 +214,7 @@
                                         <div class="flex max-h-[100px] w-full flex-col overflow-y-scroll">
                                             <table class="min-w-full text-left text-sm font-light" id="grilla">
                                                 <thead
-                                                    class="border-b bg-white text-neutral-50 font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                                                    class="border-b text-neutral-50 font-medium dark:border-neutral-500 bg-neutral-500">
                                                     <tr>
                                                         {{-- <th scope="col" class="px-6 py-2 text-center hidden sm:hidden md:block xl:block"> id</th> --}}
                                                         <th scope="col" class="px-6 py-1 md:block xl:block">
@@ -283,7 +283,7 @@
                                                     <table class="min-w-full text-left text-sm font-light"
                                                         id="grilla2">
                                                         <thead
-                                                            class="border-b bg-white text-neutral-50 font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                                                            class="border-b text-neutral-50 font-medium dark:border-neutral-500 bg-neutral-500">
                                                             <tr>
                                                                 <th scope="col" class="px-6 py-1">id</th>
                                                                 <th scope="col" class="px-6 py-1">Contratista</th>
