@@ -10,6 +10,7 @@ use App\Models\empresa;
 use App\Models\campo;
 use App\Models\User;
 use App\Models\item;
+use App\Models\inventario;
 use Illuminate\Support\Facades\Session;
 use Livewire\WithFileUploads;
 class CrudBodega extends Component
@@ -18,6 +19,7 @@ class CrudBodega extends Component
     use WithFileUploads;
     public $bodega,$campoxbodega,$campo_id,$campoId,$campo_nombre,$encargado_id,$observacion,$bodegaEditar,$edit_id;
     public $campoBodega=array();
+    public $campoLista=[];
     public $encargado=array();
     public $open_editBodega=false;
     public $search;
@@ -112,13 +114,19 @@ class CrudBodega extends Component
             'iconColor'=>'blue',
         ]);
     }
-  
+    public function SeleccionPropietario(){
+        $this->campoLista=campo::where('empresa_id',$this->empresa_id)->get();
+    }
     public function render()
     {
         $bodegas=bodega::where('bodega','like','%'.$this->search.'%')->paginate(2);
         $items=item::paginate(2);
         $empresas=empresa::where('tipo_id',1)->get();
         $encargados=User::where('tipo_id',5)->get();
-        return view('livewire.parametros.crud-bodega',compact('bodegas','empresas','encargados','items'));
+        $inventarios =inventario::select('item_id', 'bodega_id', \DB::raw('MAX(stockMinimo) as stockMinimo'), \DB::raw('SUM(cantidad) as suma_cantidad'))
+        ->groupBy('item_id', 'bodega_id')
+        ->get();
+    
+        return view('livewire.parametros.crud-bodega',compact('bodegas','empresas','encargados','items','inventarios'));
     }
 }

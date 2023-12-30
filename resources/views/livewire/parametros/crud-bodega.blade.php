@@ -261,7 +261,7 @@
                                                                         <div class=" p-1 text-neutral-900 ml-2 mr-2">
                                                                             <select
                                                                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                                                                id="empresa_id" name="tipo_id">
+                                                                                id="tipo_id" name="tipo_id">
                                                                                 @if ($item->tipo_id == 1)
                                                                                     <option
                                                                                         value="{{ $item->tipo_id }}">
@@ -347,7 +347,7 @@
                                                                                     class="h-7 border rounded px-4 w-full bg-gray-50" />
                                                                             </div>
                                                                         </div>
-                                                                        <div class="text-left p-1 ml-2 mr-2">
+                                                                        {{-- <div class="text-left p-1 ml-2 mr-2">
                                                                             Presentacion
                                                                             <div class="relative"
                                                                                 data-te-input-wrapper-init>
@@ -356,8 +356,8 @@
                                                                                     name="presentacion"
                                                                                     class="h-7 border rounded px-4 w-full bg-gray-50" />
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="text-left p-1 ml-2 mr-2">
+                                                                        </div> --}}
+                                                                        {{-- <div class="text-left p-1 ml-2 mr-2">
                                                                             Presentacion Contenido en Unidad de Medida
                                                                             <div class="relative"
                                                                                 data-te-input-wrapper-init>
@@ -365,7 +365,7 @@
                                                                                     value="{{ $item->contenido }}"
                                                                                     class="h-7 border rounded px-4 w-full bg-gray-50" />
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                         <div class="text-left p-1 ml-2 mr-2">
                                                                             Capacidad(Equipos)
                                                                             <div class="relative"
@@ -576,22 +576,22 @@
                                             </th>
                                             <th scope="col"
                                                 class="text-center p-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Stock
+                                                Stock Real
                                             </th>
                                             <th scope="col"
                                                 class="text-center p-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Accion
+                                                Stock Requerido
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white">
-                                        @foreach ($bodegas as $Bodega)
+                                        @foreach ($inventarios as $inventario)
                                             <tr class="border-b dark:border-neutral-500 hover:bg-neutral-100">
 
                                                 <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-900">
-                                                    {{ $Bodega->bodega }}</td>
+                                                    {{ $inventario->item->nombre }}</td>
                                                 <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-900">
-                                                    {{ $Bodega->campo->campo }}</td>
+                                                    {{ $inventario->bodega->bodega }}</td>
                                                 {{-- <td class="whitespace-nowrap">{{ $Bodega->encargado_id }}</td> --}}
                                                 {{-- <td
                                                     class="whitespace-nowrap hidden sm:hidden md:block xl:block  px-6 py-11">
@@ -602,24 +602,66 @@
 
                                                         <div
                                                             class="overflow-hidden h-4  text-xs flex rounded bg-gray-200">
+                                                            @php
+                                                                $valor = 0;
+
+                                                                $valor = ($inventario->suma_cantidad * 100) / $inventario->stockMinimo;
+                                                            @endphp
+                                                            <div>Stock:{{ $inventario->suma_cantidad }}</div>
                                                             <div style="width: 10%" class="text-left mx-2 text-bold">
-                                                                50%
+                                                                {{ $valor }}%
                                                             </div>
-                                                            <div style="width: 10%"
-                                                                class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-100">
-                                                            </div>
-                                                            <div style="width: 15%"
-                                                                class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-300">
-                                                            </div>
-                                                            <div style="width: 20%"
-                                                                class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
-                                                            </div>
-                                                            <div style="width: 25%"
-                                                                class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-700">
-                                                            </div>
-                                                            <div style="width: 10%"
-                                                                class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900">
-                                                            </div>
+                                                            @if ($valor < 45)
+                                                                <div style="width: 10%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-100">
+                                                                </div>
+                                                            @elseif($valor > 44 && $valor < 65)
+                                                                <div style="width: 10%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-100">
+                                                                </div>
+                                                                <div style="width: 15%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-300">
+                                                                </div>
+                                                            @elseif($valor > 64 && $valor < 85)
+                                                                <div style="width: 10%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-100">
+                                                                </div>
+                                                                <div style="width: 15%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-300">
+                                                                </div>
+                                                                <div style="width: 20%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
+                                                                </div>
+                                                            @elseif($valor > 84 && $valor < 99)
+                                                                <div style="width: 10%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-100">
+                                                                </div>
+                                                                <div style="width: 15%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-300">
+                                                                </div>
+                                                                <div style="width: 20%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
+                                                                </div>
+                                                                <div style="width: 25%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-700">
+                                                                </div>
+                                                            @elseif($valor > 99)
+                                                                <div style="width: 10%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-100">
+                                                                </div>
+                                                                <div style="width: 15%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-300">
+                                                                </div>
+                                                                <div style="width: 20%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
+                                                                </div>
+                                                                <div style="width: 25%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-700">
+                                                                </div>
+                                                                <div style="width: 10%"
+                                                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900">
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     </div>
 
@@ -627,12 +669,12 @@
                                                 </td>
                                                 <td
                                                     class="text-center p-1 whitespace-nowrap text-sm font-normal text-gray-900">
-                                                    <a href="#"
+                                                    {{-- <a href="#"
                                                         wire:click="EliminarBodega({{ $Bodega->id }})">
                                                         <i class="far fa-trash"></i> </a>
                                                     <a href="#" wire:click="EditarBodega({{ $Bodega }})">
-                                                        <i class="far fa-edit"></i></a>
-
+                                                        <i class="far fa-edit"></i></a> --}}
+                                                    {{ $inventario->stockMinimo }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -699,14 +741,14 @@
                                     <option class="text-neutral-900">Seleccione Empresa Principal</option>
                                     @foreach ($empresas as $empresa)
                                         <option class="text-primary" value="{{ $empresa->id }}">
-                                            {{ $empresa->nombre }}</option>
+                                            {{ $empresa->razon_social }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="p-4 text-neutral-900">
                                 <select
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                    id="campo_id" name="campo_id" wire:model.defer="campo_id">
+                                    name="campo_id" wire:model.defer="campo_id" id="campo_id">
                                     <option class="text-neutral-900">Seleccione Campo</option>
                                 </select>
                             </div>
@@ -763,7 +805,7 @@
                         </div>
                     </div>
                     <div class="p-4 text-left">
-                        Campo Actual
+                        Propietario
                         <select wire:change="SelectEmpresaxCampo" wire:model="empresa_id"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option class="text-secondary" value=" ">Seleccione Propietario.</option>
@@ -860,7 +902,7 @@
                                 <div class=" p-1 text-neutral-900 ml-2 mr-2">
                                     <select
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                        id="empresa_id" name="tipo_id">
+                                        id="tipo_id" name="tipo_id">
                                         <option class="text-neutral-900">Seleccione Tipo Item</option>
                                         <option class="text-primary" value="1">Insumo</option>
                                         <option class="text-primary" value="2">Equipos</option>
@@ -894,7 +936,7 @@
                                             class="h-7 border rounded px-4 w-full bg-gray-50" />
                                     </div>
                                 </div>
-                                <div class="text-left p-1 ml-2 mr-2">
+                                {{-- <div class="text-left p-1 ml-2 mr-2">
                                     Presentacion
                                     <div class="relative" data-te-input-wrapper-init>
                                         <input type="text" name="presentacion"
@@ -907,7 +949,7 @@
                                         <input type="number" name="contenido"
                                             class="h-7 border rounded px-4 w-full bg-gray-50" />
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="text-left p-1 ml-2 mr-2">
                                     Capacidad(Equipos)
                                     <div class="relative" data-te-input-wrapper-init>
@@ -982,65 +1024,7 @@
                     </div>
             </form>
             {{-- fin guardar con modal --}}
-            <!--Modal title editar bodega-->
-            <x-modal wire:model="open_editBodega" @click.away="false">
-                <h5 class="text-left p-3 text-xl font-medium leading-normal bg-neutral-200">
 
-                    Edición de Bodega
-                </h5>
-                <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
-                <div class="relative p-4 text-left">
-                    Bodega <input type="hidden" wire:model.defer="edit_idBodega">
-                    <div class="relative mb-3" data-te-input-wrapper-init>
-                        <input type="text" wire:model.defer="bodega"
-                            class="h-7 border mt-1 rounded px-4 w-full bg-gray-50" />
-                    </div>
-                </div>
-                <div class="p-4 text-left">
-                    Campo Actual
-                    <select wire:change="SelectEmpresaxCampo" wire:model="empresa_id"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                        <option class="text-secondary" value=" ">Seleccione Propietario.</option>
-                        @foreach ($empresas as $empresa)
-                            <option class="text-primary" value="{{ $empresa->id }}">
-                                {{ $empresa->razon_social }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="p-4 text-left">
-                    Campo Actual
-                    <select wire:model.defer="campo_id"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                        <option class="text-neutral-900" value="{{ $campoId }}">{{ $campo_nombre }}
-                        </option>
-                        @foreach ($campos as $campo)
-                            <option class="text-primary" value="{{ $campo->id }}">{{ $campo->campo }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="p-4 text-left">
-                    Observacion <input type="hidden" wire:model.defer="observacion">
-                    <div class="relative mb-3" data-te-input-wrapper-init>
-                        <input type="text" wire:model.defer="bodega"
-                            class="h-7 border mt-1 rounded px-4 w-full bg-gray-50" />
-                    </div>
-                </div>
-                <hr class=" h-0.5 border-t-0 bg-neutral-50 opacity-100 dark:opacity-500" />
-                <div class=" p-3">
-                    <button type="button" wire:click="ActualizarBodega"
-                        class="bg-gray-700 text-white  py-2 px-4 rounded hover:bg-gray-600" data-te-ripple-init
-                        data-te-ripple-color="light" data-te-modal-dismiss>
-                        Actualizar Bodega
-                    </button>
-                    <button type="button" wire:click="Limpiar"
-                        class="ml-1 inline-block rounded bg-primary-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                        data-te-ripple-init data-te-ripple-color="light" data-te-modal-dismiss>
-                        Cerrar
-                    </button>
-                </div>
-            </x-modal>
         </div>
     </div>
     {{-- fin caja --}}

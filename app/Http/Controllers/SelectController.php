@@ -49,6 +49,7 @@ class SelectController extends Controller
            $this->MatrizDatosPlantacion[5]=$plantacion->cuartel->campo->adm->name;
            $this->MatrizDatosPlantacion[6]=$plantacion->especie->variedad->variedad;
            $this->MatrizDatosPlantacion[7]=$plantacion->id;
+           $this->MatrizDatosPlantacion[8]=$plantacion->cuartel->superficie;
 
 
 

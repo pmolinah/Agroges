@@ -10,10 +10,24 @@ class tarea extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tarea',
-      
+        'campo_id',
+        'cuartel_id',
+        'responsable_id',
+        'administrador_id',
         'observacion',
-        'costo',
-       
+        'emitida',
     ];
+
+    public function campo(){
+        return $this->belongsTo(campo::class);
+    }
+    public function cuartel(){
+        return $this->belongsTo(cuartel::class);
+    }
+    public function responsable(){
+        return $this->belongsTo(user::class);
+    }
+    public function administrador(){
+        return $this->belongsTo(user::class);
+    }
 }

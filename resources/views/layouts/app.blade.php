@@ -66,6 +66,33 @@
         });
     </script>
     <script>
+        window.addEventListener('EliminarRegistro', function(e) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Registro Eliminado..',
+                text: '{{ Session::get('info') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
+        window.addEventListener('ErrorYaExiste', function(e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Registro ya existe..',
+                text: '{{ Session::get('error') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
+        window.addEventListener('GuardadoCorrecto', function(e) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro Guardado..',
+                text: '{{ Session::get('success') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
         window.addEventListener('ErrorCampoVacio', function(e) {
             Swal.fire({
                 icon: 'error',

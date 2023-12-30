@@ -19,6 +19,7 @@ use App\Http\Livewire\Graficos\Graficos;
 use App\Http\Controllers\CierreInicioTemporadaController;
 use App\Http\Controllers\PlanEstimadoController;
 use App\Http\Controllers\BodegaItemsController;
+use App\Http\Controllers\TareasController;
 use App\Models\empresa;
 /*??
 |--------------------------------------------------------------------------
@@ -35,8 +36,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    // Route::middleware(['web',config('jetstream.auth_session')])->group(function () {
-    Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::middleware(['web',config('jetstream.auth_session')])->group(function () {
+    // Route::middleware(['web',config('jetstream.auth_session'),'verified'])->group(function () {
 
 
     Route::get('/dashboard',function(){return view('dashboard');})->name('dashboard');
@@ -139,6 +140,14 @@ Route::get('/', function () {
     Route::get('/Bodega/Items',[BodegaItemsController::class,'BodegaItems'])->name('BodegaItem.show');
     Route::post('Store/item',[BodegaItemsController::class,'itemStore'])->name('item.store');
     Route::post('Update/item',[BodegaItemsController::class,'itemUpdate'])->name('item.update');
+    //bodega guia e ingreso a inventario
+    Route::get('/Bodega/Ingreso',[BodegaItemsController::class,'BodegaIngreso'])->name('bodega.ingreso');
+    Route::get('/Bodega/Egreso',[BodegaItemsController::class,'BodegaEgreso'])->name('bodega.egreso');
+    Route::get('/Registro/Ingresos/Egresos/Bodega',[BodegaItemsController::class, "Registro"])->name('Registros.bodega');
+    Route::get('/Registro/{documento_id}/Ingreso',[BodegaItemsController::class, 'IngresoBodegaPDF'])->name('registro.bodega.ingreso');
+
+    //tareas
+    Route::get('/Crear/Tareas',[TareasController::class, 'CrearTarea'])->name('Tarea.crear');
 
     //planEstimado de especies
     Route::get('/Plan/Estimado/Index',[PlanEstimadoController::class, 'index'])->name('PlanEstimado.index');

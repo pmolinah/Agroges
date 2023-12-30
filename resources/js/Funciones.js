@@ -174,6 +174,7 @@ $(document).ready(function(){
                 $('#Administrador').val(info[5]);
                 $('#variedad').val(info[6]);
                 $('#plantacion_id').val(info[7]);
+                $('#superficie').val(info[8]);
        
             });
         });

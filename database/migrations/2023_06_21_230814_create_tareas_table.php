@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('tarea',250);
-            $table->float('costo',8,2)->unsigned();
-            $table->string('observacion',250);
+            $table->bigInteger('campo_id')->unsigned();
+            $table->foreign('campo_id')->references('id')->on('campos');
+            $table->bigInteger('cuartel_id')->unsigned();
+            $table->foreign('cuartel_id')->references('id')->on('cuartels');
+            $table->bigInteger('responsable_id')->unsigned();
+            $table->foreign('responsable_id')->references('id')->on('users');
+            $table->bigInteger('administrador_id')->unsigned();
+            $table->foreign('administrador_id')->references('id')->on('users');
+            $table->string('observacion',100)->nullable();
+            $table->integer('emitida')->nullable();
         });
     }
 
