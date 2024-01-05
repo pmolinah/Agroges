@@ -20,6 +20,9 @@ class inventario extends Model
         'precioUnitario',
         'stockMinimo',
         'pivote',
+        'vencimiento',
+        'ingresobodega_id',
+        'CantidadRestante',
     ];
 
     public function bodega(){
@@ -27,5 +30,8 @@ class inventario extends Model
     }
     public function item(){
         return $this->belongsTo(item::class);
+    }
+    public function ingresobodega(){
+        return $this->belongsTo(ingresobodega::class);
     }
 }

@@ -22,8 +22,9 @@ class CrearTarea extends Component
     public $campos=[];
     public $cuarteles=[];
     public $superficie;
-    public $especie;
-    public $variedad;
+    public $especie,$fechaf,$fechai,$dosis,$objetivo;
+    public $mojamiento,$reingreso,$diasAplicacion;
+    public $variedad,$carencias;
     public $detalleTarea=[];
     public $empresa_id,$campo_id,$cuartel_id,$responsable_id,$administrador_id,$observacion,$equipo_id;
 
@@ -46,6 +47,7 @@ class CrearTarea extends Component
         $this->especie=$plantacion->especie->especie;
         $this->variedad=$plantacion->especie->variedad->variedad;
         $this->superficie=$tarea->cuartel->superficie;
+        $this->administrador_id=$tarea->administrador_id;
     }
     public function cambioCampo(){
         $this->cuarteles=cuartel::where('campo_id',$this->campo_id)->get();
@@ -64,6 +66,11 @@ class CrearTarea extends Component
        ]);
        $this->Numero=$guardarTarea->id;
        $this->tareaEliminarID=$guardarTarea->id;
+       $this->dispatchBrowserEvent('GuardadoCorrecto',[
+        'title' => 'Registro guardado correctamente.',
+        'icon'=>'success',
+        'iconColor'=>'blue',
+    ]);
     }
     public function eliminarTarea(){
         tarea::where('id',$this->tareaEliminarID)->delete();
@@ -80,6 +87,7 @@ class CrearTarea extends Component
         $detalletarea=detalletarea::create([
             'tarea_id'=>$this->tareaEliminarID,
             'item_id'=>$this->item_id,
+            'cuartel_id'=>$this->cuartel_id,
             'objetivo'=>$this->objetivo,
             'dosis'=>$this->dosis,
             'fechai'=>$this->fechai,
@@ -88,6 +96,7 @@ class CrearTarea extends Component
             'reingreso'=>$this->reingreso,
             'mojamiento'=>$this->mojamiento,
             'equipo_id'=>$this->equipo_id,
+            'carencia'=>$this->carencias,
         ]);
         $this->dispatchBrowserEvent('GuardadoCorrecto',[
             'title' => 'Registro guardado correctamente.',
@@ -95,6 +104,15 @@ class CrearTarea extends Component
             'iconColor'=>'blue',
         ]);
         return back();
+    }
+    public function generarTarea(){
+        tarea::where('id',$this->tareaEliminarID)->update(['emitida'=>1,'observacion'=>$this->observacion]);
+        $this->dispatchBrowserEvent('GuardadoCorrecto',[
+            'title' => 'Registro guardado correctamente.',
+            'icon'=>'success',
+            'iconColor'=>'blue',
+        ]);
+        return redirect()->route('Tarea.crear');
     }
     public function render()
     {
@@ -108,7 +126,7 @@ class CrearTarea extends Component
             logout();
             
         }
-        
+             
         $tareas=tarea::where('emitida',NULL)->where('responsable_id',$user)->get();
         $this->empresas=empresa::where('tipo_id',1)->get();
         $this->detalleTarea=detalletarea::where('tarea_id',$this->Numero)->get();

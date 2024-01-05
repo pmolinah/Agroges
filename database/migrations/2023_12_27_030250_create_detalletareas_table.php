@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreign('tarea_id')->references('id')->on('tareas');
             $table->bigInteger('item_id')->unsigned();
             $table->foreign('item_id')->references('id')->on('items');
+            $table->bigInteger('cuartel_id')->unsigned();
+            $table->foreign('cuartel_id')->references('id')->on('cuartels');
+            $table->integer('estado')->unsigned()->nullable();
             $table->string('objetivo',150)->nullable();
             $table->float('dosis')->unsigned()->nullable();
             $table->date('fechai')->nullable();

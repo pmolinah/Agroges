@@ -25,7 +25,11 @@ return new class extends Migration
             $table->string('presentacion',150)->nullable();
             $table->bigInteger('precioUnitario')->unsigned()->nullable();
             $table->integer('stockMinimo')->unsigned()->nullable();
+            $table->date('vencimiento')->nullable();
             $table->string('pivote',100);
+            $table->bigInteger('ingresobodega_id')->unsigned();
+            $table->foreign('ingresobodega_id')->references('id')->on('ingresobodegas');
+            $table->bigInteger('CantidadRestante')->nullable();
         });
     }
 

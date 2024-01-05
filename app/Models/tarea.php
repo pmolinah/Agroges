@@ -30,4 +30,7 @@ class tarea extends Model
     public function administrador(){
         return $this->belongsTo(user::class);
     }
+    public function detalletarea(){
+        return $this->hasMany(detalletarea::class);
+    }
 }

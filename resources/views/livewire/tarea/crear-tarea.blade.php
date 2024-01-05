@@ -75,6 +75,7 @@
                                 Cuartel</label>
                             <div class="">
                                 <input type="text" name="superficiecuartel" wire:model.defer="superficie" disabled
+                                    id="superficie"
                                     class="text-center rounded-md border-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -168,7 +169,7 @@
                                 <td class="w-24 font-bold text-center mt-3 border-2 p-2"><i
                                         class="fa-solid fa-trash"></i></td>
                             </tr>
-                            <tr class="mt-3 border-2">
+                            <tr class="mt-3 border-2 bg-neutral-200">
                                 <td class="w-32 font-bold mt-3 border-2">
                                     <select wire:model.defer="item_id" wire:change="CambioItem"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
@@ -232,32 +233,42 @@
                             @foreach ($detalleTarea as $detalle)
                                 <tr class="mt-3 border-2">
                                     <td class="font-bold text-center mt-3 border-2">
-                                        {{ $detalle->item_id }}
+                                        {{ $detalle->item->nombre }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->item->ingredienteActivo }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->objetivo }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->dosis }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
-                                    </td>
-                                    {{-- <td class="font-bold text-center mt-3 border-2">
-                                </td> --}}
-                                    <td class="font-bold text-center mt-3 border-2">
-                                    </td>
-                                    <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->fechai }},{{ $detalle->fechaf }}
                                     </td>
                                     {{-- <td class="font-bold text-center mt-3 border-2">
                                 </td> --}}
                                     <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->diasentreAplicacion }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->reingreso }}
+                                    </td>
+                                    {{-- <td class="font-bold text-center mt-3 border-2">
+                                </td> --}}
+                                    <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->mojamiento }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
+                                        {{ $detalle->equipo->nombre }}
                                     </td>
                                     <td class="font-bold text-center mt-3 border-2">
-                                        <a href="#" type="button" wire:click="QuitarLinea()">
+                                        {{ $detalle->carencia }}
+                                    </td>
+                                    <td class="font-bold text-center mt-3 border-2">
+                                        <a href="#" type="button"
+                                            wire:click="QuitarLinea({{ $detalle->id }})">
 
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
@@ -275,7 +286,7 @@
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                     </div>
                     <div class="col-start-1 text-left col-span-5">
-                        <button type="button" wire:click="generarGuiaRecepcion"
+                        <button type="button" wire:click="generarTarea"
                             class="bg-gray-700 text-white  py-2 px-4 rounded hover:bg-gray-600">
                             Generar Orden de Aplicacion
                         </button>

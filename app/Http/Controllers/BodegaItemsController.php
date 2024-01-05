@@ -9,10 +9,12 @@ use App\Models\item;
 use App\Models\bodega;
 use App\Models\empresa;
 use App\Models\ingresobodega;
+use App\Models\egresobodega;
 use App\Models\User;
 use PDF;
 class BodegaItemsController extends Controller
 {
+    public $um;
     public function BodegaItems(){
         return view('BodegaItems.BodegaItems');
     }
@@ -102,7 +104,8 @@ class BodegaItemsController extends Controller
     }
     public function Registro(){
         $ingresosBodega=ingresobodega::where('emitida',1)->get();
-        return view('BodegaItems.RegistrosEntSal',compact('ingresosBodega'));
+        $egresoBodega=egresobodega::where('emitida',1)->get();
+        return view('BodegaItems.RegistrosEntSal',compact('ingresosBodega','egresoBodega'));
     }
     public function IngresoBodegaPDF($id){
         $DocumentoRecepcionBodega=ingresobodega::with('detingresobodega')->where('id',$id)->get();
@@ -218,82 +221,134 @@ class BodegaItemsController extends Controller
                 PDF::MultiCell(12, 4, ($detalle->cantidad*$detalle->precioUnitario), 1, 'L', 1, 0, '', '', true);
                 PDF::Ln(4);
             }
-
-            //cuenta de envases por color
-            // $this->guiarecepciondetalles=guiarecepcion::where('id',$id)->get();
-            // foreach($this->guiarecepciondetalles as $GuiaID){
-            //     $this->guiaRepID=$GuiaID->id;
-            // }
-            // PDF::Ln(10);
-
-            // PDF::SetFont('Helvetica', '', 8);
-            // PDF::SetFillColor(229, 231, 233);
-            // PDF::MultiCell(50, 4, 'Envase', 1, 'C', 1, 0, 11, '', true);
-            // PDF::SetFillColor(229, 231, 233);
-            // PDF::MultiCell(31, 4, 'Color', 1, 'C', 1, 0, 61, '', true);
-            // PDF::SetFillColor(229, 231, 233);
-            // PDF::MultiCell(11, 4, 'Suma', 1, 'C', 1, 0, 92, '', true);
-            // PDF::Ln(4);
-            // $envases=envase::all();
-            // foreach($envases as $envase){
-            //     $colores=color::all();
-            //         foreach($colores as $color){
-            //             $detalleGuiaRecepcion=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('envase_id',$envase->id)->where('color_id',$color->id)->count();
-            //             if($detalleGuiaRecepcion>0){
-            //                 $suma=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('envase_id',$envase->id)->where('color_id',$color->id)->sum('cantidadEnvase');
-            //                 PDF::SetFillColor(253, 254, 254);
-                            
-            //                 PDF::MultiCell(50, 4, $envase->envase, 1, 'L', 1, 0, 11, '', true);
-                            
-            //                 PDF::MultiCell(31, 4, $color->color, 1, 'C', 1, 0, 61, '', true);
-                          
-            //                 PDF::MultiCell(11, 4, $suma, 1, 'C', 1, 0, 92, '', true);
-            //             }
-            //             PDF::Ln(4);
-            //             $this->lineaNegativa=$this->lineaNegativa-4;
-            //         }
-            // }
-        // 
-            // PDF::Ln(-8);
-            // PDF::Ln($this->lineaNegativa);
-            // PDF::SetFont('Helvetica', '', 8);
-            // PDF::SetFillColor(229, 231, 233);
-            // PDF::Ln(4);
-            // PDF::MultiCell(50, 4, 'Especie', 1, 'C', 1, 0, 104, '', true);
-            // PDF::SetFillColor(229, 231, 233);
-            // PDF::MultiCell(31, 4, 'Observación', 1, 'C', 1, 0, 154, '', true);
-            // PDF::SetFillColor(229, 231, 233);
-            // PDF::MultiCell(12, 4, 'Kilos', 1, 'C', 1, 0, 185, '', true);
-            // PDF::Ln($this->lineaNegativa);
-             //cuenta de frutas por especie
-            // $especies=especie::all();
-            // foreach($especies as $especie){
-            //     $observaciones=observacion::all();
-            //         foreach($observaciones as $observacion){
-            //             $detalleGuiaRecepcionEspecie=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->count();
-            //             if($detalleGuiaRecepcionEspecie>0){
-            //                 $suma=guiarecepciondetalle::where('guiarecepcion_id',$id)->where('especie_id',$especie->id)->where('observacion_id',$observacion->id)->sum('kilos');
-            //                 if($especie->especie!='N/A' || $observacion->observacion!='Vacio'){
-                              
-            //                     PDF::SetFillColor(253, 254, 254);
-                            
-            //                     PDF::MultiCell(50, 4, $especie->especie, 1, 'L', 1, 0, 104, '', true);
-                                
-            //                     PDF::MultiCell(31, 4, $observacion->observacion, 1, 'C', 1, 0, 154, '', true);
-                              
-            //                     PDF::MultiCell(12, 4, $suma, 1, 'C', 1, 0, 185, '', true);
-            //                 }
-            //             }
-            //             PDF::Ln(4);
-            //             $this->i++;
-            //         }
-            // }
-        //
-
-
-
             PDF::Output('Guia_recepcion_numero'.$guiaRecep->numero.'pdf');
-            
+        }
+    }
+    public function BodegaEgreso(){
+        return view('BodegaItems.BodegaEgreso');
+    }
+    public function EgresoBodegaPDF($id){
+        $DocumentoEgresoBodega=egresobodega::with('detallegreso')->where('id',$id)->get();
+        foreach($DocumentoEgresoBodega as $egreso){
+            PDF::SetTitle('Guía de Recepción');
+            PDF::AddPage();
+            //PDF::setPageFormat('letter');
+            PDF::Write(0, 'Documento Egreso');
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(50, 4, 'Egreso N°', 1, 'C', 1, 0, 108, '', true);
+         
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(40, 4, $egreso->id, 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Campo', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(75, 4, 'sin datos aun', 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Drección', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(75, 4, 'sin datos aun', 1, 'R', 1, 0, '', '', true);
+            PDF::Ln(4);
+
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(15, 4, 'Comuna', 1, 'C', 1, 0, 108, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::SetFont('Helvetica', '', 7);
+            PDF::MultiCell(75, 4, 'sin datos aun', 1, 'R', 1, 0, '', '', true);
+
+            PDF::SetFont('Helvetica', '', 10);
+            PDF::Ln(2);
+            PDF::Write(0, '_______________________________________________________________________________________________');
+            PDF::Ln(5);
+            PDF::Write(0, 'Datos Solicitante');
+            PDF::Ln(5);
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(13, 4, 'Rut', 1, 'L', 1, 0, 11, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(20, 4, $egreso->proveedor->rut, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(20, 4, 'Solicitante', 1, 'L', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(80, 4, $egreso->solicitante->name, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(14, 4, 'Teléfono', 1, 'L', 1, 0, 143, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(40, 4, $guiaRecep->proveedor->telefono, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            // PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(13, 4, 'Comuna', 1, 'C', 1, 0, 11, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(90, 4, $guiaRecep->proveedor->comuna->comuna, 1, 'C', 1, 0, '', '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(20, 4, 'Email', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(253, 254, 254);
+            PDF::MultiCell(80, 4, $egreso->solicitante->email, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            // PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(13, 4, 'Giro', 1, 'C', 1, 0, 11, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(90, 4, $guiaRecep->proveedor->giro, 1, 'C', 1, 0, '', '', true);
+            // PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(13, 4, 'Código', 1, 'C', 1, 0, 114, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(70, 4, $guiaRecep->proveedor->id, 1, 'C', 1, 0, '', '', true);
+            PDF::Ln(4);
+            // PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(16, 4, 'Conductor', 1, 'C', 1, 0, 11, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(90, 4, $guiaRecep->conductor->name, 1, 'C', 1, 0, '', '', true);
+            // PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(13, 4, 'Patente', 1, 'C', 1, 0, 114, '', true);
+            // PDF::SetFillColor(253, 254, 254);
+            // PDF::MultiCell(70, 4, $guiaRecep->vehiculo->patente, 1, 'C', 1, 0, '', '', true);
+            // PDF::Ln(3);
+            PDF::SetFont('Helvetica', '', 10);
+            PDF::Write(0, '_______________________________________________________________________________________________');
+            PDF::Ln(8);
+
+             //titulo detalle
+            PDF::SetFont('Helvetica', '', 8);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(30, 4, 'Bodega', 1, 'C', 1, 0, 11, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(60, 4, 'Detalle', 1, 'C', 1, 0, 41, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(40, 4, 'Ing.Acti.', 1, 'C', 1, 0, 101, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(30, 4, 'U/M', 1, 'C', 1, 0, 141, '', true);
+            // PDF::SetFillColor(229, 231, 233);
+            // PDF::MultiCell(20, 4, 'Presentacion', 1, 'C', 1, 0, 161, '', true);
+            PDF::SetFillColor(229, 231, 233);
+            PDF::MultiCell(26, 4, 'Detalle', 1, 'C', 1, 0, 171, '', true);
+            PDF::Ln(4);
+
+           
+            foreach ($egreso->detallegreso as $detalle ){
+                PDF::SetFillColor(253, 254, 254);
+                PDF::MultiCell(30, 4, $detalle->bodega->bodega, 1, 'C', 1, 0, 11, '', true);
+                PDF::MultiCell(60, 4, $detalle->inventario->item->nombre, 1, 'L', 1, 0, 41, '', true);
+                PDF::MultiCell(40, 4, $detalle->inventario->item->ingredienteActivo, 1, 'C', 1, 0, 101, '', true);
+                if ($detalle->inventario->item->unidadMedida == 0){
+                $this->um='N/A';
+                }elseif($detalle->inventario->item->unidadMedida == 1){
+                    $this->um='LITRO';
+                }elseif($detalle->inventario->item->unidadMedida == 2){
+                    $this->um='KILO';
+                }elseif($detalle->inventario->item->unidadMedida == 3){
+                    $this->um='UNIDAD';
+                }else{
+                    $this->um='METROS';
+                }
+                PDF::MultiCell(30, 4, $this->um, 1, 'C', 1, 0, 141, '', true);
+                // PDF::MultiCell(20, 4, $detalle->inventario->item->presentacion, 1, 'L', 1, 0, 161, '', true);
+                PDF::MultiCell(26, 4, ($detalle->detalleEntrega), 1, 'C', 1, 0, 171, '', true);
+                PDF::Ln(4);
+            }
+            PDF::Output('Documento_Egreso_Bodega_numero'.$egreso->id.'pdf');
         }
     }
 }

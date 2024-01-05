@@ -32,7 +32,7 @@ class BodegaIngreso extends Component
     public $proveedor_id,$bodega_id,$ingresobodega_id;
     public $tipoDocumento_id,$fechaGuia,$NumFacGuia;
     public $empresa_id,$campo_id;
-    public $rut,$razon_social,$direccion,$comuna,$email,$giro,$pivote;
+    public $rut,$razon_social,$direccion,$comuna,$email,$giro,$pivote,$observacion;
 
     // public $verificador="nada";
 
@@ -180,8 +180,17 @@ class BodegaIngreso extends Component
                 // ]);
                 // return redirect()->route('bodega.ingreso');
             }else{
-                $this->total=$detalleIngresoBodega->cantidad*$detalleIngresoBodega->contenido;
-                $this->total=$detalleIngresoBodega->cantidad;
+                if($detalleIngresoBodega->item->unidadMedida==1 || $detalleIngresoBodega->item->unidadMedida==2){
+                    $this->total=$detalleIngresoBodega->cantidad*($detalleIngresoBodega->contenido*1000);
+                }elseif($detalleIngresoBodega->item->unidadMedida==3){
+                    $this->total=$detalleIngresoBodega->cantidad*$detalleIngresoBodega->contenido;
+                }else{
+                    $this->total=$detalleIngresoBodega->cantidad*($detalleIngresoBodega->contenido*100);
+                }
+                    
+                
+                
+                // $this->total=$detalleIngresoBodega->cantidad;
                 inventario::create([
                     'item_id'=>$detalleIngresoBodega->item_id,
                     'bodega_id'=>$detalleIngresoBodega->bodega_id,
@@ -193,13 +202,10 @@ class BodegaIngreso extends Component
                     'precioUnitario'=>$detalleIngresoBodega->precioUnitario,
                     'stockMinimo'=>$detalleIngresoBodega->item->stockMinimo,
                     'pivote'=>$this->pivote,
+                    'vencimiento'=>$detalleIngresoBodega->vencimiento,
+                    'ingresobodega_id'=>$detalleIngresoBodega->ingresobodega_id,
                 ]);
-                // $this->dispatchBrowserEvent('GuardadoCorrecto', [
-                //     'title' => 'Registro, Guardado.',
-                //     'icon'=>'success',
-                //     'iconColor'=>'blue',
-                // ]);
-                // return redirect()->route('bodega.ingreso');
+              
             }
         }
         $this->dispatchBrowserEvent('GuardadoCorrecto', [
@@ -207,7 +213,7 @@ class BodegaIngreso extends Component
             'icon'=>'success',
             'iconColor'=>'blue',
         ]);
-        ingresobodega::where('id',$this->ingresobodega_id)->update(['emitida'=>1]);
+        ingresobodega::where('id',$this->ingresobodega_id)->update(['emitida'=>1,'observacion'=>$this->observacion]);
         return redirect()->route('bodega.ingreso');
     }
     public function render()

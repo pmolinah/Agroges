@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('total')->unsigned();
             $table->string('pivote',20);
             $table->integer('emitida')->nullable();
+            $table->string('observacion',100)->nullable();
         });
     }
 

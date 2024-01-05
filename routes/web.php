@@ -145,9 +145,12 @@ Route::get('/', function () {
     Route::get('/Bodega/Egreso',[BodegaItemsController::class,'BodegaEgreso'])->name('bodega.egreso');
     Route::get('/Registro/Ingresos/Egresos/Bodega',[BodegaItemsController::class, "Registro"])->name('Registros.bodega');
     Route::get('/Registro/{documento_id}/Ingreso',[BodegaItemsController::class, 'IngresoBodegaPDF'])->name('registro.bodega.ingreso');
+    Route::get('/Registro/{documento_id}/Egreso',[BodegaItemsController::class, 'EgresoBodegaPDF'])->name('registro.bodega.egreso');
 
     //tareas
     Route::get('/Crear/Tareas',[TareasController::class, 'CrearTarea'])->name('Tarea.crear');
+    Route::get('/Tareas/Planificadas',[TareasController::class, 'TareasPlanificadas'])->name('Tareas.planificadas');
+    Route::get('/Tareas/Finalizadas',[TareasController::class, 'TareasFinalizadas'])->name('Tareas.finalizadas');
 
     //planEstimado de especies
     Route::get('/Plan/Estimado/Index',[PlanEstimadoController::class, 'index'])->name('PlanEstimado.index');

@@ -84,6 +84,15 @@
                 showConfirmButton: false
             });
         });
+        window.addEventListener('CierreCorrecto', function(e) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Tarea Cerrada Correctamente...',
+                text: '{{ Session::get('success') }}',
+                timer: 5000,
+                showConfirmButton: false
+            });
+        });
         window.addEventListener('GuardadoCorrecto', function(e) {
             Swal.fire({
                 icon: 'success',

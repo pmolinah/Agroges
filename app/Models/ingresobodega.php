@@ -16,7 +16,8 @@ class ingresobodega extends Model
         'numero',
         'campo_id',
         'total',
-        'pivote'
+        'pivote',
+        'observacion',
     ];
 
     public function detingresobodega(){
