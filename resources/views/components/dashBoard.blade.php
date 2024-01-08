@@ -262,7 +262,7 @@
                 </div>
                 <!-- Sidebar links -->
                 <nav aria-label="Main"
-                    class="bg-gray-400 flex-1 w-64 px-1 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto ">
+                    class="bg-gray-700 flex-1 w-64 px-1 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto shadow-lg shadow-neutral-500 borded-2">
                     <!-- Dashboards links -->
                     @can('prod.menu.btn')
                         <div x-data="{ isActive: false, open: false }">
@@ -294,63 +294,63 @@
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 @can('prod.crear.despacho')
                                     <a href="{{ route('Guias.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Despacho&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>
                                     </a>
                                 @endcan
                                 @can('prod.crear.recepcion')
                                     <a href="{{ route('Guias.recepcion') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Recepción&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-left"></i>
                                     </a>
                                 @endcan
                                 @can('prod.crear.devtras')
                                     <a href="{{ route('Devolucion.Envases') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Traspaso/Devolucion&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrows-turn-to-dots"></i>
                                     </a>
                                 @endcan
                                 @can('prod.guias.finalizadas')
                                     <a href="{{ route('Guias.show') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Guías Emitidas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-clipboard"></i>
                                     </a>
                                 @endcan
                                 <hr>
                                 @can('adm.crear.planificacion')
                                     <a href="{{ route('Cosecha.planificacionCreate') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-calendar-days"></i>
                                     </a>
                                 @endcan
                                 @can('adm.ver.planificacion')
                                     <a href="{{ route('Cosecha.planificacion') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Ver Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
                                     </a>
                                 @endcan
                                 @can('adm.crear.plantacion')
                                     <a href="{{ route('Plantacion.create') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Plantaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-tree"></i>
                                     </a>
                                 @endcan
                                 @can('adm.ver.plantacion')
                                     <a href="{{ route('Plantacion.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Ver Plantaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
                                     </a>
                                 @endcan
                                 @can('adm.crear.cosechar')
                                     <hr>
                                     <a href="{{ route('Cosecha.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Ver Cosechas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-apple-whole"></i>
                                     </a>
                                 @endcan
                                 @can('adm.ver.cosechas.finalizadas')
-                                    <a href="{{ route('CosechasCerradas.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                    <a href="{{ route('CosechasCerradas.index') }}" role="menuitem" {{-- class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400"> --}}
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Cosechas Realizadas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-carrot"></i>
                                     </a>
                                 @endcan
@@ -388,26 +388,26 @@
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 @can('adm.crear.usuarios')
                                     <a href="{{ route('User.create') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Crear Usuarios&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-plus"></i>
                                     </a>
                                 @endcan
                                 @can('adm.ver.usuarios')
                                     <a href="{{ route('User.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Ver Usuarios&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-users"></i>
                                     </a>
                                 @endcan
                                 @can('adm.crear.roles')
                                     <a href="{{ route('Rol.create') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Roles y Permisos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
 
                                     </a>
                                 @endcan
                                 @can('adm.ver.roles')
                                     <a href="{{ route('RolePermisos.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Ver Roles/Permisos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-table-list"></i>
                                     </a>
                                 @endcan
@@ -490,13 +490,13 @@
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 @can('adm.crear.empresas')
                                     <a href="{{ route('Empresa.create') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Crear Empresa&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus ml-1 mr-1"></i>
                                     </a>
                                 @endcan
                                 @can('adm.ver.empresas')
                                     <a href="{{ route('Empresa.index') }}" role="menuitem"
-                                        class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                        class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                         Ver Empresas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search ml-1 mr-1"></i>
                                     </a>
                                 @endcan
@@ -563,7 +563,7 @@
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             <a href="{{ route('Campo.create') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Creación de Campos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
 
                             </a>
@@ -622,7 +622,7 @@
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             <a href="{{ route('Cuartel.create') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Crear Cuarteles&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
                             </a>
                             {{-- <a
@@ -672,11 +672,11 @@
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             <a href="{{ route('Certificacion.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Campos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-layer-group"></i>
                             </a>
                             <a href="{{ route('CertificacionCuartel.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Cuarteles&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-hashtag"></i>
                             </a>
                             {{-- <a
@@ -729,13 +729,13 @@
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             {{-- @can('prod.plan.estimada.crear') --}}
                             <a href="{{ route('Create.plan') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Planificar&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-paperclip"></i>
                             </a>
                             {{-- @endcan --}}
                             {{-- @can('prod.plan.estimada.ver') --}}
                             <a href="{{ route('PlanEstimado.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Ver Planificaciones&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
                             </a>
                             {{-- @endcan --}}
@@ -788,11 +788,11 @@
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             <a href="{{ route('Vehiculos.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Registrar Vehículos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-truck"></i>
                             </a>
                             {{-- <a href="{{ route('CertificacionCuartel.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Cuarteles&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-hashtag"></i>
                             </a> --}}
                             {{-- <a
@@ -843,17 +843,17 @@
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             <a href="{{ route('bodega.ingreso') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Ingresos&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-warehouse"></i>&nbsp;&nbsp;&nbsp;<i
                                     class="fa-solid fa-truck-ramp-box"></i>
                             </a>
                             <a href="{{ route('bodega.egreso') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Entregas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-warehouse"></i>&nbsp;&nbsp;&nbsp;<i
                                     class="fa-solid fa-share-from-square"></i>
                             </a>
                             <a href="{{ route('Registros.bodega') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Registros Bodega&nbsp;&nbsp;&nbsp;<i
                                     class="fa-solid fa-warehouse"></i>&nbsp;&nbsp;&nbsp;<i
                                     class="fa-solid fa-search"></i>
@@ -900,23 +900,23 @@
                             <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                             <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                             <a href="{{ route('Tarea.crear') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Crear&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
                             </a>
                             <a href="{{ route('bodega.egreso') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Listar&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-search"></i>
                             </a>
                             <a href="{{ route('Tareas.planificadas') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Tareas Planificadas&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-calendar-days"></i>
                             </a>
                             <a href="{{ route('Tareas.finalizadas') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Tareas Realizadas&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-calendar-check"></i></i>
                             </a>
                             {{-- <a href="{{ route('Vehiculos.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-300 transition-colors duration-200 rounded-md dark:text-gray-900 hover:text-light hover:text-white">
+                                class="block p-2 text-sm transition-colors duration-200 rounded-md text-gray-100 hover:text-orange-400">
                                 Registros Bodega&nbsp;&nbsp;&nbsp;<i
                                     class="fa-solid fa-warehouse"></i>&nbsp;&nbsp;&nbsp;<i
                                     class="fa-solid fa-search"></i>
@@ -1583,59 +1583,59 @@
     {{-- script para inicializar barra escondida y solo verla con boton --}}
     <script>
         /*const setup = () => {
-                        const getTheme = () => {
-                            if (window.localStorage.getItem('dark')) {
-                                return JSON.parse(window.localStorage.getItem('dark'));
-                            }
-                            return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                        };
+                                                                                                                    const getTheme = () => {
+                                                                                                                        if (window.localStorage.getItem('dark')) {
+                                                                                                                            return JSON.parse(window.localStorage.getItem('dark'));
+                                                                                                                        }
+                                                                                                                        return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                                                                                                                    };
 
-                        const setTheme = (value) => {
-                            window.localStorage.setItem('dark', value);
-                        };
+                                                                                                                    const setTheme = (value) => {
+                                                                                                                        window.localStorage.setItem('dark', value);
+                                                                                                                    };
 
-                        return {
-                            loading: true,
-                            isDark: getTheme(),
-                            toggleTheme() {
-                                this.isDark = !this.isDark;
-                                setTheme(this.isDark);
-                            },
-                            setLightTheme() {
-                                this.isDark = false;
-                                setTheme(this.isDark);
-                            },
-                            setDarkTheme() {
-                                this.isDark = true;
-                                setTheme(this.isDark);
-                            },
-                            isSidebarOpen: false,
-                            toggleSidebarMenu() {
-                                this.isSidebarOpen = !this.isSidebarOpen;
-                            },
-                            isNotificationsPanelOpen: false,
-                            openNotificationsPanel() {
-                                this.isNotificationsPanelOpen = true;
-                                this.$nextTick(() => {
-                                    this.$refs.notificationsPanel.focus();
-                                });
-                            },
-                            isSettingsPanelOpen: false,
-                            openSettingsPanel() {
-                                this.isSettingsPanelOpen = true;
-                                this.$nextTick(() => {
-                                    this.$refs.settingsPanel.focus();
-                                });
-                            },
-                            isSearchPanelOpen: false,
-                            openSearchPanel() {
-                                this.isSearchPanelOpen = true;
-                                this.$nextTick(() => {
-                                    this.$refs.searchInput.focus();
-                                });
-                            },
-                        };
-                    };*/
+                                                                                                                    return {
+                                                                                                                        loading: true,
+                                                                                                                        isDark: getTheme(),
+                                                                                                                        toggleTheme() {
+                                                                                                                            this.isDark = !this.isDark;
+                                                                                                                            setTheme(this.isDark);
+                                                                                                                        },
+                                                                                                                        setLightTheme() {
+                                                                                                                            this.isDark = false;
+                                                                                                                            setTheme(this.isDark);
+                                                                                                                        },
+                                                                                                                        setDarkTheme() {
+                                                                                                                            this.isDark = true;
+                                                                                                                            setTheme(this.isDark);
+                                                                                                                        },
+                                                                                                                        isSidebarOpen: false,
+                                                                                                                        toggleSidebarMenu() {
+                                                                                                                            this.isSidebarOpen = !this.isSidebarOpen;
+                                                                                                                        },
+                                                                                                                        isNotificationsPanelOpen: false,
+                                                                                                                        openNotificationsPanel() {
+                                                                                                                            this.isNotificationsPanelOpen = true;
+                                                                                                                            this.$nextTick(() => {
+                                                                                                                                this.$refs.notificationsPanel.focus();
+                                                                                                                            });
+                                                                                                                        },
+                                                                                                                        isSettingsPanelOpen: false,
+                                                                                                                        openSettingsPanel() {
+                                                                                                                            this.isSettingsPanelOpen = true;
+                                                                                                                            this.$nextTick(() => {
+                                                                                                                                this.$refs.settingsPanel.focus();
+                                                                                                                            });
+                                                                                                                        },
+                                                                                                                        isSearchPanelOpen: false,
+                                                                                                                        openSearchPanel() {
+                                                                                                                            this.isSearchPanelOpen = true;
+                                                                                                                            this.$nextTick(() => {
+                                                                                                                                this.$refs.searchInput.focus();
+                                                                                                                            });
+                                                                                                                        },
+                                                                                                                    };
+                                                                                                                };*/
     </script>
 
 
